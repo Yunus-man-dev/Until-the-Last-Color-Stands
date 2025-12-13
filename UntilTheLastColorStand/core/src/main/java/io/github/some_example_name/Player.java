@@ -1,6 +1,7 @@
 package io.github.some_example_name;
 import java.util.ArrayList;
 
+import GoldCivilization;
 import io.github.some_example_name.building.Building;
 import io.github.some_example_name.building.Farm;
 import io.github.some_example_name.building.GoldMine;
@@ -9,6 +10,7 @@ import io.github.some_example_name.building.Port;
 import io.github.some_example_name.resources.FoodResource;
 import io.github.some_example_name.resources.GoldResource;
 import io.github.some_example_name.resources.MovementPoint;
+import main.java.io.github.some_example_name.civilization.Civilization;
 
 public class Player {
 
@@ -29,7 +31,17 @@ public class Player {
         this.technologyPoint = 0;
 
     }
+    public FoodResource getFood() {
+        return food;
+    }
 
+    public GoldResource getGold() {
+        return gold;
+    }
+
+    public MovementPoint getMp() {
+        return movementPoint;
+    }
     public void addTile(Tile t){
         if(t != null && !ownedTiles.contains(t)){
             ownedTiles.add(t);
@@ -104,5 +116,8 @@ public class Player {
         }
         t.setBuilding(building);
         return true;
+    }
+    public Civilization getCivilization() {
+        return civilization;
     }
 }
