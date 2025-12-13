@@ -3,9 +3,9 @@ package io.github.some_example_name.resources;
 and methods for food related features */
 
 public class FoodResource extends Resource {
-    private final int RECRUIT;
-    private final int TILE;
-    private final int MAINTAIN;
+    public final int RECRUIT;
+    public final int TILE;
+    public final int MAINTAIN;
 
     public FoodResource(int value, int RECRUIT, int TILE, int MAINTAIN) {
         super(value);
@@ -14,15 +14,6 @@ public class FoodResource extends Resource {
         this.MAINTAIN = MAINTAIN;
     }
     
-    public int getRECRUIT() {
-        return RECRUIT;
-    }
-    public int getTILE() {
-        return TILE;
-    }
-    public int getMAINTAIN() {
-        return MAINTAIN;
-    }
     @Override
     public void initializeConstants() {
 

@@ -4,10 +4,10 @@ and methods for Gold related actions, such as amount of gold that is necessary f
 constructing a building */
 
 public class GoldResource extends Resource {
-    private final int RECRUIT;
+    public final int RECRUIT;
     public final int CONSTRUCT;
-    private final int DEVELOP;
-    private final int REMOVE;
+    public final int DEVELOP;
+    public final int REMOVE;
 
     public GoldResource(int value , int RECRUIT, int CONSTRUCT, int DEVELOP, int REMOVE) {
         super(value);
@@ -22,16 +22,4 @@ public class GoldResource extends Resource {
         
     }
 
-    public int getRECRUIT() {
-        return RECRUIT;
-    }
-    public int getCONSTRUCT() {
-        return CONSTRUCT;
-    }
-    public int getDEVELOP() {
-        return DEVELOP;
-    }
-    public int getREMOVE() {
-        return REMOVE;
-    }
 }
