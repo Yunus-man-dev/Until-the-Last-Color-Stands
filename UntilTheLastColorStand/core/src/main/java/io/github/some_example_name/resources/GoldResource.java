@@ -5,7 +5,7 @@ constructing a building */
 
 public class GoldResource extends Resource {
     private final int RECRUIT;
-    private final int CONSTRUCT;
+    public final int CONSTRUCT;
     private final int DEVELOP;
     private final int REMOVE;
 

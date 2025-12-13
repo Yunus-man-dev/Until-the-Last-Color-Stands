@@ -6,7 +6,7 @@ calculated based on amount of books */
 public class MovementPoint extends Resource {
     private final int MOVE;
     private final int UPGRADE;
-    private final int CONSTRUCT;
+    public final int CONSTRUCT;
     private final int TRADE;
     private final int RECRUIT;
     private final int ATTACK;
