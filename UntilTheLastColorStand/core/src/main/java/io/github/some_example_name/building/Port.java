@@ -18,3 +18,4 @@ public class Port extends Building {
         player.addFood(foodProduced);
         player.addGold(goldProduced);
     }
+}
