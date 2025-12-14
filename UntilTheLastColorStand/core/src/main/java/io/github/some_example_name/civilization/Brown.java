@@ -1,6 +1,7 @@
-package main.java.io.github.some_example_name.civilization;
+package io.github.some_example_name.civilization;
 
 import io.github.some_example_name.Civilization;
+import com.badlogic.gdx.graphics.Color;
 import io.github.some_example_name.resources.BookResource;
 import io.github.some_example_name.resources.FoodResource;
 import io.github.some_example_name.resources.GoldResource;

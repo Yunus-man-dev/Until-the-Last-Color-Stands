@@ -1,4 +1,5 @@
-package main.java.io.github.some_example_name.civilization;
+package io.github.some_example_name.civilization;
+
 import com.badlogic.gdx.graphics.Color;
 import io.github.some_example_name.Civilization;
 import io.github.some_example_name.resources.BookResource;

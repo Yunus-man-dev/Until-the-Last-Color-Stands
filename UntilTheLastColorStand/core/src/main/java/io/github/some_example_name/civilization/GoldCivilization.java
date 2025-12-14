@@ -1,4 +1,4 @@
-package main.java.io.github.some_example_name.civilization;
+package io.github.some_example_name.civilization;
 
 import io.github.some_example_name.Civilization;
 import io.github.some_example_name.building.GoldMine;
@@ -10,7 +10,7 @@ import main.java.io.github.some_example_name.Player;
 import com.badlogic.gdx.graphics.Color;
 import io.github.some_example_name.resources;
 
-public class Gold extends Civilization{
+public class GoldCivilization extends Civilization{
 
     private static final int REQUIRED_GOLD = 1000; 
     private static final int REQUIRED_GOLD_MINES = 8;
@@ -18,8 +18,8 @@ public class Gold extends Civilization{
     private static final double RECRUITMENT_COST_INCREASE = 1.3;
     private final double TRADE_DISCOUNT = 0.85;
 
-    public Gold() {
-        super("Gold", new Color(1f, 0.84f, 0f, 1f), 0.9, 0.9, 1.0);
+    public GoldCivilization() {
+        super("Gold Civilization", new Color(1f, 0.84f, 0f, 1f), 0.9, 0.9, 1.0);
     }
 
     public void initializeStartingResources(){

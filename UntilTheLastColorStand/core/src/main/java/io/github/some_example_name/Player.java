@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import GoldCivilization;
 import io.github.some_example_name.Enum.BuildingType;
+import io.github.some_example_name.Enum.TerrainType;
 import io.github.some_example_name.building.Building;
 import io.github.some_example_name.building.Farm;
 import io.github.some_example_name.building.GoldMine;
@@ -20,10 +21,12 @@ public class Player {
     private FoodResource food;
     private GoldResource gold;
     private MovementPoint movementPoint;
+    private BookResource book;
     private ArrayList<Tile> ownedTiles;
     private boolean isActive;
     private int technologyPoint;
-    private static final int SOLDIERS_PER_TILE_LIMIT = 10;
+
+    private int soldiersPerTileLimit;
 
     public Player (String name, Civilization civilization){
         this.name = name;
@@ -31,6 +34,16 @@ public class Player {
         this.isActive = true;
         this.technologyPoint = 0;
 
+        this.gold = new GoldResource();
+        gold.addResource(civilization.getStrartingGold().getValue());
+        this.food = new FoodResource();
+        food.addResource(civilization.getStrartingFood().getValue());
+        this.movementPoint = new MovementPoint();
+        movementPoint.addResource(civilization.getStrartingMP().getValue());
+        this.book = new BookResource();
+        book.addResource(civilization.getStrartingBook().getValue());
+
+        soldiersPerTileLimit = civilization.getCivilizationName().equals("Red Civilization") || civilization.getCivilizationName().equals("Dark Red Civilization") ? 15 : 10;
     }
     public FoodResource getFood() {
         return food;
@@ -43,9 +56,34 @@ public class Player {
     public MovementPoint getMp() {
         return movementPoint;
     }
+
+    public BookResource getBook(){
+        return book;
+    }
+
+    public int getTechnologyPoint(){
+        return technologyPoint;
+    }
+    
+    public Stirng getName(){
+        return name;
+    }
+
+    public boolean isActive(){
+        return isActive;
+    }
+
+    public ArrayList<Tile> getOwnedTiles(){
+        return ownedTiles;
+    }
+
+    public Civilization getCivilization() {
+        return civilization;
+    }
     public void addTile(Tile t){
         if(t != null && !ownedTiles.contains(t)){
             ownedTiles.add(t);
+            t.setOwner(this);
         }
     }
     public void removeTile(Tile t) {
@@ -58,9 +96,7 @@ public class Player {
         }
     }
     public void updateResources(){
-        int foodProduction = 0;
-        int goldProduction = 0;
-        int bookProduction = 0;
+
         int foodConsumption = 0;
 
         for(Tile tile : ownedTiles) {
@@ -69,7 +105,7 @@ public class Player {
                 building.produce(this);
             }
 
-            // Calculate food consumption for every tile. ==> foodConsumption += tile.calculateFoodConsumption()
+            foodConsumption += tile.calculateFoodConsumption();
         }
 
         food.reduceResource(foodConsumption);
@@ -87,7 +123,7 @@ public class Player {
             return false;
         }
 
-        if(!t.canConstruct(bt)){
+        if(t == TerrainType.MOUNTAIN || t == TerrainType.DEEP_WATER){
             return false;
         }
 
@@ -118,7 +154,85 @@ public class Player {
         t.setBuilding(building);
         return true;
     }
-    public Civilization getCivilization() {
-        return civilization;
+
+    public void developBuilding(Tile t){
+        if(!ownedTiles.contains(t)) {
+            return;
+        }
+        
+        if(!t.hasBuilding()){
+            return;
+        }
+
+        Building building = t.getBuilding();
+
+        if(!gold.checkForResource(gold.DEVELOP)){
+            return;
+        }
+
+        if(!movementPoint.checkForResource(movementPoint.UPGRADE)){
+            return;
+        }
+
+        gold.reduceResource(gold.DEVELOP);
+        movementPoint.reduceResource(movementPoint.UPGRADE);
+
+        building.upgrade();
+    }
+
+    public void recruitSoldiers(Tile t, int amount){
+        if(!ownedTiles.contains(t)){
+            return;
+        }
+
+        if(amount <= 0){
+            return;
+        }
+
+        int currentSoldiers = t.getSoldierCount();
+        if(currentSoldiers + amount > soldiersPerTileLimit){
+            return;
+        }
+
+        int totalFoodCost = food.RECRUIT * amount;
+        int totalGoldCost = gold.RECRUIT * amount;
+        int totalMPCost = movementPoint.RECRUIT * amount;
+
+        if (!food.checkForResource(totalFoodCost)) {
+            return;
+        }
+
+        if (!gold.checkForResource(totalGoldCost)) {
+            return;
+        }
+
+        if (!movementPoint.checkForResource(totalMPCost)) {
+            return;
+        }
+
+        food.reduceResource(totalFoodCost);
+        gold.reduceResource(totalGoldCost);
+        movementPoint.reduceResource(totalMPCost);
+
+        if(t.hasArmy()) {
+            t.getArmy().addSoldiers(amount);
+        }else{
+            Army newArmy = new Army(this, amount);
+            t.setArmy(newArmy);
+        }
+    }
+
+    public void eliminate(){
+        isActive = false;
+
+        for(Tile tile : new ArrayList<>(ownedTiles)){
+            tile.setOwner(null);
+            tile.removeArmy();
+            tile.removeBuilding();
+        }
+        ownedTiles.clear();
+    }
+    public boolean hasWon(){
+        return civilization.checkWinCondition(this);
     }
 }
