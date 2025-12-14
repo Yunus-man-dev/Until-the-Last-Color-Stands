@@ -1,4 +1,6 @@
 package io.github.some_example_name.building;
+import io.github.some_example_name.Player;
+import io.github.some_example_name.Tile;
 /*Library is a subclass of Building that produces a specified amount of book
 each turn. This amount might differ to civilization to civilization. */
 public class Library extends Building {

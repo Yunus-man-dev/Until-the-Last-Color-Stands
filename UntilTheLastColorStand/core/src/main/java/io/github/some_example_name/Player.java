@@ -1,18 +1,15 @@
 package io.github.some_example_name;
 import java.util.ArrayList;
 
-import GoldCivilization;
 import io.github.some_example_name.Enum.BuildingType;
-import io.github.some_example_name.Enum.TerrainType;
+import io.github.some_example_name.Enum.*;
 import io.github.some_example_name.building.Building;
 import io.github.some_example_name.building.Farm;
 import io.github.some_example_name.building.GoldMine;
 import io.github.some_example_name.building.Library;
 import io.github.some_example_name.building.Port;
-import io.github.some_example_name.resources.FoodResource;
-import io.github.some_example_name.resources.GoldResource;
-import io.github.some_example_name.resources.MovementPoint;
-import io.github.some_example_name.civilization.Civilization;
+import io.github.some_example_name.resources.*;
+import io.github.some_example_name.civilization.*;
 
 public class Player {
 
@@ -65,7 +62,7 @@ public class Player {
         return technologyPoint;
     }
     
-    public Stirng getName(){
+    public String getName(){
         return name;
     }
 

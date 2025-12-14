@@ -1,6 +1,9 @@
 package io.github.some_example_name.building;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
+
+import io.github.some_example_name.Player;
+import io.github.some_example_name.Tile;
 /*Building is an abstract class that is super class of other building types and
 stores necessary and common features and variables, such as level and the Tile that
 building is constructed on. */
