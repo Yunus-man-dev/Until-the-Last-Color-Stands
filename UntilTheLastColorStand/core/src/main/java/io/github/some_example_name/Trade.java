@@ -1,4 +1,4 @@
-package main.java.io.github.some_example_name;
+package io.github.some_example_name;
 
 import java.util.ArrayList;
 import io.github.some_example_name.Player;
@@ -11,7 +11,7 @@ import io.github.some_example_name.building.Port;
 import io.github.some_example_name.resources.FoodResource;
 import io.github.some_example_name.resources.GoldResource;
 import io.github.some_example_name.resources.MovementPoint;
-import main.java.io.github.some_example_name.civilization.Civilization;
+import io.github.some_example_name.civilization.Civilization;
 
 /**
  * Manages trade offers, validation, and execution between players
