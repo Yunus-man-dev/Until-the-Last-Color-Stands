@@ -120,5 +120,7 @@ public class Trade {
         if (type instanceof GoldResource) return p.getGold();
         if (type instanceof FoodResource) return p.getFood();
         if (type instanceof BookResource) return p.getBook();
+
+        return null;
     }
 }

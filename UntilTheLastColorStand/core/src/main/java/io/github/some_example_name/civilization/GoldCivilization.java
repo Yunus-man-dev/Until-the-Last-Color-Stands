@@ -2,20 +2,23 @@ package io.github.some_example_name.civilization;
 
 import io.github.some_example_name.civilization.*;
 import io.github.some_example_name.building.GoldMine;
+
+import com.badlogic.gdx.graphics.Color;
+
 import io.github.some_example_name.Player;
 import io.github.some_example_name.resources.*;
 import io.github.some_example_name.Tile;
 
 public class GoldCivilization extends Civilization{
 
-    private static final int REQUIRED_GOLD = 1000; 
-    private static final int REQUIRED_GOLD_MINES = 8;
-    private static final double GOLD_PRODUCTION_BONUS = 1.4;
-    private static final double RECRUITMENT_COST_INCREASE = 1.3;
-    private final double TRADE_DISCOUNT = 0.85;
+    public static final int REQUIRED_GOLD = 1000; 
+    public static final int REQUIRED_GOLD_MINES = 8;
+    public static final double GOLD_PRODUCTION_BONUS = 1.4;
+    public static final double RECRUITMENT_COST_INCREASE = 1.3;
+    public final double TRADE_DISCOUNT = 0.85;
 
     public GoldCivilization() {
-        super("Gold Civilization", new Color(1f, 0.84f, 0f, 1f), 0.9, 0.9, 1.0);
+        super("Gold Civilization", "Gold", 0.9, 0.9, 1.0);
     }
 
     public void initializeStartingResources(){
@@ -46,7 +49,7 @@ public class GoldCivilization extends Civilization{
     public int countGoldMines(Player p){
         int count = 0;
         for(Tile tile : p.getOwnedTiles()) {
-            if(tile.hasBuilding && tile.getBuilding() instanceof GoldMine){
+            if(tile.hasBuilding() && tile.getBuilding() instanceof GoldMine){
                 count++;
             }
         }

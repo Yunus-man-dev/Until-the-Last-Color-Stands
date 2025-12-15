@@ -9,6 +9,6 @@ public class Black extends Brown{
         super();
 
         this.civilizationName = "Black Civilization";
-        this.civilizationColor = Color.BLACK;
+        this.civilizationColor = "Black";
     }
 }

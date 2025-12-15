@@ -28,13 +28,13 @@ public class Player {
         this.technologyPoint = 0;
 
         this.gold = new GoldResource();
-        gold.addResource(civilization.getStrartingGold().getValue());
+        gold.addResource(civilization.getStartingGold().getValue());
         this.food = new FoodResource();
-        food.addResource(civilization.getStrartingFood().getValue());
+        food.addResource(civilization.getStartingFood().getValue());
         this.movementPoint = new MovementPoint();
-        movementPoint.addResource(civilization.getStrartingMP().getValue());
+        movementPoint.addResource(civilization.getStartingMP().getValue());
         this.book = new BookResource();
-        book.addResource(civilization.getStrartingBook().getValue());
+        book.addResource(civilization.getStartingBook().getValue());
 
         soldiersPerTileLimit = civilization.getCivilizationName().equals("Red Civilization") || civilization.getCivilizationName().equals("Dark Red Civilization") ? 15 : 10;
     }
@@ -116,7 +116,7 @@ public class Player {
             return false;
         }
 
-        if(t == TerrainType.MOUNTAIN || t == TerrainType.DEEP_WATER){
+        if(t.getTerrainType() == TerrainType.MOUNTAIN || t.getTerrainType() == TerrainType.DEEP_WATER){
             return false;
         }
 
@@ -135,13 +135,13 @@ public class Player {
         movementPoint.reduceResource(movementPoint.CONSTRUCT);
 
         Building building = null;
-        if(bt instanceof Farm){
+        if(bt == BuildingType.FARM){
             building = new Farm();
-        }else if(bt instanceof GoldMine){
+        }else if(bt == BuildingType.GOLD_MINE){
             building = new GoldMine();
-        }else if(bt instanceof Port){
+        }else if(bt == BuildingType.PORT){
             building = new Port();
-        }else if(bt instanceof Library){
+        }else if(bt == BuildingType.LIBRARY){
             building = new Library();
         }
         t.setBuilding(building);
@@ -227,5 +227,17 @@ public class Player {
     }
     public boolean hasWon(){
         return civilization.checkWinCondition(this);
+    }
+
+    public void addFood(int amount){
+        food.setValue(amount);
+    }
+
+    public void addGold(int amount){
+        gold.setValue(amount);
+    }
+
+    public void addScience(int amount){
+        book.setValue(amount);
     }
 }

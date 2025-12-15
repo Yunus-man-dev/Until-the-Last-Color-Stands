@@ -14,11 +14,13 @@ public class Brown extends Civilization{
     private static final double RED_DEFENSE_BONUS = 1.3;
     private static final double RED_ATTACK_BONUS = 1.15;
 
+    private int currentTurnNumber;
+
     public Brown(){
-        super("Brown", new Color(165, 42, 42), 0.95, 1.2, 1.0); 
+        super("Brown Civilization", "Brown", 0.95, 1.2, 1.0); 
     }
 
-    protected void initializeStartingResources() {
+    public void initializeStartingResources() {
         
         startingGold = new GoldResource();
         startingGold.addResource(80);
@@ -33,17 +35,22 @@ public class Brown extends Civilization{
         startingMP.addResource(10);
     }
     public boolean checkWinCondition(Player p){
-        int currentTurn = p.getTurnNumber(); // Requires turn number
+        //int currentTurn = p.getTurnNumber(); // Requires turn number
         if (!p.isActive()) {
             return false;
         }
         if (p.getTileCount() == 0) {
             return false;
         }
-        if(currentTurn >= REQUIRED_TURNS){
+        if(currentTurnNumber >= REQUIRED_TURNS){
             return true;
         }
+        return false;
     }
+
+    // public int setCurrentTurnNumber(Game game){
+    //     currentTurnNumber = game.getTurnNumber();
+    // }
     public double getFoodBonus() {
         return FOOD_BONUS;
     }

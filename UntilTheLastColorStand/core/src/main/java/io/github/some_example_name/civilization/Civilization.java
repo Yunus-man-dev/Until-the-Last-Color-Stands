@@ -9,16 +9,16 @@ import io.github.some_example_name.Player;
 public abstract class Civilization {
 
     protected String civilizationName;
-    protected Color civilizationColor;
+    protected String civilizationColor;
     protected double attackMultiplier;
     protected double defenseMultiplier;
     protected double technologyMultiplier;
     protected GoldResource startingGold;
     public FoodResource startingFood;
     protected BookResource startingBook;
-    protected MovementPoint startingMp;
+    protected MovementPoint startingMP;
 
-    public Civilization(String civilizationName, Color civilizationColor,
+    public Civilization(String civilizationName, String civilizationColor,
                         double attackMultiplier, double defenseMultiplier,
                         double technologyMultiplier){
         this.civilizationName = civilizationName;
@@ -37,11 +37,11 @@ public abstract class Civilization {
         this.civilizationName = civilizationName;
     }
 
-    public Color getCivilizationColor() {
+    public String getCivilizationColor() {
         return civilizationColor;
     }
 
-    public void setCivilizationColor(Color civilizationColor) {
+    public void setCivilizationColor(String civilizationColor) {
         this.civilizationColor = civilizationColor;
     }
 
@@ -93,12 +93,12 @@ public abstract class Civilization {
         this.startingBook = startingBook;
     }
 
-    public MovementPoint getStartingMp() {
-        return startingMp;
+    public MovementPoint getStartingMP() {
+        return startingMP;
     }
 
     public void setStartingMp(MovementPoint startingMp) {
-        this.startingMp = startingMp;
+        this.startingMP = startingMp;
     }
 
     // public abstract void applyUniqueFeature(Player p);

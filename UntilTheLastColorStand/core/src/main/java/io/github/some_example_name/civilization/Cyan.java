@@ -9,6 +9,6 @@ public class Cyan extends Blue{
         super();
 
         this.civilizationName = "Cyan Civilization";
-        this.civilizationColor = Color.CYAN;
+        this.civilizationColor = "Cyan";
     }
 }

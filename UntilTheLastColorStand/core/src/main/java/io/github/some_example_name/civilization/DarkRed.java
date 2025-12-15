@@ -10,6 +10,6 @@ public class DarkRed extends Red{
 
 
         this.civilizationName = "Dark Red Civilization";
-        this.civilizationColor = new Color(139, 0, 0);
+        this.civilizationColor = "Dark Red";
     }
 }

@@ -14,7 +14,7 @@ public class Red extends Civilization{
     private static final double ATTACK_BONUS = 1.15;
 
     public Red() {
-        super("Red", Color.RED, 1.1, 0.9, 0.9);
+        super("Red Civilization", "Red", 1.1, 0.9, 0.9);
     }
 
     public void initializeStartingResources() {
@@ -40,4 +40,25 @@ public class Red extends Civilization{
 
         return false;
     }
+
+    public static int getRequiredTiles() {
+        return REQUIRED_TILES;
+    }
+
+    public static int getRecruitmentLimitBonus() {
+        return RECRUITMENT_LIMIT_BONUS;
+    }
+
+    public static double getGoldCostMultiplier() {
+        return GOLD_COST_MULTIPLIER;
+    }
+
+    public static double getMovementCostReductiion() {
+        return MOVEMENT_COST_REDUCTIION;
+    }
+
+    public static double getAttackBonus() {
+        return ATTACK_BONUS;
+    }
+
 }

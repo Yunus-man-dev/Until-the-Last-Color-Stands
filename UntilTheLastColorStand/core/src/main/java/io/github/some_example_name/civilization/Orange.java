@@ -9,6 +9,6 @@ public class Orange extends GoldCivilization{
         super();
 
         this.civilizationName = "Orange Civilization";
-        this.civilizationColor = Color.ORANGE;
+        this.civilizationColor = "Orange";
     }    
 }

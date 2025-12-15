@@ -1,9 +1,10 @@
 package io.github.some_example_name.civilization;
 
-import com.badlogic.gdx.graphics.Color;
+// import com.badlogic.gdx.graphics.Color;
 import io.github.some_example_name.civilization.Civilization;
 import io.github.some_example_name.resources.*;
 import io.github.some_example_name.Player;
+import io.github.some_example_name.Tile;
 import io.github.some_example_name.building.Library;
 
 public class Blue extends Civilization{
@@ -13,10 +14,10 @@ public class Blue extends Civilization{
     private static final double LIBRARY_PRODUCTION_BONUS = 1.5;
 
     public Blue() {
-        super("Blue", Color.BLUE, 0.85, 1.0, 1.3);
+        super("Blue Civilization", "Blue", 0.85, 1.0, 1.3);
     }
 
-    protected void initializeStartingResources() {
+    public void initializeStartingResources() {
 
         startingGold = new GoldResource();
         startingGold.addResource(80);
