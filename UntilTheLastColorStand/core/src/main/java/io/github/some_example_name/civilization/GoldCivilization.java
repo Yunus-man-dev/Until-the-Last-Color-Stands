@@ -1,14 +1,10 @@
 package io.github.some_example_name.civilization;
 
-import io.github.some_example_name.Civilization;
+import io.github.some_example_name.civilization.*;
 import io.github.some_example_name.building.GoldMine;
-import io.github.some_example_name.resources.BookResource;
-import io.github.some_example_name.resources.FoodResource;
-import io.github.some_example_name.resources.GoldResource;
-import io.github.some_example_name.resources.MovementPoint;
-import main.java.io.github.some_example_name.Player;
-import com.badlogic.gdx.graphics.Color;
-import io.github.some_example_name.resources;
+import io.github.some_example_name.Player;
+import io.github.some_example_name.resources.*;
+import io.github.some_example_name.Tile;
 
 public class GoldCivilization extends Civilization{
 

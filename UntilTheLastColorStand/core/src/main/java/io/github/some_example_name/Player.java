@@ -1,15 +1,11 @@
 package io.github.some_example_name;
 import java.util.ArrayList;
 
-import io.github.some_example_name.Enum.BuildingType;
 import io.github.some_example_name.Enum.*;
-import io.github.some_example_name.building.Building;
-import io.github.some_example_name.building.Farm;
-import io.github.some_example_name.building.GoldMine;
-import io.github.some_example_name.building.Library;
-import io.github.some_example_name.building.Port;
+import io.github.some_example_name.building.*;
 import io.github.some_example_name.resources.*;
 import io.github.some_example_name.civilization.*;
+import io.github.some_example_name.Tile.*;
 
 public class Player {
 
@@ -214,7 +210,7 @@ public class Player {
         if(t.hasArmy()) {
             t.getArmy().addSoldiers(amount);
         }else{
-            Army newArmy = new Army(this, amount);
+            Army newArmy = new Army(amount);
             t.setArmy(newArmy);
         }
     }

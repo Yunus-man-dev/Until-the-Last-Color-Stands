@@ -1,12 +1,9 @@
 package io.github.some_example_name.civilization;
 
 import com.badlogic.gdx.graphics.Color;
-import io.github.some_example_name.Civilization;
-import io.github.some_example_name.resources.BookResource;
-import io.github.some_example_name.resources.FoodResource;
-import io.github.some_example_name.resources.GoldResource;
-import io.github.some_example_name.resources.MovementPoint;
-import main.java.io.github.some_example_name.Player;
+import io.github.some_example_name.civilization.Civilization;
+import io.github.some_example_name.resources.*;
+import io.github.some_example_name.Player;
 
 public class Red extends Civilization{
 
@@ -20,7 +17,7 @@ public class Red extends Civilization{
         super("Red", Color.RED, 1.1, 0.9, 0.9);
     }
 
-    protected void initializeStartingResources() {
+    public void initializeStartingResources() {
         
         startingGold = new GoldResource();
         startingGold.addResource(100);

@@ -3,15 +3,9 @@ package io.github.some_example_name;
 import java.util.ArrayList;
 import io.github.some_example_name.Player;
 import io.github.some_example_name.resources.*;
-import io.github.some_example_name.building.Building;
-import io.github.some_example_name.building.Farm;
-import io.github.some_example_name.building.GoldMine;
-import io.github.some_example_name.building.Library;
-import io.github.some_example_name.building.Port;
-import io.github.some_example_name.resources.FoodResource;
-import io.github.some_example_name.resources.GoldResource;
-import io.github.some_example_name.resources.MovementPoint;
-import io.github.some_example_name.civilization.Civilization;
+import io.github.some_example_name.building.*;
+import io.github.some_example_name.resources.*;
+import io.github.some_example_name.civilization.*;
 
 /**
  * Manages trade offers, validation, and execution between players

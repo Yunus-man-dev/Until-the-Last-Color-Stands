@@ -1,10 +1,10 @@
 package io.github.some_example_name.civilization;
 
 import com.badlogic.gdx.graphics.Color;
-import io.github.some_example_name.resources.BookResource;
-import io.github.some_example_name.resources.FoodResource;
-import io.github.some_example_name.resources.GoldResource;
-import io.github.some_example_name.resources.MovementPoint;
+
+import io.github.some_example_name.resources.*;
+import io.github.some_example_name.Player;
+
 
 public abstract class Civilization {
 
@@ -73,7 +73,7 @@ public abstract class Civilization {
         return startingGold;
     }
 
-    public void setStartingGold(Gold startingGold) {
+    public void setStartingGold(GoldResource startingGold) {
         this.startingGold = startingGold;
     }
 
@@ -81,7 +81,7 @@ public abstract class Civilization {
         return startingFood;
     }
 
-    public void setStartingFood(Food startingFood) {
+    public void setStartingFood(FoodResource startingFood) {
         this.startingFood = startingFood;
     }
 
@@ -89,7 +89,7 @@ public abstract class Civilization {
         return startingBook;
     }
 
-    public void setStartingBook(Book startingBook) {
+    public void setStartingBook(BookResource startingBook) {
         this.startingBook = startingBook;
     }
 
