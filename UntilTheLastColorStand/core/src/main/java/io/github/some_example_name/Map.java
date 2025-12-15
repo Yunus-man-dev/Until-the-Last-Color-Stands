@@ -8,8 +8,8 @@ import io.github.some_example_name.Enum.TerrainType;
 public class Map {
 
     private Tile[][] tiles;
-    private int width;
-    private int height;
+    private int width = 32;
+    private int height = 21;
     private int mapID;
 
     // Constants
@@ -19,9 +19,7 @@ public class Map {
     private static final int WATER = 3;
     private static final int DEEP_WATER = 4;
 
-    public Map(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Map() {
         tiles = new Tile[width][height];
     }
 
