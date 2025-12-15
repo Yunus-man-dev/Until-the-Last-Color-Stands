@@ -14,6 +14,26 @@ public class Brown extends Civilization{
     private static final double RED_DEFENSE_BONUS = 1.3;
     private static final double RED_ATTACK_BONUS = 1.15;
 
+
+    public final int FRECRUIT = 0;
+    public final int FTILE = 0 ;
+    public final int FMAINTAIN = 0;
+
+    public final int GRECRUIT = 0;
+    public final int GCONSTRUCT = 0;
+    public final int GDEVELOP = 0;
+    public final int GREMOVE = 0;
+
+    public final int M_MOVE = 0;
+    public final int M_UPGRADE = 0;
+    public final int M_CONSTRUCT = 0;
+    public final int M_TRADE = 0;
+    public final int M_RECRUIT = 0;
+    public final int M_ATTACK = 0;
+
+
+
+
     private int currentTurnNumber;
 
     public Brown(){
@@ -22,17 +42,17 @@ public class Brown extends Civilization{
 
     public void initializeStartingResources() {
         
-        startingGold = new GoldResource();
-        startingGold.addResource(80);
+        startingGold = new GoldResource(START_GOLD,GRECRUIT,GCONSTRUCT,GDEVELOP,GREMOVE);
+        // startingGold.addResource(80);
         
-        startingFood = new FoodResource();
-        startingFood.addResource(120); 
+        startingFood = new FoodResource(START_FOOD,FRECRUIT,FTILE,FMAINTAIN);
+        // startingFood.addResource(120); 
         
-        startingBook = new BookResource();
-        startingBook.addResource(15);
+        startingBook = new BookResource(START_BOOK);
+        // startingBook.addResource(15);
         
-        startingMP = new MovementPoint();
-        startingMP.addResource(10);
+        startingMP = new MovementPoint(START_MOVEMENT,M_MOVE,M_UPGRADE,M_CONSTRUCT,M_TRADE,M_RECRUIT,M_ATTACK);
+        // startingMP.addResource(10);
     }
     public boolean checkWinCondition(Player p){
         //int currentTurn = p.getTurnNumber(); // Requires turn number

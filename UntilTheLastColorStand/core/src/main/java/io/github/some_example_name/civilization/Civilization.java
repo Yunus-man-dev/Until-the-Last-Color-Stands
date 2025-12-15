@@ -8,6 +8,16 @@ import io.github.some_example_name.Player;
 
 public abstract class Civilization {
 
+
+
+    final int START_GOLD = 100;
+    final int START_FOOD = 100;
+    final int START_MOVEMENT = 10;
+    final int START_BOOK = 10;
+
+
+
+
     protected String civilizationName;
     protected String civilizationColor;
     protected double attackMultiplier;
@@ -21,6 +31,7 @@ public abstract class Civilization {
     public Civilization(String civilizationName, String civilizationColor,
                         double attackMultiplier, double defenseMultiplier,
                         double technologyMultiplier){
+
         this.civilizationName = civilizationName;
         this.civilizationColor = civilizationColor;
         this.attackMultiplier = attackMultiplier;

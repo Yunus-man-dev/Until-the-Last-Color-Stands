@@ -13,23 +13,46 @@ public class Blue extends Civilization{
     private static final int REQUIRED_LIBRARIES = 8; 
     private static final double LIBRARY_PRODUCTION_BONUS = 1.5;
 
+
+    public final int FRECRUIT = 0;
+    public final int FTILE = 0 ;
+    public final int FMAINTAIN = 0;
+
+    public final int GRECRUIT = 0;
+    public final int GCONSTRUCT = 0;
+    public final int GDEVELOP = 0;
+    public final int GREMOVE = 0;
+
+    public final int M_MOVE = 0;
+    public final int M_UPGRADE = 0;
+    public final int M_CONSTRUCT = 0;
+    public final int M_TRADE = 0;
+    public final int M_RECRUIT = 0;
+    public final int M_ATTACK = 0;
+
+
+
+
+
+
+
     public Blue() {
         super("Blue Civilization", "Blue", 0.85, 1.0, 1.3);
     }
 
     public void initializeStartingResources() {
 
-        startingGold = new GoldResource();
-        startingGold.addResource(80);
+        startingGold = new GoldResource(START_GOLD,GRECRUIT,GCONSTRUCT,GDEVELOP,GREMOVE);
+        // startingGold.addResource(80);
         
-        startingFood = new FoodResource();
-        startingFood.addResource(70);
+        startingFood = new FoodResource(START_FOOD,FRECRUIT,FTILE,FMAINTAIN);
+        // startingFood.addResource(70);
         
-        startingBook = new BookResource();
-        startingBook.addResource(30);
+        startingBook = new BookResource(START_BOOK);
+        // startingBook.addResource(30);
         
-        startingMP = new MovementPoint();
-        startingMP.addResource(10);
+        startingMP = new MovementPoint(START_MOVEMENT,M_MOVE,M_UPGRADE,M_CONSTRUCT,M_TRADE,M_RECRUIT,M_ATTACK);
+        // startingMP.addResource(10);
     }
 
     public boolean checkWinCondition(Player p){

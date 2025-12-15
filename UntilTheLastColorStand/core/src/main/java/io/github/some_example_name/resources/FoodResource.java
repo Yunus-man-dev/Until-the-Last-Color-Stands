@@ -7,15 +7,17 @@ public class FoodResource extends Resource {
     public final int TILE;
     public final int MAINTAIN;
 
-    public FoodResource(int value, int RECRUIT, int TILE, int MAINTAIN) {
+    public FoodResource(int value,int RECRUIT, int TILE, int MAINTAIN) {
         super(value);
         this.RECRUIT = RECRUIT;
         this.TILE = TILE;
         this.MAINTAIN = MAINTAIN;
+        
     }
     
     @Override
     public void initializeConstants() {
-
+        
     }
+    
 }

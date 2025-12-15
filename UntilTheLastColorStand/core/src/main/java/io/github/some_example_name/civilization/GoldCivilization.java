@@ -17,22 +17,45 @@ public class GoldCivilization extends Civilization{
     public static final double RECRUITMENT_COST_INCREASE = 1.3;
     public final double TRADE_DISCOUNT = 0.85;
 
+
+    public final int FRECRUIT = 0;
+    public final int FTILE = 0 ;
+    public final int FMAINTAIN = 0;
+
+    public final int GRECRUIT = 0;
+    public final int GCONSTRUCT = 0;
+    public final int GDEVELOP = 0;
+    public final int GREMOVE = 0;
+
+    public final int M_MOVE = 0;
+    public final int M_UPGRADE = 0;
+    public final int M_CONSTRUCT = 0;
+    public final int M_TRADE = 0;
+    public final int M_RECRUIT = 0;
+    public final int M_ATTACK = 0;
+
+
+
+
+
+
+
     public GoldCivilization() {
         super("Gold Civilization", "Gold", 0.9, 0.9, 1.0);
     }
 
     public void initializeStartingResources(){
-        startingGold = new GoldResoource();
-        startingGold.addResource(150);
+        startingGold = new GoldResource(START_GOLD,GRECRUIT,GCONSTRUCT,GDEVELOP,GREMOVE);
+        // startingGold.addResource(150);
         
-        startingFood = new FoodResource();
+        startingFood = new FoodResource(START_FOOD,FRECRUIT,FTILE,FMAINTAIN);
         startingFood.addResource(70);
         
-        startingBook = new BookResource();
+        startingBook = new BookResource(START_BOOK);
         startingBook.addResource(15);
         
-        startingMP = new MovementPoint();
-        startingMP.addResource(10);
+        startingMP = new MovementPoint(START_MOVEMENT,M_MOVE,M_UPGRADE,M_CONSTRUCT,M_TRADE,M_RECRUIT,M_ATTACK);
+        // startingMP.addResource(10);
     }
     public boolean checkWinCondition(Player p){
         int goldAmount = p.getGold().getValue();
