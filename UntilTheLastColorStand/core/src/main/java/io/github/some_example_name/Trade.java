@@ -50,7 +50,10 @@ public class Trade {
 
         return true;
     }
-
+    //helper method for Game/getPendingTradesFor()
+    public Player getReciever(){
+        return receiver;
+    }
 
      // checks whether receiver  has enough wantedResource.
      
