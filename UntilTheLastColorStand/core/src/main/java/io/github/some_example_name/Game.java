@@ -120,7 +120,7 @@ public class Game {
      // IF WE WILL SELECT THE AMOUNT OF SOLDIERS TO MOVE THERE MUST BE AN int amount PARAMETER IN THE ÖETHOD 
      // AND MOVING LOGIC MUST BE MODIFIED ACCORDINGLY
     public void moveArmy(Tile owned, Tile target) {
-        int ownedsSoldiers = owned.getArmy();
+        int ownedsSoldiers = owned.getArmy().getSoldiers();
         Player player = owned.getOwner();
         MovementPoint mp = player.getMp();
 
