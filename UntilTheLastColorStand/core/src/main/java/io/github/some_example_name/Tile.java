@@ -128,4 +128,21 @@ public class Tile {
         }
     }
 
+
+    public boolean isNeighboor(Tile t){
+       
+        boolean isNeighboor = false;
+        for(int i = -1; i<2; i++){
+            for(int j = -1; j <2; j++){
+
+                if(q + i == t.q && r + j == t.r){
+                   return isNeighboor = true;
+
+                }
+
+            }
+        }
+        return isNeighboor;
+    }
+
 }
