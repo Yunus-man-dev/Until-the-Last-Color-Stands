@@ -8,7 +8,7 @@ import io.github.some_example_name.Player;
 public class Brown extends Civilization{
 
     private static final int REQUIRED_TURNS = 50;
-    private final double FOOD_BONUS = 1.4;
+    public static double foodBonus = 1.4;
     private static final double FOOD_CONSUMPTION_INCREASE = 1.3;
     private static final double DEFENSE_BONUS = 1.2;
     private static final double RED_DEFENSE_BONUS = 1.3;
@@ -71,8 +71,8 @@ public class Brown extends Civilization{
     // public int setCurrentTurnNumber(Game game){
     //     currentTurnNumber = game.getTurnNumber();
     // }
-    public double getFoodBonus() {
-        return FOOD_BONUS;
+    public static double getFoodBonus() {
+        return foodBonus;
     }
     
     public static double getFoodConsumptionIncrease() {
