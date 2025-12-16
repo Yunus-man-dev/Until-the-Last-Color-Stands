@@ -27,14 +27,10 @@ public class Player {
         this.isActive = true;
         this.technologyPoint = 0;
 
-        this.gold = new GoldResource();
-        gold.addResource(civilization.getStartingGold().getValue());
-        this.food = new FoodResource();
-        food.addResource(civilization.getStartingFood().getValue());
-        this.movementPoint = new MovementPoint();
-        movementPoint.addResource(civilization.getStartingMP().getValue());
-        this.book = new BookResource();
-        book.addResource(civilization.getStartingBook().getValue());
+        this.gold = civilization.getStartingGold();
+        this.food = civilization.getStartingFood();
+        this.movementPoint = civilization.getStartingMP();
+        this.book = civilization.getStartingBook();
 
         soldiersPerTileLimit = civilization.getCivilizationName().equals("Red Civilization") || civilization.getCivilizationName().equals("Dark Red Civilization") ? 15 : 10;
     }
@@ -210,7 +206,7 @@ public class Player {
         if(t.hasArmy()) {
             t.getArmy().addSoldiers(amount);
         }else{
-            Army newArmy = new Army(amount);
+            Army newArmy = new Army(amount, this, t);
             t.setArmy(newArmy);
         }
     }

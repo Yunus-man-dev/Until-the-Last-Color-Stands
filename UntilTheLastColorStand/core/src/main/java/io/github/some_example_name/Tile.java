@@ -3,6 +3,7 @@ package io.github.some_example_name;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import io.github.some_example_name.building.Building;
+import io.github.some_example_name.civilization.Brown;
 import io.github.some_example_name.Enum.BuildingType;
 import io.github.some_example_name.Enum.TerrainType;
 
@@ -15,6 +16,7 @@ public class Tile {
     private Building building;
     private Army army;
 
+    private double soldierConsumptionRate;
     // Constants
 
     // Tile's food consumption per round
@@ -27,6 +29,7 @@ public class Tile {
         this.owner = null;
         this.building = null;
         this.army = null;
+        this.soldierConsumptionRate = 1;
 
         // Extra defence in forrest
         if (this.terrainName == TerrainType.FOREST) {
@@ -110,7 +113,10 @@ public class Tile {
         if (hasArmy()) {
             // The amount of food consumed by the soldiers + the amount consumed by the tile
             // soldierConsumptionRate must be added
-            consumption = army.getSoldiers() * soldierConsumptionRate;
+            if(this.getOwner().getCivilization() instanceof Brown){
+                soldierConsumptionRate = (int) (soldierConsumptionRate * Brown.getFoodConsumptionIncrease());
+            }
+            consumption = (int) (army.getSoldiers() * soldierConsumptionRate);
             return consumption;
         }
         return consumption;

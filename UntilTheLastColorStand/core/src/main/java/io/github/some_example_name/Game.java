@@ -1,4 +1,4 @@
-package main.java.io.github.some_example_name;
+package io.github.some_example_name;
 
 import java.util.ArrayList;
 
@@ -156,13 +156,14 @@ public class Game {
             // if target has own soldiers
             target.getArmy().addSoldiers(ownedsSoldiers);
         } else {
-            Army newArmy = new Army(player, ownedsSoldiers);
+            Army newArmy = new Army(ownedsSoldiers, player, target);
             target.setArmy(newArmy);
 
             if (target.getOwner() == null) {
                 target.setOwner(player);
                 player.addTile(target);
             }
+        }
         
     }
 

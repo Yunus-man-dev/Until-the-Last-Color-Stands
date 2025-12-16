@@ -3,6 +3,8 @@ package io.github.some_example_name;
 import java.util.Random;
 
 import io.github.some_example_name.Enum.TerrainType;
+import io.github.some_example_name.civilization.Brown;
+import io.github.some_example_name.civilization.Red;
 
 public class WarManager {
     // This variable indicates attacker army.
@@ -93,8 +95,18 @@ public class WarManager {
     // Calculates and decides the winner. Returns the winner army.
     private Army decideWinner(){
 
-        attackerAP =(int) calculateAP(attackerDice,attackerArmy.getPlayer().getCivilization().getAttackMultiplier(), attackerArmy);
-        defenderAP = (int) calculateAP(defenderDice,defenderArmy.getPlayer().getCivilization().getDefenseMultiplier(), defenderArmy);
+        double attackMultiplier = 0;
+        double defenseMultiplier = 0;
+        if(attackerArmy.getPlayer().getCivilization() instanceof Brown && defenderArmy.getPlayer().getCivilization() instanceof Red){
+            attackMultiplier = attackerArmy.getPlayer().getCivilization().getAttackMultiplier() * Brown.getRedAttackBonus();
+        }else if(attackerArmy.getPlayer().getCivilization() instanceof Red && defenderArmy.getPlayer().getCivilization() instanceof Brown) {
+            defenseMultiplier = defenderArmy.getPlayer().getCivilization().getDefenseMultiplier() * Brown.getRedDefenseBonus();
+        }else{
+            attackMultiplier = attackerArmy.getPlayer().getCivilization().getAttackMultiplier();
+            defenseMultiplier = defenderArmy.getPlayer().getCivilization().getDefenseMultiplier();
+        }
+        attackerAP =(int) calculateAP(attackerDice,attackMultiplier, attackerArmy);
+        defenderAP = (int) calculateAP(defenderDice,defenseMultiplier, defenderArmy);
 
         if(attackerAP > defenderAP){
             return attackerArmy;
