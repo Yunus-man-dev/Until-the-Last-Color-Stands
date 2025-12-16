@@ -10,16 +10,47 @@ public abstract class Civilization {
 
 
 
-    final int START_GOLD = 100;
-    final int START_FOOD = 100;
+    final int START_GOLD = 1000;
+    final int START_FOOD = 200;
     final int START_MOVEMENT = 10;
-    final int START_BOOK = 10;
+    final int START_BOOK = 0;
+    final int START_TILE = 7;
+
+
+
+
+    public  int FRECRUIT = 3;
+    public  int FTILE = 3 ;
+    public  int FMAINTAIN = 0;
+
+    public  int GRECRUIT = 50;
+    public  int GCONSTRUCT = 300;
+    public  int GDEVELOP = 250;
+    public  int GREMOVE = 300;
+
+    public  int M_MOVE = 1;
+    public  int M_UPGRADE = 3;
+    public int M_CONSTRUCT = 5;
+    public  int M_TRADE = 7;
+    public  int M_RECRUIT = 3;
+    public  int M_ATTACK = 4;
+
+    //Baslangic degerleri
+    public  int FARM_FOOD = 50;
+    public  int PORT_FOOD = 25;
+    public  int PORT_GOLD = 50;
+    public  int MINE_GOLD = 50;
+    public  int BOOK = 2;
+
+    
+
+
 
 
 
 
     protected String civilizationName;
-    protected String civilizationColor;
+    protected  String civilizationColor;
     protected double attackMultiplier;
     protected double defenseMultiplier;
     protected double technologyMultiplier;

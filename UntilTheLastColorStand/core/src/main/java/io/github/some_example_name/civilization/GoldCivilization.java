@@ -18,22 +18,43 @@ public class GoldCivilization extends Civilization{
     public final double TRADE_DISCOUNT = 0.85;
 
 
-    public final int FRECRUIT = 0;
-    public final int FTILE = 0 ;
-    public final int FMAINTAIN = 0;
+    // public final int FRECRUIT = 0;
+    // public final int FTILE = 0 ;
+    // public final int FMAINTAIN = 0;
 
-    public final int GRECRUIT = 0;
-    public final int GCONSTRUCT = 0;
-    public final int GDEVELOP = 0;
-    public final int GREMOVE = 0;
+    // public final int GRECRUIT = 0;
+    // public final int GCONSTRUCT = 0;
+    // public final int GDEVELOP = 0;
+    // public final int GREMOVE = 0;
 
-    public final int M_MOVE = 0;
-    public final int M_UPGRADE = 0;
-    public final int M_CONSTRUCT = 0;
-    public final int M_TRADE = 0;
-    public final int M_RECRUIT = 0;
-    public final int M_ATTACK = 0;
+    // public final int M_MOVE = 0;
+    // public final int M_UPGRADE = 0;
+    // public final int M_CONSTRUCT = 0;
+    // public final int M_TRADE = 0;
+    // public final int M_RECRUIT = 0;
+    // public final int M_ATTACK = 0;
 
+    public final int FRECRUIT1 = 0;
+    public final int FTILE1 = 0 ;
+    public final int FMAINTAIN1 = 0;
+
+    public final int GRECRUIT1 = 0;
+    public final int GCONSTRUCT1 = 0;
+    public final int GDEVELOP1 = 0;
+    public final int GREMOVE1 = 0;
+
+    public final int M_MOVE1 = 0;
+    public final int M_UPGRADE1 = 0;
+    public final int M_CONSTRUCT1 = 0;
+    public final int M_TRADE1 = 0;
+    public final int M_RECRUIT1 = 0;
+    public final int M_ATTACK1 = 0;
+
+    public  final int FARM_FOOD1 = 0;
+    public  final int PORT_FOOD1 = 0;
+    public  final int PORT_GOLD1 = 0;
+    public  final int MINE_GOLD1 = 0;
+    public  final int BOOK1 = 0;
 
 
 
@@ -42,17 +63,44 @@ public class GoldCivilization extends Civilization{
 
     public GoldCivilization() {
         super("Gold Civilization", "Gold", 0.9, 0.9, 1.0);
+        initializeStartingResources();
     }
 
     public void initializeStartingResources(){
+
+
+
+        FRECRUIT = FRECRUIT1;
+        FTILE = FTILE1 ;
+        FMAINTAIN = FMAINTAIN1;
+
+        GRECRUIT = GRECRUIT1;
+        GCONSTRUCT = GCONSTRUCT1;
+        GDEVELOP = GDEVELOP1;
+        GREMOVE = GREMOVE1;
+
+        M_MOVE = M_MOVE1;
+        M_UPGRADE = M_UPGRADE1;
+        M_CONSTRUCT = M_CONSTRUCT1;
+        M_TRADE = M_TRADE1;
+        M_RECRUIT = M_RECRUIT1;
+        M_ATTACK = M_ATTACK1;
+
+        FARM_FOOD = FARM_FOOD1;
+        PORT_FOOD = PORT_FOOD1;
+        PORT_GOLD = PORT_GOLD1;
+        MINE_GOLD = MINE_GOLD1;
+        BOOK = BOOK1;
+
+
         startingGold = new GoldResource(START_GOLD,GRECRUIT,GCONSTRUCT,GDEVELOP,GREMOVE);
         // startingGold.addResource(150);
         
         startingFood = new FoodResource(START_FOOD,FRECRUIT,FTILE,FMAINTAIN);
-        startingFood.addResource(70);
+        // startingFood.addResource(70);
         
         startingBook = new BookResource(START_BOOK);
-        startingBook.addResource(15);
+        // startingBook.addResource(15);
         
         startingMP = new MovementPoint(START_MOVEMENT,M_MOVE,M_UPGRADE,M_CONSTRUCT,M_TRADE,M_RECRUIT,M_ATTACK);
         // startingMP.addResource(10);

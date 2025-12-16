@@ -14,21 +14,53 @@ public class Blue extends Civilization{
     private static final double LIBRARY_PRODUCTION_BONUS = 1.5;
 
 
-    public final int FRECRUIT = 0;
-    public final int FTILE = 0 ;
-    public final int FMAINTAIN = 0;
+    // public final int FRECRUIT = 0;
+    // public final int FTILE = 0 ;
+    // public final int FMAINTAIN = 0;
 
-    public final int GRECRUIT = 0;
-    public final int GCONSTRUCT = 0;
-    public final int GDEVELOP = 0;
-    public final int GREMOVE = 0;
+    // public final int GRECRUIT = 0;
+    // public final int GCONSTRUCT = 0;
+    // public final int GDEVELOP = 0;
+    // public final int GREMOVE = 0;
 
-    public final int M_MOVE = 0;
-    public final int M_UPGRADE = 0;
-    public final int M_CONSTRUCT = 0;
-    public final int M_TRADE = 0;
-    public final int M_RECRUIT = 0;
-    public final int M_ATTACK = 0;
+    // public final int M_MOVE = 0;
+    // public final int M_UPGRADE = 0;
+    // public final int M_CONSTRUCT = 0;
+    // public final int M_TRADE = 0;
+    // public final int M_RECRUIT = 0;
+    // public final int M_ATTACK = 0;
+
+
+
+
+    public final int FRECRUIT1 = 0;
+    public final int FTILE1 = 0 ;
+    public final int FMAINTAIN1 = 0;
+
+    public final int GRECRUIT1 = 0;
+    public final int GCONSTRUCT1 = 0;
+    public final int GDEVELOP1 = 0;
+    public final int GREMOVE1 = 0;
+
+    public final int M_MOVE1 = 0;
+    public final int M_UPGRADE1 = 0;
+    public final int M_CONSTRUCT1 = 0;
+    public final int M_TRADE1 = 0;
+    public final int M_RECRUIT1 = 0;
+    public final int M_ATTACK1 = 0;
+
+    public  final int FARM_FOOD1 = 0;
+    public  final int PORT_FOOD1 = 0;
+    public  final int PORT_GOLD1 = 0;
+    public  final int MINE_GOLD1 = 0;
+    public  final int BOOK1 = 0;
+
+
+
+
+
+
+
 
 
 
@@ -38,9 +70,33 @@ public class Blue extends Civilization{
 
     public Blue() {
         super("Blue Civilization", "Blue", 0.85, 1.0, 1.3);
+        initializeStartingResources();
     }
 
     public void initializeStartingResources() {
+
+
+        FRECRUIT = FRECRUIT1;
+        FTILE = FTILE1 ;
+        FMAINTAIN = FMAINTAIN1;
+
+        GRECRUIT = GRECRUIT1;
+        GCONSTRUCT = GCONSTRUCT1;
+        GDEVELOP = GDEVELOP1;
+        GREMOVE = GREMOVE1;
+
+        M_MOVE = M_MOVE1;
+        M_UPGRADE = M_UPGRADE1;
+        M_CONSTRUCT = M_CONSTRUCT1;
+        M_TRADE = M_TRADE1;
+        M_RECRUIT = M_RECRUIT1;
+        M_ATTACK = M_ATTACK1;
+
+        FARM_FOOD = FARM_FOOD1;
+        PORT_FOOD = PORT_FOOD1;
+        PORT_GOLD = PORT_GOLD1;
+        MINE_GOLD = MINE_GOLD1;
+        BOOK = BOOK1;
 
         startingGold = new GoldResource(START_GOLD,GRECRUIT,GCONSTRUCT,GDEVELOP,GREMOVE);
         // startingGold.addResource(80);

@@ -27,7 +27,7 @@ public class Player {
         this.isActive = true;
         this.technologyPoint = 0;
 
-        this.gold = civilization.getStartingGold();
+        this.gold =  civilization.getStartingGold();
         this.food = civilization.getStartingFood();
         this.movementPoint = civilization.getStartingMP();
         this.book = civilization.getStartingBook();
