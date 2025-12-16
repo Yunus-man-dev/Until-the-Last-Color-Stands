@@ -7,7 +7,7 @@ resource and works as a template for more specified resource types. Every consta
 these resources is used throughout the game to compute resource costs in a civilizationdependent
 way. */
 public abstract class Resource {
-    private int value;
+    protected int value;
 
     public Resource(int value) {
         this.value = value;

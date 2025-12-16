@@ -4,12 +4,12 @@ and methods for Gold related actions, such as amount of gold that is necessary f
 constructing a building */
 
 public class GoldResource extends Resource {
-    public final int RECRUIT;
-    public final int CONSTRUCT;
-    public final int DEVELOP;
-    public final int REMOVE;
+    public final double RECRUIT;
+    public final double CONSTRUCT;
+    public final double DEVELOP;
+    public final double REMOVE;
 
-    public GoldResource(int value , int RECRUIT, int CONSTRUCT, int DEVELOP, int REMOVE) {
+    public GoldResource(int value , double RECRUIT, double CONSTRUCT,double DEVELOP, double REMOVE) {
         super(value);
         this.RECRUIT = RECRUIT;
         this.CONSTRUCT = CONSTRUCT;

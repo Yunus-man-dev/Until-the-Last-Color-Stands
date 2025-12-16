@@ -35,58 +35,19 @@ public class Red extends Civilization{
 
 
 
-    public final int FRECRUIT1 = 0;
-    public final int FTILE1 = 0 ;
-    public final int FMAINTAIN1 = 0;
-
-    public final int GRECRUIT1 = 0;
-    public final int GCONSTRUCT1 = 0;
-    public final int GDEVELOP1 = 0;
-    public final int GREMOVE1 = 0;
-
-    public final int M_MOVE1 = 0;
-    public final int M_UPGRADE1 = 0;
-    public final int M_CONSTRUCT1 = 0;
-    public final int M_TRADE1 = 0;
-    public final int M_RECRUIT1 = 0;
-    public final int M_ATTACK1 = 0;
-
-    public  final int FARM_FOOD1 = 0;
-    public  final int PORT_FOOD1 = 0;
-    public  final int PORT_GOLD1 = 0;
-    public  final int MINE_GOLD1 = 0;
-    public  final int BOOK1 = 0;
-
 
     public Red() {
-        super("Red Civilization", "Red", 1.1, 0.9, 0.9);
+        super("Red Civilization", "Red", 1.3, 1, 0.001);
          initializeStartingResources();
     }
 
     public void initializeStartingResources() {
 
-        FRECRUIT = FRECRUIT1;
-        FTILE = FTILE1 ;
-        FMAINTAIN = FMAINTAIN1;
+       
+      
+       
+        M_ATTACK  -= 1;
 
-        GRECRUIT = GRECRUIT1;
-        GCONSTRUCT = GCONSTRUCT1;
-        GDEVELOP = GDEVELOP1;
-        GREMOVE = GREMOVE1;
-
-        M_MOVE = M_MOVE1;
-        M_UPGRADE = M_UPGRADE1;
-        M_CONSTRUCT = M_CONSTRUCT1;
-        M_TRADE = M_TRADE1;
-        M_RECRUIT = M_RECRUIT1;
-        M_ATTACK = M_ATTACK1;
-
-        FARM_FOOD = FARM_FOOD1;
-        PORT_FOOD = PORT_FOOD1;
-        PORT_GOLD = PORT_GOLD1;
-        MINE_GOLD = MINE_GOLD1;
-        BOOK = BOOK1;
-        
 
         
         startingGold = new GoldResource(START_GOLD,GRECRUIT,GCONSTRUCT,GDEVELOP,GREMOVE);
@@ -95,7 +56,7 @@ public class Red extends Civilization{
         startingFood = new FoodResource(START_FOOD,FRECRUIT,FTILE,FMAINTAIN);
         // startingFood.addResource(80);
         
-        startingBook = new BookResource(START_BOOK);
+        startingBook = new BookResource(START_BOOK,technologyMultiplier);
         // startingBook.addResource(10);
         
         startingMP = new MovementPoint(START_MOVEMENT,M_MOVE,M_UPGRADE,M_CONSTRUCT,M_TRADE,M_RECRUIT,M_ATTACK);
