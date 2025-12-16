@@ -1,6 +1,7 @@
 package io.github.some_example_name.building;
 import io.github.some_example_name.Player;
 import io.github.some_example_name.Tile;
+import io.github.some_example_name.civilization.Brown;
 /*Farm is a subclass of Building that produces a specified amount of food
 each turn. This amount might differ to civilization to civilization. */
 public class Farm extends Building {
@@ -14,6 +15,9 @@ public class Farm extends Building {
     @Override
     public void produce(Player player) {
         int foodProduced = FOOD;
+        if(player.getCivilization() instanceof Brown){
+            foodProduced = (int) (foodProduced * Brown.getFoodBonus());
+        }
         player.addFood(foodProduced);
     }
     
