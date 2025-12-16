@@ -18,21 +18,21 @@ public class GoldCivilization extends Civilization{
     public final double TRADE_DISCOUNT = 0.85;
 
 
-    // public final int FRECRUIT = 0;
-    // public final int FTILE = 0 ;
-    // public final int FMAINTAIN = 0;
+    public final int FRECRUIT = 0;
+    public final int FTILE = 3 ;
+    public final int FMAINTAIN = 0;
 
-    // public final int GRECRUIT = 0;
-    // public final int GCONSTRUCT = 0;
-    // public final int GDEVELOP = 0;
-    // public final int GREMOVE = 0;
+    public int gRecruit = 50;
+    public final int GCONSTRUCT = 300;
+    public final int GDEVELOP = 250;
+    public final int GREMOVE = 300;
 
-    // public final int M_MOVE = 0;
-    // public final int M_UPGRADE = 0;
-    // public final int M_CONSTRUCT = 0;
-    // public final int M_TRADE = 0;
-    // public final int M_RECRUIT = 0;
-    // public final int M_ATTACK = 0;
+    public final int M_MOVE = 1;
+    public final int M_UPGRADE = 3;
+    public final int M_CONSTRUCT = 5;
+    public final int M_TRADE = 7;
+    public final int M_RECRUIT = 3;
+    public final int M_ATTACK = 4;
 
  
 
@@ -46,12 +46,10 @@ public class GoldCivilization extends Civilization{
 
     public void initializeStartingResources(){
 
-        GRECRUIT *= RECRUITMENT_COST_INCREASE;
+        gRecruit *= RECRUITMENT_COST_INCREASE;
        
-        PORT_GOLD *= GOLD_PRODUCTION_BONUS;
-        MINE_GOLD *= GOLD_PRODUCTION_BONUS;
       
-        startingGold = new GoldResource(START_GOLD,GRECRUIT,GCONSTRUCT,GDEVELOP,GREMOVE);
+        startingGold = new GoldResource(START_GOLD,gRecruit, GCONSTRUCT,GDEVELOP,GREMOVE);
         // startingGold.addResource(150);
         
         startingFood = new FoodResource(START_FOOD,FRECRUIT,FTILE,FMAINTAIN);

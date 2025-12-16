@@ -8,7 +8,7 @@ import io.github.some_example_name.Player;
 public class Brown extends Civilization{
 
     private static final int REQUIRED_TURNS = 200;
-    private final double FOOD_BONUS = 1.2;
+    private static final double FOOD_BONUS = 1.2;
     private static final double FOOD_CONSUMPTION_INCREASE = 1.3;
     // private static final double DEFENSE_BONUS = 1.2;
     private static final double RED_DEFENSE_BONUS = 1.3;
@@ -21,6 +21,22 @@ public class Brown extends Civilization{
 
     private int currentTurnNumber;
 
+    public final int FRECRUIT = 0;
+    public final int FTILE = 3 ;
+    public final int FMAINTAIN = 0;
+
+    public int gRecruit = 50;
+    public final int GCONSTRUCT = 300;
+    public final int GDEVELOP = 250;
+    public final int GREMOVE = 300;
+
+    public final int M_MOVE = 1;
+    public final int M_UPGRADE = 3;
+    public final int M_CONSTRUCT = 5;
+    public final int M_TRADE = 7;
+    public final int M_RECRUIT = 3;
+    public final int M_ATTACK = 4;
+
     public Brown(){
         super("Brown Civilization", "Brown", 1, 1.3, 0.001); 
          initializeStartingResources();
@@ -32,12 +48,12 @@ public class Brown extends Civilization{
        
         FMAINTAIN *= FOOD_CONSUMPTION_INCREASE;
             // 1.2
-        FARM_FOOD *= FOOD_BONUS;
+        // FARM_FOOD *= FOOD_BONUS;
              // 1.2
-        PORT_FOOD *= FOOD_BONUS;
+        // PORT_FOOD *= FOOD_BONUS;
         
 
-        startingGold = new GoldResource(START_GOLD,GRECRUIT,GCONSTRUCT,GDEVELOP,GREMOVE);
+        startingGold = new GoldResource(START_GOLD,gRecruit,GCONSTRUCT,GDEVELOP,GREMOVE);
         // startingGold.addResource(80);
         
         startingFood = new FoodResource(START_FOOD,FRECRUIT,FTILE,FMAINTAIN);
@@ -66,7 +82,7 @@ public class Brown extends Civilization{
     // public int setCurrentTurnNumber(Game game){
     //     currentTurnNumber = game.getTurnNumber();
     // }
-    public double getFoodBonus() {
+    public static double getFoodBonus() {
         return FOOD_BONUS;
     }
     

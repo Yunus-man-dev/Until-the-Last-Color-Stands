@@ -17,21 +17,21 @@ public class Red extends Civilization{
 
 
 
-    //  public final int FRECRUIT = 0;
-    // public final int FTILE = 0 ;
-    // public final int FMAINTAIN = 0;
+    public final int FRECRUIT = 0;
+    public final int FTILE = 3;
+    public final int FMAINTAIN = 0;
 
-    // public final int GRECRUIT = 0;
-    // public final int GCONSTRUCT = 0;
-    // public final int GDEVELOP = 0;
-    // public final int GREMOVE = 0;
+    public int gRecruit = 50;
+    public final int GCONSTRUCT = 300;
+    public final int GDEVELOP = 250;
+    public final int GREMOVE = 300;
 
-    // public final int M_MOVE = 0;
-    // public final int M_UPGRADE = 0;
-    // public final int M_CONSTRUCT = 0;
-    // public final int M_TRADE = 0;
-    // public final int M_RECRUIT = 0;
-    // public final int M_ATTACK = 0;
+    public final int M_MOVE = 1;
+    public final int M_UPGRADE = 3;
+    public final int M_CONSTRUCT = 5;
+    public final int M_TRADE = 7;
+    public final int M_RECRUIT = 3;
+    public int mAttack = 4;
 
 
 
@@ -46,11 +46,11 @@ public class Red extends Civilization{
        
       
        
-        M_ATTACK  -= 1;
+        mAttack -= 1;
 
 
         
-        startingGold = new GoldResource(START_GOLD,GRECRUIT,GCONSTRUCT,GDEVELOP,GREMOVE);
+        startingGold = new GoldResource(START_GOLD,gRecruit,GCONSTRUCT,GDEVELOP,GREMOVE);
         // startingGold.addResource(100);
         
         startingFood = new FoodResource(START_FOOD,FRECRUIT,FTILE,FMAINTAIN);
@@ -59,7 +59,7 @@ public class Red extends Civilization{
         startingBook = new BookResource(START_BOOK,technologyMultiplier);
         // startingBook.addResource(10);
         
-        startingMP = new MovementPoint(START_MOVEMENT,M_MOVE,M_UPGRADE,M_CONSTRUCT,M_TRADE,M_RECRUIT,M_ATTACK);
+        startingMP = new MovementPoint(START_MOVEMENT,M_MOVE,M_UPGRADE,M_CONSTRUCT,M_TRADE,M_RECRUIT,mAttack);
         // startingMP.addResource(10);
     }
     public boolean checkWinCondition(Player p){
