@@ -52,6 +52,9 @@ public class Game {
     //Moves onto the next player's turn and updates resources.
 
     public void nextTurn() {
+        //Tilelardaki asker alım sınırını resetler
+        gameMap.resetAllTilesTurnData();
+
         currentPlayerIndex++;
 
         // Check if full round is completed
@@ -70,7 +73,7 @@ public class Game {
         }
     }
 
-     // helper: returns the current player object.
+    // helper: returns the current player object.
     public Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
     }
@@ -88,7 +91,7 @@ public class Game {
 
 
     public void endGame() {
-       //GUI METHOD, WINNERS UNIQUE FRAME WILL BE DISPLAYED
+        //GUI METHOD, WINNERS UNIQUE FRAME WILL BE DISPLAYED
 
     }
 
@@ -110,10 +113,10 @@ public class Game {
     }
 
 
-     //Handles all army movements. Checks rules, costs, and triggers attacks.
-     // ITS ASSSUMED THAT WHEN AN ARMY MOVES, ALL TROOPS HAVE BEEN MOVED.
-     // IF WE WILL SELECT THE AMOUNT OF SOLDIERS TO MOVE THERE MUST BE AN int amount PARAMETER IN THE ÖETHOD
-     // AND MOVING LOGIC MUST BE MODIFIED ACCORDINGLY
+    //Handles all army movements. Checks rules, costs, and triggers attacks.
+    // ITS ASSSUMED THAT WHEN AN ARMY MOVES, ALL TROOPS HAVE BEEN MOVED.
+    // IF WE WILL SELECT THE AMOUNT OF SOLDIERS TO MOVE THERE MUST BE AN int amount PARAMETER IN THE ÖETHOD
+    // AND MOVING LOGIC MUST BE MODIFIED ACCORDINGLY
     public void moveArmy(Tile owned, Tile target) {
         int ownedsSoldiers = owned.getArmy().getSoldiers();
         Player player = owned.getOwner();
@@ -188,14 +191,14 @@ public class Game {
         activeTrades.remove(t);
     }
 
-     //Refuses trade, returns resources, and removes from list.
+    //Refuses trade, returns resources, and removes from list.
 
     public void refuseTrade(Trade t) {
         t.returnResources();
         activeTrades.remove(t);
     }
 
-     public static int getCurrentTurn() {
+    public static int getCurrentTurn() {
         return currentTurn;
     }
 }
