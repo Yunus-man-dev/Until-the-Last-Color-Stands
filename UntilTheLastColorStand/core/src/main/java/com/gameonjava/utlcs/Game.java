@@ -52,6 +52,9 @@ public class Game {
     //Moves onto the next player's turn and updates resources.
 
     public void nextTurn() {
+        //Tilelardaki asker alım sınırını resetler
+        gameMap.resetAllTilesTurnData();
+
         currentPlayerIndex++;
 
         // Check if full round is completed
