@@ -4,22 +4,18 @@ and methods for Gold related actions, such as amount of gold that is necessary f
 constructing a building */
 
 public class GoldResource extends Resource {
-    public final double RECRUIT;
-    public final double CONSTRUCT;
-    public final double DEVELOP;
-    public final double REMOVE;
+    public final double RECRUIT = 10.0;
+    public final double CONSTRUCT = 50.0;
+    public final double DEVELOP = 100.0;
+    public final double REMOVE = 10.0;
 
-    public GoldResource(int value , double RECRUIT, double CONSTRUCT,double DEVELOP, double REMOVE) {
+    public GoldResource(int value) {
         super(value);
-        this.RECRUIT = RECRUIT;
-        this.CONSTRUCT = CONSTRUCT;
-        this.DEVELOP = DEVELOP;
-        this.REMOVE = REMOVE;
     }
 
     @Override
     public void initializeConstants() {
-        
+
     }
 
 }

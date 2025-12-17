@@ -3,16 +3,12 @@ package io.github.some_example_name.resources;
 and methods for food related features */
 
 public class FoodResource extends Resource {
-    public final double RECRUIT;
-    public final double TILE;
-    public final double MAINTAIN;
+    public final double RECRUIT = 10.0;
+    public final double TILE = 5.0;
+    public final double MAINTAIN = 2.0;
 
-    public FoodResource(int value,double RECRUIT, double TILE, double MAINTAIN) {
-        super(value);
-        this.RECRUIT = RECRUIT;
-        this.TILE = TILE;
-        this.MAINTAIN = MAINTAIN;
-        
+    public FoodResource(int value) {
+        super(value);        
     }
     
     @Override

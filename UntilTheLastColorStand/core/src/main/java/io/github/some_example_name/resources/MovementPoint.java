@@ -4,21 +4,15 @@ Movement Point that is the limit of a player can do in one turn as terms of acti
 as upgrading a building etc. This limit can be changed by the amount of TP, which is
 calculated based on amount of books */
 public class MovementPoint extends Resource {
-    public final double MOVE;
-    public final double UPGRADE;
-    public final double CONSTRUCT;
-    public final double TRADE;
-    public final double RECRUIT;
-    public final double ATTACK;
+    public final double MOVE = 1.0;
+    public final double UPGRADE = 1.0;
+    public final double CONSTRUCT = 1.0;
+    public final double TRADE = 1.0;
+    public final double RECRUIT = 1.0;
+    public final double ATTACK = 1.0;
 
-    public MovementPoint(int value, double MOVE, double UPGRADE,double CONSTRUCT, double TRADE, double RECRUIT, double ATTACK) {
+    public MovementPoint(int value) {
         super(value);
-        this.MOVE = MOVE;
-        this.UPGRADE = UPGRADE;
-        this.CONSTRUCT = CONSTRUCT;
-        this.TRADE = TRADE;
-        this.RECRUIT = RECRUIT;
-        this.ATTACK = ATTACK;
     }
 
 
