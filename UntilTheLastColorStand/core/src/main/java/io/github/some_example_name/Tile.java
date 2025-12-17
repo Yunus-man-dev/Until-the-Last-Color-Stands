@@ -4,6 +4,7 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import io.github.some_example_name.building.Building;
 import io.github.some_example_name.civilization.Brown;
+import io.github.some_example_name.resources.FoodResource;
 import io.github.some_example_name.Enum.BuildingType;
 import io.github.some_example_name.Enum.TerrainType;
 
@@ -20,7 +21,7 @@ public class Tile {
     // Constants
 
     // Tile's food consumption per round
-    private static final int FOOD_CONSUMPTION = 1;
+    // private static final int FOOD_CONSUMPTION = ;
 
     public Tile(int q, int r, TerrainType terrainName) {
         this.q = q;
@@ -108,8 +109,8 @@ public class Tile {
     }
 
     // This method calculates food consumption per tile. [cite: 299]
-    public int calculateFoodConsumption() {
-        int consumption = FOOD_CONSUMPTION;
+    public double calculateFoodConsumption() {
+        double consumption = owner.getCivilization().FTILE;
         if (hasArmy()) {
             // The amount of food consumed by the soldiers + the amount consumed by the tile
             // soldierConsumptionRate must be added

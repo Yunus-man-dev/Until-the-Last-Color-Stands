@@ -7,7 +7,7 @@ resource and works as a template for more specified resource types. Every consta
 these resources is used throughout the game to compute resource costs in a civilizationdependent
 way. */
 public abstract class Resource {
-    protected int value;
+    protected double value;
 
     public Resource(int value) {
         this.value = value;
@@ -15,22 +15,22 @@ public abstract class Resource {
 
     public abstract void initializeConstants();
 
-    public void addResource(int value) {
+    public void addResource(double value) {
         this.value += value;
     }
-    public void reduceResource(int value) {
+    public void reduceResource(double value) {
         if(checkForResource(value)){
             this.value -= value;
         }
     }
-    public boolean checkForResource(int value) {
+    public boolean checkForResource(double value) {
         if(this.value >= value){
             return true;
         }
         else
             return false;
     }
-    public int getValue() {
+    public double getValue() {
         return value;
     }
     public void setValue(int value) {

@@ -21,9 +21,10 @@ public class Game {
 
     
     // holds the current turn index
-    private int currentTurn;
+    public static int currentTurn = 1; 
 
     // holds the players list’s index to track whose turn it is.
+
     private int currentPlayerIndex;
 
     // holds the pending trade offers.
@@ -35,7 +36,6 @@ public class Game {
         this.players = new ArrayList<>();
         this.gameMap = new Map();
         this.activeTrades = new ArrayList<>();
-        this.currentTurn = 1;
         this.currentPlayerIndex = 0;
     }
         
@@ -174,10 +174,9 @@ public class Game {
         
         MovementPoint mp = from.getOwner().getMp();
         if (mp.checkForResource(mp.ATTACK)) {
-             mp.reduceResource(mp.ATTACK);
+            mp.reduceResource(mp.ATTACK);
              
-             WarManager war = new WarManager(attacker, defender, target);
-             war.startBattle();
+            WarManager war = new WarManager(attacker, defender, target);
         }
     }
 
@@ -199,5 +198,9 @@ public class Game {
     public void refuseTrade(Trade t) {
         t.returnResources();
         activeTrades.remove(t);
+    }
+
+     public static int getCurrentTurn() {
+        return currentTurn;
     }
 }

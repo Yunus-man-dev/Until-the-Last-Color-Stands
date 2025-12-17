@@ -64,7 +64,7 @@ public class GoldCivilization extends Civilization{
         // startingMP.addResource(10);
     }
     public boolean checkWinCondition(Player p){
-        int goldAmount = p.getGold().getValue();
+        double goldAmount = p.getGold().getValue();
         int goldMineCount = countGoldMines(p);
         
         boolean hasGold = goldAmount >= REQUIRED_GOLD;

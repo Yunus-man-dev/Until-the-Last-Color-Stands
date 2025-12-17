@@ -183,9 +183,9 @@ public class Player {
             return;
         }
 
-        int totalFoodCost = food.RECRUIT * amount;
-        int totalGoldCost = gold.RECRUIT * amount;
-        int totalMPCost = movementPoint.RECRUIT * amount;
+        int totalFoodCost = (int) food.RECRUIT * amount;
+        int totalGoldCost = (int) gold.RECRUIT * amount;
+        int totalMPCost = (int) movementPoint.RECRUIT * amount;
 
         if (!food.checkForResource(totalFoodCost)) {
             return;
