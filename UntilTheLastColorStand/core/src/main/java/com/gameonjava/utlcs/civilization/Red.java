@@ -4,7 +4,6 @@ import com.gameonjava.utlcs.resources.BookResource;
 import com.gameonjava.utlcs.resources.FoodResource;
 import com.gameonjava.utlcs.resources.GoldResource;
 import com.gameonjava.utlcs.resources.MovementPoint;
-import io.github.some_example_name.resources.*;
 import com.gameonjava.utlcs.Player;
 
 public class Red extends Civilization{

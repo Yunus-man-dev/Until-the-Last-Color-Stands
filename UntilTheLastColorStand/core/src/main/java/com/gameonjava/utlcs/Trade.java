@@ -2,9 +2,7 @@ package com.gameonjava.utlcs;
 
 import com.gameonjava.utlcs.civilization.GoldCivilization;
 import com.gameonjava.utlcs.resources.*;
-import io.github.some_example_name.building.*;
-import io.github.some_example_name.resources.*;
-import io.github.some_example_name.civilization.*;
+
 
 /**
  * Manages trade offers, validation, and execution between players

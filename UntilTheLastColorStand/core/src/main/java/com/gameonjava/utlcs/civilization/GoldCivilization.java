@@ -4,11 +4,9 @@ import com.gameonjava.utlcs.resources.BookResource;
 import com.gameonjava.utlcs.resources.FoodResource;
 import com.gameonjava.utlcs.resources.GoldResource;
 import com.gameonjava.utlcs.resources.MovementPoint;
-import io.github.some_example_name.civilization.*;
 import com.gameonjava.utlcs.building.GoldMine;
 
 import com.gameonjava.utlcs.Player;
-import io.github.some_example_name.resources.*;
 import com.gameonjava.utlcs.Tile;
 
 public class GoldCivilization extends Civilization{

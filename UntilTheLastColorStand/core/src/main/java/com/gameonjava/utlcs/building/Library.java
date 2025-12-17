@@ -5,18 +5,24 @@ import com.gameonjava.utlcs.civilization.Blue;
 /*Library is a subclass of Building that produces a specified amount of book
 each turn. This amount might differ to civilization to civilization. */
 public class Library extends Building {
-    private final int BOOK;
+    private  final double BOOK;
 
-    public Library(Tile tile, int BOOK) {
+    public Library(Tile tile, double BOOK) {
         super(tile);
         this.BOOK = BOOK;
     }
 
     @Override
     public void produce(Player player) {
-        int bookProduced = BOOK;
-        if(player.getCivilization() instanceof Blue){
-           bookProduced = (int) (bookProduced * Blue.getLibraryProductionBonus());
+        double bookProduced = BOOK;
+        // if(player.getCivilization() instanceof Blue){
+        //    bookProduced = (int) (bookProduced * Blue.getLibraryProductionBonus());
+        // }
+        if(level == 2){
+            bookProduced *= 2;
+        }
+        if(level == 3){
+            bookProduced *= 3;
         }
         player.addScience(bookProduced);
     }

@@ -8,8 +8,8 @@ import com.gameonjava.utlcs.Tile;
 stores necessary and common features and variables, such as level and the Tile that
 building is constructed on. */
 public abstract class Building {
-    private int level;
-    private Tile tile;
+    protected int level;
+    protected Tile tile;
 
     public Building(Tile tile) {
         this.tile = tile;
@@ -27,6 +27,7 @@ public abstract class Building {
         if(this.level < 4){
             this.level++;
         }
+        
     }
 
     public abstract void produce(Player player);

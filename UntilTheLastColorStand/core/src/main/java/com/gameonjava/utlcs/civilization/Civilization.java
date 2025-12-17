@@ -4,7 +4,6 @@ import com.gameonjava.utlcs.resources.BookResource;
 import com.gameonjava.utlcs.resources.FoodResource;
 import com.gameonjava.utlcs.resources.GoldResource;
 import com.gameonjava.utlcs.resources.MovementPoint;
-import io.github.some_example_name.resources.*;
 import com.gameonjava.utlcs.Player;
 
 
@@ -17,8 +16,8 @@ public abstract class Civilization {
     final int START_MOVEMENT = 20;
     final int START_BOOK = 0;
     final int START_TILE = 7;
-
-
+    
+    // fsdjhgjokgj sdo
 
 
 
@@ -45,6 +44,7 @@ public abstract class Civilization {
     public  double MINE_GOLD = 50;
     public  double BOOK = 2;
 
+    
 
 
 

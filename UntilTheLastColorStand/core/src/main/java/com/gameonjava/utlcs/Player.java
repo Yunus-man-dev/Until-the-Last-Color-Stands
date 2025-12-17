@@ -9,10 +9,7 @@ import com.gameonjava.utlcs.resources.BookResource;
 import com.gameonjava.utlcs.resources.FoodResource;
 import com.gameonjava.utlcs.resources.GoldResource;
 import com.gameonjava.utlcs.resources.MovementPoint;
-import io.github.some_example_name.Enum.*;
-import io.github.some_example_name.building.*;
-import io.github.some_example_name.resources.*;
-import io.github.some_example_name.civilization.*;
+
 
 public class Player {
 
@@ -139,13 +136,13 @@ public class Player {
 
         Building building = null;
         if(bt == BuildingType.FARM){
-            building = new Farm();
+            building = new Farm(t,this.getCivilization().FARM_FOOD);
         }else if(bt == BuildingType.GOLD_MINE){
-            building = new GoldMine();
+            building = new GoldMine(t,this.getCivilization().MINE_GOLD);
         }else if(bt == BuildingType.PORT){
-            building = new Port();
+            building = new Port(t,this.getCivilization().PORT_FOOD,this.getCivilization().PORT_GOLD);
         }else if(bt == BuildingType.LIBRARY){
-            building = new Library();
+            building = new Library(t,this.getCivilization().BOOK);
         }
         t.setBuilding(building);
         return true;
@@ -232,15 +229,15 @@ public class Player {
         return civilization.checkWinCondition(this);
     }
 
-    public void addFood(int amount){
+    public void addFood(double amount){
         food.setValue(amount);
     }
 
-    public void addGold(int amount){
+    public void addGold(double amount){
         gold.setValue(amount);
     }
 
-    public void addScience(int amount){
+    public void addScience(double amount){
         book.setValue(amount);
     }
 
