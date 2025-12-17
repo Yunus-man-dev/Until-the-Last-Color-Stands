@@ -12,7 +12,6 @@ public class Tile {
     private Player owner;
     private Building building;
     private Army army;
-    private int recruitedThisTurn;
 
     private double soldierConsumptionRate;
     // Constants
@@ -28,7 +27,6 @@ public class Tile {
         this.building = null;
         this.army = null;
         this.soldierConsumptionRate = 1;
-        this.recruitedThisTurn=0;
 
         // Extra defence in forrest
         if (this.terrainName == TerrainType.FOREST) {
@@ -112,7 +110,7 @@ public class Tile {
         if (hasArmy()) {
             // The amount of food consumed by the soldiers + the amount consumed by the tile
             // soldierConsumptionRate must be added
-            if (this.getOwner().getCivilization() instanceof Brown) {
+            if(this.getOwner().getCivilization() instanceof Brown){
                 soldierConsumptionRate = (int) (soldierConsumptionRate * Brown.getFoodConsumptionIncrease());
             }
             consumption = (int) (army.getSoldiers() * soldierConsumptionRate);
@@ -133,32 +131,21 @@ public class Tile {
         }
     }
 
-    public boolean isNeighboor(Tile t) {
+
+    public boolean isNeighboor(Tile t){
 
         boolean isNeighboor = false;
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
+        for(int i = -1; i<2; i++){
+            for(int j = -1; j <2; j++){
 
-                if (q + i == t.q && r + j == t.r) {
-                    return isNeighboor = true;
+                if(q + i == t.q && r + j == t.r){
+                   return isNeighboor = true;
 
                 }
 
             }
         }
         return isNeighboor;
-    }
-
-    public int getRecruitedThisTurn() {
-        return recruitedThisTurn;
-    }
-
-    public void addRecruitedCount(int amount) {
-        this.recruitedThisTurn += amount;
-    }
-
-    public void resetTurnData() {
-        this.recruitedThisTurn = 0;
     }
 
 }
