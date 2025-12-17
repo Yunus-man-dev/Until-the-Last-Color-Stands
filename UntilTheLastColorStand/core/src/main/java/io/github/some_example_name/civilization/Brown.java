@@ -1,5 +1,6 @@
 package io.github.some_example_name.civilization;
 
+import io.github.some_example_name.Game;
 import com.badlogic.gdx.graphics.Color;
 import io.github.some_example_name.resources.*;
 import io.github.some_example_name.Player;
@@ -23,7 +24,9 @@ public class Brown extends Civilization{
 
     public Brown(){
         super("Brown Civilization", "Brown", 1, 1.3, 0.001); 
-         initializeStartingResources();
+        initializeStartingResources();
+        currentTurnNumber = 0;
+
     }
 
     public void initializeStartingResources() {
@@ -50,7 +53,7 @@ public class Brown extends Civilization{
         // startingMP.addResource(10);
     }
     public boolean checkWinCondition(Player p){
-        //int currentTurn = p.getTurnNumber(); // Requires turn number
+        setCurrentTurnNumber(Game.getCurrentTurn()); // Requires turn number
         if (!p.isActive()) {
             return false;
         }
@@ -63,9 +66,9 @@ public class Brown extends Civilization{
         return false;
     }
 
-    // public int setCurrentTurnNumber(Game game){
-    //     currentTurnNumber = game.getTurnNumber();
-    // }
+    public void setCurrentTurnNumber(int turn){
+        currentTurnNumber = turn;
+}
     public double getFoodBonus() {
         return FOOD_BONUS;
     }
