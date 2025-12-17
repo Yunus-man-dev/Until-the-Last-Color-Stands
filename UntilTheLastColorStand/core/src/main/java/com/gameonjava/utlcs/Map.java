@@ -101,7 +101,7 @@ public class Map {
 
     private int[][] getMap1Data() {
         return new int[][] {
-                 { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 4, 4, 4, 3, 3, 3, 3, 3, 3 },
+                { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 4, 4, 4, 3, 3, 3, 3, 3, 3 },
                 { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 4, 3, 3, 0, 3, 3, 3, 3 },
                 { 4, 4, 3, 4, 3, 4, 4, 4, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 0, 0, 3, 3, 3 },
                 { 3, 3, 3, 3, 3, 3, 3, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3 },
@@ -265,5 +265,15 @@ public class Map {
 
         // For other building types (FARM, GOLD_MINE, LIBRARY),
         return true;
+    }
+    //Tileların tur başı asker çıkarma limtini sonraki tur için sıfırlar.
+    public void resetAllTilesTurnData() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (tiles[i][j] != null) {
+                    tiles[i][j].resetTurnData();
+                }
+            }
+        }
     }
 }
