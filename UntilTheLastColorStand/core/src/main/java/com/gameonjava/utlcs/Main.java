@@ -1,70 +1,86 @@
 package com.gameonjava.utlcs;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.gameonjava.utlcs.gui.Assets;
+import com.gameonjava.utlcs.gui.EmpireSelectionScreen;
+import com.gameonjava.utlcs.gui.GameScreen;
+import com.gameonjava.utlcs.gui.MainMenuScreen;
+import com.gameonjava.utlcs.gui.MapSelectionScreen;
 
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
-public class Main extends ApplicationAdapter {
-    private Stage stage;
-    private Skin skin;
+
+// main manager and screen transition
+public class Main extends Game {
+
+    public SpriteBatch batch;           // for draw
+    public ShapeRenderer shapeRenderer; // for geo shapes
+
+    //enum
+    public enum ScreenType {
+        MAIN_MENU,
+        MAP_SELECTION,
+        EMPIRE_SELECTION,
+        GAME,
+    }
+
+ //references for screen
+    private MainMenuScreen mainMenuScreen;
+    private MapSelectionScreen mapSelectionScreen;
+    private EmpireSelectionScreen empireSelectionScreen;
+    private GameScreen gameScreen;
 
     @Override
     public void create() {
-        stage = new Stage(new FitViewport(640, 480));
-        skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
+        batch = new SpriteBatch();
+        shapeRenderer = new ShapeRenderer();
 
-        Window window = new Window("Example screen", skin, "border");
-        window.defaults().pad(4f);
-        window.add("This is a simple Scene2D view.").row();
-        final TextButton button = new TextButton("Click me!", skin);
-        button.pad(8f);
-        button.addListener(new ChangeListener() {
-            @Override
-            public void changed(final ChangeEvent event, final Actor actor) {
-                button.setText("Clicked.");
-            }
-        });
-        window.add(button);
-        window.pack();
-        // We round the window position to avoid awkward half-pixel artifacts.
-        // Casting using (int) would also work.
-        window.setPosition(MathUtils.roundPositive(stage.getWidth() / 2f - window.getWidth() / 2f),
-            MathUtils.roundPositive(stage.getHeight() / 2f - window.getHeight() / 2f));
-        window.addAction(Actions.sequence(Actions.alpha(0f), Actions.fadeIn(1f)));
-        stage.addActor(window);
+        Assets.load();
+        Assets.finishLoading();
+        changeScreen(ScreenType.GAME);
+    }
 
-        Gdx.input.setInputProcessor(stage);
+    //CHANGE SCREEN METHOD. OTHER CLASSES MUST USE game.changeScreen(DesiredScreen) to change screens
+    public void changeScreen(ScreenType type) {
+        switch (type) {
+            case MAIN_MENU:
+                if (mainMenuScreen == null) mainMenuScreen = new MainMenuScreen(this);
+                this.setScreen(mainMenuScreen);
+                break;
+
+            case MAP_SELECTION:
+                if (mapSelectionScreen == null) mapSelectionScreen = new MapSelectionScreen(this);
+                this.setScreen(mapSelectionScreen);
+                break;
+
+            case EMPIRE_SELECTION:
+                if (empireSelectionScreen == null) empireSelectionScreen = new EmpireSelectionScreen(this);
+                this.setScreen(empireSelectionScreen);
+                break;
+
+            case GAME:
+                if (gameScreen == null) {
+                    gameScreen = new GameScreen(this);
+                }
+                this.setScreen(gameScreen);
+                break;
+        }
     }
 
     @Override
     public void render() {
-        ScreenUtils.clear(0f, 0f, 0f, 1f);
-        stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        // If the window is minimized on a desktop (LWJGL3) platform, width and height are 0, which causes problems.
-        // In that case, we don't resize anything, and wait for the window to be a normal size before updating.
-        if(width <= 0 || height <= 0) return;
-
-        stage.getViewport().update(width, height);
+        super.render();
     }
 
     @Override
     public void dispose() {
-        stage.dispose();
-        skin.dispose();
+        batch.dispose();
+        shapeRenderer.dispose();
+        Assets.dispose();
+
+        if (mainMenuScreen != null) mainMenuScreen.dispose();
+        if (mapSelectionScreen != null) mapSelectionScreen.dispose();
+        if (empireSelectionScreen != null) empireSelectionScreen.dispose();
+        if (gameScreen != null) gameScreen.dispose();
     }
 }
