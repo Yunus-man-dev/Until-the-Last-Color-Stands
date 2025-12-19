@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
+import com.gameonjava.utlcs.backend.civilization.*;
 import com.gameonjava.utlcs.backend.resources.MovementPoint;
 
 //Description: Controls the game flow, player turns, and global actions.
@@ -34,6 +35,10 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         this.gameMap = new Map();
         this.activeTrades = new ArrayList<>();
         this.currentPlayerIndex = 0;
+        players.add(new Player("x", new Black()));
+        players.add(new Player("y", new GoldCivilization()));
+        players.add(new Player("z", new Blue()));
+        players.add(new Player("d", new Red()));
     }
 
     public void startGame(int mapID) {
@@ -62,9 +67,9 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         // Check if full round is completed
         if (currentPlayerIndex >= players.size()) {
             currentPlayerIndex = 0;
-            currentTurn++;
-        }
 
+        }
+        currentTurn++;
         // Get the new current player
         Player currentPlayer = getCurrentPlayer();
 
