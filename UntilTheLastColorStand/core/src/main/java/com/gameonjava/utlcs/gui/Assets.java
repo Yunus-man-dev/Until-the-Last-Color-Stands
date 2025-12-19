@@ -1,6 +1,7 @@
 package com.gameonjava.utlcs.gui;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -10,7 +11,7 @@ public class Assets {
     //Image foodIcon = new Image(Assets.food);
     //Image settingsBtn = new Image(Assets.settings);
     //BU ŞEKİLDE UI CLASSLARINDA KULLANILABILIR!!!
-    
+
     public static final AssetManager manager = new AssetManager();
 
     public static final String SKIN_JSON = "skin/uiskin.json";
@@ -50,7 +51,7 @@ public class Assets {
     public static Texture war;
     public static Texture mine;
     public static Texture dice1, dice2, dice3, dice4, dice5, dice6;
-    public static Sound music;
+    public static Music music;
 
 
     public static void load() {
@@ -74,7 +75,7 @@ public class Assets {
         manager.load(DICE4, Texture.class);
         manager.load(DICE5, Texture.class);
         manager.load(DICE6, Texture.class);
-        manager.load(MUSIC, Sound.class);
+        manager.load(MUSIC, Music.class);
     }
 
 
@@ -101,7 +102,7 @@ public class Assets {
         dice4 = manager.get(DICE4, Texture.class);
         dice5 = manager.get(DICE5, Texture.class);
         dice6 = manager.get(DICE6, Texture.class);
-        music = manager.get(MUSIC, Sound.class);
+        music = manager.get(MUSIC, Music.class);
     }
 
 
