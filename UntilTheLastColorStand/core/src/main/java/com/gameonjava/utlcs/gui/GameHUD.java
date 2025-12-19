@@ -1,93 +1,185 @@
 package com.gameonjava.utlcs.gui;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.gameonjava.utlcs.backend.Game;
+import com.gameonjava.utlcs.backend.Player;
 
 public class GameHUD implements Disposable {
 
     public Stage stage;
     private Viewport viewport;
+    public Game backendGame;
 
-    private Label goldLabel;
-    private Label foodLabel;
-    private Label techLabel;
-    private Label turnLabel;
+    private Label goldLabel, foodLabel, bookLabel, techLabel, moveLabel;
+    private Label turnLabel, currentPlayerLabel;
+    private TextButton endTurnBtn;
+
+    // Tasarımdaki Kahverengi Renkler (Yaklaşık)
+    private final Color TOP_BAR_COLOR = new Color(0.8f, 0.6f, 0.3f, 1f); // Açık Kahve
+    private final Color PANEL_COLOR = new Color(0.6f, 0.4f, 0.2f, 1f);   // Koyu Kahve
 
     public GameHUD(SpriteBatch batch) {
-        //1280x720 fixed res
-        viewport = new FitViewport(1280, 720, new OrthographicCamera());
+        viewport = new FitViewport(1280, 720);
         stage = new Stage(viewport, batch);
+        TextButton.TextButtonStyle woodenStyle = createWoodenStyle();
+        backendGame = new Game();
+        backendGame.startGame(1);
 
         Table rootTable = new Table();
         rootTable.setFillParent(true);
-        rootTable.top(); //start from top
         stage.addActor(rootTable);
 
-       //resource panel
-        Image settingsIcon = new Image(Assets.settings);
-        Image goldIcon = new Image(Assets.gold);
-        Image foodIcon = new Image(Assets.food);
-        Image techIcon = new Image(Assets.tech);
-        Image bookIcon = new Image(Assets.book);
+        // --- A. TOP BAR (KAYNAKLAR) ---
+        Table topTable = new Table();
+        topTable.setBackground(getColoredDrawable(TOP_BAR_COLOR));
 
-        // texts
-        goldLabel = new Label("???", Assets.skin);
-        foodLabel = new Label("???", Assets.skin);
-        techLabel = new Label("???", Assets.skin);
-        turnLabel = new Label("Turn: ?", Assets.skin);
+        goldLabel = createStatLabel("134");
+        foodLabel = createStatLabel("72");
+        bookLabel = createStatLabel("89");
+        techLabel = createStatLabel("12");
+        moveLabel = createStatLabel("9");
 
-        // top panel
-        Table topPanel = new Table();
-        topPanel.setBackground(Assets.skin.newDrawable("white", 0.2f, 0.2f, 0.2f, 0.8f)); // Koyu gri şeffaf arka plan
+        topTable.add(new Image(Assets.settings)).size(40).padLeft(10).padRight(20);
 
-        topPanel.add(settingsIcon).size(40).padRight(20);
+        addResourceToTable(topTable, Assets.gold, goldLabel);
+        addResourceToTable(topTable, Assets.food, foodLabel);
+        addResourceToTable(topTable, Assets.book, bookLabel);
+        addResourceToTable(topTable, Assets.tech, techLabel);
+        addResourceToTable(topTable, Assets.dash, moveLabel);
 
-        topPanel.add(goldIcon).size(32).padRight(5);
-        topPanel.add(goldLabel).padRight(20);
+        topTable.add().expandX();
+        TextButton filterBtn = new TextButton("Filters", woodenStyle);
+        Label turnCount = new Label("Turn 12", Assets.skin);
+        topTable.add(filterBtn).padRight(10);
+        topTable.add(turnCount).padRight(20);
 
-        topPanel.add(foodIcon).size(32).padRight(5);
-        topPanel.add(foodLabel).padRight(20);
+        // --- B. LEFT PANEL (P1, P2, P3, P4) ---
+        Table leftTable = new Table();
+        leftTable.top();
 
-        topPanel.add(techIcon).size(32).padRight(5);
-        topPanel.add(techLabel).padRight(20);
+        leftTable.add(new TextButton("P1", woodenStyle)).size(50).padBottom(10).row();
+        leftTable.add(new TextButton("P2", woodenStyle)).size(50).padBottom(10).row();
+        leftTable.add(new TextButton("P3", woodenStyle)).size(50).padBottom(10).row();
+        leftTable.add(new TextButton("P4", woodenStyle)).size(50).padBottom(10).row();
 
-        topPanel.add(turnLabel).size(32).padRight(5);
+        // leftTable.add(new Image(Assets.mail)).size(40).padTop(20);
 
-        // add top panel to main panel
-        rootTable.add(topPanel).growX().height(60).top();
-        rootTable.row(); // moveonto next row
+        // --- C. RIGHT PANEL (BİLGİ EKRANI) ---
+        Table rightTable = new Table();
+        rightTable.setBackground(getColoredDrawable(TOP_BAR_COLOR));
 
-        // map will come here
-        rootTable.add().expand().fill();
+        currentPlayerLabel = new Label("Player 2\nZeki's Turn", Assets.skin);
+        currentPlayerLabel.setAlignment(Align.center);
+
+        Label winCondTitle = new Label("Win Condition:", Assets.skin);
+        Label winCondDesc = new Label("Have 200 Tech and 10 Libraries", Assets.skin);
+        winCondDesc.setAlignment(Align.center);
+        winCondDesc.setWrap(true);
+
+        rightTable.add(currentPlayerLabel).pad(20).row();
+
+        Table winTable = new Table();
+        winTable.setBackground(getColoredDrawable(new Color(0.3f, 0.5f, 0.4f, 1f)));
+        winTable.add(winCondTitle).padTop(10).row();
+        winTable.add(winCondDesc).width(180).pad(10).row();
+
+        rightTable.add(winTable).growX().pad(10).row();
+        rightTable.add().expandY();
+
+        // --- D. BOTTOM BAR (END TURN) ---
+        Table bottomTable = new Table();
+        endTurnBtn = new TextButton("End Turn", woodenStyle);
+        // Butonu biraz büyütelim
+        endTurnBtn.getLabel().setFontScale(1.2f);
+        bottomTable.add(endTurnBtn).width(200).height(60).padBottom(10).padRight(20);
+        bottomTable.right();
+
+        // 1. Üst Barı ekle
+        rootTable.add(topTable).growX().height(60).colspan(3).top();
         rootTable.row();
 
-        //bottom bar
-        Table bottomPanel = new Table();
-        bottomPanel.bottom();
+        // 2. Orta Kısım
+        rootTable.add(leftTable).width(70).top().padTop(20).left();
+        rootTable.add().expand();
+        rootTable.add(rightTable).width(250).growY().right().padTop(20).padBottom(20).padRight(10);
+        rootTable.row();
 
-
-        TextButton endTurnBtn = new TextButton("END TURN", Assets.skin);
-
-        bottomPanel.add(endTurnBtn).width(150).height(50);
-
-        rootTable.add(bottomPanel).growX().height(80).bottom();
+        rootTable.add(bottomTable).growX().height(80).colspan(3).bottom();
     }
 
+
+    private void addResourceToTable(Table table, Texture icon, Label label) {
+        table.add(new Image(icon)).size(32).padLeft(15).padRight(5);
+        table.add(label);
+    }
+
+    private Label createStatLabel(String text) {
+        Label l = new Label(text, Assets.skin);
+        l.setColor(Color.BLACK);
+        l.setFontScale(1.2f);
+        return l;
+    }
+
+    public TextButton getEndTurnBtn() {
+        return endTurnBtn;
+    }
+
+    private TextureRegionDrawable getColoredDrawable(Color color) {
+        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        pixmap.setColor(color);
+        pixmap.fill();
+        Texture texture = new Texture(pixmap);
+        pixmap.dispose();
+        return new TextureRegionDrawable(new TextureRegion(texture));
+    }
+
+    private TextButton.TextButtonStyle createWoodenStyle() {
+        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
+
+        style.font = Assets.skin.getFont("default");
+
+        style.up = Assets.skin.newDrawable("white", new Color(0.9f, 0.7f, 0.3f, 1f));
+
+        style.down = Assets.skin.newDrawable("white", new Color(0.7f, 0.5f, 0.1f, 1f));
+
+        style.fontColor = Color.BLACK;
+
+        return style;
+    }
+    public void updateStats(Player player, int turnNumber) {
+
+        goldLabel.setText(String.valueOf((int) player.getGold().getValue()));
+        foodLabel.setText(String.valueOf((int) player.getFood().getValue()));
+
+        bookLabel.setText(String.valueOf((int) player.getBook().getValue()));
+        techLabel.setText(String.valueOf(player.getTechnologyPoint())); //
+
+        moveLabel.setText(String.valueOf((int) player.getMp().getValue()));
+
+        turnLabel.setText("Turn " + turnNumber);
+        currentPlayerLabel.setText(player.getName() + "\nTURN");
+    }
     public void render() {
         stage.act();
         stage.draw();
     }
 
     public void resize(int width, int height) {
-        viewport.update(width, height);
+        viewport.update(width, height, true);
     }
 
     @Override
