@@ -1,8 +1,10 @@
 package com.gameonjava.utlcs.backend;
 
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
+import com.gameonjava.utlcs.backend.Enum.TerrainType;
 import com.gameonjava.utlcs.backend.building.Building;
 import com.gameonjava.utlcs.backend.civilization.Brown;
-import com.gameonjava.utlcs.backend.Enum.TerrainType;
 
 public class Tile {
     private int q;
@@ -161,4 +163,18 @@ public class Tile {
         this.recruitedThisTurn = 0;
     }
 
+    public void write(Json json) {
+        json.writeValue("Terrain", terrainName);
+        json.writeValue("Owner", owner);
+        json.writeValue("Building", building);
+        json.writeValue("Army", army);
+        json.writeValue("ConsumptionRate", soldierConsumptionRate);
+    }
+    public void read(Json json, JsonValue jsonData) {
+        terrainName = json.readValue("Terrain", TerrainType.class, jsonData);
+        owner = json.readValue("Owner", Player.class, jsonData);
+        building = json.readValue("Building", Building.class, jsonData);
+        army = json.readValue("Army", Army.class, jsonData);
+        soldierConsumptionRate = jsonData.getFloat("ConsumptionRate");
+    }
 }

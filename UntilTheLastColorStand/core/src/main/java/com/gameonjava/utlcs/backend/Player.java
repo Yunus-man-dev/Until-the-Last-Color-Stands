@@ -2,9 +2,15 @@ package com.gameonjava.utlcs.backend;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
 import com.gameonjava.utlcs.backend.Enum.BuildingType;
 import com.gameonjava.utlcs.backend.Enum.TerrainType;
-import com.gameonjava.utlcs.backend.building.*;
+import com.gameonjava.utlcs.backend.building.Building;
+import com.gameonjava.utlcs.backend.building.Farm;
+import com.gameonjava.utlcs.backend.building.GoldMine;
+import com.gameonjava.utlcs.backend.building.Library;
+import com.gameonjava.utlcs.backend.building.Port;
 import com.gameonjava.utlcs.backend.civilization.Civilization;
 import com.gameonjava.utlcs.backend.resources.BookResource;
 import com.gameonjava.utlcs.backend.resources.FoodResource;
@@ -255,4 +261,25 @@ public class Player {
         book.setValue(amount);
     }
 
+    public void write(Json json) {
+        json.writeValue("Name", name);
+        json.writeValue("Civilization", civilization);
+        json.writeValue("Food", food);
+        json.writeValue("Gold", gold);
+        json.writeValue("Book", book);
+        json.writeValue("OwnedTiles", ownedTiles);
+        json.writeValue("Activity", isActive);
+        json.writeValue("TechPoint", technologyPoint);
+    }
+
+    public void read(Json json, JsonValue jsonData) {
+        name = json.readValue("Name", String.class, jsonData);
+        civilization = json.readValue("Civilization", Civilization.class, jsonData);
+        food = json.readValue("Food", FoodResource.class, jsonData);
+        gold = json.readValue("Gold", GoldResource.class, jsonData);
+        book = json.readValue("Book", BookResource.class, jsonData);
+        ownedTiles = json.readValue("OwnedTiles", ArrayList.class, Tile.class, jsonData);
+        isActive = json.readValue("Activity", boolean.class, jsonData);
+        technologyPoint = jsonData.getInt("TechPoint");
+    }
 }

@@ -2,6 +2,8 @@ package com.gameonjava.utlcs.backend;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
 import com.gameonjava.utlcs.backend.resources.MovementPoint;
 
 //Description: Controls the game flow, player turns, and global actions.
@@ -200,5 +202,21 @@ public class Game {
 
     public static int getCurrentTurn() {
         return currentTurn;
+    }
+
+    public void write(Json json) {
+        json.writeValue("Players", players);
+        json.writeValue("Map", gameMap);
+        json.writeValue("Turn", currentTurn);
+        json.writeValue("CurPlayerIndex", currentPlayerIndex);
+        json.writeValue("ActiveTrades", activeTrades);
+    }
+
+    public void read(Json json, JsonValue jsonData) {
+        players = json.readValue("Players", ArrayList.class, Player.class, jsonData);
+        gameMap = json.readValue("Map", Map.class, jsonData);
+        currentTurn = jsonData.getInt("Turn");
+        currentPlayerIndex = jsonData.getInt("CurPlayerIndex");
+        activeTrades = json.readValue("ActiveTrades", ArrayList.class, Trade.class, jsonData);
     }
 }

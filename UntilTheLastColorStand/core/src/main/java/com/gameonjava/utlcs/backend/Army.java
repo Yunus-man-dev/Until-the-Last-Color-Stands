@@ -1,6 +1,8 @@
 package com.gameonjava.utlcs.backend;
 
-// The Army class represents the civilizations soldiers on tiles. It enables
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
+
 // civilizations to war each other and defend their empire or expand their borders. It will
 // be used in War Manager class that handles battles between civilizations.
 public class Army {
@@ -38,5 +40,14 @@ public class Army {
         return player;
     }
 
-
+    public void write(Json json) {
+        json.writeValue("Player", player);
+        json.writeValue("numberOfSoldiers", numberOfSoldiers);
+        json.writeValue("tile", tile);
+    }
+    public void read(Json json, JsonValue jsonData) {
+        player = json.readValue("Player", Player.class, jsonData);
+        numberOfSoldiers = jsonData.getInt("numberOfSoldiers");
+        tile = json.readValue("tile", Tile.class, jsonData);
+    }
 }
