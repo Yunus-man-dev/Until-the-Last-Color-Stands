@@ -50,6 +50,6 @@ public class GameScreen extends ScreenAdapter {
         hud.render();
     }
     public void resize(int width, int height) {
-        hud.resize(width, height); 
+        hud.resize(width, height);
     }
 }

@@ -25,7 +25,7 @@ public class GameHUD implements Disposable {
     public Game backendGame;
 
     private Label goldLabel, foodLabel, bookLabel, techLabel, moveLabel;
-    private Label turnLabel, currentPlayerLabel;
+    private Label turnCount, currentPlayerLabel;
     private TextButton endTurnBtn;
 
     // Tasarımdaki Kahverengi Renkler (Yaklaşık)
@@ -63,7 +63,7 @@ public class GameHUD implements Disposable {
 
         topTable.add().expandX();
         TextButton filterBtn = new TextButton("Filters", woodenStyle);
-        Label turnCount = new Label("Turn 12", Assets.skin);
+        turnCount = new Label("Turn 1", Assets.skin);
         topTable.add(filterBtn).padRight(10);
         topTable.add(turnCount).padRight(20);
 
@@ -170,7 +170,7 @@ public class GameHUD implements Disposable {
 
         moveLabel.setText(String.valueOf((int) player.getMp().getValue()));
 
-        turnLabel.setText("Turn " + turnNumber);
+        turnCount.setText("Turn " + turnNumber);
         currentPlayerLabel.setText(player.getName() + "\nTURN");
     }
     public void render() {
