@@ -22,11 +22,11 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
 
     private String name;
     private Civilization civilization;
-    private FoodResource food;
-    private GoldResource gold;
-    private MovementPoint movementPoint;
-    private BookResource book;
-    private ArrayList<Tile> ownedTiles;
+    private FoodResource food = new FoodResource();
+    private GoldResource gold = new GoldResource();
+    private MovementPoint movementPoint = new MovementPoint();
+    private BookResource book = new BookResource();
+    private ArrayList<Tile> ownedTiles = new ArrayList<>();
     private boolean isActive;
     private int technologyPoint;
 
