@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.gameonjava.utlcs.backend.resources.MovementPoint;
 
 //Description: Controls the game flow, player turns, and global actions.
-public class Game {
+public class Game implements com.badlogic.gdx.utils.Json.Serializable{
 
 
     // holds all the players
@@ -204,6 +204,7 @@ public class Game {
         return currentTurn;
     }
 
+    @Override
     public void write(Json json) {
         json.writeValue("Players", players);
         json.writeValue("Map", gameMap);
@@ -212,6 +213,7 @@ public class Game {
         json.writeValue("ActiveTrades", activeTrades);
     }
 
+    @Override
     public void read(Json json, JsonValue jsonData) {
         players = json.readValue("Players", ArrayList.class, Player.class, jsonData);
         gameMap = json.readValue("Map", Map.class, jsonData);

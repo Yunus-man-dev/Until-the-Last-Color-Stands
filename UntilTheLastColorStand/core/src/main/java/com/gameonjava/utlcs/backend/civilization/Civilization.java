@@ -1,13 +1,15 @@
 package com.gameonjava.utlcs.backend.civilization;
 
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
+import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.resources.BookResource;
 import com.gameonjava.utlcs.backend.resources.FoodResource;
 import com.gameonjava.utlcs.backend.resources.GoldResource;
 import com.gameonjava.utlcs.backend.resources.MovementPoint;
-import com.gameonjava.utlcs.backend.Player;
 
 
-public abstract class Civilization {
+public abstract class Civilization implements com.badlogic.gdx.utils.Json.Serializable{
 
 
 
@@ -69,10 +71,13 @@ public abstract class Civilization {
         this.civilizationName = civilizationName;
         this.civilizationColor = civilizationColor;
         this.attackMultiplier = attackMultiplier;
+        this.defenseMultiplier = defenseMultiplier;
         this.technologyMultiplier = technologyMultiplier;
 
 
     }
+    
+    public Civilization() {}
 
     public String getCivilizationName() {
         return civilizationName;
@@ -149,4 +154,21 @@ public abstract class Civilization {
     // public abstract void applyUniqueFeature(Player p);
     public abstract boolean checkWinCondition(Player p);
     public abstract void initializeStartingResources();
+
+    @Override
+    public void write(Json json) {
+        json.writeValue("CName", civilizationName);
+        json.writeValue("CColor", civilizationColor);
+        json.writeValue("CAttackMult", attackMultiplier);
+        json.writeValue("CDefenseMult", defenseMultiplier);
+        json.writeValue("CTechMult", technologyMultiplier);
+    }
+    @Override
+    public void read(Json json, JsonValue jsonData) {
+        civilizationName = json.readValue("CName", String.class, jsonData);
+        civilizationColor = json.readValue("CColor", String.class, jsonData);
+        attackMultiplier = jsonData.getFloat("CAttackMult");
+        defenseMultiplier = jsonData.getFloat("CDefenseMult");
+        technologyMultiplier = jsonData.getFloat("CTechMult");
+    }
 }

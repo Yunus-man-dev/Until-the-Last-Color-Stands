@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.JsonValue;
 resource and works as a template for more specified resource types. Every constant of
 these resources is used throughout the game to compute resource costs in a civilizationdependent
 way. */
-public abstract class Resource {
+public abstract class Resource implements com.badlogic.gdx.utils.Json.Serializable{
     protected double value;
 
     public Resource(int value) {
@@ -36,10 +36,11 @@ public abstract class Resource {
     public void setValue(double value) {
         this.value = value;
     }
-
+    @Override
     public void write(Json json) {
         json.writeValue("value", value);
     }
+    @Override
     public void read(Json json, JsonValue jsonData) {
         value = jsonData.getInt("value");
     }

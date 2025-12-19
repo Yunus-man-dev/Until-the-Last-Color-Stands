@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.JsonValue;
 
 // civilizations to war each other and defend their empire or expand their borders. It will
 // be used in War Manager class that handles battles between civilizations.
-public class Army {
+public class Army implements com.badlogic.gdx.utils.Json.Serializable{
     Player player;
     private int numberOfSoldiers;
     Tile tile;
@@ -19,6 +19,9 @@ public class Army {
         this.player = player;
         this.tile = tile;
     }
+
+    public Army() {}
+    
     public int getSoldiers(){
         return numberOfSoldiers;
     }
@@ -39,12 +42,13 @@ public class Army {
     public Player getPlayer(){
         return player;
     }
-
+    @Override
     public void write(Json json) {
         json.writeValue("Player", player);
         json.writeValue("numberOfSoldiers", numberOfSoldiers);
         json.writeValue("tile", tile);
     }
+    @Override
     public void read(Json json, JsonValue jsonData) {
         player = json.readValue("Player", Player.class, jsonData);
         numberOfSoldiers = jsonData.getInt("numberOfSoldiers");

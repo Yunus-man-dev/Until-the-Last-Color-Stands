@@ -18,7 +18,7 @@ import com.gameonjava.utlcs.backend.resources.GoldResource;
 import com.gameonjava.utlcs.backend.resources.MovementPoint;
 
 
-public class Player {
+public class Player implements com.badlogic.gdx.utils.Json.Serializable{
 
     private String name;
     private Civilization civilization;
@@ -49,6 +49,8 @@ public class Player {
             this.soldiersPerTileLimit = 5;
         }
     }
+
+    public Player() {}
 
     public FoodResource getFood() {
         return food;
@@ -260,7 +262,7 @@ public class Player {
     public void addScience(double amount) {
         book.setValue(amount);
     }
-
+    @Override
     public void write(Json json) {
         json.writeValue("Name", name);
         json.writeValue("Civilization", civilization);
@@ -271,7 +273,7 @@ public class Player {
         json.writeValue("Activity", isActive);
         json.writeValue("TechPoint", technologyPoint);
     }
-
+    @Override
     public void read(Json json, JsonValue jsonData) {
         name = json.readValue("Name", String.class, jsonData);
         civilization = json.readValue("Civilization", Civilization.class, jsonData);

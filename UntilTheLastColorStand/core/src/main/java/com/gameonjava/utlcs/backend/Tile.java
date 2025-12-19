@@ -6,7 +6,7 @@ import com.gameonjava.utlcs.backend.Enum.TerrainType;
 import com.gameonjava.utlcs.backend.building.Building;
 import com.gameonjava.utlcs.backend.civilization.Brown;
 
-public class Tile {
+public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
     private int q;
     private int r;
     private TerrainType terrainName;
@@ -39,6 +39,8 @@ public class Tile {
             this.defenseBonus = 1.0;
         }
     }
+
+    public Tile() {}
 
     // Getter and Setter Methods
     public int getQ() {
@@ -163,18 +165,20 @@ public class Tile {
         this.recruitedThisTurn = 0;
     }
 
+    @Override
     public void write(Json json) {
         json.writeValue("Terrain", terrainName);
         json.writeValue("Owner", owner);
-        json.writeValue("Building", building);
-        json.writeValue("Army", army);
+        //json.writeValue("Building", building);
+        //json.writeValue("Army", army);
         json.writeValue("ConsumptionRate", soldierConsumptionRate);
     }
+    @Override
     public void read(Json json, JsonValue jsonData) {
         terrainName = json.readValue("Terrain", TerrainType.class, jsonData);
         owner = json.readValue("Owner", Player.class, jsonData);
-        building = json.readValue("Building", Building.class, jsonData);
-        army = json.readValue("Army", Army.class, jsonData);
+        //building = json.readValue("Building", Building.class, jsonData);
+        //army = json.readValue("Army", Army.class, jsonData);
         soldierConsumptionRate = jsonData.getFloat("ConsumptionRate");
     }
 }
