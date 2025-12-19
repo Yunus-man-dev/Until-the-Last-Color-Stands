@@ -37,6 +37,12 @@ public class Main extends Game {
 
         Assets.load();
         Assets.finishLoading();
+
+        if (Assets.music != null) {
+            Assets.music.setLooping(true);
+            Assets.music.setVolume(0.5f);
+            Assets.music.play();
+        }
         changeScreen(ScreenType.GAME);
     }
 
