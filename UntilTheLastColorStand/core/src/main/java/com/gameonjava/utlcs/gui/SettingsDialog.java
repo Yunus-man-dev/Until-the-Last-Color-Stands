@@ -73,11 +73,10 @@ public class SettingsDialog extends Dialog {
         });
 
         // Tutorial Butonu
-        TextButton tutorialBtn = new TextButton("Play Tutorial", skin);
+        TextButton tutorialBtn = new TextButton("Tutorial", skin);
         tutorialBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Tutorial başlatılıyor...");
             }
         });
 
