@@ -51,6 +51,9 @@ public class Trade {
     public Player getReciever(){
         return receiver;
     }
+    public Player getCreator() {
+        return creator;
+    }
 
      // checks whether receiver  has enough wantedResource.
 

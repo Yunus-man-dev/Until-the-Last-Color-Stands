@@ -32,7 +32,7 @@ public class SettingsDialog extends Dialog {
         setResizable(false);
         
         getTitleLabel().setAlignment(Align.center);
-        getTitleLabel().setColor(Color.WHITE);
+        getTitleLabel().setColor(Color.BLACK);
         
         pad(60, 40, 40, 40); 
 
@@ -87,21 +87,21 @@ public class SettingsDialog extends Dialog {
         // Tutorial Butonu - SARI STİL
         TextButton tutorialBtn;
         if (PauseDialog.yellowButtonStyle != null) {
-            tutorialBtn = new TextButton("Play Tutorial", PauseDialog.yellowButtonStyle);
+            tutorialBtn = new TextButton("Tutorial", PauseDialog.yellowButtonStyle);
         } else {
-            tutorialBtn = new TextButton("Play Tutorial", skin);
+            tutorialBtn = new TextButton("Tutorial", skin);
         }
 
         tutorialBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Tutorial başlatılıyor...");
+                
             }
         });
 
         content.add(volumeLabel).expandX().fillX().padBottom(10).row();
         content.add(volumeSlider).width(200).padBottom(20).row();
         content.add(new Label("- - - - - -", skin)).padBottom(20).row();
-        content.add(tutorialBtn).width(220).height(60).row();
+        content.add(tutorialBtn).width(200).height(50).row();
     }
 }

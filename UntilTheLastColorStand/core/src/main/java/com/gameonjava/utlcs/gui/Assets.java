@@ -8,10 +8,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class Assets {
-    //Image goldIcon = new Image(Assets.gold);
-    //Image foodIcon = new Image(Assets.food);
-    //Image settingsBtn = new Image(Assets.settings);
-    //BU ŞEKİLDE UI CLASSLARINDA KULLANILABILIR!!!
+    // Image goldIcon = new Image(Assets.gold);
+    // Image foodIcon = new Image(Assets.food);
+    // Image settingsBtn = new Image(Assets.settings);
+    // BU ŞEKİLDE UI CLASSLARINDA KULLANILABILIR!!!
 
     public static final AssetManager manager = new AssetManager();
 
@@ -36,9 +36,21 @@ public class Assets {
     public static final String DICE5 = "ui/Dice5Icon.png";
     public static final String DICE6 = "ui/Dice6Icon.png";
     public static final String MUSIC = "ui/music.mp3";
+    public static final String INFO_BG_BROWN = "ui/InfoBarArkaPlan.png";
+    public static final String INFO_BG_YELLOW = "ui/InfoBarBilgi.png";
+    public static final String INFO_BTN_TRADE = "ui/InfoBarTradeButon.png";
+    public static final String TRADE_BG_BROWN = "ui/TradeBarArkaPlan.png";
+    public static final String TRADE_BG_YELLOW = "ui/TradeBarInfoBar.png";
+    public static final String TRADE_BTN_APPROVE = "ui/TradeBarButon.png";
 
     public static Skin skin;
 
+    public static Texture infoBgBrown;
+    public static Texture infoBgYellow;
+    public static Texture infoBtnTrade;
+    public static Texture tradeBgBrown;
+    public static Texture tradeBgYellow;
+    public static Texture tradeBtnApprove;
     public static Texture book;
     public static Texture dash;
     public static Texture farm;
@@ -53,7 +65,6 @@ public class Assets {
     public static Texture mine;
     public static Texture dice1, dice2, dice3, dice4, dice5, dice6;
     public static Music music;
-
 
     public static void load() {
         manager.load(SKIN_JSON, Skin.class);
@@ -77,8 +88,13 @@ public class Assets {
         manager.load(DICE5, Texture.class);
         manager.load(DICE6, Texture.class);
         manager.load(MUSIC, Music.class);
+        manager.load(INFO_BG_BROWN, Texture.class);
+        manager.load(INFO_BG_YELLOW, Texture.class);
+        manager.load(INFO_BTN_TRADE, Texture.class);
+        manager.load(TRADE_BG_BROWN, Texture.class);
+        manager.load(TRADE_BG_YELLOW, Texture.class);
+        manager.load(TRADE_BTN_APPROVE, Texture.class);
     }
-
 
     public static void finishLoading() {
         manager.finishLoading();
@@ -112,11 +128,15 @@ public class Assets {
         dice5 = manager.get(DICE5, Texture.class);
         dice6 = manager.get(DICE6, Texture.class);
         music = manager.get(MUSIC, Music.class);
+        infoBgBrown = manager.get(INFO_BG_BROWN, Texture.class);
+        infoBgYellow = manager.get(INFO_BG_YELLOW, Texture.class);
+        infoBtnTrade = manager.get(INFO_BTN_TRADE, Texture.class);
+        tradeBgBrown = manager.get(TRADE_BG_BROWN, Texture.class);
+        tradeBgYellow = manager.get(TRADE_BG_YELLOW, Texture.class);
+        tradeBtnApprove = manager.get(TRADE_BTN_APPROVE, Texture.class);
     }
-
 
     public static void dispose() {
         manager.dispose();
     }
 }
-

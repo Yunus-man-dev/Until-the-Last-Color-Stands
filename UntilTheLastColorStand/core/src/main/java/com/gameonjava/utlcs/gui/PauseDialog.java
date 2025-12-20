@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Timer;
@@ -23,8 +22,8 @@ public class PauseDialog extends Dialog {
 
     private Main gameMain;
     private Game backendGame;
-    
-    // Özel stillerimiz
+
+    // Özel stillerimiz (Statik tutuyoruz ki her açılışta tekrar yüklemesin)
     public static TextButton.TextButtonStyle yellowButtonStyle;
     public static NinePatchDrawable brownPanelDrawable;
 
@@ -32,8 +31,8 @@ public class PauseDialog extends Dialog {
         super(title, skin);
         this.gameMain = gameMain;
         this.backendGame = backendGame;
-        
-        // 1. Stilleri Yükle (Eğer daha önce yüklenmediyse)
+
+        // 1. Stilleri Yükle
         if (yellowButtonStyle == null) {
             loadCustomStyles(skin);
         }
@@ -45,46 +44,55 @@ public class PauseDialog extends Dialog {
         setModal(true);
         setMovable(false);
         setResizable(false);
-        
-        // Başlık Ayarları (Sarı buton üzerinde siyah yazı güzel durur, panelde beyaz yazı)
+
+        // --- DEĞİŞİKLİK 1: BAŞLIK YAZISINI BÜYÜTME ---
         getTitleLabel().setAlignment(Align.center);
-        getTitleLabel().setColor(Color.WHITE); 
-        
-        pad(60, 40, 40, 40);
-        
+        getTitleLabel().setColor(Color.BLACK);
+        getTitleLabel().setFontScale(1.2f); // Başlığı %50 büyüttük
+
+        // --- DEĞİŞİKLİK 2: ARKA PLANI KISALTME (PADDING AYARI) ---
+        // Eski değerler: pad(60, 40, 30, 40);
+        // Yeni değerler: Üstten ve alttan kıstık.
+        pad(40, 40, 20, 40);
+
         initializeControls();
+        
+        // Diyalog boyutunu içeriğe göre sıkılaştır
+        pack();
     }
 
     private void loadCustomStyles(Skin skin) {
         // A) KAHVERENGİ PANEL (Arka Plan)
         Texture panelTexture = new Texture(Gdx.files.internal("ui/panel_brown.png"));
-        // NinePatch: Resmin köşelerini koruyarak büyümesini sağlar.
-        // (10, 10, 10, 10) değerleri kenar kalınlığıdır. Resmine göre 20 veya 30 yapman gerekebilir.
         NinePatch panelPatch = new NinePatch(panelTexture, 12, 12, 12, 12);
         brownPanelDrawable = new NinePatchDrawable(panelPatch);
 
         // B) SARI BUTON
         Texture buttonTexture = new Texture(Gdx.files.internal("ui/button_yellow.png"));
-        // Buton da uzayacağı için NinePatch yapmak daha iyidir
         NinePatch buttonPatch = new NinePatch(buttonTexture, 12, 12, 12, 12);
+        
+        // Normal hali
         NinePatchDrawable buttonDrawable = new NinePatchDrawable(buttonPatch);
         
         yellowButtonStyle = new TextButton.TextButtonStyle();
         yellowButtonStyle.up = buttonDrawable;
-        yellowButtonStyle.down = buttonDrawable; // Basınca biraz küçültebiliriz ama şimdilik aynı kalsın
+        yellowButtonStyle.down = buttonDrawable.tint(Color.LIGHT_GRAY); // Basınca kararır
+        
+        // Font ayarı
         yellowButtonStyle.font = skin.getFont("default");
-        yellowButtonStyle.fontColor = Color.BLACK; // Sarı üstüne Siyah yazı okunur
+        yellowButtonStyle.fontColor = Color.BLACK;
     }
 
     private void initializeControls() {
         Table contentTable = getContentTable();
-        
-        float btnWidth = 220f;
-        float btnHeight = 60f; // Buton resmine göre biraz büyüttüm
-        float padding = 15f;
 
-        // Resume - Özel Stil ile
+        float btnWidth = 200f;
+        float btnHeight = 50f;
+        float padding = 10f; // Butonlar arası boşluğu biraz azalttım
+
+        // --- Resume Butonu ---
         TextButton resumeBtn = new TextButton("Resume Game", yellowButtonStyle);
+        resumeBtn.getLabel().setFontScale(1.1f); // Yazıyı biraz büyüttük
         resumeBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -92,14 +100,15 @@ public class PauseDialog extends Dialog {
             }
         });
 
-        // Save - Özel Stil ile
+        // --- Save Butonu ---
         final TextButton saveBtn = new TextButton("Save Game", yellowButtonStyle);
+        saveBtn.getLabel().setFontScale(1.1f); // Yazıyı biraz büyüttük
         saveBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 SaveLoad saver = new SaveLoad();
                 saver.save(backendGame, "savefile.json");
-                
+
                 saveBtn.setText("Saved!");
                 Timer.schedule(new Timer.Task() {
                     @Override
@@ -110,19 +119,21 @@ public class PauseDialog extends Dialog {
             }
         });
 
-        // Settings - Özel Stil ile
+        // --- Settings Butonu ---
         TextButton settingsBtn = new TextButton("Settings", yellowButtonStyle);
+        settingsBtn.getLabel().setFontScale(1.1f); // Yazıyı biraz büyüttük
         settingsBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 final Stage stage = getStage();
-                hide(); 
-                
+                hide(); // Mevcut menüyü gizle
+
+                // Settings Dialog'u aç
                 SettingsDialog settingsDialog = new SettingsDialog("Settings", getSkin(), new Runnable() {
                     @Override
                     public void run() {
                         if (stage != null) {
-                            show(stage); 
+                            show(stage); // Geri dönünce Pause menüsünü tekrar aç
                         }
                     }
                 });
@@ -130,8 +141,9 @@ public class PauseDialog extends Dialog {
             }
         });
 
-        // Quit - Özel Stil ile
+        // --- Quit Butonu ---
         TextButton quitBtn = new TextButton("Quit to Menu", yellowButtonStyle);
+        quitBtn.getLabel().setFontScale(1.1f); // Yazıyı biraz büyüttük
         quitBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -139,6 +151,7 @@ public class PauseDialog extends Dialog {
             }
         });
 
+        // Tabloya ekleme
         contentTable.add(resumeBtn).width(btnWidth).height(btnHeight).padBottom(padding).row();
         contentTable.add(saveBtn).width(btnWidth).height(btnHeight).padBottom(padding).row();
         contentTable.add(settingsBtn).width(btnWidth).height(btnHeight).padBottom(padding).row();
