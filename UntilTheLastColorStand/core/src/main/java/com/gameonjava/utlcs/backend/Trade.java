@@ -3,7 +3,6 @@ package com.gameonjava.utlcs.backend;
 import com.gameonjava.utlcs.backend.civilization.GoldCivilization;
 import com.gameonjava.utlcs.backend.resources.*;
 
-
 /**
  * Manages trade offers, validation, and execution between players
  */
@@ -16,7 +15,8 @@ public class Trade {
     private Resource wantedResource;
     private int wantedResourceAmount;
 
-    public Trade(Player creator, Player receiver, Resource givenResource, int givenResourceAmount, Resource wantedResource, int wantedResourceAmount) {
+    public Trade(Player creator, Player receiver, Resource givenResource, int givenResourceAmount,
+            Resource wantedResource, int wantedResourceAmount) {
         this.creator = creator;
         this.receiver = receiver;
         this.givenResource = givenResource;
@@ -25,8 +25,8 @@ public class Trade {
         this.wantedResourceAmount = wantedResourceAmount;
     }
 
-     //Checks validation
-     //Reduces MP and the given resource  upon success.
+    // Checks validation
+    // Reduces MP and the given resource upon success.
 
     public boolean checkForCreation() {
         MovementPoint creatorMP = creator.getMp();
@@ -36,7 +36,7 @@ public class Trade {
         }
 
         if (givenResource != null) {
-          //checks whether the resource is sufficent
+            // checks whether the resource is sufficent
             if (!givenResource.checkForResource(givenResourceAmount)) {
                 return false;
             }
@@ -47,15 +47,33 @@ public class Trade {
 
         return true;
     }
-    //helper method for Game/getPendingTradesFor()
-    public Player getReciever(){
-        return receiver;
-    }
+
+    // helper method for Game/getPendingTradesFor()
     public Player getCreator() {
         return creator;
     }
 
-     // checks whether receiver  has enough wantedResource.
+    public Player getReciever() {
+        return receiver;
+    }
+
+    public Resource getGivenResource() {
+        return givenResource;
+    }
+
+    public int getGivenResourceAmount() {
+        return givenResourceAmount;
+    }
+
+    public Resource getWantedResource() {
+        return wantedResource;
+    }
+
+    public int getWantedResourceAmount() {
+        return wantedResourceAmount;
+    }
+
+    // checks whether receiver has enough wantedResource.
 
     public boolean checkForApplication() {
         if (wantedResource != null) {
@@ -65,18 +83,19 @@ public class Trade {
     }
 
     /**
-     * Called in case of refused trade, decreased resources are given back to creator.
+     * Called in case of refused trade, decreased resources are given back to
+     * creator.
      * MP are not refunded.
      */
     public void returnResources() {
         if (givenResource != null) {
             givenResource.addResource(givenResourceAmount);
         }
-      }
+    }
 
-
-     //Increases the amount of resource that Gold player receives.
-     //Leaves values unchanged if neither is Gold civilization or trade doesn't involve gold.
+    // Increases the amount of resource that Gold player receives.
+    // Leaves values unchanged if neither is Gold civilization or trade doesn't
+    // involve gold.
 
     public void applyDiscount() {
         if (creator.getCivilization() instanceof GoldCivilization && wantedResource instanceof GoldResource) {
@@ -90,13 +109,11 @@ public class Trade {
         }
     }
 
-
-    //Executes the trade if valid and accepted.
-    //Updates player resources accordingly.
+    // Executes the trade if valid and accepted.
+    // Updates player resources accordingly.
 
     public void trade() {
         applyDiscount();
-
 
         // reduce from Receiver,add to Creator.
         Resource receiverResource = getPlayerResource(receiver, wantedResource);
@@ -116,13 +133,16 @@ public class Trade {
         }
     }
 
-      //helper method to find the matching resource instance for a specific player.
+    // helper method to find the matching resource instance for a specific player.
     // same as player.getResource() at spesific resource type
 
     private Resource getPlayerResource(Player p, Resource type) {
-        if (type instanceof GoldResource) return p.getGold();
-        if (type instanceof FoodResource) return p.getFood();
-        if (type instanceof BookResource) return p.getBook();
+        if (type instanceof GoldResource)
+            return p.getGold();
+        if (type instanceof FoodResource)
+            return p.getFood();
+        if (type instanceof BookResource)
+            return p.getBook();
 
         return null;
     }

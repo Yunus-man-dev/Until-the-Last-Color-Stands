@@ -38,12 +38,22 @@ public class Assets {
     public static final String DICE5 = "ui/Dice5Icon.png";
     public static final String DICE6 = "ui/Dice6Icon.png";
     public static final String MUSIC = "ui/music.mp3";
+    //Info Bar
     public static final String INFO_BG_BROWN = "ui/InfoBarArkaPlan.png";
     public static final String INFO_BG_YELLOW = "ui/InfoBarBilgi.png";
     public static final String INFO_BTN_TRADE = "ui/InfoBarTradeButon.png";
+    //Trade Menu
     public static final String TRADE_BG_BROWN = "ui/TradeBarArkaPlan.png";
     public static final String TRADE_BG_YELLOW = "ui/TradeBarInfoBar.png";
     public static final String TRADE_BTN_APPROVE = "ui/TradeBarButon.png";
+    //Incoming Trade
+    public static final String MAIL = "ui/MailIcon.png";
+    public static final String INCOMING_BG = "ui/IncomingBg.png"; 
+    public static final String INCOMING_HEADER = "ui/IncomingHeader.png"; 
+    public static final String INCOMING_CIRCLE = "ui/IncomingCircle.png"; 
+    public static final String BTN_ACCEPT = "ui/BtnAccept.png"; 
+    public static final String BTN_REFUSE = "ui/BtnRefuse.png";
+
     public static Skin skin;
     public static final String goldBg = "ui/goldBg.png";
     public static final String blueBg = "ui/blueBg.png";
@@ -54,10 +64,7 @@ public class Assets {
     public static final String RBARBG = "ui/rbarbg.png";
     public static final String TFBG = "ui/tfbg.png";
 
-
-
-
-    public static TextureRegionDrawable bgRed, bgBlue, bgBrown, bgGold, infobg, topbarbg,rbarbg,tfbg;
+    public static TextureRegionDrawable bgRed, bgBlue, bgBrown, bgGold, infobg, topbarbg, rbarbg, tfbg;
     public static Texture infoBgBrown;
     public static Texture infoBgYellow;
     public static Texture infoBtnTrade;
@@ -78,6 +85,12 @@ public class Assets {
     public static Texture mine;
     public static Texture dice1, dice2, dice3, dice4, dice5, dice6;
     public static Music music;
+    public static Texture mail;
+    public static Texture incomingBg;
+    public static Texture incomingHeader;
+    public static Texture incomingCircle;
+    public static Texture btnAccept;
+    public static Texture btnRefuse;
 
     public static void load() {
         manager.load(SKIN_JSON, Skin.class);
@@ -115,6 +128,12 @@ public class Assets {
         manager.load(TRADE_BG_BROWN, Texture.class);
         manager.load(TRADE_BG_YELLOW, Texture.class);
         manager.load(TRADE_BTN_APPROVE, Texture.class);
+        manager.load(MAIL, Texture.class);
+        manager.load(INCOMING_BG, Texture.class);
+        manager.load(INCOMING_HEADER, Texture.class);
+        manager.load(INCOMING_CIRCLE, Texture.class);
+        manager.load(BTN_ACCEPT, Texture.class);
+        manager.load(BTN_REFUSE, Texture.class);
     }
 
     public static void finishLoading() {
@@ -163,6 +182,12 @@ public class Assets {
         topbarbg = new TextureRegionDrawable(new TextureRegion(manager.get(TOPBARBG, Texture.class)));
         rbarbg = new TextureRegionDrawable(new TextureRegion(manager.get(RBARBG, Texture.class)));
         tfbg = new TextureRegionDrawable(new TextureRegion(manager.get(TFBG, Texture.class)));
+        mail = manager.get(MAIL, Texture.class);
+        incomingBg = manager.get(INCOMING_BG, Texture.class);
+        incomingHeader = manager.get(INCOMING_HEADER, Texture.class);
+        incomingCircle = manager.get(INCOMING_CIRCLE, Texture.class);
+        btnAccept = manager.get(BTN_ACCEPT, Texture.class);
+        btnRefuse = manager.get(BTN_REFUSE, Texture.class);
 
     }
 

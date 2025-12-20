@@ -1,25 +1,29 @@
 package com.gameonjava.utlcs.gui;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.InputEvent; // EKLENDİ
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions; // EKLENDİ (Animasyon için gerekli)
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener; // EKLENDİ
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gameonjava.utlcs.backend.Game;
 import com.gameonjava.utlcs.backend.Player;
-// PlayerInfoWidget import edilmeli (aynı paketteyse gerekmez)
+import com.gameonjava.utlcs.backend.Trade;
 
 public class GameHUD implements Disposable {
 
@@ -29,8 +33,9 @@ public class GameHUD implements Disposable {
 
     private Label goldLabel, foodLabel, bookLabel, techLabel, moveLabel;
     private Label turnCount, currentPlayerLabel, winCondDesc;
-    private TextButton endTurnBtn, settingsBtn,filterBtn;
+    private TextButton endTurnBtn, settingsBtn, filterBtn;
     private Table winTable;
+    private ImageButton mailBtn;
 
     private PlayerInfoWidget currentInfoWidget;
 
@@ -46,6 +51,7 @@ public class GameHUD implements Disposable {
         rootTable.setFillParent(true);
         stage.addActor(rootTable);
 
+        // Pencere dışına tıklayınca widget kapatma
         stage.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -68,12 +74,11 @@ public class GameHUD implements Disposable {
         techLabel = createStatLabel("12");
         moveLabel = createStatLabel("9");
 
-        settingsBtn = new TextButton("", beigeStyle );
+        settingsBtn = new TextButton("", beigeStyle);
         settingsBtn.clearChildren();
-
         settingsBtn.add(new Image(Assets.settings)).size(32).expand().center();
 
-        topTable.add(settingsBtn).size(60, 50).padLeft(10).padRight(10); // Buton boyutu
+        topTable.add(settingsBtn).size(60, 50).padLeft(10).padRight(10);
 
         Table resourcesTable = new Table();
         resourcesTable.setBackground(Assets.rbarbg);
@@ -87,11 +92,9 @@ public class GameHUD implements Disposable {
         topTable.add(resourcesTable).height(50).pad(5).expandX().fillX();
 
         filterBtn = new TextButton("Filters", beigeStyle);
-
         topTable.add(filterBtn).height(50).width(120).padLeft(10).padRight(5);
 
         Table turnPanel = new Table();
-
         turnPanel.setBackground(Assets.tfbg);
 
         turnCount = new Label("Turn 1", Assets.skin);
@@ -99,12 +102,13 @@ public class GameHUD implements Disposable {
         turnCount.setColor(Color.BLACK);
 
         turnPanel.add(turnCount).expand().fill();
-
         topTable.add(turnPanel).height(50).width(120).padRight(10);
-        // --- B. LEFT PANEL (P1, P2, P3, P4) ---
+
+        // --- B. LEFT PANEL (P1, P2, P3, P4 ve Mail) ---
         Table leftTable = new Table();
         leftTable.top();
 
+        // P1..P4 Butonları
         for (int i = 0; i < 4; i++) {
             final int pIndex = i;
             TextButton pBtn = new TextButton("P" + (i + 1), beigeStyle);
@@ -113,7 +117,6 @@ public class GameHUD implements Disposable {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     Player me = backendGame.getCurrentPlayer();
-
                     // Test için hedef oyuncu
                     Player target = new Player("Player " + (pIndex + 1),
                             new com.gameonjava.utlcs.backend.civilization.Blue());
@@ -121,22 +124,44 @@ public class GameHUD implements Disposable {
                     if (target.getName().equals(me.getName())) {
                         // return;
                     }
-
                     if (currentInfoWidget != null)
                         currentInfoWidget.remove();
 
                     currentInfoWidget = new PlayerInfoWidget(target, me, backendGame);
-
                     float xPos = 90;
                     float yPos = 0;
-
                     currentInfoWidget.setPosition(xPos, yPos);
-
                     stage.addActor(currentInfoWidget);
                 }
             });
-
             leftTable.add(pBtn).size(50).padBottom(10).row();
+        }
+
+        // Mail Butonu (Teklif Gelince Görünür)
+        if (Assets.mail != null) {
+            ImageButton.ImageButtonStyle mailStyle = new ImageButton.ImageButtonStyle();
+            mailStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.mail));
+            mailStyle.down = new TextureRegionDrawable(new TextureRegion(Assets.mail)).tint(Color.LIGHT_GRAY);
+
+            mailBtn = new ImageButton(mailStyle);
+            mailBtn.setVisible(false); // Başlangıçta mutlaka gizli
+
+            mailBtn.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    Player current = backendGame.getCurrentPlayer();
+
+                    // DÜZELTME: Constructor'a 'GameHUD.this' gönderiliyor
+                    IncomingTradesDialog mailDialog = new IncomingTradesDialog(Assets.skin, backendGame, current,
+                            GameHUD.this);
+                    mailDialog.show(stage);
+
+                    float currentX = mailDialog.getX();
+                    mailDialog.setPosition(currentX - 200, mailDialog.getY());
+                }
+            });
+
+            leftTable.add(mailBtn).size(60).padTop(20).row();
         }
 
         // --- C. RIGHT PANEL (BİLGİ EKRANI) ---
@@ -167,14 +192,13 @@ public class GameHUD implements Disposable {
         bottomTable.add(endTurnBtn).width(200).height(60).padBottom(10).padRight(20);
         bottomTable.right();
 
+        // ANA YERLEŞİM
         rootTable.add(topTable).growX().height(60).colspan(3).top();
         rootTable.row();
-
         rootTable.add(leftTable).width(70).top().padTop(20).left();
         rootTable.add().expand();
         rootTable.add(rightTable).width(250).growY().right().padTop(20).padBottom(20).padRight(10);
         rootTable.row();
-
         rootTable.add(bottomTable).growX().height(80).colspan(3).bottom();
     }
 
@@ -202,13 +226,33 @@ public class GameHUD implements Disposable {
 
         turnCount.setText("Turn " + turnNumber);
         currentPlayerLabel.setText(player.getName() + "'s Turn");
+
+        // Mail Butonu Güncelleme
+        if (mailBtn != null) {
+            ArrayList<Trade> pending = backendGame.getPendingTradesFor(player);
+
+        
+            if (pending != null && !pending.isEmpty()) {
+                if (!mailBtn.isVisible()) {
+                    mailBtn.setVisible(true);
+                    mailBtn.addAction(Actions.forever(Actions.sequence(
+                            Actions.fadeOut(0.5f),
+                            Actions.fadeIn(0.5f))));
+                }
+            }
+            // Eğer liste boşsa (Teklif yoksa) -> GİZLE
+            else {
+                mailBtn.setVisible(false);
+                mailBtn.clearActions(); // Animasyonu temizle
+                mailBtn.setColor(1, 1, 1, 1); 
+            }
+        }
     }
 
     public void updateTurnInfo(String winConditionText, TextureRegionDrawable background) {
         if (winCondDesc != null) {
             winCondDesc.setText(winConditionText);
         }
-
         if (winTable != null) {
             winTable.setBackground(background);
         }
@@ -217,11 +261,8 @@ public class GameHUD implements Disposable {
     private TextButton.TextButtonStyle createBeigeStyle() {
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.font = Assets.skin.getFont("default");
-
         style.up = Assets.tfbg;
-
         style.down = Assets.skin.newDrawable(Assets.tfbg, Color.LIGHT_GRAY);
-
         style.fontColor = Color.BLACK;
         return style;
     }
