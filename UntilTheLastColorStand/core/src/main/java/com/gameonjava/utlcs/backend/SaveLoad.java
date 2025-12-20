@@ -35,8 +35,9 @@ public class SaveLoad {
             String gameState = json.toJson(game);
             file.writeString(gameState, false);
             System.out.println("Game saved successfully.");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Throwable e) { 
+            System.err.println("SAVE ERROR: Oyun kaydedilirken hata oluştu!");
+            e.printStackTrace(); 
         }
     }
 

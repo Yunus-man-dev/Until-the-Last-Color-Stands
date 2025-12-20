@@ -9,3 +9,4 @@ public class InputController extends InputAdapter {
         this.screen = screen;
     }
 }
+

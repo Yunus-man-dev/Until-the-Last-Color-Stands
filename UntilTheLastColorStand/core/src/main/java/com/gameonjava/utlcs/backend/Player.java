@@ -283,5 +283,10 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
         ownedTiles = json.readValue("OwnedTiles", ArrayList.class, Tile.class, jsonData);
         isActive = json.readValue("Activity", boolean.class, jsonData);
         technologyPoint = jsonData.getInt("TechPoint");
+        if (ownedTiles != null) {
+            for (Tile t : ownedTiles) {
+                t.setOwner(this);
+            }
+        }
     }
 }
