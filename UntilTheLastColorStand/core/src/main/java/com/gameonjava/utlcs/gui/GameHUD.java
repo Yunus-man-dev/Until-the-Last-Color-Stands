@@ -29,34 +29,26 @@ public class GameHUD implements Disposable {
 
     private Label goldLabel, foodLabel, bookLabel, techLabel, moveLabel;
     private Label turnCount, currentPlayerLabel, winCondDesc;
-    private TextButton endTurnBtn;
+    private TextButton endTurnBtn, settingsBtn,filterBtn;
     private Table winTable;
 
-    // --- EKLENDİ: Açık olan pencereyi takip etmek için ---
     private PlayerInfoWidget currentInfoWidget;
-
-    // Tasarımdaki Kahverengi Renkler
-    private final Color TOP_BAR_COLOR = new Color(0.8f, 0.6f, 0.3f, 1f);
-    private final Color PANEL_COLOR = new Color(0.6f, 0.4f, 0.2f, 1f);
 
     public GameHUD(SpriteBatch batch) {
         viewport = new FitViewport(1280, 720);
         stage = new Stage(viewport, batch);
-        TextButton.TextButtonStyle woodenStyle = createWoodenStyle();
 
-        // Backend başlatma
         backendGame = new Game();
         backendGame.startGame(1);
+        TextButton.TextButtonStyle beigeStyle = createBeigeStyle();
 
         Table rootTable = new Table();
         rootTable.setFillParent(true);
         stage.addActor(rootTable);
 
-        // --- EKLENDİ: Ekranda boş bir yere tıklayınca pencereyi kapat ---
         stage.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // Eğer tıklanan yer rootTable veya stage ise (yani buton değilse)
                 if (event.getTarget() == stage.getRoot() || event.getTarget() == rootTable) {
                     if (currentInfoWidget != null) {
                         currentInfoWidget.remove();
@@ -68,7 +60,7 @@ public class GameHUD implements Disposable {
 
         // --- A. TOP BAR (KAYNAKLAR) ---
         Table topTable = new Table();
-        topTable.setBackground(getColoredDrawable(TOP_BAR_COLOR));
+        topTable.setBackground(Assets.topbarbg);
 
         goldLabel = createStatLabel("134");
         foodLabel = createStatLabel("72");
@@ -76,33 +68,46 @@ public class GameHUD implements Disposable {
         techLabel = createStatLabel("12");
         moveLabel = createStatLabel("9");
 
-        topTable.add(new Image(Assets.settings)).size(40).padLeft(10).padRight(20);
+        settingsBtn = new TextButton("", beigeStyle );
+        settingsBtn.clearChildren();
 
-        addResourceToTable(topTable, Assets.gold, goldLabel);
-        addResourceToTable(topTable, Assets.food, foodLabel);
-        addResourceToTable(topTable, Assets.book, bookLabel);
-        addResourceToTable(topTable, Assets.tech, techLabel);
-        addResourceToTable(topTable, Assets.dash, moveLabel);
+        settingsBtn.add(new Image(Assets.settings)).size(32).expand().center();
 
-        topTable.add().expandX();
-        TextButton filterBtn = new TextButton("Filters", woodenStyle);
+        topTable.add(settingsBtn).size(60, 50).padLeft(10).padRight(10); // Buton boyutu
+
+        Table resourcesTable = new Table();
+        resourcesTable.setBackground(Assets.rbarbg);
+
+        addResourceToTable(resourcesTable, Assets.gold, goldLabel);
+        addResourceToTable(resourcesTable, Assets.food, foodLabel);
+        addResourceToTable(resourcesTable, Assets.book, bookLabel);
+        addResourceToTable(resourcesTable, Assets.tech, techLabel);
+        addResourceToTable(resourcesTable, Assets.dash, moveLabel);
+
+        topTable.add(resourcesTable).height(50).pad(5).expandX().fillX();
+
+        filterBtn = new TextButton("Filters", beigeStyle);
+
+        topTable.add(filterBtn).height(50).width(120).padLeft(10).padRight(5);
+
+        Table turnPanel = new Table();
+
+        turnPanel.setBackground(Assets.tfbg);
+
         turnCount = new Label("Turn 1", Assets.skin);
-        topTable.add(filterBtn).padRight(10);
-        topTable.add(turnCount).padRight(20);
+        turnCount.setAlignment(Align.center);
+        turnCount.setColor(Color.BLACK);
 
+        turnPanel.add(turnCount).expand().fill();
+
+        topTable.add(turnPanel).height(50).width(120).padRight(10);
         // --- B. LEFT PANEL (P1, P2, P3, P4) ---
-        // BURASI DÜZELTİLDİ: Tek tek eklemek yerine döngü ile ekleyip listener
-        // tanımladık.
         Table leftTable = new Table();
         leftTable.top();
 
-        leftTable.add(new TextButton("P1", woodenStyle)).size(70).padBottom(10).row();
-        leftTable.add(new TextButton("P2", woodenStyle)).size(70).padBottom(10).row();
-        leftTable.add(new TextButton("P3", woodenStyle)).size(70).padBottom(10).row();
-        leftTable.add(new TextButton("P4", woodenStyle)).size(70).padBottom(10).row();
         for (int i = 0; i < 4; i++) {
             final int pIndex = i;
-            TextButton pBtn = new TextButton("P" + (i + 1), woodenStyle);
+            TextButton pBtn = new TextButton("P" + (i + 1), beigeStyle);
 
             pBtn.addListener(new ClickListener() {
                 @Override
@@ -114,7 +119,7 @@ public class GameHUD implements Disposable {
                             new com.gameonjava.utlcs.backend.civilization.Blue());
 
                     if (target.getName().equals(me.getName())) {
-                        // return; // İstersen açabilirsin
+                        // return;
                     }
 
                     if (currentInfoWidget != null)
@@ -122,13 +127,8 @@ public class GameHUD implements Disposable {
 
                     currentInfoWidget = new PlayerInfoWidget(target, me, backendGame);
 
-                    // --- DEĞİŞİKLİK BURADA ---
-                    // xPos = 90 -> Sol paneldeki butonların (genişliği 70-80px) üzerine binmemesi
-                    // için hemen sağı.
-                    // yPos = 0 -> Ekranın tam dibi (piksel olarak en alt).
-
                     float xPos = 90;
-                    float yPos = 0; // "Dip" istiyorsan 0 yap. Biraz boşluk kalsın dersen 20 yapabilirsin.
+                    float yPos = 0;
 
                     currentInfoWidget.setPosition(xPos, yPos);
 
@@ -163,12 +163,10 @@ public class GameHUD implements Disposable {
 
         // --- D. BOTTOM BAR (END TURN) ---
         Table bottomTable = new Table();
-        endTurnBtn = new TextButton("End Turn", woodenStyle);
-        endTurnBtn.getLabel().setFontScale(1.2f);
+        endTurnBtn = new TextButton("End Turn", beigeStyle);
         bottomTable.add(endTurnBtn).width(200).height(60).padBottom(10).padRight(20);
         bottomTable.right();
 
-        // Layout Yerleşimi
         rootTable.add(topTable).growX().height(60).colspan(3).top();
         rootTable.row();
 
@@ -195,24 +193,6 @@ public class GameHUD implements Disposable {
         return endTurnBtn;
     }
 
-    private TextureRegionDrawable getColoredDrawable(Color color) {
-        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
-        pixmap.setColor(color);
-        pixmap.fill();
-        Texture texture = new Texture(pixmap);
-        pixmap.dispose();
-        return new TextureRegionDrawable(new TextureRegion(texture));
-    }
-
-    private TextButton.TextButtonStyle createWoodenStyle() {
-        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
-        style.font = Assets.skin.getFont("default");
-        style.up = Assets.skin.newDrawable("white", new Color(0.9f, 0.7f, 0.3f, 1f));
-        style.down = Assets.skin.newDrawable("white", new Color(0.7f, 0.5f, 0.1f, 1f));
-        style.fontColor = Color.BLACK;
-        return style;
-    }
-
     public void updateStats(Player player, int turnNumber) {
         goldLabel.setText(String.valueOf((int) player.getGold().getValue()));
         foodLabel.setText(String.valueOf((int) player.getFood().getValue()));
@@ -234,14 +214,21 @@ public class GameHUD implements Disposable {
         }
     }
 
+    private TextButton.TextButtonStyle createBeigeStyle() {
+        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
+        style.font = Assets.skin.getFont("default");
 
+        style.up = Assets.tfbg;
 
+        style.down = Assets.skin.newDrawable(Assets.tfbg, Color.LIGHT_GRAY);
 
+        style.fontColor = Color.BLACK;
+        return style;
+    }
 
-
-
-
-
+    public TextButton getSettingsBtn() {
+        return settingsBtn;
+    }
 
     public void render() {
         stage.act();

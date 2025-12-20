@@ -45,6 +45,14 @@ public class GameScreen extends ScreenAdapter {
                 hud.updateTurnInfo(winText, newBg);
             }
         });
+        hud.getSettingsBtn().addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                PauseDialog pause = new PauseDialog("Game Paused", Assets.skin, game,
+                    hud.backendGame);
+                pause.show(hud.stage);
+            }
+        });
     }
     public void render(float delta) {
         Gdx.gl.glClearColor(0.2f, 0.5f, 0.2f, 1);
