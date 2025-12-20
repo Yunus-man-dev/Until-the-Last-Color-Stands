@@ -1,5 +1,6 @@
 package com.gameonjava.utlcs.gui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -14,33 +15,43 @@ import com.badlogic.gdx.utils.Align;
 
 public class SettingsDialog extends Dialog {
 
-    private Runnable onBackAction; // Geri dönünce yapılacak işlem
+    private Runnable onBackAction;
 
     public SettingsDialog(String title, Skin skin, Runnable onBackAction) {
         super(title, skin);
         this.onBackAction = onBackAction;
 
-        // 1. Pencere Ayarları
-        setModal(true);      // Arkaya tıklanmasını engelle
-        setMovable(false);   // ELLE HAREKET ETTİRMEYİ KAPAT
-        setResizable(false); // Boyutlandırmayı kapat
+        // 1. PauseDialog'da yüklenen stilleri kullan
+        if (PauseDialog.brownPanelDrawable != null) {
+            setBackground(PauseDialog.brownPanelDrawable);
+        }
         
-        // 2. Başlığı Ortala
+        // 2. Pencere Ayarları
+        setModal(true);
+        setMovable(false);
+        setResizable(false);
+        
         getTitleLabel().setAlignment(Align.center);
+        getTitleLabel().setColor(Color.WHITE);
         
-        // İçerik dolgusu
         pad(60, 40, 40, 40); 
 
         initializeControls();
         
-        // 3. Back Butonu (Kapanınca onBackAction'ı çalıştırır)
-        TextButton closeBtn = new TextButton("Back", skin);
+        // Back Butonu - SARI STİL
+        TextButton closeBtn;
+        if (PauseDialog.yellowButtonStyle != null) {
+            closeBtn = new TextButton("Back", PauseDialog.yellowButtonStyle);
+        } else {
+            closeBtn = new TextButton("Back", skin); // Yedek stil
+        }
+
         closeBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                hide(); // Settings'i kapat
+                hide();
                 if (onBackAction != null) {
-                    onBackAction.run(); // Pause menüsünü geri aç
+                    onBackAction.run();
                 }
             }
         });
@@ -54,7 +65,8 @@ public class SettingsDialog extends Dialog {
 
         // Müzik Sesi
         Label volumeLabel = new Label("Music Volume", skin);
-        volumeLabel.setAlignment(Align.center); // Yazıyı ortala
+        volumeLabel.setAlignment(Align.center);
+        volumeLabel.setColor(Color.BLACK); // Kahverengi üstünde siyah yazı
         
         final Slider volumeSlider = new Slider(0f, 1f, 0.1f, false, skin);
         if (Assets.music != null) {
@@ -72,18 +84,24 @@ public class SettingsDialog extends Dialog {
             }
         });
 
-        // Tutorial Butonu
-        TextButton tutorialBtn = new TextButton("Tutorial", skin);
+        // Tutorial Butonu - SARI STİL
+        TextButton tutorialBtn;
+        if (PauseDialog.yellowButtonStyle != null) {
+            tutorialBtn = new TextButton("Play Tutorial", PauseDialog.yellowButtonStyle);
+        } else {
+            tutorialBtn = new TextButton("Play Tutorial", skin);
+        }
+
         tutorialBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Tutorial başlatılıyor...");
             }
         });
 
-        // Tabloya Ekleme
         content.add(volumeLabel).expandX().fillX().padBottom(10).row();
         content.add(volumeSlider).width(200).padBottom(20).row();
         content.add(new Label("- - - - - -", skin)).padBottom(20).row();
-        content.add(tutorialBtn).width(200).height(50).row();
+        content.add(tutorialBtn).width(220).height(60).row();
     }
 }

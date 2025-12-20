@@ -53,5 +53,11 @@ public class GameScreen extends ScreenAdapter {
         hud.resize(width, height);
     }
 
-    
+    public GameHUD getHud() {
+    return hud;
+}
+
+public Main getMainGame() {
+    return game;
+}
 }
