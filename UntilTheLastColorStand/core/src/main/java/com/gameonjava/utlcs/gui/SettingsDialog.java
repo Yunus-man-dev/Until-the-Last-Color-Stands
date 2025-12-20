@@ -25,19 +25,19 @@ public class SettingsDialog extends Dialog {
         if (PauseDialog.brownPanelDrawable != null) {
             setBackground(PauseDialog.brownPanelDrawable);
         }
-        
+
         // 2. Pencere Ayarları
         setModal(true);
         setMovable(false);
         setResizable(false);
-        
+
         getTitleLabel().setAlignment(Align.center);
         getTitleLabel().setColor(Color.BLACK);
-        
-        pad(60, 40, 40, 40); 
+
+        pad(60, 40, 40, 40);
 
         initializeControls();
-        
+
         // Back Butonu - SARI STİL
         TextButton closeBtn;
         if (PauseDialog.yellowButtonStyle != null) {
@@ -55,7 +55,7 @@ public class SettingsDialog extends Dialog {
                 }
             }
         });
-        
+
         getButtonTable().add(closeBtn).width(150).height(50).padTop(10);
     }
 
@@ -67,7 +67,7 @@ public class SettingsDialog extends Dialog {
         Label volumeLabel = new Label("Music Volume", skin);
         volumeLabel.setAlignment(Align.center);
         volumeLabel.setColor(Color.BLACK); // Kahverengi üstünde siyah yazı
-        
+
         final Slider volumeSlider = new Slider(0f, 1f, 0.1f, false, skin);
         if (Assets.music != null) {
             volumeSlider.setValue(Assets.music.getVolume());
@@ -84,7 +84,6 @@ public class SettingsDialog extends Dialog {
             }
         });
 
-        // Tutorial Butonu - SARI STİL
         TextButton tutorialBtn;
         if (PauseDialog.yellowButtonStyle != null) {
             tutorialBtn = new TextButton("Tutorial", PauseDialog.yellowButtonStyle);
@@ -95,7 +94,7 @@ public class SettingsDialog extends Dialog {
         tutorialBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                
+
             }
         });
 

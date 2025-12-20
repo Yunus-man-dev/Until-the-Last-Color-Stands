@@ -25,9 +25,9 @@ public class TradeDialog extends Group {
     private Game gameBackend;
 
     // Seçim durumları
-    private String selectedGiveType = "Gold"; 
-    private String selectedWantType = "Food"; 
-    
+    private String selectedGiveType = "Gold";
+    private String selectedWantType = "Food";
+
     private TextField giveAmountField;
     private TextField wantAmountField;
 
@@ -39,20 +39,16 @@ public class TradeDialog extends Group {
         this.receiver = receiver;
         this.gameBackend = gameBackend;
 
-        // 1. Ana Arka Plan (Kahverengi)
         Image bg = new Image(Assets.tradeBgBrown);
         this.setSize(bg.getWidth(), bg.getHeight());
         this.addActor(bg);
 
-        // -- BAŞLIK (Title) --
         Label.LabelStyle titleStyle = new Label.LabelStyle(Assets.skin.getFont("default"), Color.BLACK);
         Label titleLbl = new Label("Trade with " + receiver.getName(), titleStyle);
         titleLbl.setPosition((getWidth() - titleLbl.getPrefWidth()) / 2, getHeight() - 55);
         this.addActor(titleLbl);
-        
-        // -- KAPAT BUTONU (X) --
+
         Label closeBtn = new Label("X", titleStyle);
-        closeBtn.setFontScale(1.5f);
         closeBtn.setPosition(getWidth() - 40, getHeight() - 45);
         closeBtn.addListener(new ClickListener() {
             @Override
@@ -65,13 +61,13 @@ public class TradeDialog extends Group {
         // ==========================================
         // DİNAMİK YÜKSEKLİK VE KONUM AYARLARI
         // ==========================================
-        
+
         float panelHeight = Assets.tradeBgYellow.getHeight();
         float panelWidth = Assets.tradeBgYellow.getWidth();
-        
+
         // İki panel arasındaki dikey boşluk
-        float gap = 20f; 
-        
+        float gap = 20f;
+
         // Üst panelin Y konumu
         float topPanelY = getHeight() - 80 - panelHeight;
 
@@ -85,7 +81,7 @@ public class TradeDialog extends Group {
         // ==========================================
         // PANEL 1: YOU GIVE (ÜST SARI PANEL)
         // ==========================================
-        
+
         Image topPanelBg = new Image(Assets.tradeBgYellow);
         topPanelBg.setPosition(panelX, topPanelY);
         this.addActor(topPanelBg);
@@ -93,7 +89,7 @@ public class TradeDialog extends Group {
         Table topTable = new Table();
         topTable.setSize(panelWidth, panelHeight);
         topTable.setPosition(panelX, topPanelY);
-        
+
         // İkonlar
         giveGoldImg = createSelectableIcon(Assets.gold, "Gold", true);
         giveFoodImg = createSelectableIcon(Assets.food, "Food", true);
@@ -111,9 +107,9 @@ public class TradeDialog extends Group {
         giveAmountField = new TextField("0", Assets.skin);
         giveAmountField.setAlignment(Align.center);
         topTable.add(giveAmountField).width(70).colspan(2).left().padTop(5);
-        
+
         this.addActor(topTable);
-        updateIconVisuals(true); 
+        updateIconVisuals(true);
 
 
         // ==========================================
@@ -151,7 +147,7 @@ public class TradeDialog extends Group {
         // ==========================================
         // APPROVE BUTONU (EN ALTTA)
         // ==========================================
-        
+
         TextButton.TextButtonStyle approveStyle = new TextButton.TextButtonStyle();
         approveStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.tradeBtnApprove));
         approveStyle.down = new TextureRegionDrawable(new TextureRegion(Assets.tradeBtnApprove)).tint(Color.LIGHT_GRAY);
@@ -159,13 +155,13 @@ public class TradeDialog extends Group {
         approveStyle.fontColor = Color.BLACK;
 
         TextButton approveBtn = new TextButton("APPROVE", approveStyle);
-        
+
         // Butonu biraz daha aşağı çekmek için -15 yerine -20 yaptım
         float btnY = botPanelY - approveBtn.getHeight() - 20;
-        if (btnY < 10) btnY = 15; 
+        if (btnY < 10) btnY = 15;
 
         approveBtn.setPosition((getWidth() - approveBtn.getWidth()) / 2, btnY);
-        
+
         approveBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -211,7 +207,7 @@ public class TradeDialog extends Group {
         try {
             String giveText = giveAmountField.getText().trim();
             String wantText = wantAmountField.getText().trim();
-            
+
             int giveAmt = giveText.isEmpty() ? 0 : Integer.parseInt(giveText);
             int wantAmt = wantText.isEmpty() ? 0 : Integer.parseInt(wantText);
 
@@ -225,10 +221,10 @@ public class TradeDialog extends Group {
 
             Trade newTrade = new Trade(creator, receiver, givenRes, giveAmt, wantedRes, wantAmt);
             gameBackend.addTrade(newTrade);
-            
+
             System.out.println("Trade offer sent: " + giveAmt + " " + selectedGiveType + " <-> " + wantAmt + " " + selectedWantType);
-            remove(); 
-            
+            remove();
+
         } catch (NumberFormatException e) {
             System.out.println("Lütfen geçerli bir sayı girin!");
         }

@@ -23,7 +23,6 @@ public class PauseDialog extends Dialog {
     private Main gameMain;
     private Game backendGame;
 
-    // Özel stillerimiz (Statik tutuyoruz ki her açılışta tekrar yüklemesin)
     public static TextButton.TextButtonStyle yellowButtonStyle;
     public static NinePatchDrawable brownPanelDrawable;
 
@@ -32,7 +31,6 @@ public class PauseDialog extends Dialog {
         this.gameMain = gameMain;
         this.backendGame = backendGame;
 
-        // 1. Stilleri Yükle
         if (yellowButtonStyle == null) {
             loadCustomStyles(skin);
         }
@@ -48,16 +46,13 @@ public class PauseDialog extends Dialog {
         // --- DEĞİŞİKLİK 1: BAŞLIK YAZISINI BÜYÜTME ---
         getTitleLabel().setAlignment(Align.center);
         getTitleLabel().setColor(Color.BLACK);
-        getTitleLabel().setFontScale(1.2f); // Başlığı %50 büyüttük
 
         // --- DEĞİŞİKLİK 2: ARKA PLANI KISALTME (PADDING AYARI) ---
-        // Eski değerler: pad(60, 40, 30, 40);
         // Yeni değerler: Üstten ve alttan kıstık.
         pad(40, 40, 20, 40);
 
         initializeControls();
-        
-        // Diyalog boyutunu içeriğe göre sıkılaştır
+
         pack();
     }
 
@@ -70,14 +65,14 @@ public class PauseDialog extends Dialog {
         // B) SARI BUTON
         Texture buttonTexture = new Texture(Gdx.files.internal("ui/button_yellow.png"));
         NinePatch buttonPatch = new NinePatch(buttonTexture, 12, 12, 12, 12);
-        
+
         // Normal hali
         NinePatchDrawable buttonDrawable = new NinePatchDrawable(buttonPatch);
-        
+
         yellowButtonStyle = new TextButton.TextButtonStyle();
         yellowButtonStyle.up = buttonDrawable;
         yellowButtonStyle.down = buttonDrawable.tint(Color.LIGHT_GRAY); // Basınca kararır
-        
+
         // Font ayarı
         yellowButtonStyle.font = skin.getFont("default");
         yellowButtonStyle.fontColor = Color.BLACK;
@@ -92,7 +87,6 @@ public class PauseDialog extends Dialog {
 
         // --- Resume Butonu ---
         TextButton resumeBtn = new TextButton("Resume Game", yellowButtonStyle);
-        resumeBtn.getLabel().setFontScale(1.1f); // Yazıyı biraz büyüttük
         resumeBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -102,7 +96,6 @@ public class PauseDialog extends Dialog {
 
         // --- Save Butonu ---
         final TextButton saveBtn = new TextButton("Save Game", yellowButtonStyle);
-        saveBtn.getLabel().setFontScale(1.1f); // Yazıyı biraz büyüttük
         saveBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -121,7 +114,6 @@ public class PauseDialog extends Dialog {
 
         // --- Settings Butonu ---
         TextButton settingsBtn = new TextButton("Settings", yellowButtonStyle);
-        settingsBtn.getLabel().setFontScale(1.1f); // Yazıyı biraz büyüttük
         settingsBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -143,7 +135,6 @@ public class PauseDialog extends Dialog {
 
         // --- Quit Butonu ---
         TextButton quitBtn = new TextButton("Quit to Menu", yellowButtonStyle);
-        quitBtn.getLabel().setFontScale(1.1f); // Yazıyı biraz büyüttük
         quitBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

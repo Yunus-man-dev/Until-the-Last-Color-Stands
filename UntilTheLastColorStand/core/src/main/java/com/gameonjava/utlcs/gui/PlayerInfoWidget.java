@@ -31,16 +31,13 @@ public class PlayerInfoWidget extends Group {
 
         // 2. Başlık (Örnek: "Emir's Resources")
         Label.LabelStyle titleStyle = new Label.LabelStyle(Assets.skin.getFont("default"), Color.BLACK);
-        
+
         Label titleLbl = new Label(targetPlayer.getName() + "'s Resources", titleStyle);
-        // Başlığı biraz daha büyütelim ve ortalayalım
-        titleLbl.setFontScale(1.3f); 
         titleLbl.setPosition((getWidth() - titleLbl.getPrefWidth()) / 2, getHeight() - 50);
         this.addActor(titleLbl);
 
         // 3. Kapatma Butonu (X)
         Label closeBtn = new Label("X", titleStyle);
-        closeBtn.setFontScale(1.5f);
         closeBtn.setPosition(getWidth() - 40, getHeight() - 45);
         closeBtn.addListener(new ClickListener() {
             @Override
@@ -52,15 +49,15 @@ public class PlayerInfoWidget extends Group {
 
         // 4. Sarı Bilgi Alanı (Resources Background)
         Image infoBg = new Image(Assets.infoBgYellow);
-        
+
         // --- KONUM DÜZELTME ---
         // Panelin X konumu: Ortada
         float infoX = (getWidth() - infoBg.getWidth()) / 2;
-        
+
         // Panelin Y konumu: En tepeden başlık kadar (80px) aşağı in, sonra panelin kendi boyu kadar daha in.
         // LibGDX'te (0,0) sol alt köşe olduğu için Y, resmin ALT kenarını temsil eder.
         float infoY = getHeight() - 80 - infoBg.getHeight();
-        
+
         infoBg.setPosition(infoX, infoY);
         this.addActor(infoBg);
 
@@ -69,7 +66,7 @@ public class PlayerInfoWidget extends Group {
         resTable.setPosition(infoX, infoY);
         resTable.setSize(infoBg.getWidth(), infoBg.getHeight());
         // Tablo içindekileri hem dikey hem yatay ortala
-        resTable.center(); 
+        resTable.center();
 
         // İkonlar ve Değerler
         // İKON BOYUTLARI 40 -> 60 yapıldı
@@ -98,9 +95,6 @@ public class PlayerInfoWidget extends Group {
 
         TextButton tradeBtn = new TextButton("TRADE", tradeStyle);
         
-        // Yazıyı büyüt
-        tradeBtn.getLabel().setFontScale(1.5f);
-        
         // Butonu ortala ve biraz aşağıya koy
         tradeBtn.setPosition((getWidth() - tradeBtn.getWidth()) / 2, 40);
 
@@ -121,11 +115,9 @@ public class PlayerInfoWidget extends Group {
 
         this.addActor(tradeBtn);
     }
-    
-    // Sayıları büyük yazmak için yardımcı metod
+
     private Label createBigLabel(String text, Label.LabelStyle style) {
         Label l = new Label(text, style);
-        l.setFontScale(1.5f); // Sayı boyutu
         l.setAlignment(com.badlogic.gdx.utils.Align.center);
         return l;
     }
