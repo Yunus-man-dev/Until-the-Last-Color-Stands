@@ -154,7 +154,7 @@ public class TradeDialog extends Group {
         approveStyle.font = Assets.skin.getFont("default");
         approveStyle.fontColor = Color.BLACK;
 
-        TextButton approveBtn = new TextButton("APPROVE", approveStyle);
+        TextButton approveBtn = new TextButton("Approve", approveStyle);
 
         // Butonu biraz daha aşağı çekmek için -15 yerine -20 yaptım
         float btnY = botPanelY - approveBtn.getHeight() - 20;
