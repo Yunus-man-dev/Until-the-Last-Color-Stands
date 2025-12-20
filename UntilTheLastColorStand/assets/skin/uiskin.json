@@ -3,6 +3,9 @@ com.badlogic.gdx.graphics.g2d.BitmapFont: {
   default: {
     file: brook.fnt
   }
+  title: {
+    file: brookTitle.fnt
+  }
   font: {
     file: font.fnt
   }

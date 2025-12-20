@@ -4,6 +4,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class Assets {
@@ -83,6 +84,14 @@ public class Assets {
         manager.finishLoading();
 
         skin = manager.get(SKIN_JSON, Skin.class);
+
+        BitmapFont myFont = skin.getFont("default");
+
+        myFont.getData().setScale(0.2f);
+
+        BitmapFont myFont2 = skin.getFont("title");
+
+        myFont2.getData().setScale(0.3f);
 
         book = manager.get(BOOK, Texture.class);
         dash = manager.get(DASH, Texture.class);
