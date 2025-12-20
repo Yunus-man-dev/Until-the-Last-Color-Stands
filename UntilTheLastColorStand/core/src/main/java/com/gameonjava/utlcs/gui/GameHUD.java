@@ -71,10 +71,10 @@ public class GameHUD implements Disposable {
         Table leftTable = new Table();
         leftTable.top();
 
-        leftTable.add(new TextButton("P1", woodenStyle)).size(50).padBottom(10).row();
-        leftTable.add(new TextButton("P2", woodenStyle)).size(50).padBottom(10).row();
-        leftTable.add(new TextButton("P3", woodenStyle)).size(50).padBottom(10).row();
-        leftTable.add(new TextButton("P4", woodenStyle)).size(50).padBottom(10).row();
+        leftTable.add(new TextButton("P1", woodenStyle)).size(70).padBottom(10).row();
+        leftTable.add(new TextButton("P2", woodenStyle)).size(70).padBottom(10).row();
+        leftTable.add(new TextButton("P3", woodenStyle)).size(70).padBottom(10).row();
+        leftTable.add(new TextButton("P4", woodenStyle)).size(70).padBottom(10).row();
 
         // leftTable.add(new Image(Assets.mail)).size(40).padTop(20);
 
@@ -103,8 +103,6 @@ public class GameHUD implements Disposable {
         // --- D. BOTTOM BAR (END TURN) ---
         Table bottomTable = new Table();
         endTurnBtn = new TextButton("End Turn", woodenStyle);
-        // Butonu biraz büyütelim
-        endTurnBtn.getLabel().setFontScale(1.2f);
         bottomTable.add(endTurnBtn).width(200).height(60).padBottom(10).padRight(20);
         bottomTable.right();
 
@@ -130,7 +128,6 @@ public class GameHUD implements Disposable {
     private Label createStatLabel(String text) {
         Label l = new Label(text, Assets.skin);
         l.setColor(Color.BLACK);
-        l.setFontScale(1.2f);
         return l;
     }
 
@@ -160,6 +157,7 @@ public class GameHUD implements Disposable {
 
         return style;
     }
+
     public void updateStats(Player player, int turnNumber) {
 
         goldLabel.setText(String.valueOf((int) player.getGold().getValue()));
