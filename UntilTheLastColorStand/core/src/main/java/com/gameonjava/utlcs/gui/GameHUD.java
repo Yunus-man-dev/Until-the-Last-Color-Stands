@@ -28,8 +28,9 @@ public class GameHUD implements Disposable {
     public Game backendGame;
 
     private Label goldLabel, foodLabel, bookLabel, techLabel, moveLabel;
-    private Label turnCount, currentPlayerLabel;
+    private Label turnCount, currentPlayerLabel, winCondDesc;
     private TextButton endTurnBtn;
+    private Table winTable;
 
     // --- EKLENDİ: Açık olan pencereyi takip etmek için ---
     private PlayerInfoWidget currentInfoWidget;
@@ -140,20 +141,20 @@ public class GameHUD implements Disposable {
 
         // --- C. RIGHT PANEL (BİLGİ EKRANI) ---
         Table rightTable = new Table();
-        rightTable.setBackground(getColoredDrawable(TOP_BAR_COLOR));
+        rightTable.setBackground(Assets.infobg);
 
-        currentPlayerLabel = new Label("Player 2\nZeki's Turn", Assets.skin);
+        currentPlayerLabel = new Label("", Assets.skin);
         currentPlayerLabel.setAlignment(Align.center);
 
         Label winCondTitle = new Label("Win Condition:", Assets.skin);
-        Label winCondDesc = new Label("Have 200 Tech and 10 Libraries", Assets.skin);
-        winCondDesc.setAlignment(Align.center);
+        winCondTitle.setAlignment(Align.center);
+        winCondDesc = new Label("", Assets.skin);
         winCondDesc.setWrap(true);
 
         rightTable.add(currentPlayerLabel).pad(20).row();
 
-        Table winTable = new Table();
-        winTable.setBackground(getColoredDrawable(new Color(0.3f, 0.5f, 0.4f, 1f)));
+        winTable = new Table();
+        winTable.setBackground(Assets.bgRed);
         winTable.add(winCondTitle).padTop(10).row();
         winTable.add(winCondDesc).width(180).pad(10).row();
 
@@ -220,8 +221,27 @@ public class GameHUD implements Disposable {
         moveLabel.setText(String.valueOf((int) player.getMp().getValue()));
 
         turnCount.setText("Turn " + turnNumber);
-        currentPlayerLabel.setText(player.getName() + "\nTURN");
+        currentPlayerLabel.setText(player.getName() + "'s Turn");
     }
+
+    public void updateTurnInfo(String winConditionText, TextureRegionDrawable background) {
+        if (winCondDesc != null) {
+            winCondDesc.setText(winConditionText);
+        }
+
+        if (winTable != null) {
+            winTable.setBackground(background);
+        }
+    }
+
+
+
+
+
+
+
+
+
 
     public void render() {
         stage.act();

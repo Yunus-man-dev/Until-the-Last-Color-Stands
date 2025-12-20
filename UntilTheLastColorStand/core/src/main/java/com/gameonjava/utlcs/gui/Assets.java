@@ -5,7 +5,9 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class Assets {
     // Image goldIcon = new Image(Assets.gold);
@@ -42,9 +44,20 @@ public class Assets {
     public static final String TRADE_BG_BROWN = "ui/TradeBarArkaPlan.png";
     public static final String TRADE_BG_YELLOW = "ui/TradeBarInfoBar.png";
     public static final String TRADE_BTN_APPROVE = "ui/TradeBarButon.png";
-
     public static Skin skin;
+    public static final String goldBg = "ui/goldBg.png";
+    public static final String blueBg = "ui/blueBg.png";
+    public static final String brownBg = "ui/brownBg.png";
+    public static final String redBg = "ui/redBg.png";
+    public static final String INFOBG = "ui/infobg.png";
+    public static final String TOPBARBG = "ui/topbarbg.png";
+    public static final String RBARBG = "ui/rbarbg.png";
+    public static final String TFBG = "ui/tfbg.png";
 
+
+
+
+    public static TextureRegionDrawable bgRed, bgBlue, bgBrown, bgGold, infobg, topbarbg,rbarbg,tfbg;
     public static Texture infoBgBrown;
     public static Texture infoBgYellow;
     public static Texture infoBtnTrade;
@@ -68,6 +81,14 @@ public class Assets {
 
     public static void load() {
         manager.load(SKIN_JSON, Skin.class);
+        manager.load(goldBg, Texture.class);
+        manager.load(redBg, Texture.class);
+        manager.load(blueBg, Texture.class);
+        manager.load(brownBg, Texture.class);
+        manager.load(INFOBG, Texture.class);
+        manager.load(TOPBARBG, Texture.class);
+        manager.load(RBARBG, Texture.class);
+        manager.load(TFBG, Texture.class);
 
         manager.load(BOOK, Texture.class);
         manager.load(DASH, Texture.class);
@@ -134,6 +155,15 @@ public class Assets {
         tradeBgBrown = manager.get(TRADE_BG_BROWN, Texture.class);
         tradeBgYellow = manager.get(TRADE_BG_YELLOW, Texture.class);
         tradeBtnApprove = manager.get(TRADE_BTN_APPROVE, Texture.class);
+        bgRed = new TextureRegionDrawable(new TextureRegion(manager.get(redBg, Texture.class)));
+        bgBlue = new TextureRegionDrawable(new TextureRegion(manager.get(blueBg, Texture.class)));
+        bgBrown = new TextureRegionDrawable(new TextureRegion(manager.get(brownBg, Texture.class)));
+        bgGold = new TextureRegionDrawable(new TextureRegion(manager.get(goldBg, Texture.class)));
+        infobg = new TextureRegionDrawable(new TextureRegion(manager.get(INFOBG, Texture.class)));
+        topbarbg = new TextureRegionDrawable(new TextureRegion(manager.get(TOPBARBG, Texture.class)));
+        rbarbg = new TextureRegionDrawable(new TextureRegion(manager.get(RBARBG, Texture.class)));
+        tfbg = new TextureRegionDrawable(new TextureRegion(manager.get(TFBG, Texture.class)));
+
     }
 
     public static void dispose() {

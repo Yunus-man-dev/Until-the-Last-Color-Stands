@@ -3,12 +3,15 @@ package com.gameonjava.utlcs.gui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.gameonjava.utlcs.Main;
 import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Game;
+import com.gameonjava.utlcs.backend.civilization.Civilization;
 
 public class GameScreen extends ScreenAdapter {
     private Main game;
@@ -33,9 +36,13 @@ public class GameScreen extends ScreenAdapter {
                 hud.backendGame.nextTurn();
 
                 Player siradakiOyuncu = hud.backendGame.getCurrentPlayer();
+                Civilization currentCiv = siradakiOyuncu.getCivilization();
                 int yeniTurSayisi = Game.getCurrentTurn();
 
                 hud.updateStats(siradakiOyuncu, yeniTurSayisi);
+                TextureRegionDrawable newBg = getCivBg(currentCiv);
+                String winText = getWinConditionText(currentCiv);
+                hud.updateTurnInfo(winText, newBg);
             }
         });
     }
@@ -54,10 +61,30 @@ public class GameScreen extends ScreenAdapter {
     }
 
     public GameHUD getHud() {
-    return hud;
-}
+        return hud;
+    }
 
-public Main getMainGame() {
-    return game;
-}
+    public Main getMainGame() {
+        return game;
+    }
+    private TextureRegionDrawable getCivBg(Civilization civ) {
+        String name = civ.getCivilizationColor();
+
+        if (name.contains("Red")) return Assets.bgRed;
+        if (name.contains("Blue")) return Assets.bgBlue;
+        if (name.contains("Gold")) return Assets.bgGold;
+        if (name.contains("Brown")) return Assets.bgBrown;
+
+        return null;
+    }
+
+    private String getWinConditionText(Civilization civ) {
+        String name = civ.getCivilizationColor();
+
+        if (name.contains("Red")) return "CONQUER 20 TILES\nAND HAVE 500 GOLD";
+        if (name.contains("Blue")) return "HAVE 200 TECH\nAND 10 LIBRARIES";
+        if (name.contains("Gold")) return "HAVE 100 GOLD";
+        if (name.contains("Brown")) return "HAVE 100 GOLD";
+        return null;
+    }
 }
