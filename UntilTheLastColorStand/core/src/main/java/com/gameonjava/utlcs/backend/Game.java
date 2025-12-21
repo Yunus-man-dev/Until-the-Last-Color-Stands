@@ -59,17 +59,18 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
     //Moves onto the next player's turn and updates resources.
 
     public void nextTurn() {
-        //Tilelardaki asker alım sınırını resetler
-        gameMap.resetAllTilesTurnData();
-
+        
+        // --- DÜZELTME: Tur mantığı düzenlendi ---
+        // Oyuncu sırasını ilerlet
         currentPlayerIndex++;
 
-        // Check if full round is completed
+        // Eğer tüm oyuncular oynadıysa tur sayısını arttır ve tileları resetle
         if (currentPlayerIndex >= players.size()) {
             currentPlayerIndex = 0;
-
+            currentTurn++;
+            gameMap.resetAllTilesTurnData();
         }
-        currentTurn++;
+        
         // Get the new current player
         Player currentPlayer = getCurrentPlayer();
 
@@ -173,7 +174,8 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
     }
 
     //WarManager to resolve a battle.
-    public void initiateAttack(Tile from, Tile target) {
+    // --- DÜZELTME: Dönüş tipi WarManager yapıldı ---
+    public WarManager initiateAttack(Tile from, Tile target) {
         Army attacker = from.getArmy();
         Army defender = target.getArmy();
 
@@ -182,7 +184,9 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
             mp.reduceResource(mp.ATTACK);
 
             WarManager war = new WarManager(attacker, defender, target);
+            return war; // Return the result
         }
+        return null;
     }
 
     //Creates the trade and adds to active trades.

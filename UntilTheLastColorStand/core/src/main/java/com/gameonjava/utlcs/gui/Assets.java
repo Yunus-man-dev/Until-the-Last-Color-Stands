@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class Assets {
@@ -53,6 +54,10 @@ public class Assets {
     public static final String INCOMING_CIRCLE = "ui/IncomingCircle.png"; 
     public static final String BTN_ACCEPT = "ui/BtnAccept.png"; 
     public static final String BTN_REFUSE = "ui/BtnRefuse.png";
+    //War 
+    public static final String WAR_BG_BROWN = "ui/WarBgBrown.png";   
+    public static final String WAR_BG_YELLOW = "ui/WarBgYellow.png"; 
+    public static final String WAR_BTN_DONE = "ui/WarBtnDone.png";   
 
     public static Skin skin;
     public static final String goldBg = "ui/goldBg.png";
@@ -91,6 +96,9 @@ public class Assets {
     public static Texture incomingCircle;
     public static Texture btnAccept;
     public static Texture btnRefuse;
+    public static Texture warBgBrown, warBgYellow, warBtnDone;
+    public static Drawable warBgBrownDr, warBgYellowDr, warBtnDoneDr;
+
 
     public static void load() {
         manager.load(SKIN_JSON, Skin.class);
@@ -134,6 +142,9 @@ public class Assets {
         manager.load(INCOMING_CIRCLE, Texture.class);
         manager.load(BTN_ACCEPT, Texture.class);
         manager.load(BTN_REFUSE, Texture.class);
+        manager.load(WAR_BG_BROWN, Texture.class);
+        manager.load(WAR_BG_YELLOW, Texture.class);
+        manager.load(WAR_BTN_DONE, Texture.class);
     }
 
     public static void finishLoading() {
@@ -174,6 +185,13 @@ public class Assets {
         tradeBgBrown = manager.get(TRADE_BG_BROWN, Texture.class);
         tradeBgYellow = manager.get(TRADE_BG_YELLOW, Texture.class);
         tradeBtnApprove = manager.get(TRADE_BTN_APPROVE, Texture.class);
+        warBgBrown = manager.get(WAR_BG_BROWN, Texture.class);
+        warBgYellow = manager.get(WAR_BG_YELLOW, Texture.class);
+        warBtnDone = manager.get(WAR_BTN_DONE, Texture.class);
+
+        warBgBrownDr = new TextureRegionDrawable(new TextureRegion(warBgBrown));
+        warBgYellowDr = new TextureRegionDrawable(new TextureRegion(warBgYellow));
+        warBtnDoneDr = new TextureRegionDrawable(new TextureRegion(warBtnDone));
         bgRed = new TextureRegionDrawable(new TextureRegion(manager.get(redBg, Texture.class)));
         bgBlue = new TextureRegionDrawable(new TextureRegion(manager.get(blueBg, Texture.class)));
         bgBrown = new TextureRegionDrawable(new TextureRegion(manager.get(brownBg, Texture.class)));

@@ -23,7 +23,6 @@ public class InputController extends InputAdapter {
     @Override
     public boolean keyDown(int keycode) {
 
-        // --- P: PAUSE MENU ---
         if (keycode == Input.Keys.P) {
             PauseDialog pause = new PauseDialog("Game Paused", Assets.skin, screen.getMainGame(),
                     screen.getHud().backendGame);
@@ -31,31 +30,24 @@ public class InputController extends InputAdapter {
             return true;
         }
 
-        // --- B: BUILDING MENU ---
         if (keycode == Input.Keys.B) {
             Player currentPlayer = screen.getHud().backendGame.getCurrentPlayer();
             ArrayList<Tile> tiles = currentPlayer.getOwnedTiles();
 
             if (tiles != null && !tiles.isEmpty()) {
-                // Test için oyuncunun ilk karesini alıyoruz
                 Tile testTile = tiles.get(0);
                 BuildingDialog build = new BuildingDialog("Construct", Assets.skin, testTile, currentPlayer,
                         screen.getHud());
                 build.show(screen.getHud().stage);
-            } else {
-                System.out.println("DEBUG: Oyuncunun hiç toprağı yok, bina yapılamaz.");
             }
             return true;
         }
 
-        // --- T: TRADE MENU (Manuel Test) ---
         if (keycode == Input.Keys.T) {
             Player current = screen.getHud().backendGame.getCurrentPlayer();
-            Player dummyTarget = new Player("Test Rival", new Red()); // Test oyuncusu
+            Player dummyTarget = new Player("Test Rival", new Red()); 
 
             TradeDialog trade = new TradeDialog(current, dummyTarget, screen.getHud().backendGame);
-
-            // Konumlandırma
             trade.setPosition(
                     (screen.getHud().stage.getWidth() - trade.getWidth()) / 2,
                     (screen.getHud().stage.getHeight() - trade.getHeight()) / 2);
@@ -64,26 +56,15 @@ public class InputController extends InputAdapter {
             return true;
         }
 
-        // --- M: MAIL / INCOMING TRADE (Gelen Teklif Testi) ---
-        // Buna basınca sana bir ticaret teklifi gelmiş gibi simüle eder.
-        // Mektup ikonunun çıkıp çıkmadığını test etmek için kullanabilirsin.
         if (keycode == Input.Keys.M) {
             Player me = screen.getHud().backendGame.getCurrentPlayer();
             Player sender = new Player("Rich Empire", new Red());
 
-            // Basit kaynaklar (Constructor parametrelerin Resources sınıflarında farklı
-            // olabilir,
-            // burada basitçe 0 veya varsayılan değerler geçiyorum)
             GoldResource goldOffer = new GoldResource(500, 0, 0, 0, 0);
             FoodResource foodRequest = new FoodResource(50, 0, 0, 0);
 
-            // Teklif: Sana 500 Altın verip 50 Yemek istiyor
             Trade fakeTrade = new Trade(sender, me, goldOffer, 500, foodRequest, 50);
-
-            // Oyuna teklifi ekle
             screen.getHud().backendGame.addTrade(fakeTrade);
-
-            // HUD'u güncelle ki mektup ikonu görünsün
             screen.getHud().updateStats(me, Game.getCurrentTurn());
 
             System.out.println("DEBUG: Sahte ticaret teklifi oluşturuldu! Mektup ikonunu kontrol et.");
@@ -98,8 +79,9 @@ public class InputController extends InputAdapter {
             Tile t2 = new Tile(1, 0, TerrainType.PLAIN);
             t2.setOwner(new Player("Player 2", new com.gameonjava.utlcs.backend.civilization.Red()));
 
-            // Saldıran kazanmış gibi gösterelim, 50 kayıp verelim
-            WarDialog war = new WarDialog("Battle Result", Assets.skin, t1, t2, true, 50);
+            // DÜZELTME: Yeni Constructor'a uygun Dummy Veriler
+            // Saldıran (t1), Savunan (t2), Kazanan (true), AttRoll, DefRoll, AttAP, DefAP
+            WarDialog war = new WarDialog(Assets.skin, t1, t2, true, 5, 2, 120, 80);
             war.show(screen.getHud().stage);
             return true;
         }

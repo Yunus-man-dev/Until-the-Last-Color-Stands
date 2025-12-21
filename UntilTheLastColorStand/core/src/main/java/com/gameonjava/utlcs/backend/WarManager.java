@@ -32,6 +32,10 @@ public class WarManager {
     private  int defenderAP ;
 
     private Army winner;
+    
+    // GUI için eklenen alanlar
+    private int attackerCasualties = 0;
+    private int defenderCasualties = 0;
 
     public static boolean isValidWar(Army attackerArmy ,Army defenderArmy, Tile battleTile){
 
@@ -161,6 +165,7 @@ public class WarManager {
     // uniqueMultiplier, which is a special multiplier for that civilization)
 
         int TP = army.player.getTechnologyPoint();
+        if (TP == 0) TP = 1; // 0 olursa puan sıfırlanmasın diye
         int soldiets = army.getSoldiers();
         return dice * TP * soldiets * army.player.getCivilization().getAttackMultiplier();
 
@@ -169,20 +174,26 @@ public class WarManager {
 
 
         if(winner == attackerArmy){
-
+            // Savunan hepsini kaybetti
+            defenderCasualties = defenderArmy.getSoldiers();
             defenderArmy.removeSoldiers(defenderArmy.getSoldiers());
 
             int difference = (attackerAP - defenderAP);
             int winerCauslties = findCasulties(attackerArmy, difference);
+            
+            attackerCasualties = winerCauslties;
             attackerArmy.removeSoldiers(winerCauslties);
 
         }
         else{
-
+            // Saldıran hepsini kaybetti
+            attackerCasualties = attackerArmy.getSoldiers();
             attackerArmy.removeSoldiers(attackerArmy.getSoldiers());
 
             int difference = ( defenderAP-attackerAP );
             int winerCauslties = findCasulties(defenderArmy, difference);
+            
+            defenderCasualties = winerCauslties;
             defenderArmy.removeSoldiers(winerCauslties);
 
 
@@ -232,10 +243,19 @@ public class WarManager {
 
             defenderArmy.player.getOwnedTiles().remove(battleTile);
             attackerArmy.player.getOwnedTiles().add(battleTile);
+            battleTile.setOwner(attackerArmy.player); // Sahiplik güncelle
 
         }
 
 
     }
+    
+    // --- GUI İçin Getterlar ---
+    public boolean isAttackerWon() { return winner == attackerArmy; }
+    public int getAttackerDice() { return attackerDice; }
+    public int getDefenderDice() { return defenderDice; }
+    public int getAttackerAP() { return attackerAP; }
+    public int getDefenderAP() { return defenderAP; }
+    public int getTotalCasualties() { return attackerCasualties + defenderCasualties; }
 
 }

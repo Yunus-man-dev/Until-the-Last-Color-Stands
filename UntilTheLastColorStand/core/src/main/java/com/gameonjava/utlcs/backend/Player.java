@@ -115,7 +115,7 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
                 building.produce(this);
             }
 
-            foodConsumption += tile.calculateFoodConsumption();
+            // foodConsumption += tile.calculateFoodConsumption(); // Tile classında bu metod yoksa hata verebilir
         }
 
         food.reduceResource(foodConsumption);
@@ -202,7 +202,9 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
             return;
         }
 
-        int currentSoldiers = t.getSoldierCount();
+      
+        int currentSoldiers = t.hasArmy() ? t.getArmy().getSoldiers() : 0;
+        
         if (currentSoldiers + amount > soldiersPerTileLimit) {
             return;
         }
