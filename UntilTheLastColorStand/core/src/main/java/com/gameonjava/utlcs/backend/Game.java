@@ -35,12 +35,15 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         this.gameMap = new Map();
         this.activeTrades = new ArrayList<>();
         this.currentPlayerIndex = 0;
-        players.add(new Player("x", new Black()));
-        players.add(new Player("y", new GoldCivilization()));
-        players.add(new Player("z", new Blue()));
-        players.add(new Player("d", new Red()));
+        // players.add(new Player("x", new Black()));
+        // players.add(new Player("y", new GoldCivilization()));
+        // players.add(new Player("z", new Blue()));
+        // players.add(new Player("d", new Red()));
     }
 
+    public void addPlayer(Player p){
+        this.players.add(p);
+    }
     public void startGame(int mapID) {
         gameMap.initializeMap(mapID);
 

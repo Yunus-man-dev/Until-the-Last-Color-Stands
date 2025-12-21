@@ -18,10 +18,10 @@ public class GameScreen extends ScreenAdapter {
     private GameHUD hud;
     private InputController inputController;
 
-    public GameScreen(Main game) {
+    public GameScreen(Main game, com.gameonjava.utlcs.backend.Game backendGame) {
         this.game = game;
 
-        this.hud = new GameHUD(game.batch);
+        this.hud = new GameHUD(game.batch, backendGame);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(hud.stage);

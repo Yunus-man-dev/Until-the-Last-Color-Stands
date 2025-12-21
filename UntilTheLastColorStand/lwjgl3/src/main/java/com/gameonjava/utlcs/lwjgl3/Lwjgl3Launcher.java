@@ -27,7 +27,7 @@ public class Lwjgl3Launcher {
 
         configuration.setWindowedMode(1280, 720);
 
-        configuration.setResizable(false);
+        configuration.setResizable(true);
 
         configuration.setWindowIcon(Assets.WAR,Assets.WAR,Assets.WAR,Assets.WAR,Assets.WAR);
 

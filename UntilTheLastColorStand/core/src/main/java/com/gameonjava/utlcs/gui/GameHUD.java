@@ -39,12 +39,12 @@ public class GameHUD implements Disposable {
 
     private PlayerInfoWidget currentInfoWidget;
 
-    public GameHUD(SpriteBatch batch) {
+    public GameHUD(SpriteBatch batch, Game backendGame) {
         viewport = new FitViewport(1280, 720);
         stage = new Stage(viewport, batch);
 
-        backendGame = new Game();
-        backendGame.startGame(1);
+        this.backendGame = backendGame;
+        // this.backendGame.startGame(1);
         TextButton.TextButtonStyle beigeStyle = createBeigeStyle();
 
         Table rootTable = new Table();
@@ -267,6 +267,10 @@ public class GameHUD implements Disposable {
         return style;
     }
 
+    public Game getBackendGame() {
+        return backendGame;
+    }
+    
     public TextButton getSettingsBtn() {
         return settingsBtn;
     }

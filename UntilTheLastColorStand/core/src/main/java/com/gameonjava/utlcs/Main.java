@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.gameonjava.utlcs.gui.Assets;
 import com.gameonjava.utlcs.gui.EmpireSelectionScreen;
+import com.gameonjava.utlcs.gui.GameHUD;
 import com.gameonjava.utlcs.gui.GameScreen;
 import com.gameonjava.utlcs.gui.MainMenuScreen;
 import com.gameonjava.utlcs.gui.MapSelectionScreen;
@@ -15,6 +16,8 @@ public class Main extends Game {
 
     public SpriteBatch batch;           // for draw
     public ShapeRenderer shapeRenderer; // for geo shapes
+
+    public GameHUD gameHUD;
 
     //enum
     public enum ScreenType {
@@ -43,7 +46,7 @@ public class Main extends Game {
             Assets.music.setVolume(0.5f);
             Assets.music.play();
         }
-        changeScreen(ScreenType.GAME);
+        changeScreen(ScreenType.MAIN_MENU);
     }
 
     //CHANGE SCREEN METHOD. OTHER CLASSES MUST USE game.changeScreen(DesiredScreen) to change screens
@@ -55,7 +58,7 @@ public class Main extends Game {
                 break;
 
             case MAP_SELECTION:
-                if (mapSelectionScreen == null) mapSelectionScreen = new MapSelectionScreen(this);
+                if (mapSelectionScreen == null) mapSelectionScreen = new MapSelectionScreen(this, empireSelectionScreen.getReadyPlayers());
                 this.setScreen(mapSelectionScreen);
                 break;
 
@@ -66,7 +69,7 @@ public class Main extends Game {
 
             case GAME:
                 if (gameScreen == null) {
-                    gameScreen = new GameScreen(this);
+                    gameScreen = new GameScreen(this, gameHUD.getBackendGame());
                 }
                 this.setScreen(gameScreen);
                 break;
