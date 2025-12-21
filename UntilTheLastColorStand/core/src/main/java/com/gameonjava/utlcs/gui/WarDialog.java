@@ -2,7 +2,6 @@ package com.gameonjava.utlcs.gui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -53,19 +52,19 @@ public class WarDialog extends Dialog {
         contentStack.add(yellowBg);
 
         Table dataTable = new Table();
-        dataTable.pad(20);
+        dataTable.pad(50);
         
         Army attArmy = attackerTile.getArmy();
         Army defArmy = defenderTile.getArmy();
 
         // --- İSİMLER ---
-        Label attNameLbl = new Label(attackerTile.getOwner().getName(), titleStyle);
-        Label defNameLbl = new Label(defenderTile.getOwner() != null ? defenderTile.getOwner().getName() : "Neutral", titleStyle);
-        attNameLbl.setFontScale(0.4f); defNameLbl.setFontScale(0.4f);
+        Label attNameLbl = new Label("     "+ attackerTile.getOwner().getName(), titleStyle);
+        Label defNameLbl = new Label(defenderTile.getOwner() != null ? defenderTile.getOwner().getName() : "Neutral"+"        ", titleStyle);
+        attNameLbl.setFontScale(0.5f); defNameLbl.setFontScale(0.5f);
 
         float currentDelay = ANIM_DELAY_STEP;
         dataTable.add(animateAppearance(attNameLbl, currentDelay)).expandX();
-        dataTable.add(new Label("VS", titleStyle)).pad(10);
+        dataTable.add(new Label("   VS        ", titleStyle)).pad(10);
         dataTable.add(animateAppearance(defNameLbl, currentDelay)).expandX().row();
         
         currentDelay += ANIM_DELAY_STEP;
@@ -75,7 +74,7 @@ public class WarDialog extends Dialog {
         int defCount = (defArmy != null) ? defArmy.getSoldiers() : 0;
         
         addStatRow(dataTable, Assets.soldier, Assets.soldier, 
-                   attCount + "", defCount + "", "        Soldier Amount        ", defaultStyle, currentDelay);
+                   attCount + "", defCount + "", "     Soldier Amount        ", defaultStyle, currentDelay);
         currentDelay += ANIM_DELAY_STEP;
 
         // --- TEKNOLOJİ PUANI (TECH) ---
@@ -83,7 +82,7 @@ public class WarDialog extends Dialog {
         int defTech = (defenderTile.getOwner() != null) ? defenderTile.getOwner().getTechnologyPoint() : 0;
         
         addStatRow(dataTable, Assets.tech, Assets.tech, 
-                   attTech + " TP", defTech + " TP", "        Research Point        ", defaultStyle, currentDelay);
+                   attTech + "  Tp", defTech + " Tp ", "     Research Point        ", defaultStyle, currentDelay);
         currentDelay += ANIM_DELAY_STEP;
 
         // --- ZAR SONUCU (DICE) - DİNAMİK SEÇİM ---
@@ -91,12 +90,12 @@ public class WarDialog extends Dialog {
         Texture defDiceTex = getDiceTexture(defRoll);
 
         addStatRow(dataTable, attDiceTex, defDiceTex, 
-                   "Roll: " + attRoll, "Roll: " + defRoll, "Dice Point", defaultStyle, currentDelay);
+                   "    Roll: " + attRoll, "Roll: " + defRoll+"    ", "     Dice Point        ", defaultStyle, currentDelay);
         currentDelay += ANIM_DELAY_STEP;
 
         // --- SALDIRI GÜCÜ (AP/DP - KILIÇ) ---
         addStatRow(dataTable, Assets.war, Assets.war, 
-                   "AP: " + attFinalAP, "DP: " + defFinalAP, "        Attack/Defense        ", defaultStyle, currentDelay);
+                   "    Ap: " + attFinalAP, "Dp: " + defFinalAP+"    ", "     Attack/Defense        ", defaultStyle, currentDelay);
         currentDelay += ANIM_DELAY_STEP;
         
         contentStack.add(dataTable);
@@ -107,7 +106,7 @@ public class WarDialog extends Dialog {
                                           (defenderTile.getOwner() != null ? defenderTile.getOwner().getName() : "Neutral") + " WINS!";
         
         Label winnerLbl = new Label(winnerText, titleStyle);
-        winnerLbl.setFontScale(0.4f);
+        winnerLbl.setFontScale(0.5f);
         winnerLbl.setColor(attackerWon ? Color.BLACK : Color.FIREBRICK);
         winnerLbl.setAlignment(Align.center);
         
@@ -130,7 +129,7 @@ public class WarDialog extends Dialog {
         }
 
         TextButton doneBtn = new TextButton("", doneStyle);
-        Label btnLabel = new Label("DONE", defaultStyle);
+        Label btnLabel = new Label("Done    ", defaultStyle);
         doneBtn.add(btnLabel).expand().center();
 
         doneBtn.addListener(new ClickListener() {
@@ -147,24 +146,46 @@ public class WarDialog extends Dialog {
     }
 
     /**
-     * Sol ve Sağ için ayrı ikonlar + ortada metin eklenmiş versiyon
+     * Sol ve Sağ için ayrı ikonlar + ortada metin + YANLARDA TIRE (-----)
      */
     private void addStatRow(Table t, Texture leftIcon, Texture rightIcon, String leftText, String rightText, String centerText, Label.LabelStyle style, float delay) {
-        // Sol Grup
+        // --- SOL GRUP ---
         Table leftGroup = new Table();
-        if (leftIcon != null) leftGroup.add(new Image(leftIcon)).size(40).padRight(10);
+        // 1. Dash
+        Label lDash = new Label("                            ", style);
+        leftGroup.add(lDash).padRight(2);
+
+        // 2. İkon
+        if (leftIcon != null) leftGroup.add(new Image(leftIcon)).size(41).padRight(5);
+        
+        // 3. Değer (SABİT GENİŞLİK VEREREK HİZALADIK)
         Label leftLbl = new Label(leftText, style);
-        leftGroup.add(leftLbl);
+        leftLbl.setAlignment(Align.center);
+        leftGroup.add(leftLbl).width(50); // <-- Hizalama için genişlik
 
-        // Orta metin
+
+        // --- ORTA METİN ---
         Label centerLbl = new Label(centerText, style);
+        centerLbl.setAlignment(Align.center);
 
-        // Sağ Grup
+
+        // --- SAĞ GRUP ---
         Table rightGroup = new Table();
-        if (rightIcon != null) rightGroup.add(new Image(rightIcon)).size(40).padRight(10);
+        
+        // 1. Değer (SABİT GENİŞLİK VEREREK HİZALADIK)
         Label rightLbl = new Label(rightText, style);
-        rightGroup.add(rightLbl);
+        rightLbl.setAlignment(Align.center);
+        rightGroup.add(rightLbl).width(50).padRight(5); // <-- Hizalama için genişlik
+        
+        // 2. İkon
+        if (rightIcon != null) rightGroup.add(new Image(rightIcon)).size(41).padRight(5);
 
+        // 3. Dash
+        Label rDash = new Label("                  ", style);
+        rightGroup.add(rDash).padLeft(2);
+
+
+        // --- TABLOYA EKLEME ---
         t.add(animateAppearance(leftGroup, delay)).left().padBottom(15);
         t.add(animateAppearance(centerLbl, delay)).center().expandX().padBottom(15);
         t.add(animateAppearance(rightGroup, delay)).right().padBottom(15).row();
@@ -181,7 +202,6 @@ public class WarDialog extends Dialog {
         if (roll == 5) return Assets.dice5;
         if (roll == 6) return Assets.dice6;
         
-        // Hata veya geçersiz durumlarda varsayılan olarak 1. zarı döndür
         return Assets.dice1;
     }
 
