@@ -94,8 +94,6 @@ public class PlayerInfoWidget extends Group {
         tradeStyle.fontColor = Color.BLACK;
 
         TextButton tradeBtn = new TextButton("TRADE", tradeStyle);
-        
-        // Butonu ortala ve biraz aşağıya koy
         tradeBtn.setPosition((getWidth() - tradeBtn.getWidth()) / 2, 40);
 
         tradeBtn.addListener(new ClickListener() {

@@ -60,8 +60,7 @@ public class MapSelectionScreen extends ScreenAdapter {
         stage.addActor(rootTable);
 
         // Başlık
-        Label title = new Label("SELECT WORLD MAP", skin, "default"); // "subtitle" da kullanabilirsin
-        title.setFontScale(0.2f);
+        Label title = new Label("Select World Map", skin, "default"); // "subtitle" da kullanabilirsin
         title.setColor(Color.GOLD);
         rootTable.add(title).padBottom(40).row();
 
@@ -70,25 +69,25 @@ public class MapSelectionScreen extends ScreenAdapter {
 
         // --- MAP 1 ---
         Table map1 = createMapCard(
-            "PANGEA", 
-            "Standard balanced map. Best for learning.", 
-            map1Preview, 
+            "Pangea",
+            "Standard balanced map. Best for learning.",
+            map1Preview,
             1
         );
 
         // --- MAP 2 ---
         Table map2 = createMapCard(
-            "THE DIVIDE", 
-            "A world split by mountains. Strategic chokepoints.", 
-            map2Preview, 
+            "The Divide",
+            "A world split by mountains. Strategic chokepoints.",
+            map2Preview,
             2
         );
 
         // --- MAP 3 ---
         Table map3 = createMapCard(
-            "ARCHIPELAGO", 
-            "Scattered islands. Naval power is crucial.", 
-            map3Preview, 
+            "Archipelago",
+            "Scattered islands. Naval power is crucial.",
+            map3Preview,
             3
         );
 
@@ -100,7 +99,7 @@ public class MapSelectionScreen extends ScreenAdapter {
         rootTable.add(mapsContainer).expandY().top().row();
 
         // 4. Geri Butonu
-        TextButton backBtn = new TextButton("BACK", skin);
+        TextButton backBtn = new TextButton("Back", skin);
         // backBtn.add("ui/Map_btn.png");
         backBtn.addListener(new ChangeListener() {
             @Override
@@ -114,7 +113,7 @@ public class MapSelectionScreen extends ScreenAdapter {
     // Harita Kartı Oluşturan Yardımcı Metot
     private Table createMapCard(String title, String desc, Texture imgTex, final int mapID) {
         Table card = new Table();
-        
+
         // Arka plan: panel_brown.png (9-patch)
         NinePatch patch = new NinePatch(panelTexture, 12, 12, 12, 12);
         card.setBackground(new NinePatchDrawable(patch));
@@ -122,20 +121,18 @@ public class MapSelectionScreen extends ScreenAdapter {
 
         // Resim
         Image mapImg = new Image(imgTex);
-        
+
         // Başlık
-        Label titleLbl = new Label(title, skin, "subtitle");
-        titleLbl.setColor(Color.GOLD);
+        Label titleLbl = new Label(title, skin, "default");
         titleLbl.setAlignment(Align.center);
 
         // Açıklama
         Label descLbl = new Label(desc, skin, "default");
         descLbl.setWrap(true);
         descLbl.setAlignment(Align.center);
-        descLbl.setFontScale(0.1f);
 
         // Seç Butonu
-        TextButton selectBtn = new TextButton("START GAME", skin);
+        TextButton selectBtn = new TextButton("Start Game", skin);
         // selectBtn.add("ui/Map_btn.png");
         selectBtn.addListener(new ChangeListener() {
             @Override
@@ -153,7 +150,6 @@ public class MapSelectionScreen extends ScreenAdapter {
         return card;
     }
 
-    // --- OYUNU BAŞLATAN KRİTİK METOT ---
     private void startGame(int mapID) {
         Gdx.app.log("MapSelection", "Starting Map ID: " + mapID + " with " + readyPlayers.size() + " players.");
 
@@ -162,14 +158,13 @@ public class MapSelectionScreen extends ScreenAdapter {
 
         // 2. EmpireSelection'dan gelen oyuncuları ekle
         for (Player p : readyPlayers) {
-            backendGame.addPlayer(p); 
+            backendGame.addPlayer(p);
         }
 
         // 3. Haritayı başlat (Game.java içindeki initializeMap çağrılır)
         backendGame.startGame(mapID);
 
         // 4. GameScreen'e geç (Oyunun oynandığı asıl ekran)
-        // NOT: Henüz GameScreen classını atmadın, varsayılan olarak şöyle olmalı:
         game.setScreen(new GameScreen(game, backendGame));
     }
 
@@ -177,16 +172,15 @@ public class MapSelectionScreen extends ScreenAdapter {
         try {
             bgTexture = new Texture(Gdx.files.internal("ui/Map_bg.png"));
             panelTexture = new Texture(Gdx.files.internal("ui/MapPanel.png"));
-            
-            // Eğer bu resimler yoksa hata vermemesi için placeholder kullanın
+
             // assets/ui/map_placeholder_1.png vb. oluşturun.
-            try { map1Preview = new Texture(Gdx.files.internal("ui/Map_1.png")); } 
+            try { map1Preview = new Texture(Gdx.files.internal("ui/Map_1.png")); }
             catch(Exception e) { map1Preview = panelTexture; } // Fallback
-            
-            try { map2Preview = new Texture(Gdx.files.internal("ui/Map_2.png")); } 
+
+            try { map2Preview = new Texture(Gdx.files.internal("ui/Map_2.png")); }
             catch(Exception e) { map2Preview = panelTexture; }
-            
-            try { map3Preview = new Texture(Gdx.files.internal("ui/Map_3.png")); } 
+
+            try { map3Preview = new Texture(Gdx.files.internal("ui/Map_3.png")); }
             catch(Exception e) { map3Preview = panelTexture; }
 
         } catch (Exception e) {

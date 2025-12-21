@@ -62,7 +62,7 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
     //Moves onto the next player's turn and updates resources.
 
     public void nextTurn() {
-        
+
         // --- DÜZELTME: Tur mantığı düzenlendi ---
         // Oyuncu sırasını ilerlet
         currentPlayerIndex++;
@@ -70,10 +70,10 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         // Eğer tüm oyuncular oynadıysa tur sayısını arttır ve tileları resetle
         if (currentPlayerIndex >= players.size()) {
             currentPlayerIndex = 0;
-            currentTurn++;
             gameMap.resetAllTilesTurnData();
         }
-        
+        currentTurn++;
+
         // Get the new current player
         Player currentPlayer = getCurrentPlayer();
 
