@@ -13,45 +13,49 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.gameonjava.utlcs.backend.Game;
+import com.gameonjava.utlcs.backend.Map;
 import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Tile;
 import com.gameonjava.utlcs.backend.Enum.TerrainType;
+import com.gameonjava.utlcs.backend.building.Building;
 
 public class InteractionBar extends Table {
 
     private Skin skin;
     private Game gameBackend;
-    private GameHUD hud; 
+    private GameHUD hud;
+    private Map map; 
 
     // UI Bileşenleri
-    private Image slotBackground; 
-    private Table buttonTable;    
+    private Image slotBackground;
+    private Table buttonTable;
 
-    public InteractionBar(Skin skin, Game gameBackend, GameHUD hud) {
+    public InteractionBar(Skin skin, Game gameBackend, GameHUD hud, Map map) {
         this.skin = skin;
         this.gameBackend = gameBackend;
         this.hud = hud;
+        this.map = map;
 
-        this.bottom(); 
-        this.padBottom(20); 
+        this.bottom();
+        this.padBottom(20);
 
         Stack stack = new Stack();
         
         slotBackground = new Image();
-        slotBackground.setScaling(Scaling.none); 
+        slotBackground.setScaling(Scaling.none);
         slotBackground.setAlign(Align.center);
 
         buttonTable = new Table();
-        buttonTable.setFillParent(true); 
+        buttonTable.setFillParent(true);
 
         stack.add(slotBackground);
         stack.add(buttonTable);
 
-        this.add(stack).height(50).expandX().center(); 
+        this.add(stack).height(60).expandX().center();
     }
 
     public void updateContent(final Tile t) {
-        buttonTable.clear(); 
+        buttonTable.clear();
         
         if (t == null) {
             setVisible(false);
@@ -59,6 +63,8 @@ public class InteractionBar extends Table {
         }
         Player me = gameBackend.getCurrentPlayer();
         
+        // 1. GÜVENLİK KONTROLÜ: Eğer seçili kare benim değilse GİZLE.
+        // Bu sayede End Turn yapıldığında, sıra başkasına geçtiği an bar güncellenirse kapanır.
         if (t.getOwner() == null || !t.getOwner().equals(me)) {
             setVisible(false);
             return;
@@ -67,7 +73,7 @@ public class InteractionBar extends Table {
         setVisible(true);
 
         boolean hasBuilding = t.hasBuilding();
-        boolean isMaxLevel = hasBuilding && t.getBuilding().getLevel() >= 3; 
+        boolean isMaxLevel = hasBuilding && t.getBuilding().getLevel() >= 3;
         boolean hasArmy = t.hasArmy() && t.getArmy().getSoldiers() > 0;
         
         boolean canConstruct = (t.getTerrainType() == TerrainType.PLAIN || 
@@ -77,13 +83,14 @@ public class InteractionBar extends Table {
 
         // 1. (Bina Yok/Yükseltilebilir) VE (Asker Var) -> 3 BUTON
         if ( (!hasBuilding || !isMaxLevel) && hasArmy ) {
-            setSlotImage(Assets.ibSlot3); 
+            setSlotImage(Assets.ibSlot3);
             
             if (!hasBuilding) {
                 if (canConstruct) addTextButton("Construct", () -> openBuildingDialog(t));
-                else addEmptySlot(); 
+                else addEmptySlot();
             } else {
-                addTextButton("Develop", () -> openBuildingDialog(t));
+                // DEĞİŞİKLİK: Artık dialog açmıyor, direkt develop yapmayı deniyor.
+                addTextButton("Develop", () -> developBuilding(t));
             }
 
             addTextButton("Recruit", () -> openRecruitDialog(t));
@@ -92,7 +99,7 @@ public class InteractionBar extends Table {
         
         // 2. (Bina Tam Seviye) VE (Asker Var) -> 2 BUTON
         else if (isMaxLevel && hasArmy) {
-            setSlotImage(Assets.ibSlot2); 
+            setSlotImage(Assets.ibSlot2);
             
             addTextButton("Recruit", () -> openRecruitDialog(t));
             addTextButton("Move", () -> enableMoveMode(t));
@@ -102,9 +109,9 @@ public class InteractionBar extends Table {
         else if (!hasBuilding && !hasArmy) {
             
             if (canConstruct) {
-                setSlotImage(Assets.ibSlot2); 
+                setSlotImage(Assets.ibSlot2);
                 addTextButton("Construct", () -> openBuildingDialog(t));
-                addTextButton("Move", () -> System.out.println("No soldiers!")); 
+                addTextButton("Move", () -> System.out.println("No soldiers!"));
             } else {
                 setVisible(false);
             }
@@ -112,14 +119,15 @@ public class InteractionBar extends Table {
 
         // 4. (Bina Var/Tam) VE (Asker Yok) -> 1 BUTON
         else if (hasBuilding && isMaxLevel && !hasArmy) {
-            setSlotImage(Assets.ibSlot1); 
+            setSlotImage(Assets.ibSlot1);
             addTextButton("Recruit", () -> openRecruitDialog(t));
         }
         
-        // Ekstra Durum: Bina var (Max değil) ve Asker Yok -> 2 Buton
+        // Ekstra: Bina var (Max değil) ve Asker Yok -> 2 Buton
         else if (hasBuilding && !isMaxLevel && !hasArmy) {
             setSlotImage(Assets.ibSlot2);
-            addTextButton("Develop", () -> openBuildingDialog(t));
+            // DEĞİŞİKLİK: Direkt develop.
+            addTextButton("Develop", () -> developBuilding(t));
             addTextButton("Recruit", () -> openRecruitDialog(t));
         }
         
@@ -136,9 +144,9 @@ public class InteractionBar extends Table {
 
     private void addTextButton(String text, Runnable action) {
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
-        style.font = skin.getFont("default"); 
-        style.fontColor = Color.BLACK;        
-        style.up = Assets.btnGenericDr;       
+        style.font = skin.getFont("default");
+        style.fontColor = Color.BLACK;
+        style.up = Assets.btnGenericDr;
         
         if(Assets.btnGenericDr != null)
              style.down = Assets.btnGenericDr.tint(Color.LIGHT_GRAY);
@@ -152,31 +160,60 @@ public class InteractionBar extends Table {
             }
         });
 
-       
-        buttonTable.add(btn).width(120).height(50).expandX().center(); 
+        buttonTable.add(btn).width(120).height(50).expandX().center();
     }
     
     private void addEmptySlot() {
-        buttonTable.add().expandX(); 
+        buttonTable.add().expandX();
     }
 
     // --- AKSİYONLAR ---
 
+    // İnşaat menüsünü açar (Sadece bina yoksa kullanılır)
     private void openBuildingDialog(Tile t) {
-        System.out.println("Building Dialog Açılıyor...");
-         if (t.getOwner() != null) {
-            BuildingDialog build = new BuildingDialog("Construct", Assets.skin, t, t.getOwner(), hud);
+        if (t.getOwner() != null) {
+            BuildingSelectionDialog build = new BuildingSelectionDialog(Assets.skin, t, t.getOwner(), hud, map);
             build.show(hud.stage);
         }
     }
 
+    // DEĞİŞİKLİK: Binayı direkt geliştirir
+    private void developBuilding(Tile t) {
+        Player player = gameBackend.getCurrentPlayer();
+        
+        if (t.hasBuilding()) {
+            Building b = t.getBuilding();
+            
+            // Maliyet Kontrolü: GoldResource içindeki DEVELOP sabiti kullanılır
+            double cost = player.getGold().DEVELOP;
+            
+            if (player.getGold().checkForResource(cost)) {
+                // 1. Parayı düş
+                player.getGold().reduceResource(cost);
+                
+                // 2. Binayı yükselt
+                b.upgrade();
+                
+                System.out.println("Building upgraded to Level " + b.getLevel());
+                
+                // 3. UI Güncelle (Para azaldı, göstergeyi yenile)
+                hud.updateStats(player, Game.getCurrentTurn());
+                
+                // 4. Barı güncelle (Belki bina Max Level oldu, butonlar değişmeli)
+                updateContent(t);
+                
+            } else {
+                System.out.println("Yetersiz Altın! Gerekli: " + cost);
+                // İstersen buraya bir pop-up uyarısı ekleyebilirsin
+            }
+        }
+    }
+
     private void openRecruitDialog(Tile t) {
-        System.out.println("Recruit Dialog Açılıyor...");
-        // BURADA: Yeni RecruitDialog classını çağıracağız
+        System.out.println("Recruit Dialog should open here.");
     }
 
     private void enableMoveMode(Tile t) {
-        System.out.println("Move Mode Aktif.");
-        
+        System.out.println("Move Mode Active.");
     }
 }

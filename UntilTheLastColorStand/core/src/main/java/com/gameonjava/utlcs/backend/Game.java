@@ -215,7 +215,9 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
     public static int getCurrentTurn() {
         return currentTurn;
     }
-
+    public Map getMap(){
+        return gameMap;
+    }
     @Override
     public void write(Json json) {
         json.writeValue("Players", players);

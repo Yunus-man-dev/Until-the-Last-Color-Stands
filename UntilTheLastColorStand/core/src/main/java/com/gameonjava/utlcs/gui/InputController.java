@@ -40,8 +40,15 @@ public class InputController extends InputAdapter {
 
             if (tiles != null && !tiles.isEmpty()) {
                 Tile testTile = tiles.get(0);
-                BuildingDialog build = new BuildingDialog("Construct", Assets.skin, testTile, currentPlayer,
-                        screen.getHud());
+
+                // DÜZELTME: BuildingSelectionDialog kullanımı
+                BuildingSelectionDialog build = new BuildingSelectionDialog(
+                        Assets.skin,
+                        testTile,
+                        currentPlayer,
+                        screen.getHud(),
+                        screen.getGameHud().getBackendGame().getMap()); // Screen'den Map'i alıyoruz
+
                 build.show(screen.getHud().stage);
             }
             return true;
@@ -54,11 +61,11 @@ public class InputController extends InputAdapter {
             // Dummy bir oyuncu oluşturuyoruz
             Player other = new Player("Other Empire", new Red());
             TradeDialog trade = new TradeDialog(me, other, screen.getHud().getBackendGame());
-            
+
             // Ekranın ortasına koy
-            trade.setPosition((screen.getHud().stage.getWidth() - trade.getWidth()) / 2, 
-                              (screen.getHud().stage.getHeight() - trade.getHeight()) / 2);
-            
+            trade.setPosition((screen.getHud().stage.getWidth() - trade.getWidth()) / 2,
+                    (screen.getHud().stage.getHeight() - trade.getHeight()) / 2);
+
             screen.getHud().stage.addActor(trade);
             return true;
         }
@@ -98,15 +105,15 @@ public class InputController extends InputAdapter {
         // ====================================================================
         // --- INTERACTION BAR TESTLERİ (NUM 1, 2, 3, 0) ---
         // ====================================================================
-        
+
         // Buraya gelmeden önce kodda "return" olmamalı.
-        
+
         Player me = screen.getHud().getBackendGame().getCurrentPlayer();
 
         // TUŞ 1: (Bina Yok, Asker Yok) -> 2 Buton (Construct, Move)
         if (keycode == Input.Keys.NUM_1) {
             Tile t = new Tile(0, 0, TerrainType.PLAIN);
-            t.setOwner(me); 
+            t.setOwner(me);
             screen.getHud().getInteractionBar().updateContent(t);
             return true;
         }
@@ -116,7 +123,7 @@ public class InputController extends InputAdapter {
             Tile t = new Tile(0, 0, TerrainType.PLAIN);
             t.setOwner(me);
             t.setBuilding(new Farm(t, 10)); // Bina ekle
-            t.setArmy(new Army(5, me, t));  // Asker ekle
+            t.setArmy(new Army(5, me, t)); // Asker ekle
             screen.getHud().getInteractionBar().updateContent(t);
             return true;
         }
@@ -126,12 +133,14 @@ public class InputController extends InputAdapter {
             Tile t = new Tile(0, 0, TerrainType.PLAIN);
             t.setOwner(me);
             Farm f = new Farm(t, 10);
-            f.upgrade(); f.upgrade(); f.upgrade(); // Max level yap
+            f.upgrade();
+            f.upgrade();
+            f.upgrade(); // Max level yap
             t.setBuilding(f);
             screen.getHud().getInteractionBar().updateContent(t);
             return true;
         }
-        
+
         // TUŞ 0: Gizle
         if (keycode == Input.Keys.NUM_0) {
             screen.getHud().getInteractionBar().setVisible(false);

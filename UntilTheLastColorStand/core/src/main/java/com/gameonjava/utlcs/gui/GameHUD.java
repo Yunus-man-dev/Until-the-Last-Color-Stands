@@ -193,7 +193,7 @@ public class GameHUD implements Disposable {
         bottomTable.add(endTurnBtn).width(200).height(60).padBottom(10).padRight(20);
         bottomTable.right();
 
-        interactionBar = new InteractionBar(Assets.skin, backendGame, this);
+        interactionBar = new InteractionBar(Assets.skin, backendGame, this,backendGame.getMap());
         interactionBar.setSize(viewport.getWorldWidth(), 120);
         interactionBar.setPosition(0, 0);
         interactionBar.setVisible(false);

@@ -123,5 +123,8 @@ public class GameScreen extends ScreenAdapter {
     public void setShowSoldiers(boolean show) {
         this.showSoldiers = show;
     }
+    public GameHUD getGameHud(){
+        return hud;
+    }
 
 }
