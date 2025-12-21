@@ -7,14 +7,13 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions; // EKLENDİ (Animasyon için gerekli)
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
@@ -38,6 +37,9 @@ public class GameHUD implements Disposable {
     private ImageButton mailBtn;
     private InteractionBar interactionBar;
 
+    private Table filterMenuTable;
+    private ButtonGroup<CheckBox> filterGroup;
+
     private PlayerInfoWidget currentInfoWidget;
 
     public GameHUD(SpriteBatch batch, Game backendGame) {
@@ -45,14 +47,12 @@ public class GameHUD implements Disposable {
         stage = new Stage(viewport, batch);
 
         this.backendGame = backendGame;
-        // this.backendGame.startGame(1);
         TextButton.TextButtonStyle beigeStyle = createBeigeStyle();
 
         Table rootTable = new Table();
         rootTable.setFillParent(true);
         stage.addActor(rootTable);
 
-        // Pencere dışına tıklayınca widget kapatma
         stage.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -79,7 +79,7 @@ public class GameHUD implements Disposable {
         settingsBtn.clearChildren();
         settingsBtn.add(new Image(Assets.settings)).size(32).expand().center();
 
-        topTable.add(settingsBtn).size(60, 50).padLeft(10).padRight(10);
+        topTable.add(settingsBtn).size(50, 50).padLeft(10).padRight(10);
 
         Table resourcesTable = new Table();
         resourcesTable.setBackground(Assets.rbarbg);
@@ -194,10 +194,10 @@ public class GameHUD implements Disposable {
         bottomTable.right();
 
         interactionBar = new InteractionBar(Assets.skin, backendGame, this);
-        interactionBar.setSize(viewport.getWorldWidth(), 120); // Yüksekliği ayarla
-        interactionBar.setPosition(0, 0); // En alta sabitle
-        interactionBar.setVisible(false); // Başlangıçta gizli
-        
+        interactionBar.setSize(viewport.getWorldWidth(), 120);
+        interactionBar.setPosition(0, 0);
+        interactionBar.setVisible(false);
+
         stage.addActor(interactionBar);
 
         // ANA YERLEŞİM
@@ -235,7 +235,6 @@ public class GameHUD implements Disposable {
         turnCount.setText("Turn " + turnNumber);
         currentPlayerLabel.setText(player.getName() + "'s Turn");
 
-        // Mail Butonu Güncelleme
         if (mailBtn != null) {
             ArrayList<Trade> pending = backendGame.getPendingTradesFor(player);
 
@@ -247,10 +246,10 @@ public class GameHUD implements Disposable {
                             Actions.fadeIn(0.5f))));
                 }
             }
-            // Eğer liste boşsa (Teklif yoksa) -> GİZLE
             else {
                 mailBtn.setVisible(false);
-                mailBtn.clearActions(); // Animasyonu temizle
+                mailBtn.clearActions();
+                mailBtn.clearActions();
                 mailBtn.setColor(1, 1, 1, 1);
             }
         }
@@ -269,9 +268,90 @@ public class GameHUD implements Disposable {
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.font = Assets.skin.getFont("default");
         style.up = Assets.tfbg;
-        style.down = Assets.skin.newDrawable(Assets.tfbg, Color.LIGHT_GRAY);
+        style.down = Assets.skin.newDrawable(Assets.filterbarbg, Color.LIGHT_GRAY);
         style.fontColor = Color.BLACK;
         return style;
+    }
+
+    public void createFilterMenu(final com.gameonjava.utlcs.gui.GameScreen screen) {
+        filterMenuTable = new Table();
+
+        filterMenuTable.setBackground(Assets.skin.newDrawable("white", Color.BLACK));
+
+        filterMenuTable.setVisible(false);
+
+        Table innerTable = new Table();
+        innerTable.setBackground(Assets.skin.newDrawable("white", new Color(0.9f, 0.7f, 0.3f, 1f)));
+        innerTable.top().pad(5);
+
+        final CheckBox checkBuildings = new CheckBox(" Buildings Only", Assets.skin);
+        final CheckBox checkSoldiers = new CheckBox(" Soldiers Only", Assets.skin);
+        final CheckBox checkNone = new CheckBox(" Show None", Assets.skin);
+
+        checkBuildings.getLabel().setColor(Color.BLACK);
+        checkSoldiers.getLabel().setColor(Color.BLACK);
+        checkNone.getLabel().setColor(Color.BLACK);
+
+        filterGroup = new ButtonGroup<>();
+        filterGroup.add(checkBuildings);
+        filterGroup.add(checkSoldiers);
+        filterGroup.add(checkNone);
+        filterGroup.setMaxCheckCount(1);
+        filterGroup.setMinCheckCount(1);
+        filterGroup.setUncheckLast(true);
+
+        if (screen.isShowBuildings()) checkBuildings.setChecked(true);
+        else if (screen.isShowSoldiers()) checkSoldiers.setChecked(true);
+        else checkNone.setChecked(true);
+
+        ChangeListener listener = new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                screen.setShowBuildings(false);
+                screen.setShowSoldiers(false);
+
+                if (checkBuildings.isChecked()) screen.setShowBuildings(true);
+                else if (checkSoldiers.isChecked()) screen.setShowSoldiers(true);
+            }
+        };
+
+        checkBuildings.addListener(listener);
+        checkSoldiers.addListener(listener);
+        checkNone.addListener(listener);
+
+        innerTable.add(checkBuildings).left().padBottom(5).expandX().fillX().row();
+        innerTable.add(checkSoldiers).left().padBottom(5).expandX().fillX().row();
+        innerTable.add(checkNone).left().expandX().fillX().row();
+
+        filterMenuTable.add(innerTable).grow().pad(2);
+
+        stage.addActor(filterMenuTable);
+    }
+    public void toggleFilterMenu() {
+        if (filterMenuTable != null) {
+            boolean isVisible = filterMenuTable.isVisible();
+
+            if (!isVisible) {
+
+                Vector2 coords = new Vector2(0, 0);
+
+                if(getFilterBtn() != null) {
+                    getFilterBtn().localToStageCoordinates(coords);
+                }
+
+                float width = Math.max(getFilterBtn().getWidth(), 150);
+
+                filterMenuTable.setWidth(width);
+                filterMenuTable.pack();
+
+                filterMenuTable.setPosition(coords.x, coords.y - filterMenuTable.getHeight());
+
+                filterMenuTable.toFront();
+                filterMenuTable.setVisible(true);
+            } else {
+                filterMenuTable.setVisible(false);
+            }
+        }
     }
 
     public Game getBackendGame() {
@@ -281,9 +361,12 @@ public class GameHUD implements Disposable {
     public InteractionBar getInteractionBar() {
         return interactionBar;
     }
-
     public TextButton getSettingsBtn() {
         return settingsBtn;
+    }
+
+    public TextButton getFilterBtn() {
+        return filterBtn;
     }
 
     public void render() {

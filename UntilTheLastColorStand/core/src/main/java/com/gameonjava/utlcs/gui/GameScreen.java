@@ -17,6 +17,8 @@ public class GameScreen extends ScreenAdapter {
     private Main game;
     private GameHUD hud;
     private InputController inputController;
+    private boolean showBuildings = true;
+    private boolean showSoldiers = true;
 
     public GameScreen(Main game, com.gameonjava.utlcs.backend.Game backendGame) {
         this.game = game;
@@ -51,6 +53,14 @@ public class GameScreen extends ScreenAdapter {
                 PauseDialog pause = new PauseDialog("Game Paused", Assets.skin, game,
                     hud.backendGame);
                 pause.show(hud.stage);
+            }
+        });
+        hud.createFilterMenu(this);
+
+        hud.getFilterBtn().addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                hud.toggleFilterMenu();
             }
         });
     }
@@ -93,6 +103,25 @@ public class GameScreen extends ScreenAdapter {
         if (name.contains("Blue")) return "HAVE 200 TECH\nAND 10 LIBRARIES";
         if (name.contains("Gold")) return "HAVE 100 GOLD";
         if (name.contains("Brown")) return "HAVE 100 GOLD";
+        if (name.contains("Black")) return "HAVE 100 GOLD";
+        if (name.contains("Dark Red")) return "HAVE 100 GOLD";
+        if (name.contains("Cyan")) return "HAVE 100 GOLD";
         return null;
     }
+    public boolean isShowBuildings() {
+        return showBuildings;
+    }
+
+    public void setShowBuildings(boolean show) {
+        this.showBuildings = show;
+    }
+
+    public boolean isShowSoldiers() {
+        return showSoldiers;
+    }
+
+    public void setShowSoldiers(boolean show) {
+        this.showSoldiers = show;
+    }
+
 }

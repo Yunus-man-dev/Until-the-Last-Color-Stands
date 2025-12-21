@@ -49,20 +49,21 @@ public class Assets {
     public static final String TRADE_BTN_APPROVE = "ui/TradeBarButon.png";
     //Incoming Trade
     public static final String MAIL = "ui/MailIcon.png";
-    public static final String INCOMING_BG = "ui/IncomingBg.png"; 
-    public static final String INCOMING_HEADER = "ui/IncomingHeader.png"; 
-    public static final String INCOMING_CIRCLE = "ui/IncomingCircle.png"; 
-    public static final String BTN_ACCEPT = "ui/BtnAccept.png"; 
+    public static final String INCOMING_BG = "ui/IncomingBg.png";
+    public static final String INCOMING_HEADER = "ui/IncomingHeader.png";
+    public static final String INCOMING_CIRCLE = "ui/IncomingCircle.png";
+    public static final String BTN_ACCEPT = "ui/BtnAccept.png";
     public static final String BTN_REFUSE = "ui/BtnRefuse.png";
-    //War 
-    public static final String WAR_BG_BROWN = "ui/WarBgBrown.png";   
-    public static final String WAR_BG_YELLOW = "ui/WarBgYellow.png"; 
-    public static final String WAR_BTN_DONE = "ui/WarBtnDone.png";   
+    //War
+    public static final String WAR_BG_BROWN = "ui/WarBgBrown.png";
+    public static final String WAR_BG_YELLOW = "ui/WarBgYellow.png";
+    public static final String WAR_BTN_DONE = "ui/WarBtnDone.png";
     //Alt Panel
-    public static final String IB_SLOT_1 = "ui/SlotBg1.png"; 
-    public static final String IB_SLOT_2 = "ui/SlotBg2.png"; 
-    public static final String IB_SLOT_3 = "ui/SlotBg3.png"; 
+    public static final String IB_SLOT_1 = "ui/SlotBg1.png";
+    public static final String IB_SLOT_2 = "ui/SlotBg2.png";
+    public static final String IB_SLOT_3 = "ui/SlotBg3.png";
     public static final String BTN_GENERIC = "ui/BtnGeneric.png";
+
 
     public static Skin skin;
     public static final String goldBg = "ui/goldBg.png";
@@ -87,9 +88,10 @@ public class Assets {
     public static final String MAP_BG = "ui/Map_bg.png";
     public static final String MAP_BTN = "ui/Map_btn.png";
     public static final String MAP_PANEL = "ui/MapPanel.png";
- 
+    public static final String FILTERBARBG = "ui/filterbarbg.png";
 
-    public static TextureRegionDrawable bgRed, bgBlue, bgBrown, bgGold, infobg, topbarbg, rbarbg, tfbg;
+
+    public static TextureRegionDrawable bgRed, bgBlue, bgBrown, bgGold, infobg, topbarbg, rbarbg, tfbg,filterbarbg;
     public static Texture infoBgBrown;
     public static Texture infoBgYellow;
     public static Texture infoBtnTrade;
@@ -160,6 +162,7 @@ public class Assets {
         manager.load(MAP_BG, Texture.class);
         manager.load(MAP_BTN, Texture.class);
         manager.load(MAP_PANEL, Texture.class);
+        manager.load(FILTERBARBG, Texture.class);
 
         manager.load(BOOK, Texture.class);
         manager.load(DASH, Texture.class);
@@ -260,7 +263,7 @@ public class Assets {
         ibSlot2 = manager.get(IB_SLOT_2, Texture.class);
         ibSlot3 = manager.get(IB_SLOT_3, Texture.class);
         btnGeneric = manager.get(BTN_GENERIC, Texture.class);
-        
+
         btnGenericDr = new TextureRegionDrawable(new TextureRegion(btnGeneric));
 
         warBgBrownDr = new TextureRegionDrawable(new TextureRegion(warBgBrown));
@@ -274,6 +277,7 @@ public class Assets {
         topbarbg = new TextureRegionDrawable(new TextureRegion(manager.get(TOPBARBG, Texture.class)));
         rbarbg = new TextureRegionDrawable(new TextureRegion(manager.get(RBARBG, Texture.class)));
         tfbg = new TextureRegionDrawable(new TextureRegion(manager.get(TFBG, Texture.class)));
+        filterbarbg = new TextureRegionDrawable(new TextureRegion(manager.get(FILTERBARBG, Texture.class)));
         mail = manager.get(MAIL, Texture.class);
         incomingBg = manager.get(INCOMING_BG, Texture.class);
         incomingHeader = manager.get(INCOMING_HEADER, Texture.class);
