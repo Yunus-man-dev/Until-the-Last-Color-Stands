@@ -108,7 +108,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
 
         Table winPanel = new Table();
         winPanel.setBackground(new NinePatchDrawable(new NinePatch(winConditionBgTexture, 12, 12, 12, 12)));
-        winPanel.add(new Label("Victory", skin, "subtitle")).padBottom(10).row();
+        winPanel.add(new Label("Victory", skin, "default")).padBottom(10).row();
         winConditionLabel = new Label("", skin);
         winConditionLabel.setWrap(true);
         winConditionLabel.setAlignment(Align.center);
@@ -128,9 +128,9 @@ public class EmpireSelectionScreen extends ScreenAdapter {
 
         // --- ORTA SÜTUN ---
         Table centerColumn = new Table();
-        playerTitleLabel = new Label("Player 1 Selection", skin, "subtitle");
+        playerTitleLabel = new Label("Player 1 Selection", skin, "default");
         playerTitleLabel.setColor(Color.GOLD);
-        playerTitleLabel.setFontScale(0.9f);
+        playerTitleLabel.setFontScale(0.25f);
         
         nameField = new TextField("", skin);
         nameField.setMessageText("Enter Name...");
@@ -166,7 +166,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         Table rightColumn = new Table();
         Table featurePanel = new Table();
         featurePanel.setBackground(new NinePatchDrawable(new NinePatch(uniqueFeatureBgTexture, 12, 12, 12, 12)));
-        featurePanel.add(new Label("Extras", skin, "subtitle")).padBottom(10).row();
+        featurePanel.add(new Label("Extras", skin, "default")).padBottom(10).row();
         featureLabel = new Label("", skin);
         featureLabel.setWrap(true);
         featureLabel.setAlignment(Align.center);
@@ -240,35 +240,35 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         if (empireName.contains("Blue")) {
             colorPreviewImage.setColor(Color.BLUE);
             winConditionLabel.setText("Technology points must be above 50 and have at least 8 libraries.");
-            featureLabel.setText("More books from libraries each turn.\nAttack multipler will be less.");
+            featureLabel.setText("Books provides x2 technology points");
         } else if (empireName.contains("Red")) {
             colorPreviewImage.setColor(Color.RED);
             winConditionLabel.setText("Capture at least 30 tiles.");
-            featureLabel.setText("Recruit 5 more soldiers in each turn.\nHas attack bonus against all civilizations except Brown and Black.");
+            featureLabel.setText("Recruit 5 more soldiers in each turn.\nHas 15% attack bonus against all civilizations except Brown and Black.\nMovement of soldiers requires 20% less movement points.\nSoldier recruitment cost is 20% higher.");
         } else if (empireName.contains("Gold")) {
             colorPreviewImage.setColor(Color.GOLD);
             winConditionLabel.setText("Must have at least 10 gold mines and have at least 10000 golds.");
-            featureLabel.setText("Gold production bonus form mines.\nTrade discount\nSoldier recuitment cost higher.");
+            featureLabel.setText("50% gold production bonus form mines.\n15% trade discount will be applied.\nSoldier recruitment cost is 30% higher.");
         } else if(empireName.contains("Brown")) {
             colorPreviewImage.setColor(Color.BROWN);
             winConditionLabel.setText("Must be alive for 200 turns.");
-            featureLabel.setText("Food production bonus from farms and ports.\nDefense and attack bonus against Red and Dark Red\nSoldiers consume more food.");
+            featureLabel.setText("20% food production bonus from farms and ports.\n30% defense and 15% attack bonus against Red and Dark Red\nSoldiers consume 30% more food.");
         }else if(empireName.contains("Dark Red")){
             colorPreviewImage.setColor(new Color(0.55f, 0f, 0f, 1f)); // Koyu kırmızı
             winConditionLabel.setText("Capture at least 30 tiles.");
-            featureLabel.setText("Recruit 5 more soldiers in each turn.\nHas attack bonus against all civilizations except Brown and Black.");
+            featureLabel.setText("Recruit 5 more soldiers in each turn.\nHas 15% attack bonus against all civilizations except Brown and Black.\nMovement of soldiers requires 20% less movement points.\nSoldier recruitment cost is 20% higher.");
         }else if(empireName.contains("Cyan")){
             colorPreviewImage.setColor(Color.CYAN);
             winConditionLabel.setText("Technology points must be above 50 and have at least 8 libraries.");
-            featureLabel.setText("More books from libraries each turn.\nAttack multipler will be less.");
+            featureLabel.setText("Books provides x2 technology points.");
         }else if(empireName.contains("Orange")){
             colorPreviewImage.setColor(Color.ORANGE);
             winConditionLabel.setText("Must have at least 10 gold mines and have at least 10000 golds.");
-            featureLabel.setText("Gold production bonus form mines.\nTrade discount\nSoldier recuitment cost higher.");
+            featureLabel.setText("50% gold production bonus form mines.\n15% trade discount will be applied.\nSoldier recruitment cost is 30% higher.");
         }else if(empireName.contains("Black")){
             colorPreviewImage.setColor(Color.GRAY);
             winConditionLabel.setText("Must be alive for 200 turns.");
-            featureLabel.setText("Food production bonus from farms and ports.\nDefense and attack bonus against Red and Dark Red\nSoldiers consume more food.");
+            featureLabel.setText("20% food production bonus from farms and ports.\n30% defense and 15% attack bonus against Red and Dark Red\nSoldiers consume 30% more food.");
         }
     }
 
