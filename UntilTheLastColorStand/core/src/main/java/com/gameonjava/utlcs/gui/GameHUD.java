@@ -36,6 +36,7 @@ public class GameHUD implements Disposable {
     private TextButton endTurnBtn, settingsBtn, filterBtn;
     private Table winTable;
     private ImageButton mailBtn;
+    private InteractionBar interactionBar;
 
     private PlayerInfoWidget currentInfoWidget;
 
@@ -192,6 +193,13 @@ public class GameHUD implements Disposable {
         bottomTable.add(endTurnBtn).width(200).height(60).padBottom(10).padRight(20);
         bottomTable.right();
 
+        interactionBar = new InteractionBar(Assets.skin, backendGame, this);
+        interactionBar.setSize(viewport.getWorldWidth(), 120); // Yüksekliği ayarla
+        interactionBar.setPosition(0, 0); // En alta sabitle
+        interactionBar.setVisible(false); // Başlangıçta gizli
+        
+        stage.addActor(interactionBar);
+
         // ANA YERLEŞİM
         rootTable.add(topTable).growX().height(60).colspan(3).top();
         rootTable.row();
@@ -231,7 +239,6 @@ public class GameHUD implements Disposable {
         if (mailBtn != null) {
             ArrayList<Trade> pending = backendGame.getPendingTradesFor(player);
 
-        
             if (pending != null && !pending.isEmpty()) {
                 if (!mailBtn.isVisible()) {
                     mailBtn.setVisible(true);
@@ -244,7 +251,7 @@ public class GameHUD implements Disposable {
             else {
                 mailBtn.setVisible(false);
                 mailBtn.clearActions(); // Animasyonu temizle
-                mailBtn.setColor(1, 1, 1, 1); 
+                mailBtn.setColor(1, 1, 1, 1);
             }
         }
     }
@@ -270,7 +277,11 @@ public class GameHUD implements Disposable {
     public Game getBackendGame() {
         return backendGame;
     }
-    
+
+    public InteractionBar getInteractionBar() {
+        return interactionBar;
+    }
+
     public TextButton getSettingsBtn() {
         return settingsBtn;
     }

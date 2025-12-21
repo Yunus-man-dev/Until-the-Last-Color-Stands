@@ -58,6 +58,11 @@ public class Assets {
     public static final String WAR_BG_BROWN = "ui/WarBgBrown.png";   
     public static final String WAR_BG_YELLOW = "ui/WarBgYellow.png"; 
     public static final String WAR_BTN_DONE = "ui/WarBtnDone.png";   
+    //Alt Panel
+    public static final String IB_SLOT_1 = "ui/SlotBg1.png"; 
+    public static final String IB_SLOT_2 = "ui/SlotBg2.png"; 
+    public static final String IB_SLOT_3 = "ui/SlotBg3.png"; 
+    public static final String BTN_GENERIC = "ui/BtnGeneric.png";
 
     public static Skin skin;
     public static final String goldBg = "ui/goldBg.png";
@@ -127,6 +132,8 @@ public class Assets {
     public static Texture btnRefuse;
     public static Texture warBgBrown, warBgYellow, warBtnDone;
     public static Drawable warBgBrownDr, warBgYellowDr, warBtnDoneDr;
+    public static Texture ibSlot1, ibSlot2, ibSlot3, btnGeneric;
+    public static TextureRegionDrawable btnGenericDr;
 
 
     public static void load() {
@@ -188,6 +195,10 @@ public class Assets {
         manager.load(WAR_BG_BROWN, Texture.class);
         manager.load(WAR_BG_YELLOW, Texture.class);
         manager.load(WAR_BTN_DONE, Texture.class);
+        manager.load(IB_SLOT_1, Texture.class);
+        manager.load(IB_SLOT_2, Texture.class);
+        manager.load(IB_SLOT_3, Texture.class);
+        manager.load(BTN_GENERIC, Texture.class);
     }
 
     public static void finishLoading() {
@@ -245,6 +256,12 @@ public class Assets {
         warBgBrown = manager.get(WAR_BG_BROWN, Texture.class);
         warBgYellow = manager.get(WAR_BG_YELLOW, Texture.class);
         warBtnDone = manager.get(WAR_BTN_DONE, Texture.class);
+        ibSlot1 = manager.get(IB_SLOT_1, Texture.class);
+        ibSlot2 = manager.get(IB_SLOT_2, Texture.class);
+        ibSlot3 = manager.get(IB_SLOT_3, Texture.class);
+        btnGeneric = manager.get(BTN_GENERIC, Texture.class);
+        
+        btnGenericDr = new TextureRegionDrawable(new TextureRegion(btnGeneric));
 
         warBgBrownDr = new TextureRegionDrawable(new TextureRegion(warBgBrown));
         warBgYellowDr = new TextureRegionDrawable(new TextureRegion(warBgYellow));
