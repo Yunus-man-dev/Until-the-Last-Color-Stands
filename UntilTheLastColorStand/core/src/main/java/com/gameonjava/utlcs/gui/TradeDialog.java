@@ -77,7 +77,6 @@ public class TradeDialog extends Group {
         // Yatay ortalama
         float panelX = (getWidth() - panelWidth) / 2;
 
-
         // ==========================================
         // PANEL 1: YOU GIVE (ÜST SARI PANEL)
         // ==========================================
@@ -111,7 +110,6 @@ public class TradeDialog extends Group {
         this.addActor(topTable);
         updateIconVisuals(true);
 
-
         // ==========================================
         // PANEL 2: YOU TAKE (ALT SARI PANEL)
         // ==========================================
@@ -143,7 +141,6 @@ public class TradeDialog extends Group {
         this.addActor(botTable);
         updateIconVisuals(false);
 
-
         // ==========================================
         // APPROVE BUTONU (EN ALTTA)
         // ==========================================
@@ -158,7 +155,8 @@ public class TradeDialog extends Group {
 
         // Butonu biraz daha aşağı çekmek için -15 yerine -20 yaptım
         float btnY = botPanelY - approveBtn.getHeight() - 20;
-        if (btnY < 10) btnY = 15;
+        if (btnY < 10)
+            btnY = 15;
 
         approveBtn.setPosition((getWidth() - approveBtn.getWidth()) / 2, btnY);
 
@@ -175,7 +173,8 @@ public class TradeDialog extends Group {
 
     private Image createSelectableIcon(Texture texture, final String typeName, final boolean isGiveSection) {
         final Image img = new Image(texture);
-        // Tıklama alanını iyileştirmek için image scale edilebilir ama şimdilik size(50) yetecektir.
+        // Tıklama alanını iyileştirmek için image scale edilebilir ama şimdilik
+        // size(50) yetecektir.
         img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -192,14 +191,18 @@ public class TradeDialog extends Group {
     }
 
     private void updateIconVisuals(boolean isGiveSection) {
+        // Alpha (Görünürlük) ayarı ile seçim belirginleştirme
+        float selectedAlpha = 1.0f; // Tam görünür
+        float unselectedAlpha = 0.3f; // %30 görünür (Soluk)
+
         if (isGiveSection) {
-            giveGoldImg.setColor(selectedGiveType.equals("Gold") ? Color.WHITE : Color.DARK_GRAY);
-            giveFoodImg.setColor(selectedGiveType.equals("Food") ? Color.WHITE : Color.DARK_GRAY);
-            giveBookImg.setColor(selectedGiveType.equals("Book") ? Color.WHITE : Color.DARK_GRAY);
+            giveGoldImg.setColor(1, 1, 1, selectedGiveType.equals("Gold") ? selectedAlpha : unselectedAlpha);
+            giveFoodImg.setColor(1, 1, 1, selectedGiveType.equals("Food") ? selectedAlpha : unselectedAlpha);
+            giveBookImg.setColor(1, 1, 1, selectedGiveType.equals("Book") ? selectedAlpha : unselectedAlpha);
         } else {
-            wantGoldImg.setColor(selectedWantType.equals("Gold") ? Color.WHITE : Color.DARK_GRAY);
-            wantFoodImg.setColor(selectedWantType.equals("Food") ? Color.WHITE : Color.DARK_GRAY);
-            wantBookImg.setColor(selectedWantType.equals("Book") ? Color.WHITE : Color.DARK_GRAY);
+            wantGoldImg.setColor(1, 1, 1, selectedWantType.equals("Gold") ? selectedAlpha : unselectedAlpha);
+            wantFoodImg.setColor(1, 1, 1, selectedWantType.equals("Food") ? selectedAlpha : unselectedAlpha);
+            wantBookImg.setColor(1, 1, 1, selectedWantType.equals("Book") ? selectedAlpha : unselectedAlpha);
         }
     }
 
@@ -222,7 +225,8 @@ public class TradeDialog extends Group {
             Trade newTrade = new Trade(creator, receiver, givenRes, giveAmt, wantedRes, wantAmt);
             gameBackend.addTrade(newTrade);
 
-            System.out.println("Trade offer sent: " + giveAmt + " " + selectedGiveType + " <-> " + wantAmt + " " + selectedWantType);
+            System.out.println("Trade offer sent: " + giveAmt + " " + selectedGiveType + " <-> " + wantAmt + " "
+                    + selectedWantType);
             remove();
 
         } catch (NumberFormatException e) {
@@ -231,9 +235,12 @@ public class TradeDialog extends Group {
     }
 
     private Resource createResourceByType(String type, int amount) {
-        if (type.equals("Gold")) return new GoldResource(amount, 0,0,0,0);
-        if (type.equals("Food")) return new FoodResource(amount, 0,0,0);
-        if (type.equals("Book")) return new BookResource(amount, 0);
-        return new GoldResource(0,0,0,0,0);
+        if (type.equals("Gold"))
+            return new GoldResource(amount, 0, 0, 0, 0);
+        if (type.equals("Food"))
+            return new FoodResource(amount, 0, 0, 0);
+        if (type.equals("Book"))
+            return new BookResource(amount, 0);
+        return new GoldResource(0, 0, 0, 0, 0);
     }
 }
