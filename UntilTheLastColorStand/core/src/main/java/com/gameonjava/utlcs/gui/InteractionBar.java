@@ -63,8 +63,7 @@ public class InteractionBar extends Table {
         }
         Player me = gameBackend.getCurrentPlayer();
         
-        // 1. GÜVENLİK KONTROLÜ: Eğer seçili kare benim değilse GİZLE.
-        // Bu sayede End Turn yapıldığında, sıra başkasına geçtiği an bar güncellenirse kapanır.
+        // 1. GÜVENLİK KONTROLÜ
         if (t.getOwner() == null || !t.getOwner().equals(me)) {
             setVisible(false);
             return;
@@ -81,54 +80,62 @@ public class InteractionBar extends Table {
 
         // --- SENARYOLAR ---
 
-        // 1. (Bina Yok/Yükseltilebilir) VE (Asker Var) -> 3 BUTON
+        // 1. (Bina Yok/Yükseltilebilir) VE (Asker Var) -> 3 Aksiyon + Cancel = 4 Buton
         if ( (!hasBuilding || !isMaxLevel) && hasArmy ) {
-            setSlotImage(Assets.ibSlot3);
+            setSlotImage(Assets.ibSlot3); // 4 buton sığdırmak için en geniş barı kullanıyoruz
             
             if (!hasBuilding) {
                 if (canConstruct) addTextButton("Construct", () -> openBuildingDialog(t));
                 else addEmptySlot();
             } else {
-                // DEĞİŞİKLİK: Artık dialog açmıyor, direkt develop yapmayı deniyor.
                 addTextButton("Develop", () -> developBuilding(t));
             }
 
             addTextButton("Recruit", () -> openRecruitDialog(t));
             addTextButton("Move", () -> enableMoveMode(t));
+            
+            addCancelButton(); // EN SAĞA EKLENDİ
         }
         
-        // 2. (Bina Tam Seviye) VE (Asker Var) -> 2 BUTON
+        // 2. (Bina Tam Seviye) VE (Asker Var) -> 2 Aksiyon + Cancel = 3 Buton
         else if (isMaxLevel && hasArmy) {
-            setSlotImage(Assets.ibSlot2);
+            setSlotImage(Assets.ibSlot3); // 3 buton için Slot3
             
             addTextButton("Recruit", () -> openRecruitDialog(t));
             addTextButton("Move", () -> enableMoveMode(t));
+            
+            addCancelButton(); // EN SAĞA EKLENDİ
         }
 
-        // 3. (Bina Yok) VE (Asker Yok) -> 2 BUTON
+        // 3. (Bina Yok) VE (Asker Yok) -> 2 Aksiyon + Cancel = 3 Buton
         else if (!hasBuilding && !hasArmy) {
             
             if (canConstruct) {
-                setSlotImage(Assets.ibSlot2);
+                setSlotImage(Assets.ibSlot3); // 3 buton için Slot3
                 addTextButton("Construct", () -> openBuildingDialog(t));
                 addTextButton("Move", () -> System.out.println("No soldiers!"));
+                
+                addCancelButton(); // EN SAĞA EKLENDİ
             } else {
                 setVisible(false);
             }
         }
 
-        // 4. (Bina Var/Tam) VE (Asker Yok) -> 1 BUTON
+        // 4. (Bina Var/Tam) VE (Asker Yok) -> 1 Aksiyon + Cancel = 2 Buton
         else if (hasBuilding && isMaxLevel && !hasArmy) {
-            setSlotImage(Assets.ibSlot1);
+            setSlotImage(Assets.ibSlot2); // 2 buton için Slot2 yeterli
             addTextButton("Recruit", () -> openRecruitDialog(t));
+            
+            addCancelButton(); // EN SAĞA EKLENDİ
         }
         
-        // Ekstra: Bina var (Max değil) ve Asker Yok -> 2 Buton
+        // 5. Bina var (Max değil) ve Asker Yok -> 2 Aksiyon + Cancel = 3 Buton
         else if (hasBuilding && !isMaxLevel && !hasArmy) {
-            setSlotImage(Assets.ibSlot2);
-            // DEĞİŞİKLİK: Direkt develop.
+            setSlotImage(Assets.ibSlot3); // 3 buton için Slot3
             addTextButton("Develop", () -> developBuilding(t));
             addTextButton("Recruit", () -> openRecruitDialog(t));
+            
+            addCancelButton(); // EN SAĞA EKLENDİ
         }
         
         else {
@@ -163,13 +170,26 @@ public class InteractionBar extends Table {
         buttonTable.add(btn).width(120).height(50).expandX().center();
     }
     
+    // --- YENİ EKLENEN METOD: CANCEL BUTONU ---
+    private void addCancelButton() {
+        addTextButton("Cancel", new Runnable() {
+            @Override
+            public void run() {
+                // Barı gizle
+                setVisible(false);
+                // Eğer harita üzerindeki seçimi de kaldırmak isterseniz
+                // GameScreen veya TileSelector'a erişim gerekir.
+                // Şimdilik sadece menüyü kapatıyoruz.
+            }
+        });
+    }
+    
     private void addEmptySlot() {
         buttonTable.add().expandX();
     }
 
     // --- AKSİYONLAR ---
 
-    // İnşaat menüsünü açar (Sadece bina yoksa kullanılır)
     private void openBuildingDialog(Tile t) {
         if (t.getOwner() != null) {
             BuildingSelectionDialog build = new BuildingSelectionDialog(Assets.skin, t, t.getOwner(), hud, map);
@@ -177,34 +197,21 @@ public class InteractionBar extends Table {
         }
     }
 
-    // DEĞİŞİKLİK: Binayı direkt geliştirir
     private void developBuilding(Tile t) {
         Player player = gameBackend.getCurrentPlayer();
         
         if (t.hasBuilding()) {
             Building b = t.getBuilding();
-            
-            // Maliyet Kontrolü: GoldResource içindeki DEVELOP sabiti kullanılır
             double cost = player.getGold().DEVELOP;
             
             if (player.getGold().checkForResource(cost)) {
-                // 1. Parayı düş
                 player.getGold().reduceResource(cost);
-                
-                // 2. Binayı yükselt
                 b.upgrade();
-                
                 System.out.println("Building upgraded to Level " + b.getLevel());
-                
-                // 3. UI Güncelle (Para azaldı, göstergeyi yenile)
                 hud.updateStats(player, Game.getCurrentTurn());
-                
-                // 4. Barı güncelle (Belki bina Max Level oldu, butonlar değişmeli)
                 updateContent(t);
-                
             } else {
                 System.out.println("Yetersiz Altın! Gerekli: " + cost);
-                // İstersen buraya bir pop-up uyarısı ekleyebilirsin
             }
         }
     }
