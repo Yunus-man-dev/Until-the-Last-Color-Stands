@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions; // EKLENDİ (Animasyon i
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Disposable;
@@ -169,18 +170,19 @@ public class GameHUD implements Disposable {
         Table rightTable = new Table();
         rightTable.setBackground(Assets.infobg);
 
-        currentPlayerLabel = new Label("", Assets.skin);
+        currentPlayerLabel = new Label(backendGame.getPlayers().get(0).getName(), Assets.skin);
         currentPlayerLabel.setAlignment(Align.center);
 
         Label winCondTitle = new Label("Win Condition:", Assets.skin);
         winCondTitle.setAlignment(Align.center);
-        winCondDesc = new Label("", Assets.skin);
+        winCondDesc = new Label(backendGame.getPlayers().get(0).getCivilization().winCondText, Assets.skin);
         winCondDesc.setWrap(true);
 
         rightTable.add(currentPlayerLabel).pad(20).row();
 
         winTable = new Table();
-        winTable.setBackground(Assets.bgRed);
+        TextureRegionDrawable firstplayersColor = civNameToColor(backendGame.getPlayers().get(0).getCivilization().getCivilizationColor());
+        winTable.setBackground(firstplayersColor);
         winTable.add(winCondTitle).padTop(10).row();
         winTable.add(winCondDesc).width(180).pad(10).row();
 
@@ -400,6 +402,33 @@ public class GameHUD implements Disposable {
 
     public TextButton getFilterBtn() {
         return filterBtn;
+    }
+    public TextureRegionDrawable civNameToColor(String civName) {
+        if (civName.equals("Gold")) {
+            return Assets.bgGold;
+        }
+        if (civName.equals("Orange")) {
+            return Assets.bgOrange;
+        }
+        if (civName.equals("Brown")) {
+            return Assets.bgBrown;
+        }
+        if (civName.equals("Gray")) {
+            return Assets.bgGray;
+        }
+        if (civName.equals("Blue")) {
+            return Assets.bgBlue;
+        }
+        if (civName.equals("Cyan")) {
+            return Assets.bgCyan;
+        }
+        if (civName.equals("Red")) {
+            return Assets.bgRed;
+        }
+        if (civName.equals("Dark Red")) {
+            return Assets.bgDarkred;
+        }
+        return null;
     }
 
     public void render() {
