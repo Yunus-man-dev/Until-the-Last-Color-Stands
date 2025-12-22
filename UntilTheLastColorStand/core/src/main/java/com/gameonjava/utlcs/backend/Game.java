@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
-import com.gameonjava.utlcs.backend.civilization.*;
 import com.gameonjava.utlcs.backend.resources.MovementPoint;
 
 //Description: Controls the game flow, player turns, and global actions.
@@ -222,21 +221,32 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         return players;
     }
 
-    @Override
+@Override
     public void write(Json json) {
         json.writeValue("Players", players);
         json.writeValue("Map", gameMap);
-        json.writeValue("Turn", currentTurn);
+        json.writeValue("Turn", currentTurn); // Saves the static value
         json.writeValue("CurPlayerIndex", currentPlayerIndex);
         json.writeValue("ActiveTrades", activeTrades);
     }
 
     @Override
     public void read(Json json, JsonValue jsonData) {
-        players = json.readValue("Players", ArrayList.class, Player.class, jsonData);
+        // Specify the classes for the ArrayLists so LibGDX knows how to cast them
+        players = json.readValue("Players", java.util.ArrayList.class, Player.class, jsonData);
         gameMap = json.readValue("Map", Map.class, jsonData);
-        currentTurn = jsonData.getInt("Turn");
-        currentPlayerIndex = jsonData.getInt("CurPlayerIndex");
-        activeTrades = json.readValue("ActiveTrades", ArrayList.class, Trade.class, jsonData);
+        
+        // Standard primitive reads
+        currentTurn = jsonData.getInt("Turn", 1);
+        currentPlayerIndex = jsonData.getInt("CurPlayerIndex", 0);
+        
+        activeTrades = json.readValue("ActiveTrades", java.util.ArrayList.class, Trade.class, jsonData);
+        
+        // IMPORTANT: Re-link the owner to each tile so the GUI works
+        if (players != null) {
+            for (Player p : players) {
+                p.relinkTiles(); // Ensure this helper exists in Player.java
+            }
+        }
     }
 }

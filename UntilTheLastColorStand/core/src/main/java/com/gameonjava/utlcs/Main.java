@@ -82,23 +82,11 @@ public class Main extends Game {
         super.render();
     }
 
-    /*@Override
-    public void dispose() {
-        batch.dispose();
-        shapeRenderer.dispose();
-        Assets.dispose();
-
-        if (mainMenuScreen != null) mainMenuScreen.dispose();
-        if (mapSelectionScreen != null) mapSelectionScreen.dispose();
-        if (empireSelectionScreen != null) empireSelectionScreen.dispose();
-        if (gameScreen != null) gameScreen.dispose();
-    }*/
-
     @Override
     public void dispose() {
-        // This automatically saves the game to a local file whenever the app is closed
+        // Change "autosave.json" to "savegame.json" so the Load button finds it
         if (gameHUD != null && gameHUD.getBackendGame() != null) {
-            new SaveLoad().save(gameHUD.getBackendGame(), "autosave.json");
+            new SaveLoad().save(gameHUD.getBackendGame(), "savegame.json");
         }
         super.dispose();
     }

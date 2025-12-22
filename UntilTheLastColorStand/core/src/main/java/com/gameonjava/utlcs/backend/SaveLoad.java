@@ -11,30 +11,41 @@ public class SaveLoad {
     public SaveLoad() {
         json = new Json();
         json.setOutputType(OutputType.json);
-        
-        // CRITICAL: This enables object ID tracking. 
-        // Instead of writing the same Player 100 times, it writes an ID and stops the loop.
         json.setUsePrototypes(false); 
 
-        // Register all your tags
+        json.addClassTag("Player", com.gameonjava.utlcs.backend.Player.class);
+        json.addClassTag("Tile", com.gameonjava.utlcs.backend.Tile.class);
+        json.addClassTag("Game", com.gameonjava.utlcs.backend.Game.class);
+        json.addClassTag("Map", com.gameonjava.utlcs.backend.Map.class);
+        json.addClassTag("Army", com.gameonjava.utlcs.backend.Army.class);
+        json.addClassTag("Trade", com.gameonjava.utlcs.backend.Trade.class);
+        
+        // Concrete Civilizations
         json.addClassTag("Blue", com.gameonjava.utlcs.backend.civilization.Blue.class);
-        json.addClassTag("Cyan", com.gameonjava.utlcs.backend.civilization.Cyan.class);
         json.addClassTag("Red", com.gameonjava.utlcs.backend.civilization.Red.class);
-        json.addClassTag("DarkRed", com.gameonjava.utlcs.backend.civilization.DarkRed.class);
-        json.addClassTag("Gold", com.gameonjava.utlcs.backend.civilization.GoldCivilization.class);
-        json.addClassTag("Orange", com.gameonjava.utlcs.backend.civilization.Orange.class);
-        json.addClassTag("Brown", com.gameonjava.utlcs.backend.civilization.Brown.class);
+        json.addClassTag("GoldCivilization", com.gameonjava.utlcs.backend.civilization.GoldCivilization.class);
         json.addClassTag("Gray", com.gameonjava.utlcs.backend.civilization.Gray.class);
+        json.addClassTag("Brown", com.gameonjava.utlcs.backend.civilization.Brown.class);
+        json.addClassTag("Cyan", com.gameonjava.utlcs.backend.civilization.Cyan.class);
+        json.addClassTag("DarkRed", com.gameonjava.utlcs.backend.civilization.DarkRed.class);
+        json.addClassTag("Orange", com.gameonjava.utlcs.backend.civilization.Orange.class);
+
+        // Concrete Buildings
         json.addClassTag("Farm", com.gameonjava.utlcs.backend.building.Farm.class);
-        json.addClassTag("GoldMine", com.gameonjava.utlcs.backend.building.GoldMine.class);
-        json.addClassTag("Library", com.gameonjava.utlcs.backend.building.Library.class);
         json.addClassTag("Port", com.gameonjava.utlcs.backend.building.Port.class);
+        json.addClassTag("Library", com.gameonjava.utlcs.backend.building.Library.class);
+        json.addClassTag("GoldMine", com.gameonjava.utlcs.backend.building.GoldMine.class);
+
+        // Concrete Resources
+        json.addClassTag("FoodResource", com.gameonjava.utlcs.backend.resources.FoodResource.class);
+        json.addClassTag("GoldResource", com.gameonjava.utlcs.backend.resources.GoldResource.class);
+        json.addClassTag("BookResource", com.gameonjava.utlcs.backend.resources.BookResource.class);
+        json.addClassTag("MovementPoint", com.gameonjava.utlcs.backend.resources.MovementPoint.class);
     }
 
     public void save(Game game, String filename) {
         try {
             FileHandle file = Gdx.files.local(filename);
-            // Use json.toJson to ensure the object graph is handled correctly
             String gameState = json.prettyPrint(game); 
             file.writeString(gameState, false);
             System.out.println("Game saved successfully.");
