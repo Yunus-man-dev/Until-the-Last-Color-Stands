@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.gameonjava.utlcs.backend.civilization.Gray;
 
 public class Assets {
     // Image goldIcon = new Image(Assets.gold);
@@ -87,6 +88,15 @@ public class Assets {
     public static final String CYANBG = "ui/cyanBg.png";
     public static final String DARKREDBG = "ui/darkredBg.png";
     public static final String GRAYBG = "ui/grayBg.png";
+    public static final String GRAYPBUT = "ui/pgray.png";
+    public static final String ORANGEPBUT = "ui/porange.png";
+    public static final String CYANPBUT = "ui/pcyan.png";
+    public static final String BLUEPBUT = "ui/pblue.png";
+    public static final String BROWNPBUT = "ui/pbrown.png";
+    public static final String GOLDPBUT = "ui/pgold.png";
+    public static final String REDPBUT = "ui/pred.png";
+    public static final String DARKREDPBUT = "ui/pdarkred.png";
+
 
     public static final String INFOBG = "ui/infobg.png";
     public static final String TOPBARBG = "ui/topbarbg.png";
@@ -110,7 +120,7 @@ public class Assets {
 
 
 
-    public static TextureRegionDrawable bgRed, bgBlue, bgBrown, bgGold, bgDarkred,bgCyan,bgGray, bgOrange,infobg, topbarbg, rbarbg, tfbg,filterbarbg;
+    public static TextureRegionDrawable bgRed, bgBlue, bgBrown, bgGold, bgDarkred,bgCyan,bgGray, bgOrange,infobg, topbarbg, rbarbg, tfbg,filterbarbg, pbrown,pgray,pgold,pdarkred,pred,porange,pblue,pcyan;
     public static Texture infoBgBrown;
     public static Texture infoBgYellow;
     public static Texture infoBtnTrade;
@@ -167,6 +177,14 @@ public class Assets {
         manager.load(ORANGEBG, Texture.class);
         manager.load(GRAYBG, Texture.class);
         manager.load(DARKREDBG, Texture.class);
+        manager.load(REDPBUT, Texture.class);
+        manager.load(DARKREDPBUT, Texture.class);
+        manager.load(BLUEPBUT, Texture.class);
+        manager.load(CYANPBUT, Texture.class);
+        manager.load(ORANGEPBUT, Texture.class);
+        manager.load(GRAYPBUT, Texture.class);
+        manager.load(GOLDPBUT, Texture.class);
+        manager.load(BROWNPBUT, Texture.class);
 
         manager.load(INFOBG, Texture.class);
         manager.load(TOPBARBG, Texture.class);
@@ -301,6 +319,15 @@ public class Assets {
         bgOrange = new TextureRegionDrawable(new TextureRegion(manager.get(ORANGEBG, Texture.class)));
         bgGray = new TextureRegionDrawable(new TextureRegion(manager.get(GRAYBG, Texture.class)));
         bgDarkred = new TextureRegionDrawable(new TextureRegion(manager.get(DARKREDBG, Texture.class)));
+        pblue = new TextureRegionDrawable(new TextureRegion(manager.get(BLUEPBUT, Texture.class)));
+        pcyan = new TextureRegionDrawable(new TextureRegion(manager.get(CYANPBUT, Texture.class)));
+        pgold = new TextureRegionDrawable(new TextureRegion(manager.get(GOLDPBUT, Texture.class)));
+        porange = new TextureRegionDrawable(new TextureRegion(manager.get(ORANGEPBUT, Texture.class)));
+        pbrown = new TextureRegionDrawable(new TextureRegion(manager.get(BROWNPBUT, Texture.class)));
+        pgray = new TextureRegionDrawable(new TextureRegion(manager.get(GRAYPBUT, Texture.class)));
+        pred = new TextureRegionDrawable(new TextureRegion(manager.get(REDPBUT, Texture.class)));
+        pdarkred = new TextureRegionDrawable(new TextureRegion(manager.get(DARKREDPBUT, Texture.class)));
+
 
         infobg = new TextureRegionDrawable(new TextureRegion(manager.get(INFOBG, Texture.class)));
         topbarbg = new TextureRegionDrawable(new TextureRegion(manager.get(TOPBARBG, Texture.class)));

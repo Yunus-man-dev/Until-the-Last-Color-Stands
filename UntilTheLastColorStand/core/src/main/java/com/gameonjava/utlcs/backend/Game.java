@@ -218,6 +218,11 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
     public Map getMap(){
         return gameMap;
     }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
     @Override
     public void write(Json json) {
         json.writeValue("Players", players);
