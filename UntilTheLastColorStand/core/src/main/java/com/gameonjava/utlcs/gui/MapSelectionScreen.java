@@ -69,7 +69,7 @@ public class MapSelectionScreen extends ScreenAdapter {
 
         // --- MAP 1 ---
         Table map1 = createMapCard(
-            "Pangea",
+            "Map 1",
             "Standard balanced map. Best for learning.",
             map1Preview,
             1
@@ -77,18 +77,21 @@ public class MapSelectionScreen extends ScreenAdapter {
 
         // --- MAP 2 ---
         Table map2 = createMapCard(
-            "The Divide",
-            "A world split by mountains. Strategic chokepoints.",
+            "Map 2",
+            "Scattered islands. Naval power is crucial.",
             map2Preview,
             2
         );
 
+        // A world split by mountains. Strategic chokepoints.
+
         // --- MAP 3 ---
         Table map3 = createMapCard(
-            "Archipelago",
-            "Scattered islands. Naval power is crucial.",
+            "Map 3",
+            "A world split by mountains. Strategic chokepoints.",
             map3Preview,
             3
+            
         );
 
         // Kartları ekle

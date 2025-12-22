@@ -95,7 +95,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
          // --- SOL SÜTUN ---
         Table leftColumn = new Table();
         Table colorPanel = new Table();
-        colorPanel.setBackground(new NinePatchDrawable(new NinePatch(colorBgTexture, 10, 10, 10, 10)));
+        colorPanel.setBackground(new NinePatchDrawable(new NinePatch(colorBgTexture, 4, 4, 4, 4)));
         // colorPanel.add(new Label("COLOR", skin, "default")).padBottom(5).row();
         colorPreviewImage = new Image(skin.newDrawable("white", Color.WHITE));
         colorPreviewImage.setScaling(com.badlogic.gdx.utils.Scaling.stretch);
@@ -110,6 +110,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         winPanel.setBackground(new NinePatchDrawable(new NinePatch(winConditionBgTexture, 12, 12, 12, 12)));
         winPanel.add(new Label("Win Condition", skin, "default")).padBottom(10).row();
         winConditionLabel = new Label("", skin);
+        winConditionLabel.setColor(Color.BLACK);
         winConditionLabel.setWrap(true);
         winConditionLabel.setAlignment(Align.center);
         winPanel.add(winConditionLabel).width(200).row();
@@ -129,7 +130,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         // --- ORTA SÜTUN ---
         Table centerColumn = new Table();
         playerTitleLabel = new Label("Player 1 Selection", skin, "default");
-        playerTitleLabel.setColor(Color.GOLD);
+        playerTitleLabel.setColor(Color.BLACK);
         playerTitleLabel.setFontScale(0.25f);
 
         nameField = new TextField("", skin);
@@ -137,10 +138,10 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         nameField.setAlignment(Align.center);
 
         Table listPanel = new Table();
-        listPanel.setBackground(new NinePatchDrawable(new NinePatch(empireListBgTexture, 14, 14, 14, 14)));
+        listPanel.setBackground(new NinePatchDrawable(new NinePatch(empireListBgTexture, 6, 6, 6, 6)));
         TextButton.TextButtonStyle listBtnStyle = new TextButton.TextButtonStyle();
         listBtnStyle.font = skin.getFont("default");
-        listBtnStyle.fontColor = Color.WHITE;
+        listBtnStyle.fontColor = Color.BLACK;
         listBtnStyle.overFontColor = Color.GOLD;
         listBtnStyle.downFontColor = Color.GRAY;
         listBtnStyle.disabledFontColor = new Color(0.4f, 0.4f, 0.4f, 0.5f);
@@ -154,7 +155,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
                     if (!btn.isDisabled()) updatePreview(emp);
                 }
             });
-            listPanel.add(btn).padBottom(8).row();
+            listPanel.add(btn).width(250).height(60).padBottom(8).row();
             empireButtons.put(emp, btn);
         }
         centerColumn.add(playerTitleLabel).padBottom(15).row();
@@ -168,6 +169,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         featurePanel.setBackground(new NinePatchDrawable(new NinePatch(uniqueFeatureBgTexture, 12, 12, 12, 12)));
         featurePanel.add(new Label("Unique Features:", skin, "default")).padBottom(10).row();
         featureLabel = new Label("", skin);
+        featureLabel.setColor(Color.BLACK);
         featureLabel.setWrap(true);
         featureLabel.setAlignment(Align.center);
         featurePanel.add(featureLabel).width(200).row();
