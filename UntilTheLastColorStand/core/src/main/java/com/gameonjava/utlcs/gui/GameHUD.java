@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions; // EKLENDİ (Animasyon için gerekli)
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -51,19 +52,20 @@ public class GameHUD implements Disposable {
 
         Table rootTable = new Table();
         rootTable.setFillParent(true);
+        rootTable.setTouchable(Touchable.childrenOnly);
         stage.addActor(rootTable);
 
-        stage.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (event.getTarget() == stage.getRoot() || event.getTarget() == rootTable) {
-                    if (currentInfoWidget != null) {
-                        currentInfoWidget.remove();
-                        currentInfoWidget = null;
-                    }
-                }
-            }
-        });
+        // stage.addListener(new ClickListener() {
+        //     @Override
+        //     public void clicked(InputEvent event, float x, float y) {
+        //         if (event.getTarget() == stage.getRoot() || event.getTarget() == rootTable) {
+        //             if (currentInfoWidget != null) {
+        //                 currentInfoWidget.remove();
+        //                 currentInfoWidget = null;
+        //             }
+        //         }
+        //     }
+        // });
 
         // --- A. TOP BAR (KAYNAKLAR) ---
         Table topTable = new Table();

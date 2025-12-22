@@ -20,6 +20,17 @@ public class Assets {
 
     public static final String SKIN_JSON = "skin/uiskin.json";
 
+    public static final String HEX_OUTLINE = "ui/hexagonOutline.png"; 
+    public static final String TERRAIN_PLAIN = "ui/tile_grass.png";
+    public static final String TERRAIN_FOREST = "ui/tile_forest.png";
+    public static final String TERRAIN_MOUNTAIN = "ui/smallRockSnow.png";
+    public static final String TERRAIN_WATER = "ui/tileWater.png";
+    public static final String TERRAIN_DEEP_WATER = "ui/tile_deepWater.png";
+
+    // --- KAYBOLAN TEXTURE NESNELERİ ---
+    public static Texture hexOutline, terrainPlain, terrainForest, terrainMountain, terrainWater, terrainDeepWater;
+
+
     public static final String BOOK = "ui/BookIcon.png";
     public static final String DASH = "ui/DashIcon.png";
     public static final String FARM = "ui/FarmIcon.png";
@@ -139,6 +150,15 @@ public class Assets {
 
 
     public static void load() {
+
+
+        manager.load(HEX_OUTLINE, Texture.class);
+        manager.load(TERRAIN_PLAIN, Texture.class);
+        manager.load(TERRAIN_FOREST, Texture.class);
+        manager.load(TERRAIN_MOUNTAIN, Texture.class);
+        manager.load(TERRAIN_WATER, Texture.class);
+        manager.load(TERRAIN_DEEP_WATER, Texture.class);
+
         manager.load(SKIN_JSON, Skin.class);
         manager.load(goldBg, Texture.class);
         manager.load(redBg, Texture.class);
@@ -216,6 +236,13 @@ public class Assets {
         BitmapFont myFont2 = skin.getFont("title");
 
         myFont2.getData().setScale(0.3f);
+
+        hexOutline = manager.get(HEX_OUTLINE, Texture.class);
+        terrainPlain = manager.get(TERRAIN_PLAIN, Texture.class);
+        terrainForest = manager.get(TERRAIN_FOREST, Texture.class);
+        terrainMountain = manager.get(TERRAIN_MOUNTAIN, Texture.class);
+        terrainWater = manager.get(TERRAIN_WATER, Texture.class);
+        terrainDeepWater = manager.get(TERRAIN_DEEP_WATER, Texture.class);
 
         book = manager.get(BOOK, Texture.class);
         dash = manager.get(DASH, Texture.class);
