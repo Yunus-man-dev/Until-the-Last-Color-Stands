@@ -41,6 +41,7 @@ public class GameHUD implements Disposable {
 
     private Table filterMenuTable;
     private ButtonGroup<CheckBox> filterGroup;
+    public static TextButton.TextButtonStyle beigeStyle;
 
     private PlayerInfoWidget currentInfoWidget;
 
@@ -49,7 +50,7 @@ public class GameHUD implements Disposable {
         stage = new Stage(viewport, batch);
 
         this.backendGame = backendGame;
-        TextButton.TextButtonStyle beigeStyle = createBeigeStyle();
+        beigeStyle = createBeigeStyle();
 
         Table rootTable = new Table();
         rootTable.setFillParent(true);

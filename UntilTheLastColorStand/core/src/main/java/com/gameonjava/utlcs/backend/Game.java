@@ -67,7 +67,6 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         // Oyuncu sırasını ilerlet
         currentPlayerIndex++;
 
-        // Eğer tüm oyuncular oynadıysa tur sayısını arttır ve tileları resetle
         if (currentPlayerIndex >= players.size()) {
             currentPlayerIndex = 0;
             gameMap.resetAllTilesTurnData();

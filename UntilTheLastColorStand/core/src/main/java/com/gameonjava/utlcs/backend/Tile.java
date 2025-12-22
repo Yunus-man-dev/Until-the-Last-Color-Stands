@@ -157,6 +157,10 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
         return recruitedThisTurn;
     }
 
+    public void setRecruitedThisTurn(int recruitedThisTurn) {
+        this.recruitedThisTurn = recruitedThisTurn;
+    }
+
     public void addRecruitedCount(int amount) {
         this.recruitedThisTurn += amount;
     }
@@ -182,3 +186,4 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
         soldierConsumptionRate = jsonData.getFloat("ConsumptionRate");
     }
 }
+
