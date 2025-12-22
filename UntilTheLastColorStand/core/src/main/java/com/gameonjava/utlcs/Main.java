@@ -3,6 +3,7 @@ package com.gameonjava.utlcs;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.gameonjava.utlcs.backend.SaveLoad;
 import com.gameonjava.utlcs.gui.Assets;
 import com.gameonjava.utlcs.gui.EmpireSelectionScreen;
 import com.gameonjava.utlcs.gui.GameHUD;
@@ -81,7 +82,7 @@ public class Main extends Game {
         super.render();
     }
 
-    @Override
+    /*@Override
     public void dispose() {
         batch.dispose();
         shapeRenderer.dispose();
@@ -91,5 +92,14 @@ public class Main extends Game {
         if (mapSelectionScreen != null) mapSelectionScreen.dispose();
         if (empireSelectionScreen != null) empireSelectionScreen.dispose();
         if (gameScreen != null) gameScreen.dispose();
+    }*/
+
+    @Override
+    public void dispose() {
+        // This automatically saves the game to a local file whenever the app is closed
+        if (gameHUD != null && gameHUD.getBackendGame() != null) {
+            new SaveLoad().save(gameHUD.getBackendGame(), "autosave.json");
+        }
+        super.dispose();
     }
 }
