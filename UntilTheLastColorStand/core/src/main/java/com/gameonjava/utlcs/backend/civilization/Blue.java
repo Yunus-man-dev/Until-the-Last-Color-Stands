@@ -1,14 +1,13 @@
 package com.gameonjava.utlcs.backend.civilization;
 
 // import com.badlogic.gdx.graphics.Color;
+import com.gameonjava.utlcs.backend.Player;
+import com.gameonjava.utlcs.backend.Tile;
+import com.gameonjava.utlcs.backend.building.Library;
 import com.gameonjava.utlcs.backend.resources.BookResource;
 import com.gameonjava.utlcs.backend.resources.FoodResource;
 import com.gameonjava.utlcs.backend.resources.GoldResource;
 import com.gameonjava.utlcs.backend.resources.MovementPoint;
-
-import com.gameonjava.utlcs.backend.Player;
-import com.gameonjava.utlcs.backend.Tile;
-import com.gameonjava.utlcs.backend.building.Library;
 
 public class Blue extends Civilization{
 

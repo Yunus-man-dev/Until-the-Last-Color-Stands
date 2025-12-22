@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions; // EKLENDİ (Animasyon i
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Disposable;
@@ -23,6 +24,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gameonjava.utlcs.backend.Game;
 import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Trade;
+import com.gameonjava.utlcs.backend.civilization.Civilization;
 
 public class GameHUD implements Disposable {
 
@@ -39,6 +41,7 @@ public class GameHUD implements Disposable {
 
     private Table filterMenuTable;
     private ButtonGroup<CheckBox> filterGroup;
+    public static TextButton.TextButtonStyle beigeStyle;
 
     private PlayerInfoWidget currentInfoWidget;
 
@@ -47,7 +50,7 @@ public class GameHUD implements Disposable {
         stage = new Stage(viewport, batch);
 
         this.backendGame = backendGame;
-        TextButton.TextButtonStyle beigeStyle = createBeigeStyle();
+        beigeStyle = createBeigeStyle();
 
         Table rootTable = new Table();
         rootTable.setFillParent(true);
@@ -112,13 +115,13 @@ public class GameHUD implements Disposable {
         // P1..P4 Butonları
         for (int i = 0; i < 4; i++) {
             final int pIndex = i;
-            TextButton pBtn = new TextButton("P" + (i + 1), beigeStyle);
+            String civColor = backendGame.getPlayers().get(i).getCivilization().getCivilizationColor();
+            TextButton pBtn = new TextButton("P" + (i + 1), createPlayerStyle(civColor) );
 
             pBtn.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     Player me = backendGame.getCurrentPlayer();
-                    // Test için hedef oyuncu
                     Player target = new Player("Player " + (pIndex + 1),
                             new com.gameonjava.utlcs.backend.civilization.Blue());
 
@@ -152,7 +155,6 @@ public class GameHUD implements Disposable {
                 public void clicked(InputEvent event, float x, float y) {
                     Player current = backendGame.getCurrentPlayer();
 
-                    // DÜZELTME: Constructor'a 'GameHUD.this' gönderiliyor
                     IncomingTradesDialog mailDialog = new IncomingTradesDialog(Assets.skin, backendGame, current,
                             GameHUD.this);
                     mailDialog.show(stage);
@@ -169,18 +171,19 @@ public class GameHUD implements Disposable {
         Table rightTable = new Table();
         rightTable.setBackground(Assets.infobg);
 
-        currentPlayerLabel = new Label("", Assets.skin);
+        currentPlayerLabel = new Label(backendGame.getPlayers().get(0).getName(), Assets.skin);
         currentPlayerLabel.setAlignment(Align.center);
 
         Label winCondTitle = new Label("Win Condition:", Assets.skin);
         winCondTitle.setAlignment(Align.center);
-        winCondDesc = new Label("", Assets.skin);
+        winCondDesc = new Label(backendGame.getPlayers().get(0).getCivilization().winCondText, Assets.skin);
         winCondDesc.setWrap(true);
 
         rightTable.add(currentPlayerLabel).pad(20).row();
 
         winTable = new Table();
-        winTable.setBackground(Assets.bgRed);
+        TextureRegionDrawable firstplayersColor = civNameToColor(backendGame.getPlayers().get(0).getCivilization().getCivilizationColor());
+        winTable.setBackground(firstplayersColor);
         winTable.add(winCondTitle).padTop(10).row();
         winTable.add(winCondDesc).width(180).pad(10).row();
 
@@ -272,6 +275,39 @@ public class GameHUD implements Disposable {
         style.fontColor = Color.BLACK;
         return style;
     }
+    private TextButton.TextButtonStyle createPlayerStyle(String civcolor) {
+        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
+        style.font = Assets.skin.getFont("default");
+        if (civcolor.equals("Red")) {
+            style.up = Assets.pred;
+            style.down = Assets.skin.newDrawable(Assets.pred, Color.LIGHT_GRAY);
+        }
+        if (civcolor.equals("Dark Red")) {
+            style.up = Assets.pdarkred;
+            style.down = Assets.skin.newDrawable(Assets.pdarkred, Color.LIGHT_GRAY);
+        }if (civcolor.equals("Orange")) {
+            style.up = Assets.porange;
+            style.down = Assets.skin.newDrawable(Assets.porange, Color.LIGHT_GRAY);
+        }if (civcolor.equals("Blue")) {
+            style.up = Assets.pblue;
+            style.down = Assets.skin.newDrawable(Assets.pblue, Color.LIGHT_GRAY);
+        }if (civcolor.equals("Cyan")) {
+            style.up = Assets.pcyan;
+            style.down = Assets.skin.newDrawable(Assets.pcyan, Color.LIGHT_GRAY);
+        }if (civcolor.equals("Gray")) {
+            style.up = Assets.pgray;
+            style.down = Assets.skin.newDrawable(Assets.pgray, Color.LIGHT_GRAY);
+        }if (civcolor.equals("Brown")) {
+            style.up = Assets.pbrown;
+            style.down = Assets.skin.newDrawable(Assets.pbrown, Color.LIGHT_GRAY);
+        }if (civcolor.equals("Gold")) {
+            style.up = Assets.pgold;
+            style.down = Assets.skin.newDrawable(Assets.pgold, Color.LIGHT_GRAY);
+        }
+        style.fontColor = Color.BLACK;
+        return style;
+    }
+
 
     public void createFilterMenu(final com.gameonjava.utlcs.gui.GameScreen screen) {
         filterMenuTable = new Table();
@@ -367,6 +403,33 @@ public class GameHUD implements Disposable {
 
     public TextButton getFilterBtn() {
         return filterBtn;
+    }
+    public TextureRegionDrawable civNameToColor(String civName) {
+        if (civName.equals("Gold")) {
+            return Assets.bgGold;
+        }
+        if (civName.equals("Orange")) {
+            return Assets.bgOrange;
+        }
+        if (civName.equals("Brown")) {
+            return Assets.bgBrown;
+        }
+        if (civName.equals("Gray")) {
+            return Assets.bgGray;
+        }
+        if (civName.equals("Blue")) {
+            return Assets.bgBlue;
+        }
+        if (civName.equals("Cyan")) {
+            return Assets.bgCyan;
+        }
+        if (civName.equals("Red")) {
+            return Assets.bgRed;
+        }
+        if (civName.equals("Dark Red")) {
+            return Assets.bgDarkred;
+        }
+        return null;
     }
 
     public void render() {

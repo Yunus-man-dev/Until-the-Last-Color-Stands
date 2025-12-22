@@ -45,13 +45,14 @@ public class Army implements com.badlogic.gdx.utils.Json.Serializable{
     @Override
     public void write(Json json) {
         json.writeValue("Player", player);
-        json.writeValue("numberOfSoldiers", numberOfSoldiers);
-        json.writeValue("tile", tile);
+        json.writeValue("NumSoldiers", numberOfSoldiers);
+        json.writeValue("Tile", tile);
     }
+
     @Override
     public void read(Json json, JsonValue jsonData) {
         player = json.readValue("Player", Player.class, jsonData);
-        numberOfSoldiers = jsonData.getInt("numberOfSoldiers");
-        tile = json.readValue("tile", Tile.class, jsonData);
+        numberOfSoldiers = jsonData.getInt("NumSoldiers", 0);
+        tile = json.readValue("Tile", Tile.class, jsonData);
     }
 }

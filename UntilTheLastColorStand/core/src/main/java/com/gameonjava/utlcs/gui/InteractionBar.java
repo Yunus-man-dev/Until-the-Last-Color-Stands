@@ -3,7 +3,9 @@ package com.gameonjava.utlcs.gui;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog; // Dialog eklendi
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label; // Label eklendi
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -18,6 +20,7 @@ import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Tile;
 import com.gameonjava.utlcs.backend.Enum.TerrainType;
 import com.gameonjava.utlcs.backend.building.Building;
+import com.gameonjava.utlcs.backend.Army;
 
 public class InteractionBar extends Table {
 
@@ -80,9 +83,9 @@ public class InteractionBar extends Table {
 
         // --- SENARYOLAR ---
 
-        // 1. (Bina Yok/Yükseltilebilir) VE (Asker Var) -> 3 Aksiyon + Cancel = 4 Buton
+        // 1. (Bina Yok/Yükseltilebilir) VE (Asker Var) -> 3 Aksiyon + Cancel
         if ( (!hasBuilding || !isMaxLevel) && hasArmy ) {
-            setSlotImage(Assets.ibSlot3); // 4 buton sığdırmak için en geniş barı kullanıyoruz
+            setSlotImage(Assets.ibSlot3);
             
             if (!hasBuilding) {
                 if (canConstruct) addTextButton("Construct", () -> openBuildingDialog(t));
@@ -94,48 +97,44 @@ public class InteractionBar extends Table {
             addTextButton("Recruit", () -> openRecruitDialog(t));
             addTextButton("Move", () -> enableMoveMode(t));
             
-            addCancelButton(); // EN SAĞA EKLENDİ
+            addCancelButton();
         }
         
-        // 2. (Bina Tam Seviye) VE (Asker Var) -> 2 Aksiyon + Cancel = 3 Buton
+        // 2. (Bina Tam Seviye) VE (Asker Var) -> 2 Aksiyon + Cancel
         else if (isMaxLevel && hasArmy) {
-            setSlotImage(Assets.ibSlot3); // 3 buton için Slot3
+            setSlotImage(Assets.ibSlot3); 
             
             addTextButton("Recruit", () -> openRecruitDialog(t));
             addTextButton("Move", () -> enableMoveMode(t));
             
-            addCancelButton(); // EN SAĞA EKLENDİ
+            addCancelButton();
         }
 
-        // 3. (Bina Yok) VE (Asker Yok) -> 2 Aksiyon + Cancel = 3 Buton
+        // 3. (Bina Yok) VE (Asker Yok) -> 2 Aksiyon + Cancel
         else if (!hasBuilding && !hasArmy) {
-            
             if (canConstruct) {
-                setSlotImage(Assets.ibSlot3); // 3 buton için Slot3
+                setSlotImage(Assets.ibSlot3);
                 addTextButton("Construct", () -> openBuildingDialog(t));
                 addTextButton("Move", () -> System.out.println("No soldiers!"));
-                
-                addCancelButton(); // EN SAĞA EKLENDİ
+                addCancelButton();
             } else {
                 setVisible(false);
             }
         }
 
-        // 4. (Bina Var/Tam) VE (Asker Yok) -> 1 Aksiyon + Cancel = 2 Buton
+        // 4. (Bina Var/Tam) VE (Asker Yok) -> 1 Aksiyon + Cancel
         else if (hasBuilding && isMaxLevel && !hasArmy) {
-            setSlotImage(Assets.ibSlot2); // 2 buton için Slot2 yeterli
+            setSlotImage(Assets.ibSlot2);
             addTextButton("Recruit", () -> openRecruitDialog(t));
-            
-            addCancelButton(); // EN SAĞA EKLENDİ
+            addCancelButton();
         }
         
-        // 5. Bina var (Max değil) ve Asker Yok -> 2 Aksiyon + Cancel = 3 Buton
+        // 5. Bina var (Max değil) ve Asker Yok -> 2 Aksiyon + Cancel
         else if (hasBuilding && !isMaxLevel && !hasArmy) {
-            setSlotImage(Assets.ibSlot3); // 3 buton için Slot3
+            setSlotImage(Assets.ibSlot3);
             addTextButton("Develop", () -> developBuilding(t));
             addTextButton("Recruit", () -> openRecruitDialog(t));
-            
-            addCancelButton(); // EN SAĞA EKLENDİ
+            addCancelButton();
         }
         
         else {
@@ -170,16 +169,11 @@ public class InteractionBar extends Table {
         buttonTable.add(btn).width(120).height(50).expandX().center();
     }
     
-    // --- YENİ EKLENEN METOD: CANCEL BUTONU ---
     private void addCancelButton() {
         addTextButton("Cancel", new Runnable() {
             @Override
             public void run() {
-                // Barı gizle
                 setVisible(false);
-                // Eğer harita üzerindeki seçimi de kaldırmak isterseniz
-                // GameScreen veya TileSelector'a erişim gerekir.
-                // Şimdilik sadece menüyü kapatıyoruz.
             }
         });
     }
@@ -217,10 +211,199 @@ public class InteractionBar extends Table {
     }
 
     private void openRecruitDialog(Tile t) {
-        System.out.println("Recruit Dialog should open here.");
+        enableRecruitMode(t);
     }
 
-    private void enableMoveMode(Tile t) {
-        System.out.println("Move Mode Active.");
+    private void enableRecruitMode(final Tile t) {
+        // [Recruit Kodu Buradaydı, kısalttım, aynı kalacak]
+        // Daha önce yazdığım kodun aynısı buraya gelecek.
+        // Yer kazanmak için tekrar kopyalamıyorum ama proje dosyasında önceki hali durmalı.
+        // (Eğer silindiyse bir önceki mesajdaki kodu kullan)
+        
+        // *Önceki recruit kodunu buraya yapıştırdığını varsayıyorum*
+        // Hızlıca yeniden ekliyorum tam olması için:
+        
+        buttonTable.clear();
+        setSlotImage(Assets.ibSlot3);
+
+        final Player player = gameBackend.getCurrentPlayer();
+        String civName = player.getCivilization().getClass().getSimpleName();
+        final int TURN_LIMIT = civName.contains("Red") ? 10 : 5;
+        final int GOLD_COST_PER_UNIT = 50;
+        final int MP_COST_PER_UNIT = 3;
+        final int recruitedAlready = t.getRecruitedThisTurn();
+        final int remainingLimit = TURN_LIMIT - recruitedAlready;
+        final int[] recruitAmount = {0};
+
+        TextButton btnMinus = new TextButton("-", skin); // Skin'den default alalım stil yoksa
+        if(GameHUD.beigeStyle != null) btnMinus.setStyle(GameHUD.beigeStyle); // Varsa set et
+        
+        final Label countLabel = new Label("0", skin);
+        countLabel.setColor(Color.BLACK);
+        countLabel.setAlignment(Align.center);
+        
+        TextButton btnPlus = new TextButton("+", skin);
+        if(GameHUD.beigeStyle != null) btnPlus.setStyle(GameHUD.beigeStyle);
+
+        TextButton btnConfirm = new TextButton("Confirm", skin);
+        if(GameHUD.beigeStyle != null) btnConfirm.setStyle(GameHUD.beigeStyle);
+
+        TextButton btnCancel = new TextButton("Cancel", skin);
+        if(GameHUD.beigeStyle != null) btnCancel.setStyle(GameHUD.beigeStyle);
+
+        btnMinus.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (recruitAmount[0] > 0) {
+                    recruitAmount[0]--;
+                    countLabel.setText(String.valueOf(recruitAmount[0]));
+                }
+            }
+        });
+
+        btnPlus.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (recruitAmount[0] + 1 > remainingLimit) {
+                    showError("Limit reached! (" + TURN_LIMIT + ")");
+                    return;
+                }
+                recruitAmount[0]++;
+                countLabel.setText(String.valueOf(recruitAmount[0]));
+            }
+        });
+
+        btnConfirm.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (recruitAmount[0] > 0) {
+                    double totalGoldCost = recruitAmount[0] * GOLD_COST_PER_UNIT;
+                    double totalMpCost = recruitAmount[0] * MP_COST_PER_UNIT;
+                    if (player.getGold().checkForResource(totalGoldCost) && player.getMp().checkForResource(totalMpCost)) {
+                        player.getGold().reduceResource(totalGoldCost);
+                        player.getMp().reduceResource(totalMpCost);
+                        if (!t.hasArmy()) t.setArmy(new Army(recruitAmount[0], player, t));
+                        else t.getArmy().addSoldiers(recruitAmount[0]);
+                        t.setRecruitedThisTurn(t.getRecruitedThisTurn() + recruitAmount[0]);
+                        hud.updateStats(player, Game.getCurrentTurn());
+                        updateContent(t);
+                    } else {
+                        showError("Not enough resources!");
+                    }
+                }
+            }
+        });
+
+        btnCancel.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                updateContent(t);
+            }
+        });
+
+        buttonTable.add(btnMinus).width(40).height(50).padRight(5);
+        buttonTable.add(countLabel).width(40).height(50).padRight(5);
+        buttonTable.add(btnPlus).width(40).height(50).padRight(15);
+        buttonTable.add(btnConfirm).width(100).height(50).padRight(5);
+        buttonTable.add(btnCancel).width(80).height(50);
+    }
+
+    // --- YENİ EKLENEN METOD: MOVE SOLDIER UI ---
+    private void enableMoveMode(final Tile t) {
+        buttonTable.clear();
+        setSlotImage(Assets.ibSlot3); // Geniş alan lazım
+
+        final Player player = gameBackend.getCurrentPlayer();
+        
+        // O karede kaç asker var?
+        if (!t.hasArmy()) {
+            System.out.println("Error: No army to move.");
+            updateContent(t);
+            return;
+        }
+        
+        final int maxSoldiers = t.getArmy().getSoldiers();
+        final int[] moveAmount = {maxSoldiers}; // Varsayılan olarak hepsi seçili
+
+        // --- UI Elemanları ---
+        TextButton btnMinus = new TextButton("-", skin);
+        if(GameHUD.beigeStyle != null) btnMinus.setStyle(GameHUD.beigeStyle);
+
+        final Label countLabel = new Label(String.valueOf(moveAmount[0]), skin);
+        countLabel.setColor(Color.BLACK);
+        countLabel.setAlignment(Align.center);
+
+        TextButton btnPlus = new TextButton("+", skin);
+        if(GameHUD.beigeStyle != null) btnPlus.setStyle(GameHUD.beigeStyle);
+
+        TextButton btnMove = new TextButton("Move", skin); // Confirm yerine MOVE yazsın
+        if(GameHUD.beigeStyle != null) btnMove.setStyle(GameHUD.beigeStyle);
+
+        TextButton btnCancel = new TextButton("Cancel", skin);
+        if(GameHUD.beigeStyle != null) btnCancel.setStyle(GameHUD.beigeStyle);
+
+        // --- Listenerlar ---
+        btnMinus.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (moveAmount[0] > 1) { // En az 1 asker taşınmalı
+                    moveAmount[0]--;
+                    countLabel.setText(String.valueOf(moveAmount[0]));
+                }
+            }
+        });
+
+        btnPlus.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (moveAmount[0] < maxSoldiers) {
+                    moveAmount[0]++;
+                    countLabel.setText(String.valueOf(moveAmount[0]));
+                }
+            }
+        });
+
+        btnMove.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                // Burada "Seçim Modu"nu aktif etmemiz lazım.
+                // InteractionBar'ın görevi biter, top MapInputProcessor'a geçer.
+                System.out.println("Move Initiated: " + moveAmount[0] + " soldiers from Tile(" + t.getQ() + "," + t.getR() + ")");
+                
+                // NOT: MapInputProcessor'da bir 'setMoveState(Tile source, int amount)' 
+                // gibi bir metodunuz olmalı ve onu çağırmalısınız.
+                // Şimdilik sadece konsola basıyoruz ve barı gizliyoruz.
+                
+                // ÖRNEK ENTEGRASYON (Eğer hud veya screen üzerinden erişebiliyorsanız):
+                // hud.getGameScreen().prepareMove(t, moveAmount[0]);
+                
+                setVisible(false); // Seçim yaparken bar kapansın
+            }
+        });
+
+        btnCancel.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                updateContent(t); // İptal ederse ana menüye dön
+            }
+        });
+
+        // --- Tabloya Ekleme ---
+        buttonTable.add(btnMinus).width(40).height(50).padRight(5);
+        buttonTable.add(countLabel).width(40).height(50).padRight(5);
+        buttonTable.add(btnPlus).width(40).height(50).padRight(15);
+        buttonTable.add(btnMove).width(100).height(50).padRight(5);
+        buttonTable.add(btnCancel).width(80).height(50);
+    }
+
+    private void showError(String message) {
+        Dialog errorDialog = new Dialog("Warning", skin) {
+            public void result(Object obj) { }
+        };
+        errorDialog.text(message);
+        errorDialog.button("OK", true);
+        if (hud.stage != null) {
+            errorDialog.show(hud.stage);
+        }
     }
 }

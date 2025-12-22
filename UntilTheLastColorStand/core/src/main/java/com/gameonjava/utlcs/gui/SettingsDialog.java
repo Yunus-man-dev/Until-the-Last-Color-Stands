@@ -1,5 +1,6 @@
 package com.gameonjava.utlcs.gui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -94,7 +95,7 @@ public class SettingsDialog extends Dialog {
         tutorialBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
+                Gdx.net.openURI("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
             }
         });
 

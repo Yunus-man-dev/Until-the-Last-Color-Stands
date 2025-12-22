@@ -63,6 +63,8 @@ public abstract class Civilization implements com.badlogic.gdx.utils.Json.Serial
     public FoodResource startingFood;
     protected BookResource startingBook;
     protected MovementPoint startingMP;
+    public String winCondText;
+    public String featuresText;
 
     public Civilization(String civilizationName, String civilizationColor,
                         double attackMultiplier, double defenseMultiplier,
@@ -73,14 +75,36 @@ public abstract class Civilization implements com.badlogic.gdx.utils.Json.Serial
         this.attackMultiplier = attackMultiplier;
         this.defenseMultiplier = defenseMultiplier;
         this.technologyMultiplier = technologyMultiplier;
-
+        if( civilizationColor.equals("Red") || civilizationColor.equals("Dark Red") ) {
+            winCondText = "Capture minimum %40 of capturable tiles. (Plains and Forests)";
+            featuresText = "Recruit 5 more soldiers in each turn and start with extra 5 soldiers.\nHas 30% attack multiplier against all civilizations except Brown and Black.\nMovement of soldiers requires 20% less movement points.\nSoldier recruitment cost is 20% higher.";
+        }
+        if( civilizationColor.equals("Orange") || civilizationColor.equals("Gold") ) {
+            winCondText = "Must have at least 100.000 golds and 10 gold mines.";
+            featuresText = "50% gold production bonus from mines.\n15% trade discount will be applied while trading.\nSoldier recruitment cost is 30% higher.\n Has %20 less attack and defense multipliers";
+        }
+        if( civilizationColor.equals("Gray") || civilizationColor.equals("Brown") ) {
+            winCondText = "Must be alive for 250 turns.";
+            featuresText = "Has 20% food production bonus from farms and ports.\nHas extra 30% defense multiplier and has extra 15% attack multiplier against Red and Dark Red\nSoldiers consume 30% more food.";
+        }
+        if( civilizationColor.equals("Blue") || civilizationColor.equals("Cyan") ) {
+            winCondText = "Technology points must be above 5, have at least 2.000 books, have at least 10 libraries.";
+            featuresText = "Books provide x2 technology points. Has %20 less attack multiplier";
+        }
 
     }
-    
+
     public Civilization() {}
 
     public String getCivilizationName() {
         return civilizationName;
+    }
+
+    public String getWinCondText() {
+        return winCondText;
+    }
+    public String getFeaturesText() {
+        return featuresText;
     }
 
     public void setCivilizationName(String civilizationName) {

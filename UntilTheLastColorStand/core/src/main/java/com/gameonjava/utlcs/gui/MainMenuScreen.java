@@ -9,15 +9,14 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gameonjava.utlcs.Main;
-// import com.gameonjava.utlcs.backend.Assets;
-import com.gameonjava.utlcs.gui.SettingsDialog;
+import com.gameonjava.utlcs.backend.Game;
+import com.gameonjava.utlcs.backend.SaveLoad;
 
 public class MainMenuScreen extends ScreenAdapter {
 
@@ -102,6 +101,24 @@ public class MainMenuScreen extends ScreenAdapter {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 new SettingsDialog2(Assets.skin).show(stage);
+            }
+        });
+
+        btnLoadGame.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                SaveLoad sl = new SaveLoad();
+                // CHANGE THIS: Match your actual file name
+                Game loadedGame = sl.load("savefile.json"); 
+                
+                if (loadedGame != null) {
+                    game.gameHUD = new GameHUD(game.batch, loadedGame); 
+                    game.changeScreen(Main.ScreenType.GAME);
+                    System.out.println("Load successful!");
+                } else {
+                    // This is the error you are currently seeing
+                    System.err.println("Load failed: savefile.json not found or corrupted.");
+                }
             }
         });
 

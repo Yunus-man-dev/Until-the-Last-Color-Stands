@@ -4,40 +4,53 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
-import com.gameonjava.utlcs.backend.building.Farm;
-import com.gameonjava.utlcs.backend.building.GoldMine;
-import com.gameonjava.utlcs.backend.building.Library;
-import com.gameonjava.utlcs.backend.building.Port;
-import com.gameonjava.utlcs.backend.civilization.Black;
-import com.gameonjava.utlcs.backend.civilization.Blue;
-import com.gameonjava.utlcs.backend.civilization.Brown;
 
 public class SaveLoad {
-
     private Json json;
 
     public SaveLoad() {
         json = new Json();
         json.setOutputType(OutputType.json);
+        json.setUsePrototypes(false); 
 
-        json.addClassTag("Blue", Blue.class);
-        json.addClassTag("Brown", Brown.class);
-        json.addClassTag("Black", Black.class);
-        json.addClassTag("Farm", Farm.class);
-        json.addClassTag("GoldMine", GoldMine.class);
-        json.addClassTag("Library", Library.class);
-        json.addClassTag("Port", Port.class);
+        json.addClassTag("Player", com.gameonjava.utlcs.backend.Player.class);
+        json.addClassTag("Tile", com.gameonjava.utlcs.backend.Tile.class);
+        json.addClassTag("Game", com.gameonjava.utlcs.backend.Game.class);
+        json.addClassTag("Map", com.gameonjava.utlcs.backend.Map.class);
+        json.addClassTag("Army", com.gameonjava.utlcs.backend.Army.class);
+        json.addClassTag("Trade", com.gameonjava.utlcs.backend.Trade.class);
+        
+        // Concrete Civilizations
+        json.addClassTag("Blue", com.gameonjava.utlcs.backend.civilization.Blue.class);
+        json.addClassTag("Red", com.gameonjava.utlcs.backend.civilization.Red.class);
+        json.addClassTag("GoldCivilization", com.gameonjava.utlcs.backend.civilization.GoldCivilization.class);
+        json.addClassTag("Gray", com.gameonjava.utlcs.backend.civilization.Gray.class);
+        json.addClassTag("Brown", com.gameonjava.utlcs.backend.civilization.Brown.class);
+        json.addClassTag("Cyan", com.gameonjava.utlcs.backend.civilization.Cyan.class);
+        json.addClassTag("DarkRed", com.gameonjava.utlcs.backend.civilization.DarkRed.class);
+        json.addClassTag("Orange", com.gameonjava.utlcs.backend.civilization.Orange.class);
+
+        // Concrete Buildings
+        json.addClassTag("Farm", com.gameonjava.utlcs.backend.building.Farm.class);
+        json.addClassTag("Port", com.gameonjava.utlcs.backend.building.Port.class);
+        json.addClassTag("Library", com.gameonjava.utlcs.backend.building.Library.class);
+        json.addClassTag("GoldMine", com.gameonjava.utlcs.backend.building.GoldMine.class);
+
+        // Concrete Resources
+        json.addClassTag("FoodResource", com.gameonjava.utlcs.backend.resources.FoodResource.class);
+        json.addClassTag("GoldResource", com.gameonjava.utlcs.backend.resources.GoldResource.class);
+        json.addClassTag("BookResource", com.gameonjava.utlcs.backend.resources.BookResource.class);
+        json.addClassTag("MovementPoint", com.gameonjava.utlcs.backend.resources.MovementPoint.class);
     }
 
     public void save(Game game, String filename) {
         try {
             FileHandle file = Gdx.files.local(filename);
-            String gameState = json.toJson(game);
+            String gameState = json.prettyPrint(game); 
             file.writeString(gameState, false);
             System.out.println("Game saved successfully.");
-        } catch (Throwable e) { 
-            System.err.println("SAVE ERROR: Oyun kaydedilirken hata oluştu!");
-            e.printStackTrace(); 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
