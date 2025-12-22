@@ -43,7 +43,7 @@ public class GameScreen extends ScreenAdapter {
 
                 hud.updateStats(siradakiOyuncu, yeniTurSayisi);
                 TextureRegionDrawable newBg = getCivBg(currentCiv);
-                String winText = getWinConditionText(currentCiv);
+                String winText = currentCiv.getWinCondText();
                 hud.updateTurnInfo(winText, newBg);
             }
         });
@@ -88,26 +88,19 @@ public class GameScreen extends ScreenAdapter {
     private TextureRegionDrawable getCivBg(Civilization civ) {
         String name = civ.getCivilizationColor();
 
-        if (name.contains("Red")) return Assets.bgRed;
-        if (name.contains("Blue")) return Assets.bgBlue;
-        if (name.contains("Gold")) return Assets.bgGold;
-        if (name.contains("Brown")) return Assets.bgBrown;
+        if (name.equals("Red")) return Assets.bgRed;
+        if (name.equals("Blue")) return Assets.bgBlue;
+        if (name.equals("Gold")) return Assets.bgGold;
+        if (name.equals("Brown")) return Assets.bgBrown;
+        if (name.equals("Dark Red")) return Assets.bgDarkred;
+        if (name.equals("Cyan")) return Assets.bgCyan;
+        if (name.equals("Orange")) return Assets.bgOrange;
+        if (name.equals("Gray")) return Assets.bgGray;
 
         return null;
     }
 
-    private String getWinConditionText(Civilization civ) {
-        String name = civ.getCivilizationColor();
 
-        if (name.contains("Red")) return "CONQUER 20 TILES\nAND HAVE 500 GOLD";
-        if (name.contains("Blue")) return "HAVE 200 TECH\nAND 10 LIBRARIES";
-        if (name.contains("Gold")) return "HAVE 100 GOLD";
-        if (name.contains("Brown")) return "HAVE 100 GOLD";
-        if (name.contains("Black")) return "HAVE 100 GOLD";
-        if (name.contains("Dark Red")) return "HAVE 100 GOLD";
-        if (name.contains("Cyan")) return "HAVE 100 GOLD";
-        return null;
-    }
     public boolean isShowBuildings() {
         return showBuildings;
     }

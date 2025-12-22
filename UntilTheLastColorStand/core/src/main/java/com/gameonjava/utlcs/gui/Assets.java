@@ -3,6 +3,7 @@ package com.gameonjava.utlcs.gui;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -19,6 +20,18 @@ public class Assets {
     public static final AssetManager manager = new AssetManager();
 
     public static final String SKIN_JSON = "skin/uiskin.json";
+
+    public static final Color COL_RED       = Color.valueOf("de0f3f");
+    public static final Color COL_DARK_RED  = Color.valueOf("960829");
+
+    public static final Color COL_BLUE      = Color.valueOf("38b6ff");
+    public static final Color COL_CYAN      = Color.valueOf("36eee0");
+
+    public static final Color COL_BROWN     = Color.valueOf("824703");
+    public static final Color COL_GRAY      = Color.valueOf("a6a6a6");
+
+    public static final Color COL_GOLD      = Color.valueOf("ffd230");
+    public static final Color COL_ORANGE    = Color.valueOf("ff914d");
 
     public static final String BOOK = "ui/BookIcon.png";
     public static final String DASH = "ui/DashIcon.png";
@@ -70,6 +83,11 @@ public class Assets {
     public static final String blueBg = "ui/blueBg.png";
     public static final String brownBg = "ui/brownBg.png";
     public static final String redBg = "ui/redBg.png";
+    public static final String ORANGEBG = "ui/orangeBg.png";
+    public static final String CYANBG = "ui/cyanBg.png";
+    public static final String DARKREDBG = "ui/darkredBg.png";
+    public static final String GRAYBG = "ui/grayBg.png";
+
     public static final String INFOBG = "ui/infobg.png";
     public static final String TOPBARBG = "ui/topbarbg.png";
     public static final String RBARBG = "ui/rbarbg.png";
@@ -91,7 +109,8 @@ public class Assets {
     public static final String FILTERBARBG = "ui/filterbarbg.png";
 
 
-    public static TextureRegionDrawable bgRed, bgBlue, bgBrown, bgGold, infobg, topbarbg, rbarbg, tfbg,filterbarbg;
+
+    public static TextureRegionDrawable bgRed, bgBlue, bgBrown, bgGold, bgDarkred,bgCyan,bgGray, bgOrange,infobg, topbarbg, rbarbg, tfbg,filterbarbg;
     public static Texture infoBgBrown;
     public static Texture infoBgYellow;
     public static Texture infoBtnTrade;
@@ -144,6 +163,11 @@ public class Assets {
         manager.load(redBg, Texture.class);
         manager.load(blueBg, Texture.class);
         manager.load(brownBg, Texture.class);
+        manager.load(CYANBG, Texture.class);
+        manager.load(ORANGEBG, Texture.class);
+        manager.load(GRAYBG, Texture.class);
+        manager.load(DARKREDBG, Texture.class);
+
         manager.load(INFOBG, Texture.class);
         manager.load(TOPBARBG, Texture.class);
         manager.load(RBARBG, Texture.class);
@@ -273,6 +297,11 @@ public class Assets {
         bgBlue = new TextureRegionDrawable(new TextureRegion(manager.get(blueBg, Texture.class)));
         bgBrown = new TextureRegionDrawable(new TextureRegion(manager.get(brownBg, Texture.class)));
         bgGold = new TextureRegionDrawable(new TextureRegion(manager.get(goldBg, Texture.class)));
+        bgCyan = new TextureRegionDrawable(new TextureRegion(manager.get(CYANBG, Texture.class)));
+        bgOrange = new TextureRegionDrawable(new TextureRegion(manager.get(ORANGEBG, Texture.class)));
+        bgGray = new TextureRegionDrawable(new TextureRegion(manager.get(GRAYBG, Texture.class)));
+        bgDarkred = new TextureRegionDrawable(new TextureRegion(manager.get(DARKREDBG, Texture.class)));
+
         infobg = new TextureRegionDrawable(new TextureRegion(manager.get(INFOBG, Texture.class)));
         topbarbg = new TextureRegionDrawable(new TextureRegion(manager.get(TOPBARBG, Texture.class)));
         rbarbg = new TextureRegionDrawable(new TextureRegion(manager.get(RBARBG, Texture.class)));

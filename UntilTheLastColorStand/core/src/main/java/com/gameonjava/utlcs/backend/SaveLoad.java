@@ -8,7 +8,7 @@ import com.gameonjava.utlcs.backend.building.Farm;
 import com.gameonjava.utlcs.backend.building.GoldMine;
 import com.gameonjava.utlcs.backend.building.Library;
 import com.gameonjava.utlcs.backend.building.Port;
-import com.gameonjava.utlcs.backend.civilization.Black;
+import com.gameonjava.utlcs.backend.civilization.Gray;
 import com.gameonjava.utlcs.backend.civilization.Blue;
 import com.gameonjava.utlcs.backend.civilization.Brown;
 
@@ -22,7 +22,7 @@ public class SaveLoad {
 
         json.addClassTag("Blue", Blue.class);
         json.addClassTag("Brown", Brown.class);
-        json.addClassTag("Black", Black.class);
+        json.addClassTag("Black", Gray.class);
         json.addClassTag("Farm", Farm.class);
         json.addClassTag("GoldMine", GoldMine.class);
         json.addClassTag("Library", Library.class);
@@ -35,9 +35,9 @@ public class SaveLoad {
             String gameState = json.toJson(game);
             file.writeString(gameState, false);
             System.out.println("Game saved successfully.");
-        } catch (Throwable e) { 
+        } catch (Throwable e) {
             System.err.println("SAVE ERROR: Oyun kaydedilirken hata oluştu!");
-            e.printStackTrace(); 
+            e.printStackTrace();
         }
     }
 

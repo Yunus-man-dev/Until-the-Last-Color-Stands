@@ -36,10 +36,10 @@ public class EmpireSelectionScreen extends ScreenAdapter {
     // --- State Yönetimi ---
     private int currentPlayerIndex = 1;
     private final int MAX_PLAYERS = 4;
-    
+
     // ARTIK DOĞRUDAN PLAYER LISTESİ TUTUYORUZ
     private ArrayList<Player> readyPlayers = new ArrayList<>();
-    
+
     private final HashMap<String, TextButton> empireButtons = new HashMap<>();
     private String selectedEmpireName = null;
 
@@ -67,12 +67,12 @@ public class EmpireSelectionScreen extends ScreenAdapter {
 
         // ... (ARKA PLAN VE TABLO KURULUMLARI AYNI - ÖNCEKİ KODLA AYNI) ...
         // ... (Kod tekrarı olmaması için UI kurulum kısımlarını özet geçiyorum) ...
-        
+
         // 1. Arka Planı Ekle
         Image bg = new Image(menuBgTexture);
         bg.setFillParent(true);
         stage.addActor(bg);
-        
+
         Table rootTable = new Table();
         rootTable.setFillParent(true);
         rootTable.pad(20);
@@ -80,10 +80,10 @@ public class EmpireSelectionScreen extends ScreenAdapter {
 
         // --- SOL, ORTA, SAĞ SÜTUNLARI OLUŞTUR (Önceki kodun aynısı) ---
         // Sadece handleNextButton mantığı değişecek, arayüz aynı.
-        
+
         // ... (Burada createLeftColumn, createCenterColumn, createRightColumn işlemleri var varsayıyoruz) ...
         // ... Hızlıca kurulumu yapalım:
-        
+
         setupUI(rootTable); // UI kodlarını aşağıda metod içine aldım temiz olsun diye
 
         // İlk açılış ayarı
@@ -104,11 +104,11 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         Table borderContainer = new Table();
         borderContainer.setBackground(skin.newDrawable("white", Color.BLACK));
         borderContainer.add(colorPanel).grow().pad(3);
-        
+
 
         Table winPanel = new Table();
         winPanel.setBackground(new NinePatchDrawable(new NinePatch(winConditionBgTexture, 12, 12, 12, 12)));
-        winPanel.add(new Label("Victory", skin, "default")).padBottom(10).row();
+        winPanel.add(new Label("Win Condition", skin, "default")).padBottom(10).row();
         winConditionLabel = new Label("", skin);
         winConditionLabel.setWrap(true);
         winConditionLabel.setAlignment(Align.center);
@@ -131,7 +131,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         playerTitleLabel = new Label("Player 1 Selection", skin, "default");
         playerTitleLabel.setColor(Color.GOLD);
         playerTitleLabel.setFontScale(0.25f);
-        
+
         nameField = new TextField("", skin);
         nameField.setMessageText("Enter Name...");
         nameField.setAlignment(Align.center);
@@ -145,7 +145,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         listBtnStyle.downFontColor = Color.GRAY;
         listBtnStyle.disabledFontColor = new Color(0.4f, 0.4f, 0.4f, 0.5f);
 
-        String[] empires = {"Blue", "Cyan", "Red", "Dark Red", "Gold", "Orange", "Brown", "Black"};
+        String[] empires = {"Blue", "Cyan", "Red", "Dark Red", "Gold", "Orange", "Brown", "Gray"};
         for (String emp : empires) {
             TextButton btn = new TextButton(emp, listBtnStyle);
             btn.addListener(new ChangeListener() {
@@ -158,7 +158,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
             empireButtons.put(emp, btn);
         }
         centerColumn.add(playerTitleLabel).padBottom(15).row();
-        centerColumn.add(new Label("Leader name", skin, "default")).padBottom(5).row();
+        centerColumn.add(new Label("Empire name", skin, "default")).padBottom(5).row();
         centerColumn.add(nameField).width(250).height(40).padBottom(20).row();
         centerColumn.add(listPanel).width(300).growY();
 
@@ -166,7 +166,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         Table rightColumn = new Table();
         Table featurePanel = new Table();
         featurePanel.setBackground(new NinePatchDrawable(new NinePatch(uniqueFeatureBgTexture, 12, 12, 12, 12)));
-        featurePanel.add(new Label("Extras", skin, "default")).padBottom(10).row();
+        featurePanel.add(new Label("Unique Features:", skin, "default")).padBottom(10).row();
         featureLabel = new Label("", skin);
         featureLabel.setWrap(true);
         featureLabel.setAlignment(Align.center);
@@ -201,10 +201,10 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         // Player constructor'ı çalıştığında, Civilization'a göre kaynaklar (Gold, Food vs.)
         // otomatik olarak Player'ın içinde oluşturulacak. Harika!
         Player newPlayer = new Player(playerName, selectedCiv);
-        
+
         // 3. Listeye Ekle
         readyPlayers.add(newPlayer);
-        
+
         System.out.println("Oyuncu Oluşturuldu: " + newPlayer.getName() + " - " + selectedCiv.getCivilizationName());
 
         // Butonu Kilitle
@@ -224,7 +224,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         nameField.setText("");
         playerTitleLabel.setText("Player " + currentPlayerIndex + " Selection");
         if (currentPlayerIndex == MAX_PLAYERS) actionButton.setText("Start Game");
-        
+
         selectedEmpireName = null;
         for (String key : empireButtons.keySet()) {
             if (!empireButtons.get(key).isDisabled()) {
@@ -235,41 +235,35 @@ public class EmpireSelectionScreen extends ScreenAdapter {
     }
 
     private void updatePreview(String empireName) {
-        this.selectedEmpireName = empireName;
-        // ... (Renk ve yazı güncellemeleri önceki kodla aynı) ...
-        if (empireName.contains("Blue")) {
-            colorPreviewImage.setColor(Color.BLUE);
-            winConditionLabel.setText("Technology points must be above 50 and have at least 8 libraries.");
-            featureLabel.setText("Books provides x2 technology points");
-        } else if (empireName.contains("Red")) {
-            colorPreviewImage.setColor(Color.RED);
-            winConditionLabel.setText("Capture at least 30 tiles.");
-            featureLabel.setText("Recruit 5 more soldiers in each turn.\nHas 15% attack bonus against all civilizations except Brown and Black.\nMovement of soldiers requires 20% less movement points.\nSoldier recruitment cost is 20% higher.");
-        } else if (empireName.contains("Gold")) {
-            colorPreviewImage.setColor(Color.GOLD);
-            winConditionLabel.setText("Must have at least 10 gold mines and have at least 10000 golds.");
-            featureLabel.setText("50% gold production bonus form mines.\n15% trade discount will be applied.\nSoldier recruitment cost is 30% higher.");
-        } else if(empireName.contains("Brown")) {
-            colorPreviewImage.setColor(Color.BROWN);
-            winConditionLabel.setText("Must be alive for 200 turns.");
-            featureLabel.setText("20% food production bonus from farms and ports.\n30% defense and 15% attack bonus against Red and Dark Red\nSoldiers consume 30% more food.");
-        }else if(empireName.contains("Dark Red")){
-            colorPreviewImage.setColor(new Color(0.55f, 0f, 0f, 1f)); // Koyu kırmızı
-            winConditionLabel.setText("Capture at least 30 tiles.");
-            featureLabel.setText("Recruit 5 more soldiers in each turn.\nHas 15% attack bonus against all civilizations except Brown and Black.\nMovement of soldiers requires 20% less movement points.\nSoldier recruitment cost is 20% higher.");
-        }else if(empireName.contains("Cyan")){
-            colorPreviewImage.setColor(Color.CYAN);
-            winConditionLabel.setText("Technology points must be above 50 and have at least 8 libraries.");
-            featureLabel.setText("Books provides x2 technology points.");
-        }else if(empireName.contains("Orange")){
-            colorPreviewImage.setColor(Color.ORANGE);
-            winConditionLabel.setText("Must have at least 10 gold mines and have at least 10000 golds.");
-            featureLabel.setText("50% gold production bonus form mines.\n15% trade discount will be applied.\nSoldier recruitment cost is 30% higher.");
-        }else if(empireName.contains("Black")){
-            colorPreviewImage.setColor(Color.GRAY);
-            winConditionLabel.setText("Must be alive for 200 turns.");
-            featureLabel.setText("20% food production bonus from farms and ports.\n30% defense and 15% attack bonus against Red and Dark Red\nSoldiers consume 30% more food.");
-        }
+            this.selectedEmpireName = empireName;
+            Civilization selectedCiv = getCivilizationByName(empireName);
+
+            winConditionLabel.setText(selectedCiv.getWinCondText());
+            featureLabel.setText(selectedCiv.getFeaturesText());
+            if( empireName.contains("Blue")) {
+                colorPreviewImage.setColor(Assets.COL_BLUE);
+            }
+            else if( empireName.equals("Cyan")) {
+                colorPreviewImage.setColor(Assets.COL_CYAN);
+            }
+            else if( empireName.equals("Red")) {
+                colorPreviewImage.setColor(Assets.COL_RED);
+            }
+            else if( empireName.equals("Dark Red")) {
+                colorPreviewImage.setColor(Assets.COL_DARK_RED);
+            }
+            else if( empireName.equals("Gold")) {
+                colorPreviewImage.setColor(Assets.COL_GOLD);
+            }
+            else if( empireName.equals("Orange")) {
+                colorPreviewImage.setColor(Assets.COL_ORANGE);
+            }
+            if( empireName.equals("Brown")) {
+                colorPreviewImage.setColor(Assets.COL_BROWN);
+            }
+            else if( empireName.equals("Gray")) {
+                colorPreviewImage.setColor(Assets.COL_GRAY);
+            }
     }
 
     // İSİMDEN NESNEYE ÇEVİRİCİ
@@ -279,17 +273,17 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         if (name.equals("Blue")) return new Blue();
         if (name.equals("Cyan")) return new Cyan();
         if (name.equals("Brown")) return new Brown();
-        if (name.equals("Black")) return new Black();
-        
+        if (name.equals("Gray")) return new Gray();
+
         // Dosyaları gelince bunları aç:
         if (name.equals("Red")) return new Red();
         if (name.equals("Dark Red")) return new DarkRed();
         if (name.equals("Gold")) return new GoldCivilization();
         if (name.equals("Orange")) return new Orange();
 
-        return new Blue(); 
+        return new Blue();
     }
-    
+
     // Texture yükleme ve dispose kodları...
     private TextButton createNavButton(String text) {
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
@@ -310,8 +304,8 @@ public class EmpireSelectionScreen extends ScreenAdapter {
             btnTexture = new Texture(Gdx.files.internal("ui/EmpireSelection_btn.png"));
         } catch (Exception e) {}
     }
-    @Override public void render(float d) { 
-        Gdx.gl.glClearColor(0,0,0,1); Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); stage.act(d); stage.draw(); 
+    @Override public void render(float d) {
+        Gdx.gl.glClearColor(0,0,0,1); Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); stage.act(d); stage.draw();
     }
     @Override public void resize(int w, int h) { stage.getViewport().update(w, h, true); }
     @Override public void dispose() { stage.dispose(); if(menuBgTexture!=null) menuBgTexture.dispose(); }
