@@ -9,6 +9,10 @@ import com.gameonjava.utlcs.backend.civilization.Brown;
 public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
     private int q;
     private int r;
+
+    private float x;
+    private float y;
+    public boolean highlight;
     private TerrainType terrainName;
     private double defenseBonus;
     private Player owner;
@@ -164,6 +168,17 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
     public void resetTurnData() {
         this.recruitedThisTurn = 0;
     }
+
+
+    public float getPixelX() { return x; }
+    public void setX(float pixelX) { this.x = pixelX; }
+
+    public float getPixelY() { return y; }
+    public void setY(float pixelY) { this.y = pixelY; }
+
+
+
+
 
     @Override
     public void write(Json json) {

@@ -1,13 +1,22 @@
 package com.gameonjava.utlcs;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.gameonjava.utlcs.backend.Tile;
 import com.gameonjava.utlcs.gui.Assets;
 import com.gameonjava.utlcs.gui.EmpireSelectionScreen;
-import com.gameonjava.utlcs.gui.GameHUD;
 import com.gameonjava.utlcs.gui.GameScreen;
 import com.gameonjava.utlcs.gui.MainMenuScreen;
+import com.gameonjava.utlcs.gui.MapManager;
 import com.gameonjava.utlcs.gui.MapSelectionScreen;
 
 
@@ -16,8 +25,8 @@ public class Main extends Game {
 
     public SpriteBatch batch;           // for draw
     public ShapeRenderer shapeRenderer; // for geo shapes
+   
 
-    public GameHUD gameHUD;
 
     //enum
     public enum ScreenType {
@@ -33,20 +42,29 @@ public class Main extends Game {
     private EmpireSelectionScreen empireSelectionScreen;
     private GameScreen gameScreen;
 
+
+
+
     @Override
     public void create() {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
+        // harita = new MapManager(r);
 
+        // float w = Gdx.graphics.getWidth();
+        // float h = Gdx.graphics.getHeight();
+        // camera = new OrthographicCamera();
+        // camera.setToOrtho(false, w, h);
+
+
+        // float centerX = (harita.mapLeft + harita.mapRight) / 2f;
+        // float centerY = (harita.mapTop + harita.mapBottom) / 2f;
+        // camera.position.set(centerX, centerY, 0);
+        // camera.update();
+        // Gdx.input.setInputProcessor(new MyInputController());
         Assets.load();
         Assets.finishLoading();
-
-        if (Assets.music != null) {
-            Assets.music.setLooping(true);
-            Assets.music.setVolume(0.5f);
-            Assets.music.play();
-        }
-        changeScreen(ScreenType.MAIN_MENU);
+        changeScreen(ScreenType.GAME);
     }
 
     //CHANGE SCREEN METHOD. OTHER CLASSES MUST USE game.changeScreen(DesiredScreen) to change screens
@@ -58,7 +76,7 @@ public class Main extends Game {
                 break;
 
             case MAP_SELECTION:
-                if (mapSelectionScreen == null) mapSelectionScreen = new MapSelectionScreen(this, empireSelectionScreen.getReadyPlayers());
+                // if (mapSelectionScreen == null) mapSelectionScreen = new MapSelectionScreen(this);
                 this.setScreen(mapSelectionScreen);
                 break;
 
@@ -69,7 +87,7 @@ public class Main extends Game {
 
             case GAME:
                 if (gameScreen == null) {
-                    gameScreen = new GameScreen(this, gameHUD.getBackendGame());
+                    // gameScreen = new GameScreen(this);
                 }
                 this.setScreen(gameScreen);
                 break;
@@ -79,10 +97,37 @@ public class Main extends Game {
     @Override
     public void render() {
         super.render();
+
+        // constrainCamera();
+        // camera.update();
+
+        // ScreenUtils.clear(0.3f, 0.3f, 0.3f, 1f);
+
+        // // --- BATCH ÇİZİMİ ---
+        // batch.setProjectionMatrix(camera.combined);
+        // batch.begin();
+        // // Artık döngü yok, tek satırda çizim:
+        // harita.render(batch, textureYOffset); 
+        // batch.end();
+
+        // // --- DEBUG ÇİZİMİ ---
+        // shapeRenderer.setProjectionMatrix(camera.combined);
+        // shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        // shapeRenderer.setColor(Color.BLUE);
+        // // Sınırları MapManager'dan al
+        // shapeRenderer.rect(harita.mapLeft, harita.mapBottom, 
+        //                    harita.mapRight - harita.mapLeft, 
+        //                    harita.mapTop - harita.mapBottom);
+        // shapeRenderer.end();
     }
+
+
+
 
     @Override
     public void dispose() {
+
+
         batch.dispose();
         shapeRenderer.dispose();
         Assets.dispose();
@@ -92,4 +137,20 @@ public class Main extends Game {
         if (empireSelectionScreen != null) empireSelectionScreen.dispose();
         if (gameScreen != null) gameScreen.dispose();
     }
+
+
+    class MyInputController extends InputAdapter {
+        // ... touchDragged ve scrolled AYNI KALIYOR ...
+        
+       
+
+
+
+
+
+    }
+      
+
+
+
 }

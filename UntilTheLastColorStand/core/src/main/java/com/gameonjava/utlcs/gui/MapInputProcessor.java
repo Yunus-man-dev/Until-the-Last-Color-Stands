@@ -1,7 +1,12 @@
 package com.gameonjava.utlcs.gui;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gameonjava.utlcs.backend.Map;
 import com.gameonjava.utlcs.backend.Player;
@@ -14,13 +19,21 @@ public class MapInputProcessor extends InputAdapter {
     private GameScreen screen;
     private TileSelector selector;
 
+    OrthographicCamera camera;
+    MapManager harita;
+    float r;
+
     public MapInputProcessor(GameScreen screen, Map map, Viewport viewport, TileSelector selector) {
         this.screen = screen;
         this.map = map;
         this.viewport = viewport;
         this.selector = selector;
     }
-
+    public MapInputProcessor(MapManager harita, OrthographicCamera camera, float r){
+        this.harita = harita;
+        this.camera = camera;
+        this.r = r;
+    }
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         Vector2 worldCoords = viewport.unproject(new Vector2(screenX, screenY));
@@ -90,4 +103,59 @@ public class MapInputProcessor extends InputAdapter {
         }
         selector.selectTile(targetTile, map);
     }
+
+     @Override
+        public boolean mouseMoved(int screenX, int screenY) {
+            Vector3 worldPos = new Vector3(screenX, screenY, 0);
+            camera.unproject(worldPos);
+            
+            // 1. Öncekilerin highlight'ını kapat (Basit yöntem)
+            // (Daha iyisi: MapManager'da clearHighlights() metodu yazmaktır)
+            // Şimdilik brute-force:
+             for (int q = 0; q < 32; q++) {
+                for (int row = 0; row < 21; row++) {
+                    Tile t = harita.gameMap.getTile(q, row);
+                    if(t != null) t.highlight = false;
+                }
+            }
+
+            // 2. Yeni Tile'ı bul
+            Tile t = harita.getTileAtPixel(worldPos.x, worldPos.y, r);
+            if(t != null) {
+                t.highlight = true;
+                // Test: Backend verisinin doğru geldiğini gör
+                // System.out.println("Seçilen: " + t.getQ() + "," + t.getR() + " Tip: " + t.getTerrainType());
+            }
+            return true;
+        }
+
+         // Mouse Sürükleme (Pan)
+        @Override
+        public boolean touchDragged(int screenX, int screenY, int pointer) {
+            if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+                // Zoom faktörüyle çarpıyoruz ki uzaktayken hızlı kaysın
+                float xHareket = -Gdx.input.getDeltaX() * camera.zoom;
+                float yHareket = Gdx.input.getDeltaY() * camera.zoom;
+
+                camera.translate(xHareket, yHareket);
+                // Burada update çağırmıyoruz, render içinde zaten çağrılıyor
+            }
+            return true;
+        }
+
+        // Mouse Tekerleği (Zoom)
+        @Override
+        public boolean scrolled(float amountX, float amountY) {
+            float zoomSpeed = 0.1f;
+            camera.zoom += amountY * zoomSpeed;
+            
+            // Zoom sınırları (0.25x ile 1.5x arası)
+            camera.zoom = MathUtils.clamp(camera.zoom, 0.25f, 1.5f);
+            
+            System.out.println("Zoom Seviyesi: " + camera.zoom);
+            return true;
+        }
+
+
+
 }
