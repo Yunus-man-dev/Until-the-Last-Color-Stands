@@ -92,29 +92,36 @@ public class EmpireSelectionScreen extends ScreenAdapter {
 
     // --- UI KURULUMU (Önceki kodun aynısı, sadece düzenli dursun diye metoda aldım) ---
     private void setupUI(Table rootTable) {
-         // --- SOL SÜTUN ---
+        // [Resim Dosyalarıyla Uyumlu Köşe Değeri]
+        // PNG'nizin köşeleri ne kadar yumuşaksa bu sayıyı ona göre ayarlayın (6 veya 8 iyidir)
+        int corner = 6; 
+        int borderSize = 4; // Çerçeve kalınlığı
+
+        // --- SOL SÜTUN ---
         Table leftColumn = new Table();
-        Table colorPanel = new Table();
-        colorPanel.setBackground(new NinePatchDrawable(new NinePatch(colorBgTexture, 4, 4, 4, 4)));
-        // colorPanel.add(new Label("COLOR", skin, "default")).padBottom(5).row();
+
+        // 1. COLOR PANEL (Özel Durum: İçinde resim var)
+        // Yardımcı metodu kullanarak çerçeveli yapıyı kuruyoruz
+        Table colorContainer = createBorderedTable(colorBgTexture, 4, borderSize);
+        // Container'ın içindeki asıl tabloya erişmek için:
+        Table colorInner = (Table) colorContainer.getChildren().get(0);
+        
         colorPreviewImage = new Image(skin.newDrawable("white", Color.WHITE));
         colorPreviewImage.setScaling(com.badlogic.gdx.utils.Scaling.stretch);
-        colorPanel.add(colorPreviewImage).grow();
+        colorInner.add(colorPreviewImage).grow(); // İç tabloyu doldur
 
-        Table borderContainer = new Table();
-        borderContainer.setBackground(skin.newDrawable("white", Color.BLACK));
-        borderContainer.add(colorPanel).grow().pad(3);
+        // 2. WIN CONDITION PANEL
+        Table winContainer = createBorderedTable(winConditionBgTexture, corner, borderSize);
+        Table winInner = (Table) winContainer.getChildren().get(0);
 
-
-        Table winPanel = new Table();
-        winPanel.setBackground(new NinePatchDrawable(new NinePatch(winConditionBgTexture, 12, 12, 12, 12)));
-        winPanel.add(new Label("Win Condition", skin, "default")).padBottom(10).row();
+        winInner.add(new Label("Win Condition", skin, "default")).padBottom(10).row();
         winConditionLabel = new Label("", skin);
         winConditionLabel.setColor(Color.BLACK);
         winConditionLabel.setWrap(true);
         winConditionLabel.setAlignment(Align.center);
-        winPanel.add(winConditionLabel).width(200).row();
+        winInner.add(winConditionLabel).width(200).row();
 
+        // Back Butonu
         TextButton backBtn = createNavButton("Back");
         backBtn.addListener(new ChangeListener() {
             @Override
@@ -123,22 +130,26 @@ public class EmpireSelectionScreen extends ScreenAdapter {
             }
         });
 
-        leftColumn.add(borderContainer).width(250).height(120).padBottom(20).row();
-        leftColumn.add(winPanel).width(250).growY().padBottom(20).row();
+        // Sol Sütuna Ekleme
+        leftColumn.add(colorContainer).width(250).height(500).padBottom(20).row();
+        leftColumn.add(winContainer).width(250).growY().padBottom(20).row();
         leftColumn.add(backBtn).width(180).height(50).left();
+
 
         // --- ORTA SÜTUN ---
         Table centerColumn = new Table();
         playerTitleLabel = new Label("Player 1 Selection", skin, "default");
         playerTitleLabel.setColor(Color.BLACK);
-        playerTitleLabel.setFontScale(0.25f);
+        playerTitleLabel.setFontScale(0.22f); // Yazı boyutu düzeltildi
 
         nameField = new TextField("", skin);
         nameField.setMessageText("Enter Name...");
         nameField.setAlignment(Align.center);
 
-        Table listPanel = new Table();
-        listPanel.setBackground(new NinePatchDrawable(new NinePatch(empireListBgTexture, 6, 6, 6, 6)));
+        // 3. LIST PANEL (Empire Listesi)
+        Table listContainer = createBorderedTable(empireListBgTexture, corner, borderSize);
+        Table listInner = (Table) listContainer.getChildren().get(0);
+
         TextButton.TextButtonStyle listBtnStyle = new TextButton.TextButtonStyle();
         listBtnStyle.font = skin.getFont("default");
         listBtnStyle.fontColor = Color.BLACK;
@@ -149,30 +160,36 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         String[] empires = {"Blue", "Cyan", "Red", "Dark Red", "Gold", "Orange", "Brown", "Gray"};
         for (String emp : empires) {
             TextButton btn = new TextButton(emp, listBtnStyle);
+            btn.getLabel().setFontScale(0.3f); // Yazı boyutu ayarı
             btn.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
                     if (!btn.isDisabled()) updatePreview(emp);
                 }
             });
-            listPanel.add(btn).width(250).height(60).padBottom(8).row();
+            listInner.add(btn).width(250).height(80).padBottom(5).row(); // Yükseklik ve boşluk ayarı
             empireButtons.put(emp, btn);
         }
+
         centerColumn.add(playerTitleLabel).padBottom(15).row();
         centerColumn.add(new Label("Empire name", skin, "default")).padBottom(5).row();
         centerColumn.add(nameField).width(250).height(40).padBottom(20).row();
-        centerColumn.add(listPanel).width(300).growY();
+        centerColumn.add(listContainer).width(300).growY(); // Container'ı ekliyoruz
+
 
         // --- SAĞ SÜTUN ---
         Table rightColumn = new Table();
-        Table featurePanel = new Table();
-        featurePanel.setBackground(new NinePatchDrawable(new NinePatch(uniqueFeatureBgTexture, 12, 12, 12, 12)));
-        featurePanel.add(new Label("Unique Features:", skin, "default")).padBottom(10).row();
+        
+        // 4. FEATURE PANEL
+        Table featureContainer = createBorderedTable(uniqueFeatureBgTexture, corner, borderSize);
+        Table featureInner = (Table) featureContainer.getChildren().get(0);
+
+        featureInner.add(new Label("Unique Features:", skin, "default")).padBottom(10).row();
         featureLabel = new Label("", skin);
         featureLabel.setColor(Color.BLACK);
         featureLabel.setWrap(true);
         featureLabel.setAlignment(Align.center);
-        featurePanel.add(featureLabel).width(200).row();
+        featureInner.add(featureLabel).width(200).row();
 
         actionButton = createNavButton("Next Player");
         actionButton.addListener(new ChangeListener() {
@@ -181,9 +198,11 @@ public class EmpireSelectionScreen extends ScreenAdapter {
                 handleNextButton();
             }
         });
-        rightColumn.add(featurePanel).width(250).growY().padBottom(20).row();
+
+        rightColumn.add(featureContainer).width(250).growY().padBottom(20).row();
         rightColumn.add(actionButton).width(180).height(50).right();
 
+        // --- ROOT'A EKLEME ---
         rootTable.add(leftColumn).width(260).expandY().fillY().padRight(20);
         rootTable.add(centerColumn).width(320).expandY().fillY().padRight(20);
         rootTable.add(rightColumn).width(260).expandY().fillY();
@@ -306,6 +325,29 @@ public class EmpireSelectionScreen extends ScreenAdapter {
             btnTexture = new Texture(Gdx.files.internal("ui/EmpireSelection_btn.png"));
         } catch (Exception e) {}
     }
+    // --- YARDIMCI METOT: Çerçeveli ve Yuvarlak Köşeli Panel Oluşturucu ---
+private Table createBorderedTable(Texture texture, int cornerRadius, int borderThickness) {
+    // 1. Doku'dan 9-Patch oluştur
+    NinePatch patch = new NinePatch(texture, cornerRadius, cornerRadius, cornerRadius, cornerRadius);
+    
+    // 2. DIŞ KATMAN (Çerçeve Rengi): Aynı dokuyu SİYAH'a boyuyoruz
+    NinePatchDrawable borderDrawable = new NinePatchDrawable(patch).tint(Color.BLACK);
+    
+    // 3. İÇ KATMAN (Asıl Panel): Dokunun orijinal hali
+    NinePatchDrawable backgroundDrawable = new NinePatchDrawable(patch);
+
+    // 4. Tabloları oluştur
+    Table container = new Table();
+    container.setBackground(borderDrawable); // Dışa siyahı koy
+    
+    Table innerTable = new Table();
+    innerTable.setBackground(backgroundDrawable); // İçe normali koy
+    
+    // 5. İç tabloyu dışa ekle ve kenarlardan (borderThickness kadar) boşluk bırak
+    container.add(innerTable).grow().pad(borderThickness);
+    
+    return container; // Artık bu container'ı kullanacağız, innerTable'a da eleman ekleyeceğiz.
+}
     @Override public void render(float d) {
         Gdx.gl.glClearColor(0,0,0,1); Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); stage.act(d); stage.draw();
     }

@@ -41,7 +41,7 @@ public class MapSelectionScreen extends ScreenAdapter {
         this.readyPlayers = players;
     }
 
-    @Override
+@Override
     public void show() {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
@@ -56,87 +56,85 @@ public class MapSelectionScreen extends ScreenAdapter {
         // 2. Ana Tablo
         Table rootTable = new Table();
         rootTable.setFillParent(true);
+        // rootTable.setDebug(true); // Hizalamayı görmek için çizgileri açabilirsin
         rootTable.pad(30);
         stage.addActor(rootTable);
 
         // Başlık
-        Label title = new Label("Select World Map", skin, "default"); // "subtitle" da kullanabilirsin
-        title.setColor(Color.GOLD);
-        rootTable.add(title).padBottom(40).row();
+        Label title = new Label("Select World Map", skin, "default");
+        title.setColor(Color.BLACK);
+        title.setAlignment(Align.center);
+        rootTable.add(title).padBottom(50).row();
 
-        // 3. Harita Kartlarını Yan Yana Diz (Container)
+        // 3. Harita Kartlarını Alt Alta Diz (Container)
         Table mapsContainer = new Table();
 
-        // --- MAP 1 ---
-        Table map1 = createMapCard(
-            "Map 1",
-            "Standard balanced map. Best for learning.",
-            map1Preview,
-            1
-        );
+        // --- HİZALAMA AYARI (BURASI ÖNEMLİ) ---
+        // Container içindeki her eleman için varsayılan ayar yapıyoruz:
+        // Hepsi ortalansın (Align.center), genişlikleri aynı olsun.
+        mapsContainer.defaults()
+            .width(800)     // Panellerin genişliği (İçerik sığsın diye biraz arttırdım)
+            .height(190)    // Panellerin yüksekliği
+            .padBottom(20)  // Aralarındaki boşluk
+            .align(Align.center); // Hepsi ortalı dursun
+        
+        // --- KARTLARI OLUŞTUR ---
+        Table map1 = createMapCard("Map 1", "Standard balanced map.", map1Preview, 1);
+        Table map2 = createMapCard("Map 2", "Scattered islands.", map2Preview, 2);
+        Table map3 = createMapCard("Map 3", "Strategic mountains.", map3Preview, 3);
 
-        // --- MAP 2 ---
-        Table map2 = createMapCard(
-            "Map 2",
-            "Scattered islands. Naval power is crucial.",
-            map2Preview,
-            2
-        );
+        // --- KARTLARI EKLE ---
+        // Artık .width ve .height dememize gerek yok, defaults'tan alacak.
+        mapsContainer.add(map1).row();
+        mapsContainer.add(map2).row();
+        mapsContainer.add(map3).row();
 
-        // A world split by mountains. Strategic chokepoints.
-
-        // --- MAP 3 ---
-        Table map3 = createMapCard(
-            "Map 3",
-            "A world split by mountains. Strategic chokepoints.",
-            map3Preview,
-            3
-            
-        );
-
-        // Kartları ekle
-        mapsContainer.add(map1).width(300).height(400).padRight(30);
-        mapsContainer.add(map2).width(300).height(400).padRight(30);
-        mapsContainer.add(map3).width(300).height(400);
-
-        rootTable.add(mapsContainer).expandY().top().row();
+        // Container'ı ana tabloya ekle
+        // expandY().top() diyerek listeyi ekranın üstüne doğru itiyoruz ki ortada sıkışmasın.
+        rootTable.add(mapsContainer).expandY().top().padTop(20).row();
 
         // 4. Geri Butonu
         TextButton backBtn = new TextButton("Back", skin);
-        // backBtn.add("ui/Map_btn.png");
         backBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(new EmpireSelectionScreen(game));
             }
         });
+        
+        // Butonu en alta sola koy
         rootTable.add(backBtn).left().bottom().width(150).height(50);
     }
 
-    // Harita Kartı Oluşturan Yardımcı Metot
     private Table createMapCard(String title, String desc, Texture imgTex, final int mapID) {
         Table card = new Table();
 
-        // Arka plan: panel_brown.png (9-patch)
+        // Arka Plan
         NinePatch patch = new NinePatch(panelTexture, 12, 12, 12, 12);
         card.setBackground(new NinePatchDrawable(patch));
-        card.pad(15);
+        // Pad değerlerini ayarladık
+        card.pad(10, 10, 10, 10); 
 
-        // Resim
+        // --- SOL TARAFI (RESİM) ---
         Image mapImg = new Image(imgTex);
+        // Resmi biraz küçülttük ki karta sığsın
+        card.add(mapImg).size(300, 180).padRight(15); 
 
-        // Başlık
+        // --- SAĞ TARAFI (YAZILAR VE BUTON) ---
+        Table infoTable = new Table();
+
         Label titleLbl = new Label(title, skin, "default");
-        titleLbl.setAlignment(Align.center);
+        titleLbl.setColor(Color.GOLD);
+        titleLbl.setAlignment(Align.left);
+        titleLbl.setFontScale(0.25f); // Başlık biraz büyük olsun
 
-        // Açıklama
         Label descLbl = new Label(desc, skin, "default");
         descLbl.setWrap(true);
-        descLbl.setAlignment(Align.center);
+        descLbl.setAlignment(Align.left);
+        descLbl.setFontScale(0.17f); // Yazı biraz küçük olsun sığması için
 
-        // Seç Butonu
-        TextButton selectBtn = new TextButton("Start Game", skin);
-        // selectBtn.add("ui/Map_btn.png");
+        TextButton selectBtn = new TextButton("Start", skin);
+        selectBtn.getLabel().setFontScale(0.15f);
         selectBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -144,11 +142,13 @@ public class MapSelectionScreen extends ScreenAdapter {
             }
         });
 
-        // Dizilim
-        card.add(titleLbl).padBottom(10).row();
-        card.add(mapImg).size(250, 150).padBottom(15).row(); // Resim boyutu
-        card.add(descLbl).width(260).expandY().top().padBottom(15).row();
-        card.add(selectBtn).width(180).height(45).bottom();
+        // Bilgileri sağ tabloya diz
+        infoTable.add(titleLbl).left().row();
+        infoTable.add(descLbl).width(140).left().padBottom(5).row(); // Genişlik sınırı önemli
+        infoTable.add(selectBtn).width(100).height(35).left();
+
+        // Sağ tabloyu karta ekle
+        card.add(infoTable).expand().fill();
 
         return card;
     }
