@@ -59,7 +59,7 @@ public class InputController extends InputAdapter {
             Player me = screen.getHud().getBackendGame().getCurrentPlayer();
             // Kendisiyle ticaret yapamaz, listeden başkasını bulmalı ama test için:
             // Dummy bir oyuncu oluşturuyoruz
-            Player other = new Player("Other Empire", new Red());
+            Player other = new Player("Other Empire", new Red("Red"));
             TradeDialog trade = new TradeDialog(me, other, screen.getHud().getBackendGame());
 
             // Ekranın ortasına koy
@@ -73,7 +73,7 @@ public class InputController extends InputAdapter {
         // --- M: MAIL / INCOMING TRADE TEST ---
         if (keycode == Input.Keys.M) {
             Player me = screen.getHud().getBackendGame().getCurrentPlayer();
-            Player sender = new Player("Rich Empire", new Red());
+            Player sender = new Player("Rich Empire", new Red("Red"));
 
             GoldResource goldOffer = new GoldResource(500, 0, 0, 0, 0);
             FoodResource foodRequest = new FoodResource(50, 0, 0, 0);
@@ -89,10 +89,10 @@ public class InputController extends InputAdapter {
         // --- W: WAR RESULT TEST ---
         if (keycode == Input.Keys.W) {
             Tile t1 = new Tile(0, 0, TerrainType.PLAIN);
-            t1.setOwner(new Player("Player 1", new com.gameonjava.utlcs.backend.civilization.Blue()));
+            t1.setOwner(new Player("Player 1", new com.gameonjava.utlcs.backend.civilization.Blue("Blue")));
 
             Tile t2 = new Tile(1, 0, TerrainType.PLAIN);
-            t2.setOwner(new Player("Player 2", new com.gameonjava.utlcs.backend.civilization.Red()));
+            t2.setOwner(new Player("Player 2", new com.gameonjava.utlcs.backend.civilization.Red("Red")));
 
             // Dummy War Dialog
             WarDialog warReport = new WarDialog(

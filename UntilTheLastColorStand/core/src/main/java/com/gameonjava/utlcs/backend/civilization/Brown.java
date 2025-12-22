@@ -1,12 +1,11 @@
 package com.gameonjava.utlcs.backend.civilization;
 
 import com.gameonjava.utlcs.backend.Game;
+import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.resources.BookResource;
 import com.gameonjava.utlcs.backend.resources.FoodResource;
 import com.gameonjava.utlcs.backend.resources.GoldResource;
 import com.gameonjava.utlcs.backend.resources.MovementPoint;
-
-import com.gameonjava.utlcs.backend.Player;
 
 
 public class Brown extends Civilization{
@@ -25,11 +24,13 @@ public class Brown extends Civilization{
 
     private int currentTurnNumber;
 
-    public Brown(){
-        super("Brown Civilization", "Brown", 1, 1.3, 0.001);
+    public Brown(String color) {
+        super("Brown Civilization", color, 1, 1.3, 0.001);
         initializeStartingResources();
         currentTurnNumber = 0;
-
+    }
+    public Brown(){
+        super();
     }
 
     public void initializeStartingResources() {

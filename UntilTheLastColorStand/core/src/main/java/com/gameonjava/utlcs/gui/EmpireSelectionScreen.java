@@ -1,5 +1,8 @@
 package com.gameonjava.utlcs.gui;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -19,13 +22,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gameonjava.utlcs.Main;
-// import com.gameonjava.utlcs.backend.Assets;
-// BACKEND IMPORTLARI
 import com.gameonjava.utlcs.backend.Player;
-import com.gameonjava.utlcs.backend.civilization.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import com.gameonjava.utlcs.backend.civilization.Blue;
+import com.gameonjava.utlcs.backend.civilization.Brown;
+import com.gameonjava.utlcs.backend.civilization.Civilization;
+import com.gameonjava.utlcs.backend.civilization.Cyan;
+import com.gameonjava.utlcs.backend.civilization.DarkRed;
+import com.gameonjava.utlcs.backend.civilization.GoldCivilization;
+import com.gameonjava.utlcs.backend.civilization.Gray;
+import com.gameonjava.utlcs.backend.civilization.Orange;
+import com.gameonjava.utlcs.backend.civilization.Red;
 
 public class EmpireSelectionScreen extends ScreenAdapter {
 
@@ -289,20 +295,20 @@ public class EmpireSelectionScreen extends ScreenAdapter {
 
     // İSİMDEN NESNEYE ÇEVİRİCİ
     public static Civilization getCivilizationByName(String name) {
-        if (name == null) return new Blue();
+        if (name == null) return new Blue("Blue");
 
-        if (name.equals("Blue")) return new Blue();
-        if (name.equals("Cyan")) return new Cyan();
-        if (name.equals("Brown")) return new Brown();
-        if (name.equals("Gray")) return new Gray();
+        if (name.equals("Blue")) return new Blue("Blue");
+        if (name.equals("Cyan")) return new Cyan("Cyan Civilization");
+        if (name.equals("Brown")) return new Brown("Brown");
+        if (name.equals("Gray")) return new Gray("Gray Civilization");
 
         // Dosyaları gelince bunları aç:
-        if (name.equals("Red")) return new Red();
-        if (name.equals("Dark Red")) return new DarkRed();
-        if (name.equals("Gold")) return new GoldCivilization();
-        if (name.equals("Orange")) return new Orange();
+        if (name.equals("Red")) return new Red("Red");
+        if (name.equals("Dark Red")) return new DarkRed("Dark Red Civilization");
+        if (name.equals("Gold")) return new GoldCivilization("Gold");
+        if (name.equals("Orange")) return new Orange("Orange Civilization");
 
-        return new Blue();
+        return new Blue("Blue");
     }
 
     // Texture yükleme ve dispose kodları...

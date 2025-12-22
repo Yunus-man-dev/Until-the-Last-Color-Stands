@@ -3,7 +3,6 @@ package com.gameonjava.utlcs.gui;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -11,11 +10,16 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions; // EKLENDİ (Animasyon için gerekli)
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup; // EKLENDİ (Animasyon için gerekli)
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Disposable;
@@ -24,7 +28,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gameonjava.utlcs.backend.Game;
 import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Trade;
-import com.gameonjava.utlcs.backend.civilization.Civilization;
 
 public class GameHUD implements Disposable {
 
@@ -123,7 +126,7 @@ public class GameHUD implements Disposable {
                 public void clicked(InputEvent event, float x, float y) {
                     Player me = backendGame.getCurrentPlayer();
                     Player target = new Player("Player " + (pIndex + 1),
-                            new com.gameonjava.utlcs.backend.civilization.Blue());
+                            new com.gameonjava.utlcs.backend.civilization.Blue("Blue"));
 
                     if (target.getName().equals(me.getName())) {
                         // return;

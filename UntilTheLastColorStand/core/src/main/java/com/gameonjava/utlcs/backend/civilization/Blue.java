@@ -34,9 +34,12 @@ public class Blue extends Civilization{
 
 
 
-    public Blue() {
-        super("Blue Civilization", "Blue", 0.8, 1.0, 0.002 );
+    public Blue(String color) {
+        super("Blue Civilization", color, 0.8, 1.0, 0.002 );
         initializeStartingResources();
+    }
+    public Blue() {
+        super();
     }
 
     public void initializeStartingResources() {

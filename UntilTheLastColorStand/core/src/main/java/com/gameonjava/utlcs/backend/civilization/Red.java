@@ -1,10 +1,10 @@
 package com.gameonjava.utlcs.backend.civilization;
 
+import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.resources.BookResource;
 import com.gameonjava.utlcs.backend.resources.FoodResource;
 import com.gameonjava.utlcs.backend.resources.GoldResource;
 import com.gameonjava.utlcs.backend.resources.MovementPoint;
-import com.gameonjava.utlcs.backend.Player;
 
 public class Red extends Civilization{
 
@@ -37,9 +37,12 @@ public class Red extends Civilization{
 
 
 
-    public Red() {
-        super("Red Civilization", "Red", 1.3, 1, 0.001);
+    public Red(String color) {
+        super("Red Civilization", color, 1.3, 1, 0.001);
          initializeStartingResources();
+    }
+    public Red(){
+        super();
     }
 
     public void initializeStartingResources() {

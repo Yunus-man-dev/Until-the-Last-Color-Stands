@@ -1,13 +1,12 @@
 package com.gameonjava.utlcs.backend.civilization;
 
+import com.gameonjava.utlcs.backend.Player;
+import com.gameonjava.utlcs.backend.Tile;
+import com.gameonjava.utlcs.backend.building.GoldMine;
 import com.gameonjava.utlcs.backend.resources.BookResource;
 import com.gameonjava.utlcs.backend.resources.FoodResource;
 import com.gameonjava.utlcs.backend.resources.GoldResource;
 import com.gameonjava.utlcs.backend.resources.MovementPoint;
-import com.gameonjava.utlcs.backend.building.GoldMine;
-
-import com.gameonjava.utlcs.backend.Player;
-import com.gameonjava.utlcs.backend.Tile;
 
 public class GoldCivilization extends Civilization{
 
@@ -39,9 +38,12 @@ public class GoldCivilization extends Civilization{
 
 
 
-    public GoldCivilization() {
-        super("Gold Civilization", "Gold", 0.8, 0.8, 0.001);
+    public GoldCivilization(String color) {
+        super("Gold Civilization", color, 0.8, 0.8, 0.001);
         initializeStartingResources();
+    }
+    public GoldCivilization(){
+        super();
     }
 
     public void initializeStartingResources(){
