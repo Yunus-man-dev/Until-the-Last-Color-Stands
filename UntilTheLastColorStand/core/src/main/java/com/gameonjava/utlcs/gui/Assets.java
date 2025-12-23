@@ -19,10 +19,21 @@ public class Assets {
     // BU ŞEKİLDE UI CLASSLARINDA KULLANILABILIR!!!
 
     public static final AssetManager manager = new AssetManager();
+    public static final Color COL_RED       = Color.valueOf("de0f3f");
+    public static final Color COL_DARK_RED  = Color.valueOf("960829");
+
+    public static final Color COL_BLUE      = Color.valueOf("38b6ff");
+    public static final Color COL_CYAN      = Color.valueOf("36eee0");
+
+    public static final Color COL_BROWN     = Color.valueOf("824703");
+    public static final Color COL_GRAY      = Color.valueOf("a6a6a6"); 
+
+    public static final Color COL_GOLD      = Color.valueOf("ffd230");
+    public static final Color COL_ORANGE    = Color.valueOf("ff914d");
 
     public static final String SKIN_JSON = "skin/uiskin.json";
 
-    public static final String HEX_OUTLINE = "ui/hexagonOutline.png"; 
+    public static final String HEX_OUTLINE = "ui/hexagonOutline.png";
     public static final String TERRAIN_PLAIN = "ui/tile_grass.png";
     public static final String TERRAIN_FOREST = "ui/tile_forest.png";
     public static final String TERRAIN_MOUNTAIN = "ui/smallRockSnow.png";
