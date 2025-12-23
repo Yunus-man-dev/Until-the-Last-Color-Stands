@@ -68,7 +68,6 @@ public class InteractionBar extends Table {
         }
         Player me = gameBackend.getCurrentPlayer();
 
-        // 1. GÜVENLİK KONTROLÜ
         if (t.getOwner() == null || !t.getOwner().equals(me)) {
             setVisible(false);
             return;
@@ -85,7 +84,6 @@ public class InteractionBar extends Table {
 
         // --- SENARYOLAR ---
 
-        // 1. (Bina Yok/Yükseltilebilir) VE (Asker Var) -> 3 Aksiyon + Cancel
         if ( (!hasBuilding || !isMaxLevel) && hasArmy ) {
             setSlotImage(Assets.ibSlot3);
 
@@ -102,7 +100,6 @@ public class InteractionBar extends Table {
             addCancelButton();
         }
 
-        // 2. (Bina Tam Seviye) VE (Asker Var) -> 2 Aksiyon + Cancel
         else if (isMaxLevel && hasArmy) {
             setSlotImage(Assets.ibSlot3);
 
@@ -312,7 +309,7 @@ public class InteractionBar extends Table {
 
     private void enableMoveMode(final Tile t) {
         buttonTable.clear();
-        setSlotImage(Assets.ibSlot3); // Geniş alan lazım
+        setSlotImage(Assets.ibSlot3);
 
         final Player player = gameBackend.getCurrentPlayer();
 
