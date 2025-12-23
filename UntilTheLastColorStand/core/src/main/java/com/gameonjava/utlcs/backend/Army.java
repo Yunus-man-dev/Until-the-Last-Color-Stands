@@ -30,6 +30,17 @@ public class Army implements com.badlogic.gdx.utils.Json.Serializable{
         this.movesMadeThisTurn = 0;
     }
 
+
+    // --- YENİ EKLENEN SETTERLAR (Yükleme sonrası bağlantı için) ---
+    public void setTile(Tile tile) {
+        this.tile = tile;
+    }
+    
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+
     // Player player;
 
     //player will be in the constructor
@@ -67,16 +78,19 @@ public class Army implements com.badlogic.gdx.utils.Json.Serializable{
     }
     @Override
     public void write(Json json) {
-        json.writeValue("Player", player);
+        // json.writeValue("Player", player);
         json.writeValue("NumSoldiers", numberOfSoldiers);
-        json.writeValue("Tile", tile);
+        // json.writeValue("Tile", tile);
+        json.writeValue("Moves", movesMadeThisTurn);
     }
 
     @Override
     public void read(Json json, JsonValue jsonData) {
-        player = json.readValue("Player", Player.class, jsonData);
+        // player = json.readValue("Player", Player.class, jsonData);
         numberOfSoldiers = jsonData.getInt("NumSoldiers", 0);
-        tile = json.readValue("Tile", Tile.class, jsonData);
+        // tile = json.readValue("Tile", Tile.class, jsonData);
+        numberOfSoldiers = jsonData.getInt("NumSoldiers", 0);
+        movesMadeThisTurn = jsonData.getInt("Moves", 0);
     }
 
 

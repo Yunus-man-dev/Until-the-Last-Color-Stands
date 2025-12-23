@@ -1,5 +1,8 @@
 package com.gameonjava.utlcs.backend.resources;
 
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
+
 public class MovementPoint extends Resource {
 
     public double MOVE;
@@ -33,4 +36,32 @@ public class MovementPoint extends Resource {
     public void initializeConstants() {
 
     }
+    @Override
+    public void write(Json json) {
+        super.write(json); // Resource sınıfındaki "value"yu kaydet
+        
+        // Şimdi MovementPoint'e özel ayarları kaydet
+        json.writeValue("baseLimit", baseLimit);
+        json.writeValue("MOVE", MOVE);
+        json.writeValue("UPGRADE", UPGRADE);
+        json.writeValue("CONSTRUCT", CONSTRUCT);
+        json.writeValue("TRADE", TRADE);
+        json.writeValue("RECRUIT", RECRUIT);
+        json.writeValue("ATTACK", ATTACK);
+    }
+
+    @Override
+    public void read(Json json, JsonValue jsonData) {
+        super.read(json, jsonData); // Resource sınıfındaki "value"yu oku
+        
+        // MovementPoint ayarlarını geri yükle
+        baseLimit = jsonData.getDouble("baseLimit");
+        MOVE = jsonData.getDouble("MOVE");
+        UPGRADE = jsonData.getDouble("UPGRADE");
+        CONSTRUCT = jsonData.getDouble("CONSTRUCT");
+        TRADE = jsonData.getDouble("TRADE");
+        RECRUIT = jsonData.getDouble("RECRUIT");
+        ATTACK = jsonData.getDouble("ATTACK");
+    }
+
 }

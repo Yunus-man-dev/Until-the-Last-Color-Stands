@@ -1,4 +1,6 @@
 package com.gameonjava.utlcs.backend.building;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
 import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Tile;
 
@@ -14,6 +16,7 @@ public class Library extends Building {
     }
     public Library(){
         super();
+        this.name = "Library";
     }
 
     @Override
@@ -29,6 +32,17 @@ public class Library extends Building {
             bookProduced *= 3;
         }
         player.addScience(bookProduced);
+    }
+    @Override
+    public void write(Json json) {
+        super.write(json);
+        json.writeValue("BOOK", BOOK);
+    }
+
+    @Override
+    public void read(Json json, JsonValue jsonData) {
+        super.read(json, jsonData);
+        this.BOOK = jsonData.getDouble("BOOK");
     }
 
 }

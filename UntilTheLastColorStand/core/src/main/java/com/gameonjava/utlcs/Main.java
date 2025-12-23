@@ -95,4 +95,14 @@ public class Main extends Game {
         if (empireSelectionScreen != null) empireSelectionScreen.dispose();
         if (gameScreen != null) gameScreen.dispose();
     }
+    public void setBackendGame(com.gameonjava.utlcs.backend.Game game) {
+        this.backendGame = game;
+        
+        // ÖNEMLİ: Eğer eski bir GameScreen varsa onu yok etmeliyiz.
+        // Yoksa eski ekran, eski oyun verilerini tutmaya devam eder.
+        if (gameScreen != null) {
+            gameScreen.dispose();
+            gameScreen = null; 
+        }
+    }
 }

@@ -272,7 +272,12 @@ private Texture getBuildingTexture(Tile t) {
     //     default:
     //         return Assets.farm1;
     // }
-
+    // Building null kontrolü (Ekstra güvenlik)
+    if (t.getBuilding() == null) return null;
+    // --- DÜZELTME BURADA: s null ise varsayılan döndür ---
+    if (s == null) {
+        return Assets.farm1; // Veya Assets.farm1
+    }
     if(s.equals("Farm")){
         if (level == 1) return Assets.farm1;
         if (level == 2) return Assets.farm2;    

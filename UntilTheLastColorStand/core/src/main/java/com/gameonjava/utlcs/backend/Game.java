@@ -373,20 +373,65 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
 
     @Override
     public void read(Json json, JsonValue jsonData) {
-        players = json.readValue("Players", java.util.ArrayList.class, Player.class, jsonData);
-        gameMap = json.readValue("Map", Map.class, jsonData);
+        // players = json.readValue("Players", java.util.ArrayList.class, Player.class, jsonData);
+        // gameMap = json.readValue("Map", Map.class, jsonData);
 
-        // Standard primitive reads
+        // // Standard primitive reads
+        // currentTurn = jsonData.getInt("Turn", 1);
+        // currentPlayerIndex = jsonData.getInt("CurPlayerIndex", 0);
+
+        // activeTrades = json.readValue("ActiveTrades", java.util.ArrayList.class, Trade.class, jsonData);
+
+        // if (players != null) {
+        //     for (Player p : players) {
+        //         p.relinkTiles();
+        //     }
+        // }
+        // 1. Önce Haritayı Yükle (Sıralama Önemli!)
+        gameMap = json.readValue("Map", Map.class, jsonData);
+        
+        // 2. Sonra Oyuncuları Yükle (Oyuncular kendi "Kopya" Tile'larıyla gelir)
+        players = json.readValue("Players", java.util.ArrayList.class, Player.class, jsonData);
+        
+        // 3. Diğer Veriler
         currentTurn = jsonData.getInt("Turn", 1);
         currentPlayerIndex = jsonData.getInt("CurPlayerIndex", 0);
-
         activeTrades = json.readValue("ActiveTrades", java.util.ArrayList.class, Trade.class, jsonData);
+        
+        // 4. BAĞLANTILARI ONAR (YENİ METODU ÇAĞIRIYORUZ)
+        relinkTilesWithMap();
+    }
+    private void relinkTilesWithMap() {
+        if (players == null || gameMap == null) return;
 
-        if (players != null) {
-            for (Player p : players) {
-                p.relinkTiles();
+        for (Player p : players) {
+            // Oyuncunun elindeki (Json'dan gelen kopya) listeyi al
+            ArrayList<Tile> loadedTiles = new ArrayList<>(p.getOwnedTiles());
+            
+            // Oyuncunun listesini temizle (Doğrularını ekleyeceğiz)
+            p.getOwnedTiles().clear();
+
+            for (Tile fakeTile : loadedTiles) {
+                // Koordinatları al
+                int q = fakeTile.getQ();
+                int r = fakeTile.getR();
+
+                // Haritadan GERÇEK tile'ı çek
+                Tile realTile = gameMap.getTile(q, r);
+
+                if (realTile != null) {
+                    // 1. Oyuncuya gerçek tile'ı ver
+                    p.addTile(realTile);
+                    
+                    // 2. Gerçek tile'a sahibini tanıt
+                    realTile.setOwner(p);
+
+                    // 3. Eğer tile üstünde ordu varsa, ordunun sahibini de güncelle
+                    if (realTile.hasArmy()) {
+                        realTile.getArmy().setPlayer(p);
+                    }
+                }
             }
         }
     }
-
 }

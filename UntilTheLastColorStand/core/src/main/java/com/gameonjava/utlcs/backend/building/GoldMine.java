@@ -1,4 +1,6 @@
 package com.gameonjava.utlcs.backend.building;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
 import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Tile;
 /*GoldMine is a subclass of Building that produces a specified amount of
@@ -13,6 +15,7 @@ public class GoldMine extends Building {
     }
     public GoldMine(){
         super();
+        this.name = "Mine";
     }
 
     @Override
@@ -26,5 +29,16 @@ public class GoldMine extends Building {
         }
 
         player.addGold(goldProduced);
+    }
+    @Override
+    public void write(Json json) {
+        super.write(json);
+        json.writeValue("GOLD", GOLD);
+    }
+
+    @Override
+    public void read(Json json, JsonValue jsonData) {
+        super.read(json, jsonData);
+        this.GOLD = jsonData.getDouble("GOLD");
     }
 }

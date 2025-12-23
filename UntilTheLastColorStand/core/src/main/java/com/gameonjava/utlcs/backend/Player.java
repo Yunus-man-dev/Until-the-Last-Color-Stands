@@ -276,8 +276,16 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
 
     @Override
     public void write(Json json) {
-        json.writeValue("Name", name);
-        json.writeValue("Civilization", civilization, null); 
+      json.writeValue("Name", name);
+        
+        // DÜZELTME: Civilization objesini komple yazmak yerine sadece RENGİNİ/İSMİNİ yazıyoruz.
+        // Çünkü object olarak yazarsak abstract class hatası alırız.
+        if (civilization != null) {
+            json.writeValue("CivName", civilization.getCivilizationColor()); // "Blue", "Red" vb.
+        } else {
+            json.writeValue("CivName", "Blue"); // Fallback
+        }
+
         json.writeValue("Food", food);
         json.writeValue("Gold", gold);
         json.writeValue("Book", book);
@@ -290,7 +298,12 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
     @Override
     public void read(Json json, JsonValue jsonData) {
         this.name = jsonData.getString("Name");
-        this.civilization = json.readValue("Civilization", null, jsonData); 
+        
+        // DÜZELTME: İsimden tekrar obje oluşturuyoruz.
+        String civName = jsonData.getString("CivName", "Blue");
+        // EmpireSelectionScreen sınıfındaki o harika metodu kullanıyoruz:
+        this.civilization = com.gameonjava.utlcs.gui.EmpireSelectionScreen.getCivilizationByName(civName);
+
         this.food = json.readValue("Food", com.gameonjava.utlcs.backend.resources.FoodResource.class, jsonData);
         this.gold = json.readValue("Gold", com.gameonjava.utlcs.backend.resources.GoldResource.class, jsonData);
         this.book = json.readValue("Book", com.gameonjava.utlcs.backend.resources.BookResource.class, jsonData);
@@ -301,12 +314,30 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
 
         relinkTiles();
     }
+   
+
+
+
+
+
+
+
+
+
 
     public void relinkTiles() {
-        if (ownedTiles != null) {
+       if (ownedTiles != null) {
             for (Tile t : ownedTiles) {
+                // 1. Tile sahibini ayarla
                 t.setOwner(this);
+                
+                // 2. Eğer Tile üstünde ordu varsa, onun da sahibini ayarla (YENİ KISIM)
+                if (t.hasArmy()) {
+                    t.getArmy().setPlayer(this);
+                }
             }
         }
     }
+
+   
 }

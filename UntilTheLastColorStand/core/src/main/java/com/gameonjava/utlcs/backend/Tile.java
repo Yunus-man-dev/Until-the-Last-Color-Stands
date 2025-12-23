@@ -202,12 +202,47 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
 
     @Override
     public void read(Json json, JsonValue jsonData) {
+       
+        // q = jsonData.getInt("q", 0);
+        // r = jsonData.getInt("r", 0);
+        // terrainName = json.readValue("Terrain", com.gameonjava.utlcs.backend.Enum.TerrainType.class, jsonData);
+        
+        // // 1. Bina Bağlantısı (Bunu zaten yapmıştık)
+        // building = json.readValue("Building", null, jsonData); 
+        // if (building != null) {
+        //     building.setTile(this);
+        // }
+        
+        // // 2. ORDU BAĞLANTISI (YENİ KISIM)
+        // army = json.readValue("Army", com.gameonjava.utlcs.backend.Army.class, jsonData);
+        // if (army != null) {
+        //     army.setTile(this); // Orduya "Senin tile'ın benim" diyoruz.
+        //     // Not: Player bağlantısını Player.java'da yapacağız.
+        // }
+
+        // soldierConsumptionRate = jsonData.getDouble("ConsumptionRate", 1.0);
         q = jsonData.getInt("q", 0);
         r = jsonData.getInt("r", 0);
         terrainName = json.readValue("Terrain", com.gameonjava.utlcs.backend.Enum.TerrainType.class, jsonData);
         
+        // 1. Bina Bağlantısı
         building = json.readValue("Building", null, jsonData); 
+        if (building != null) {
+            building.setTile(this);
+        }
+        
+        // 2. ORDU BAĞLANTISI VE TEMİZLİĞİ (DÜZELTME BURADA)
         army = json.readValue("Army", com.gameonjava.utlcs.backend.Army.class, jsonData);
+        
+        // EĞER ASKER SAYISI 0 İSE ORDUYU YOK ET (GHOST ARMY FIX)
+        if (army != null) {
+            if (army.getSoldiers() <= 0) {
+                army = null; // Boş orduyu sil
+            } else {
+                army.setTile(this); // Doluysa tile'ını ata
+            }
+        }
+
         soldierConsumptionRate = jsonData.getDouble("ConsumptionRate", 1.0);
     }
 }

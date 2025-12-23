@@ -16,13 +16,18 @@ public abstract class Building implements com.badlogic.gdx.utils.Json.Serializab
         this.level = 1;
     }
 
-    public Building() {}
+    public Building() {
+        
+    }
     
     public int getLevel() {
         return level;
     }
     public Tile getTile() {
         return tile;
+    }
+    public void setTile(Tile tile) {
+        this.tile = tile;
     }
     public void upgrade(){
         // 4 is just a random constant here. you can edit it
@@ -40,11 +45,11 @@ public abstract class Building implements com.badlogic.gdx.utils.Json.Serializab
     @Override
     public void write(Json json) {
         json.writeValue("level", level);
-        json.writeValue("tile", tile);
+        // json.writeValue("tile", tile);
     }
     @Override
     public void read(Json json, JsonValue jsonData) {
         this.level = jsonData.getInt("level");
-        this.tile = json.readValue("tile", Tile.class, jsonData);
+        // this.tile = json.readValue("tile", Tile.class, jsonData);
     }
 }

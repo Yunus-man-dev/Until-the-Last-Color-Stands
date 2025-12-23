@@ -114,20 +114,40 @@ public class MainMenuScreen extends ScreenAdapter {
             }
         });
 
+        // btnLoadGame.addListener(new ChangeListener() {
+        //     @Override
+        //     public void changed(ChangeEvent event, Actor actor) {
+        //         SaveLoad sl = new SaveLoad();
+        //         // CHANGE THIS: Match your actual file name
+        //         Game loadedGame = sl.load("savefile.json");
+
+        //         if (loadedGame != null) {
+        //             // game.gameHUD = new GameHUD(game.batch, loadedGame);
+        //             game.changeScreen(Main.ScreenType.GAME);
+        //             System.out.println("Load successful!");
+        //         } else {
+        //             // This is the error you are currently seeing
+        //             System.err.println("Load failed: savefile.json not found or corrupted.");
+        //         }
+        //     }
+        // });
         btnLoadGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 SaveLoad sl = new SaveLoad();
-                // CHANGE THIS: Match your actual file name
+                // Dosya adının doğru olduğundan emin ol (savefile.json vs.)
                 Game loadedGame = sl.load("savefile.json");
 
                 if (loadedGame != null) {
-                    // game.gameHUD = new GameHUD(game.batch, loadedGame);
+                    // DÜZELTME BURADA:
+                    // Yüklenen oyunu Main sınıfına "set" ediyoruz.
+                    game.setBackendGame(loadedGame); 
+                    
+                    // Sonra ekrana geçiyoruz
                     game.changeScreen(Main.ScreenType.GAME);
-                    System.out.println("Load successful!");
+                    System.out.println("Save Loaded Successfully!");
                 } else {
-                    // This is the error you are currently seeing
-                    System.err.println("Load failed: savefile.json not found or corrupted.");
+                    System.err.println("Load failed: File not found or corrupted.");
                 }
             }
         });
