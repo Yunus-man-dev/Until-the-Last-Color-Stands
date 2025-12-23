@@ -392,9 +392,9 @@ public class GameHUD implements Disposable {
         filterGroup.setMinCheckCount(1);
         filterGroup.setUncheckLast(true);
 
-        if (screen.isShowBuildings()) checkBuildings.setChecked(true);
-        else if (screen.isShowSoldiers()) checkSoldiers.setChecked(true);
-        else checkNone.setChecked(true);
+        screen.setShowBuildings(false);
+        screen.setShowSoldiers(false);
+        checkNone.setChecked(true);
 
         ChangeListener listener = new ChangeListener() {
             @Override
