@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.gameonjava.utlcs.Main;
 import com.gameonjava.utlcs.backend.Player;
+import com.gameonjava.utlcs.backend.Tile;
 import com.gameonjava.utlcs.backend.Game;
 import com.gameonjava.utlcs.backend.civilization.Civilization;
 public class GameScreen extends ScreenAdapter {
@@ -138,7 +139,11 @@ public class GameScreen extends ScreenAdapter {
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
         // Filtreleri göndererek çizim yap
-        mapManager.render(game.batch, 0, showSoldiers, showBuildings);
+        Tile moveSource = null;
+        if (mapInput != null && mapInput.isMoveMode()) {
+            moveSource = mapInput.getMoveSourceTile();
+        }
+        mapManager.render(game.batch, 0, showSoldiers, showBuildings,moveSource);
         game.batch.end();
 
         // 4. DEBUG ÇİZİMİ (Mavi Kutu - Harita Sınırları)

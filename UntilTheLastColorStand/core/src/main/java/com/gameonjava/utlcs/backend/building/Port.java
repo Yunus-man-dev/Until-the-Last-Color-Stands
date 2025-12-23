@@ -4,14 +4,17 @@ import com.gameonjava.utlcs.backend.Tile;
 /*Port is a subclass of Building that produces a specified amount of gold and
 food each turn. This amount might differ to civilization to civilization. */
 public class Port extends Building {
-    private final double FOOD;
-    private final double GOLD;
+    private double FOOD;
+    private double GOLD;
 
     public Port(Tile tile, double FOOD, double GOLD) {
         super(tile);
         this.FOOD = FOOD;
         this.GOLD = GOLD;
         name = "Port";
+    }
+    public Port(){
+        super();
     }
 
     @Override

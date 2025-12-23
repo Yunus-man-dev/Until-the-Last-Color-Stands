@@ -3,22 +3,38 @@ package com.gameonjava.utlcs.backend;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.JsonWriter.OutputType;
 
 public class SaveLoad {
     private Json json;
 
     public SaveLoad() {
         json = new Json();
-        json.setOutputType(OutputType.json);
-        json.setUsePrototypes(false); 
+        json.setOutputType(com.badlogic.gdx.utils.JsonWriter.OutputType.json);
+        json.setUsePrototypes(false);
+        json.setTypeName("class");
+
+        /*json.setSerializer(Player.class, new Json.Serializer<Player>() {
+            @Override
+            public void write(Json json, Player player, Class knownType) {
+                json.writeObjectStart();
+                player.write(json);
+                json.writeObjectEnd();
+            }
+
+            @Override
+            public Player read(Json json, JsonValue jsonData, Class type) {
+                Player p = new Player();
+                p.read(json, jsonData);  
+                return p;
+            }
+        });*/
 
         json.addClassTag("Player", com.gameonjava.utlcs.backend.Player.class);
         json.addClassTag("Tile", com.gameonjava.utlcs.backend.Tile.class);
-        //json.addClassTag("Game", com.gameonjava.utlcs.backend.Game.class);
-        //json.addClassTag("Map", com.gameonjava.utlcs.backend.Map.class);
-        //json.addClassTag("Army", com.gameonjava.utlcs.backend.Army.class);
-        //json.addClassTag("Trade", com.gameonjava.utlcs.backend.Trade.class);
+        json.addClassTag("Game", com.gameonjava.utlcs.backend.Game.class);
+        json.addClassTag("Army", com.gameonjava.utlcs.backend.Army.class);
+        json.addClassTag("Map", com.gameonjava.utlcs.backend.Map.class);
+        json.addClassTag("Trade", com.gameonjava.utlcs.backend.Trade.class);
         
         // Concrete Civilizations
         json.addClassTag("Civilization", com.gameonjava.utlcs.backend.civilization.Civilization.class);

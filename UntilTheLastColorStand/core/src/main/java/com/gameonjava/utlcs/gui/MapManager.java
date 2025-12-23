@@ -108,7 +108,7 @@ public class MapManager {
         mapTop += padding;
     }
 
-    public void render(SpriteBatch batch, float textureYOffset, boolean showSoldiers, boolean showBuildings) {
+    public void render(SpriteBatch batch, float textureYOffset, boolean showSoldiers, boolean showBuildings, Tile moveSource) {
         int width = 32;
         int height = 21;
 
@@ -194,6 +194,26 @@ public class MapManager {
                         }
                     }
                 }
+            }
+            if (moveSource != null) {
+                // 1. Hareket edecek askerin komşularını al
+                java.util.ArrayList<Tile> neighbors = gameMap.getNeighbors(moveSource);
+
+                // 2. Noktanın rengini ve boyutunu ayarla
+                batch.setColor(Color.BLACK); // Veya hafif şeffaf: batch.setColor(0, 0, 0, 0.5f);
+                float dotSize = drawWidth * 0.3f; // Tile boyutunun %30'u kadar
+                float dotOffset = dotSize / 2f;
+
+                for (Tile n : neighbors) {
+                    // Sadece gidilebilecek yerlere nokta koy (Dağ veya Derin Su değilse)
+                    if (n.canUnitPass(moveSource)) {
+                        batch.draw(Assets.moveDot, 
+                                n.getPixelX() - dotOffset, 
+                                n.getPixelY() - dotOffset + textureYOffset, 
+                                dotSize, dotSize);
+                    }
+                }
+                batch.setColor(Color.WHITE); // Rengi temizle
             }
             
             // batch.setColor(Color.WHITE); // Render bitiminde rengi temizle
