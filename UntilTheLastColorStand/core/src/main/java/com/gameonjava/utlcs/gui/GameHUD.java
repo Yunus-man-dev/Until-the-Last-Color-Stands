@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions; // EKLENDİ (Animasyon için gerekli)
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -67,7 +67,6 @@ public class GameHUD implements Disposable {
         //     }
         // });
 
-        // --- A. TOP BAR (KAYNAKLAR) ---
         Table topTable = new Table();
         topTable.setBackground(Assets.topbarbg);
 
@@ -121,11 +120,9 @@ public class GameHUD implements Disposable {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     Player me = backendGame.getCurrentPlayer();
-                    Player target = new Player("Player " + (pIndex + 1),
-                            new com.gameonjava.utlcs.backend.civilization.Blue("Blue"));
-
+                    Player target = backendGame.getPlayers().get(pIndex);
                     if (target.getName().equals(me.getName())) {
-                        // return;
+                         return;
                     }
                     if (currentInfoWidget != null)
                         currentInfoWidget.remove();
@@ -140,14 +137,13 @@ public class GameHUD implements Disposable {
             leftTable.add(pBtn).size(50).padBottom(10).row();
         }
 
-        // Mail Butonu (Teklif Gelince Görünür)
         if (Assets.mail != null) {
             ImageButton.ImageButtonStyle mailStyle = new ImageButton.ImageButtonStyle();
             mailStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.mail));
             mailStyle.down = new TextureRegionDrawable(new TextureRegion(Assets.mail)).tint(Color.LIGHT_GRAY);
 
             mailBtn = new ImageButton(mailStyle);
-            mailBtn.setVisible(false); // Başlangıçta mutlaka gizli
+            mailBtn.setVisible(false);
 
             mailBtn.addListener(new ClickListener() {
                 @Override
@@ -307,6 +303,21 @@ public class GameHUD implements Disposable {
         return style;
     }
 
+    // GameHUD.java içine ekle:
+
+    // Parametre olarak 'Main game' alıyoruz ki ekran değiştirebilelim
+    public void showGameOver(Player winner, com.gameonjava.utlcs.Main game) {
+        GameOverDialog dialog = new GameOverDialog("Game Over", Assets.skin, game, winner);
+
+        // Diyaloğu sahneye ekle
+        dialog.show(stage);
+
+        // Ekranın tam ortasına yerleştir
+        dialog.setPosition(
+            Math.round((stage.getWidth() - dialog.getWidth()) / 2),
+            Math.round((stage.getHeight() - dialog.getHeight()) / 2)
+        );
+    }
 
     public void createFilterMenu(final com.gameonjava.utlcs.gui.GameScreen screen) {
         filterMenuTable = new Table();

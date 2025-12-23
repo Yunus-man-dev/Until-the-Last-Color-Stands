@@ -77,14 +77,28 @@ public class GameScreen extends ScreenAdapter {
         // İstatistikleri güncelle
         hud.updateStats(hud.backendGame.getCurrentPlayer(), Game.getCurrentTurn());
 
+        // GameScreen.java -> setupHudListeners içi:
+
+        // GameScreen.java -> setupHudListeners içi:
+
         hud.getEndTurnBtn().addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                // 1. Turu ilerlet (Backend)
                 hud.backendGame.nextTurn();
+
+                // --- YENİ EKLENEN KISIM: OYUN BİTTİ Mİ? ---
+                if (hud.backendGame.getWinner() != null) {
+                    // Kazanan var! Diyaloğu göster ve 'game' nesnesini gönder
+                    hud.showGameOver(hud.backendGame.getWinner(), game);
+                    return; // Kodun geri kalanını çalıştırma (Update yapmaya gerek yok)
+                }
+                // ------------------------------------------
+
+                // Oyun devam ediyorsa standart güncellemeleri yap
                 Player current = hud.backendGame.getCurrentPlayer();
                 hud.updateStats(current, Game.getCurrentTurn());
 
-                // Win Condition yazısını güncelle
                 Civilization currentCiv = current.getCivilization();
                 TextureRegionDrawable newBg = getCivBg(currentCiv);
                 String winText = currentCiv.getWinCondText();

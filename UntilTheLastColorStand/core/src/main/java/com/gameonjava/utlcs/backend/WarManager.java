@@ -205,7 +205,7 @@ public class WarManager {
     private int findCasulties(Army army ,int difference){
 
 
-        //fark 10 dan fazla ise yuzde 80
+        // fark 10 dan fazla ise yuzde 80
         // fark 20 den fazla ise yuzde 60
         // fark 40 dan fazla ise yuzde 40
         // fark 100 den fazla ise yuzde 20
