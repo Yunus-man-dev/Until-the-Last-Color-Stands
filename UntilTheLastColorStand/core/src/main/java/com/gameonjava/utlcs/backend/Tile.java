@@ -64,6 +64,11 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
     }
 
     public void setOwner(Player owner) {
+        
+        if(terrainName == TerrainType.DEEP_WATER && terrainName == TerrainType.MOUNTAIN && terrainName == TerrainType.WATER)
+            return;
+        // Eklenemeyecegi veya hareket edemeyecegi ile alakali bir sey diyeblirz
+        
         this.owner = owner;
     }
 
