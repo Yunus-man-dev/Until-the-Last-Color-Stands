@@ -42,16 +42,7 @@ public class Main extends Game {
 
         // --- BU KISIM SİLİNMİŞTİ, GERİ GELDİ ---
         // 1. Backend Oyununu Başlat
-        backendGame = new com.gameonjava.utlcs.backend.Game();
-        
-        // 2. Haritayı Yükle (Test için ID 1)
-        // Harita olmadan oyun açılırsa NullPointer hatası alırsın.
-        backendGame.getMap().initializeMap(1); 
-        // ---------------------------------------
-
-        // Test için direkt oyuna mı girmek istiyorsun, menüye mi?
-        // Normal akış: MAIN_MENU
-        // Hızlı test: GAME
+        backendGame = new com.gameonjava.utlcs.backend.Game();  
         changeScreen(ScreenType.MAIN_MENU); 
     }
 

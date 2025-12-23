@@ -123,7 +123,7 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
 
         food.reduceResource(foodConsumption);
 
-        technologyPoint = (int) (book.getValue() * civilization.getTechnologyMultiplier());
+        technologyPoint = (int) this.book.calculateTP();
         movementPoint.updateMovementPoint(technologyPoint);
     }
 

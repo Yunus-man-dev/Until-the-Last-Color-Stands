@@ -13,10 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.gameonjava.utlcs.backend.civilization.Gray;
 
 public class Assets {
-    // Image goldIcon = new Image(Assets.gold);
-    // Image foodIcon = new Image(Assets.food);
-    // Image settingsBtn = new Image(Assets.settings);
-    // BU ŞEKİLDE UI CLASSLARINDA KULLANILABILIR!!!
+ 
 
     public static final String PATTERN = "ui/tile_outline.png";
 
