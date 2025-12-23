@@ -264,19 +264,31 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
         return null;
     }
 
+    // Game.java içindeki initiateAttack metodunu bununla değiştir:
+
     private com.gameonjava.utlcs.backend.WarManager initiateAttack(Tile attackerTile, Tile defenderTile, int amount) {
         System.out.println("WAR STARTED!");
 
         Player attacker = attackerTile.getOwner();
         Player defender = defenderTile.getOwner();
 
-        // 1. Zar Atma
+        // --- 1. SAVAŞ ÖNCESİ VERİLERİ SAKLA (SNAPSHOT) ---
+        // Savaş sonucunda askerler öleceği için, başlangıç değerlerini şimdiden alıyoruz.
+        String startAttName = attacker.getName();
+        String startDefName = (defender != null) ? defender.getName() : "Neutral";
+        // Saldıranın o anki toplam askeri (veya sadece amount, senaryona göre değişir ama genelde o karedeki ordu + amount savaşa girer)
+        // Ancak moveArmy metodunda amount kadar asker yeni bir ordu gibi düşünüldüğü için:
+        int startAttSoldiers = amount;
+        int startDefSoldiers = (defenderTile.hasArmy()) ? defenderTile.getArmy().getSoldiers() : 0;
+        // ------------------------------------------------
+
+        // 2. Zar Atma
         int attRoll = com.badlogic.gdx.math.MathUtils.random(1, 6);
         int defRoll = com.badlogic.gdx.math.MathUtils.random(1, 6);
 
-        // 2. Güç Hesaplama (Basit Formül)
-        int attPower = attRoll + amount + (int) attacker.getTechnologyPoint();
-        int defPower = defRoll + defenderTile.getArmy().getSoldiers() + (int) defender.getTechnologyPoint();
+        int defPower = defRoll + startDefSoldiers + (int)(defender != null ? defender.getTechnologyPoint() : 0);
+        int attPower = attRoll + amount + (int)attacker.getTechnologyPoint();
+        // 3. Güç Hesaplama
 
         // Orman Bonusu
         if (defenderTile.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.FOREST) {
@@ -285,16 +297,15 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
 
         boolean attackerWon = attPower > defPower;
 
-        // 3. SONUÇLARI UYGULA
+        // 4. SONUÇLARI UYGULA
         if (attackerWon) {
             System.out.println("ATTACKER WON!");
 
             // Savunan ölür
-            if (defender != null)
-                defender.getOwnedTiles().remove(defenderTile);
+            if(defender != null) defender.getOwnedTiles().remove(defenderTile);
             defenderTile.setArmy(null);
 
-            // Saldıranın askerleri ilerler
+            // Saldıranın kaynak karesindeki askerleri azalt
             int remainingSource = attackerTile.getArmy().getSoldiers() - amount;
             if (remainingSource > 0) {
                 attackerTile.getArmy().setSoldiers(remainingSource);
@@ -303,8 +314,7 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
             }
 
             // Yeni orduyu hedefe koy
-            com.gameonjava.utlcs.backend.Army winningArmy = new com.gameonjava.utlcs.backend.Army(amount, attacker,
-                    defenderTile);
+            com.gameonjava.utlcs.backend.Army winningArmy = new com.gameonjava.utlcs.backend.Army(amount, attacker, defenderTile);
             defenderTile.setArmy(winningArmy);
 
             // Toprağı al
@@ -322,8 +332,16 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
             }
         }
 
-        // 4. GUI İÇİN VERİ PAKETLEME
+        // 5. GUI İÇİN VERİ PAKETLEME
         com.gameonjava.utlcs.backend.WarManager result = new com.gameonjava.utlcs.backend.WarManager();
+
+        // --- EKSİK OLAN KISIM BURASIYDI, EKLENDİ ---
+        result.guiAttName = startAttName;
+        result.guiDefName = startDefName;
+        result.guiAttSoldierCount = startAttSoldiers;
+        result.guiDefSoldierCount = startDefSoldiers;
+        // -------------------------------------------
+
         result.guiAttackerWon = attackerWon;
         result.guiAttRoll = attRoll;
         result.guiDefRoll = defRoll;

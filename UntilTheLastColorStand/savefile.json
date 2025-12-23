@@ -109,7 +109,7 @@
 			}
 		],
 		"Activity": true,
-		"TechPoint": 1.004
+		"TechPoint": 1
 	},
 	{
 		"class": "Player",

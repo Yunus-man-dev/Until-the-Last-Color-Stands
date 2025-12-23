@@ -95,10 +95,7 @@ public class InputController extends InputAdapter {
             t2.setOwner(new Player("Player 2", new com.gameonjava.utlcs.backend.civilization.Red("Red")));
 
             // Dummy War Dialog
-            WarDialog warReport = new WarDialog(
-                    Assets.skin, t1, t2, true, 6, 3, 150, 100);
 
-            warReport.show(screen.getHud().stage);
             return true;
         }
 

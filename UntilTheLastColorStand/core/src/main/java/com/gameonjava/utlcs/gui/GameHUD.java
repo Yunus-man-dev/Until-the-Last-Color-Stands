@@ -57,18 +57,20 @@ public class GameHUD implements Disposable {
 
         WarDialog dialog = new WarDialog(
             Assets.skin,
-            result.guiAttTile,
-            result.guiDefTile,
+            result.guiAttName,
+            result.guiDefName,
+            result.guiAttSoldierCount,
+            result.guiDefSoldierCount,
+            result.guiAttTile.getOwner().getTechnologyPoint(),
+            (result.guiDefTile.getOwner() != null ? result.guiDefTile.getOwner().getTechnologyPoint() : 0),
             result.guiAttackerWon,
             result.guiAttRoll,
             result.guiDefRoll,
             result.guiAttAP,
             result.guiDefAP
         );
-
         dialog.show(stage);
 
-        // Pencereyi ortala
         dialog.setPosition(
             Math.round((stage.getWidth() - dialog.getWidth()) / 2),
             Math.round((stage.getHeight() - dialog.getHeight()) / 2)
@@ -158,7 +160,7 @@ public class GameHUD implements Disposable {
             pBtn.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    
+
                     Player me = backendGame.getCurrentPlayer();
                     Player target = backendGame.getPlayers().get(pIndex);
 
@@ -194,7 +196,7 @@ public class GameHUD implements Disposable {
             mailBtn.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    Player current = backendGame.getCurrentPlayer(); 
+                    Player current = backendGame.getCurrentPlayer();
 
                     IncomingTradesDialog mailDialog = new IncomingTradesDialog(Assets.skin, backendGame, current,
                             GameHUD.this);

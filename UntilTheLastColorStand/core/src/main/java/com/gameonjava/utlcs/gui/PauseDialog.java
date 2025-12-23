@@ -142,7 +142,6 @@ public class PauseDialog extends Dialog {
             }
         });
 
-        // Tabloya ekleme
         contentTable.add(resumeBtn).width(btnWidth).height(btnHeight).padBottom(padding).row();
         contentTable.add(saveBtn).width(btnWidth).height(btnHeight).padBottom(padding).row();
         contentTable.add(settingsBtn).width(btnWidth).height(btnHeight).padBottom(padding).row();

@@ -25,6 +25,10 @@ public class WarManager {
     public int guiDefRoll;
     public int guiAttAP;
     public int guiDefAP;
+    public String guiAttName;
+    public String guiDefName;
+    public int guiAttSoldierCount;
+    public int guiDefSoldierCount;
     public Tile guiAttTile;
     public Tile guiDefTile;
 
@@ -84,6 +88,20 @@ public class WarManager {
         this.attackerArmy = attackerArmy;
         this.defenderArmy = defenderArmy;
         this.battleTile = battleTile;
+        this.attackerArmy = attackerArmy;
+        this.defenderArmy = defenderArmy;
+        this.battleTile = battleTile;
+
+        // --- EKLENEN KISIM: Savaş öncesi verileri kaydet ---
+        this.guiAttName = attackerArmy.getPlayer().getName();
+        // Eğer savunan yoksa (Neutral) veya null ise kontrolü:
+        this.guiDefName = (defenderArmy.getPlayer() != null) ? defenderArmy.getPlayer().getName() : "Neutral";
+
+        this.guiAttSoldierCount = attackerArmy.getSoldiers();
+        this.guiDefSoldierCount = defenderArmy.getSoldiers();
+        // --------------------------------------------------
+
+        startBattle();
         startBattle();
 
     }
