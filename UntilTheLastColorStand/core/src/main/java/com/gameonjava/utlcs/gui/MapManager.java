@@ -21,9 +21,6 @@ public class MapManager {
     private float hexWidth;
     private float verticalDist;
     
-    // --- DÜZELTME 1: Başlangıç Koordinatları ---
-    // startX: Soldan biraz boşluk bırak
-    // startY: Harita YUKARIDAN aşağı çizildiği için yüksek bir değer olmalı (1800f)
     private float startX = 60f;
     private float startY = 1800f;
     
@@ -135,7 +132,6 @@ public class MapManager {
                             String c = owner.getCivilization().getCivilizationColor();
                             
                             // --- RENK SEÇİMİ ---
-                            // Assets sınıfındaki özel renklerini kullanırsan daha uyumlu olur
                             Color drawColor = Color.GRAY; 
                             
                             if (c.contains("Red")) drawColor = Color.RED; 
@@ -144,14 +140,12 @@ public class MapManager {
                             else if (c.contains("Brown")) drawColor = Color.BROWN;
                             else if (c.contains("Orange")) drawColor = Color.ORANGE;
                             else if (c.contains("Cyan")) drawColor = Color.CYAN;
-                            else if (c.contains("Dark Red")) drawColor = Color.MAROON; // Veya Assets.COL_DARK_RED
+                            else if (c.contains("Dark Red")) drawColor = Color.MAROON;
 
                           
                             batch.setColor(drawColor);
-                            //drawColor.r,drawColor.g,drawColor.b,0.6f
 
                             // 2. TARAMA DESENİNİ ÇİZ 
-                          
                             batch.draw(Assets.pattern, 
                                     t.getPixelX() - drawWidth / 2f, 
                                     t.getPixelY() - drawHeight / 2f + textureYOffset, 
@@ -163,7 +157,7 @@ public class MapManager {
                                     t.getPixelY() - drawHeight / 2f + textureYOffset, 
                                     drawWidth, drawHeight);
                         }
-    }
+                    }
 
                     // ÖNEMLİ: Rengi beyaza sıfırla ki sonraki çizilenler (askerler) boyalı çıkmasın.
                     batch.setColor(Color.WHITE);
@@ -182,10 +176,7 @@ public class MapManager {
                                     iconSize, iconSize);
                         } 
                         // B) BİNA ÇİZİMİ (Filtre Kontrolü ile)
-                        // else if kullanarak asker varsa binayı gizleyebiliriz veya üst üste bindirebiliriz. 
-                        // Genelde asker binanın üstünde durur.
                         else if (showBuildings && t.hasBuilding()) {
-                            // Binanın tipine göre ikon seçimi (İlerde eklersin, şimdilik Farm)
                             Texture buildingIcon = getBuildingTexture(t);    
                             batch.draw(buildingIcon, 
                                     t.getPixelX() - iconOffset, 
@@ -195,22 +186,50 @@ public class MapManager {
                     }
                 }
             }
+            
+            // --- HAREKET NOKTALARINI ÇİZME KISMI (GÜNCELLENDİ) ---
             if (moveSource != null) {
                 // 1. Hareket edecek askerin komşularını al
                 java.util.ArrayList<Tile> neighbors = gameMap.getNeighbors(moveSource);
 
                 // 2. Noktanın rengini ve boyutunu ayarla
-                batch.setColor(Color.BLACK); // Veya hafif şeffaf: batch.setColor(0, 0, 0, 0.5f);
-                float dotSize = drawWidth * 0.3f; // Tile boyutunun %30'u kadar
+                batch.setColor(Color.BLACK); 
+                float dotSize = drawWidth * 0.3f; 
                 float dotOffset = dotSize / 2f;
 
                 for (Tile n : neighbors) {
-                    // Sadece gidilebilecek yerlere nokta koy (Dağ veya Derin Su değilse)
+                    // Temel geçiş kontrolü (Dağ veya Derin Su değilse)
                     if (n.canUnitPass(moveSource)) {
-                        batch.draw(Assets.moveDot, 
-                                n.getPixelX() - dotOffset, 
-                                n.getPixelY() - dotOffset + textureYOffset, 
-                                dotSize, dotSize);
+                        
+                        boolean drawDot = true;
+
+                        // --- YENİ EKLENEN LİMAN KONTROLÜ ---
+                        boolean isTargetWater = (n.getTerrainType() == TerrainType.WATER);
+                        boolean isSourceLand = (moveSource.getTerrainType() != TerrainType.WATER && 
+                                                moveSource.getTerrainType() != TerrainType.DEEP_WATER);
+
+                        // Eğer karadan suya (Water) gidiliyorsa ve Port yoksa -> Yıldız çizme
+                        if (isTargetWater && isSourceLand) {
+                            boolean hasPort = false;
+                            if (moveSource.hasBuilding()) {
+                                String bName = moveSource.getBuilding().getName();
+                                if (bName != null && bName.equals("Port")) {
+                                    hasPort = true;
+                                }
+                            }
+                            
+                            if (!hasPort) {
+                                drawDot = false; // Port yoksa suya gidemez, nokta koyma
+                            }
+                        }
+                        // -----------------------------------
+
+                        if (drawDot) {
+                            batch.draw(Assets.moveDot, 
+                                    n.getPixelX() - dotOffset, 
+                                    n.getPixelY() - dotOffset + textureYOffset, 
+                                    dotSize, dotSize);
+                        }
                     }
                 }
                 batch.setColor(Color.WHITE); // Rengi temizle
@@ -242,64 +261,32 @@ public class MapManager {
     }
     // MapManager classının en altına, parantezlerin içine ekle:
 
-private Texture getBuildingTexture(Tile t) {
-    if (!t.hasBuilding()) return null;
+    private Texture getBuildingTexture(Tile t) {
+        if (!t.hasBuilding()) return null;
 
-    int level = t.getBuilding().getLevel(); // Tile veya Building classında bu veri olmalı
-   String s = t.getBuilding().getName();
+        int level = t.getBuilding().getLevel(); // Tile veya Building classında bu veri olmalı
+        String s = t.getBuilding().getName();
 
-    // switch (type) {
-    //     case FARM:
-    //         if (level == 1) return Assets.farm1;
-    //         if (level == 2) return Assets.farm2;
-    //         if (level >= 3) return Assets.farm3; // 3 ve üstü için son seviye
-    //         return Assets.farm1; // Hata olursa varsayılan
-
-    //     case MINE:
-    //         if (level == 1) return Assets.mine1;
-    //         if (level >= 2) return Assets.mine2;
-    //         return Assets.mine1;
-
-    //     case PORT:
-    //         // Port seviyelerin varsa buraya ekle:
-    //         // if (level == 1) return Assets.port1;
-    //         return Assets.port; // Tek seviye ise
-
-    //     case LIBRARY:
-    //          // if (level == 1) return Assets.library1;
-    //         return Assets.library;
-
-    //     default:
-    //         return Assets.farm1;
-    // }
-    // Building null kontrolü (Ekstra güvenlik)
-    if (t.getBuilding() == null) return null;
-    // --- DÜZELTME BURADA: s null ise varsayılan döndür ---
-    if (s == null) {
-        return Assets.farm1; // Veya Assets.farm1
+        if(s.equals("Farm")){
+            if (level == 1) return Assets.farm1;
+            if (level == 2) return Assets.farm2;    
+            if (level >= 3) return Assets.farm3;
+        }
+        if(s.equals("Mine")){
+            if (level == 1) return Assets.mine1;
+            if (level == 2) return Assets.mine2;    
+            if (level >= 3) return Assets.mine3;
+        }
+        if(s.equals("Library")){
+            if (level == 1) return Assets.library1;
+            if (level == 2) return Assets.library2;    
+            if (level >= 3) return Assets.library3;
+        }
+        if(s.equals("Port")){
+            if (level == 1) return Assets.port1;
+            if (level == 2) return Assets.port2;    
+            if (level >= 3) return Assets.port3;
+        }
+        return Assets.farm;
     }
-    if(s.equals("Farm")){
-        if (level == 1) return Assets.farm1;
-        if (level == 2) return Assets.farm2;    
-        if (level >= 3) return Assets.farm3;
-    }
-    if(s.equals("Mine")){
-        if (level == 1) return Assets.mine1;
-        if (level == 2) return Assets.mine2;    
-        if (level >= 3) return Assets.mine3;
-    }
-    if(s.equals("Library")){
-        if (level == 1) return Assets.library1;
-        if (level == 2) return Assets.library2;    
-        if (level >= 3) return Assets.library3;
-    }
-    if(s.equals("Port")){
-        if (level == 1) return Assets.port1;
-        if (level == 2) return Assets.port2;    
-        if (level >= 3) return Assets.port3;
-    }
-    return Assets.farm;
-    
-
-}
 }
