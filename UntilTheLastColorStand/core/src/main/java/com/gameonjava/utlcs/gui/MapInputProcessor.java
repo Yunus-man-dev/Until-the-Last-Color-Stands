@@ -37,12 +37,14 @@ public class MapInputProcessor extends InputAdapter {
     // Sınıfın en başına bu değişkenleri ekle:
     private boolean isMoveMode = false;
     private Tile moveSourceTile = null;
+    private int amountToMove = 0;
 
     // Bu metodu sınıfın içine ekle (InteractionBar buradan çağıracak):
-    public void startMoveMode(Tile source) {
+    public void startMoveMode(Tile source, int amount) { // Parametre eklendi
         this.moveSourceTile = source;
+        this.amountToMove = amount; // Miktarı kaydet
         this.isMoveMode = true;
-        System.out.println("Move Mode ON: Select a target tile.");
+        System.out.println("Move Mode ON: Moving " + amount + " soldiers.");
     }
 
     // touchDown metodunu tamamen bununla güncelle:
@@ -56,14 +58,11 @@ public class MapInputProcessor extends InputAdapter {
         // --- YENİ EKLENEN KISIM: HAREKET MODU KONTROLÜ ---
         if (isMoveMode) {
             if (clickedTile != null && moveSourceTile != null) {
-                // 1. Backend Hareketini Çağır
-                // moveArmy metodu zaten kuralları (komşu mu? MP yeterli mi?) kontrol ediyor.
-                hud.getBackendGame().moveArmy(moveSourceTile, clickedTile);
+                // ARTIK MİKTARI DA GÖNDERİYORUZ:
+                hud.getBackendGame().moveArmy(moveSourceTile, clickedTile, amountToMove);
 
-                // 2. Ekranı ve İstatistikleri Güncelle
                 hud.updateStats(hud.getBackendGame().getCurrentPlayer(), com.gameonjava.utlcs.backend.Game.getCurrentTurn());
-
-                System.out.println("Move command sent to backend.");
+                System.out.println("backende göndrerildi");
             }
 
             // İşlem bitince (başarılı veya başarısız) moddan çık

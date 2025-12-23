@@ -21,7 +21,10 @@ public class Army implements com.badlogic.gdx.utils.Json.Serializable{
     }
 
     public Army() {}
-    
+    public void setSoldiers(int numberOfSoldiers) {
+        this.numberOfSoldiers = numberOfSoldiers;
+    }
+
     public int getSoldiers(){
         return numberOfSoldiers;
     }
@@ -55,4 +58,6 @@ public class Army implements com.badlogic.gdx.utils.Json.Serializable{
         numberOfSoldiers = jsonData.getInt("NumSoldiers", 0);
         tile = json.readValue("Tile", Tile.class, jsonData);
     }
+
+
 }
