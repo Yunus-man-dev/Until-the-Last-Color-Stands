@@ -351,9 +351,7 @@ public class GameHUD implements Disposable {
         return style;
     }
 
-    // GameHUD.java içine ekle:
 
-    // Parametre olarak 'Main game' alıyoruz ki ekran değiştirebilelim
     public void showGameOver(Player winner, com.gameonjava.utlcs.Main game) {
         GameOverDialog dialog = new GameOverDialog("Game Over", Assets.skin, game, winner);
 
