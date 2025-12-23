@@ -123,6 +123,11 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
 
         food.reduceResource(foodConsumption);
 
+        if (food.getValue() <= 0) {
+            food.setValue(0);
+
+            applyStarvation();
+        }
         technologyPoint =  this.book.calculateTP();
         movementPoint.setValue(movementPoint.updateMovementPoint(technologyPoint))  ;
     }
@@ -252,6 +257,34 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
         ownedTiles.clear();
     }
 
+    private void applyStarvation() {
+        System.out.println(this.name + " AÇLIK ÇEKİYOR! Askerler ölüyor...");
+
+        // ConcurrentModificationException hatası almamak için listeyi kopyalayarak dönüyoruz
+        for (Tile tile : new ArrayList<>(ownedTiles)) {
+            if (tile.hasArmy()) {
+                Army army = tile.getArmy();
+                int currentSoldiers = army.getSoldiers();
+
+                // Ölüm Oranı: %25 (En az 1 asker ölür)
+                int deaths = (int) Math.ceil(currentSoldiers * 0.25);
+
+                // Eğer asker sayısı azsa ve %25 0 geliyorsa, en az 1 kişi ölsün
+                if (currentSoldiers > 0 && deaths == 0) deaths = 1;
+
+                int remaining = currentSoldiers - deaths;
+
+                if (remaining <= 0) {
+                    // Hepsi öldü
+                    tile.setArmy(null);
+                } else {
+                    // Kalanları güncelle
+                    army.setSoldiers(remaining);
+                }
+            }
+        }
+    }
+
     public boolean hasWon() {
         return civilization.checkWinCondition(this);
     }
@@ -276,16 +309,8 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
 
     @Override
     public void write(Json json) {
-      json.writeValue("Name", name);
-        
-        // DÜZELTME: Civilization objesini komple yazmak yerine sadece RENGİNİ/İSMİNİ yazıyoruz.
-        // Çünkü object olarak yazarsak abstract class hatası alırız.
-        if (civilization != null) {
-            json.writeValue("CivName", civilization.getCivilizationColor()); // "Blue", "Red" vb.
-        } else {
-            json.writeValue("CivName", "Blue"); // Fallback
-        }
-
+        json.writeValue("Name", name);
+        json.writeValue("Civilization", civilization, null); 
         json.writeValue("Food", food);
         json.writeValue("Gold", gold);
         json.writeValue("Book", book);
@@ -303,7 +328,6 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
         String civName = jsonData.getString("CivName", "Blue");
         // EmpireSelectionScreen sınıfındaki o harika metodu kullanıyoruz:
         this.civilization = com.gameonjava.utlcs.gui.EmpireSelectionScreen.getCivilizationByName(civName);
-
         this.food = json.readValue("Food", com.gameonjava.utlcs.backend.resources.FoodResource.class, jsonData);
         this.gold = json.readValue("Gold", com.gameonjava.utlcs.backend.resources.GoldResource.class, jsonData);
         this.book = json.readValue("Book", com.gameonjava.utlcs.backend.resources.BookResource.class, jsonData);

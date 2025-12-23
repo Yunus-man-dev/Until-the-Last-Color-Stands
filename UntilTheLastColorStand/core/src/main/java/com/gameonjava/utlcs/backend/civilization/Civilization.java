@@ -14,7 +14,7 @@ public abstract class Civilization implements com.badlogic.gdx.utils.Json.Serial
 
 
     final int START_GOLD = 1000;
-    final int START_FOOD = 200;
+    final int START_FOOD = 221;
     final int START_MOVEMENT = 20;
     final int START_BOOK = 0;
     final int START_TILE = 7;
@@ -67,7 +67,7 @@ public abstract class Civilization implements com.badlogic.gdx.utils.Json.Serial
     public String featuresText;
 
     public Civilization() {}
-    
+
     public Civilization(String civilizationName, String civilizationColor,
                         double attackMultiplier, double defenseMultiplier,
                         double technologyMultiplier){

@@ -82,6 +82,13 @@ public class InteractionBar extends Table {
 
         boolean canConstruct = (t.getTerrainType() == TerrainType.PLAIN ||
             t.getTerrainType() == TerrainType.FOREST);
+        if (hasArmy) {
+            int count = t.getArmy().getSoldiers();
+            Label soldierLabel = new Label("Soldier: " + count, skin);
+            soldierLabel.setColor(Color.BLACK);
+            soldierLabel.setAlignment(Align.center);
+            buttonTable.add(soldierLabel).padRight(20);
+        }
 
         boolean canMove = false;
         if (hasArmy) {

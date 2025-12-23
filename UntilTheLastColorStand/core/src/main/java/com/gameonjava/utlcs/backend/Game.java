@@ -60,6 +60,7 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
             gameMap.assignStartingTiles(p, i);
 
         }
+        getCurrentPlayer().updateResources();
     }
 
 
