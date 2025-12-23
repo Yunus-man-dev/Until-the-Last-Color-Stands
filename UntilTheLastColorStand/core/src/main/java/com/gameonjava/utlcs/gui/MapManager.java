@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.gameonjava.utlcs.backend.Map;
 import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Tile; // Senin backend Tile sınıfın
+import com.gameonjava.utlcs.backend.Enum.BuildingType;
 import com.gameonjava.utlcs.backend.Enum.TerrainType;
 
 
@@ -185,22 +186,7 @@ public class MapManager {
                         // Genelde asker binanın üstünde durur.
                         else if (showBuildings && t.hasBuilding()) {
                             // Binanın tipine göre ikon seçimi (İlerde eklersin, şimdilik Farm)
-                            Texture buildingIcon;
-                            String s = t.getBuilding().getName();
-                            if(s.equals("Farm")){
-                                buildingIcon  = Assets.farm; 
-                            }
-                            else if(s.equals("Mine")){
-                                buildingIcon = Assets.mine;
-                            }
-                             else if(s.equals("Library")){
-                                buildingIcon = Assets.library;
-                            }
-                            else{
-                                buildingIcon = Assets.port;
-                            }
-                            
-                            
+                            Texture buildingIcon = getBuildingTexture(t);    
                             batch.draw(buildingIcon, 
                                     t.getPixelX() - iconOffset, 
                                     t.getPixelY() - iconOffset + textureYOffset, 
@@ -234,4 +220,61 @@ public class MapManager {
         // Texture'lar Assets'ten geldiği için burada dispose etmeye gerek yok.
         // Assets.dispose() Main.java'da çağrılıyor.
     }
+    // MapManager classının en altına, parantezlerin içine ekle:
+
+private Texture getBuildingTexture(Tile t) {
+    if (!t.hasBuilding()) return null;
+
+    int level = t.getBuilding().getLevel(); // Tile veya Building classında bu veri olmalı
+   String s = t.getBuilding().getName();
+
+    // switch (type) {
+    //     case FARM:
+    //         if (level == 1) return Assets.farm1;
+    //         if (level == 2) return Assets.farm2;
+    //         if (level >= 3) return Assets.farm3; // 3 ve üstü için son seviye
+    //         return Assets.farm1; // Hata olursa varsayılan
+
+    //     case MINE:
+    //         if (level == 1) return Assets.mine1;
+    //         if (level >= 2) return Assets.mine2;
+    //         return Assets.mine1;
+
+    //     case PORT:
+    //         // Port seviyelerin varsa buraya ekle:
+    //         // if (level == 1) return Assets.port1;
+    //         return Assets.port; // Tek seviye ise
+
+    //     case LIBRARY:
+    //          // if (level == 1) return Assets.library1;
+    //         return Assets.library;
+
+    //     default:
+    //         return Assets.farm1;
+    // }
+
+    if(s.equals("Farm")){
+        if (level == 1) return Assets.farm1;
+        if (level == 2) return Assets.farm2;    
+        if (level >= 3) return Assets.farm3;
+    }
+    if(s.equals("Mine")){
+        if (level == 1) return Assets.mine1;
+        if (level == 2) return Assets.mine2;    
+        if (level >= 3) return Assets.mine3;
+    }
+    if(s.equals("Library")){
+        if (level == 1) return Assets.library1;
+        if (level == 2) return Assets.library2;    
+        if (level >= 3) return Assets.library3;
+    }
+    if(s.equals("Port")){
+        if (level == 1) return Assets.port1;
+        if (level == 2) return Assets.port2;    
+        if (level >= 3) return Assets.port3;
+    }
+    return Assets.farm;
+    
+
+}
 }

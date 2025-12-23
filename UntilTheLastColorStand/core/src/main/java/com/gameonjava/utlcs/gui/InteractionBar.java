@@ -198,7 +198,7 @@ public class InteractionBar extends Table {
             Building b = t.getBuilding();
             double cost = player.getGold().DEVELOP;
 
-            if (player.getGold().checkForResource(cost)) {
+            if (player.getGold().checkForResource(cost) && player.getMp().checkForResource(player.getCivilization().M_UPGRADE)) {
                 player.getGold().reduceResource(cost);
                 player.developBuilding(t);
                 System.out.println("Building upgraded to Level " + b.getLevel());

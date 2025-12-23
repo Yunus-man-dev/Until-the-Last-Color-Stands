@@ -43,19 +43,39 @@ public class Assets {
     // --- KAYBOLAN TEXTURE NESNELERİ ---
     public static Texture pattern,hexOutline, terrainPlain, terrainForest, terrainMountain, terrainWater, terrainDeepWater;
 
+    public static Texture farm1,farm2,farm3, port1,port2,port3, mine1,mine2,mine3, library1,library2,library3;
+
+
+     public static final String FARM1 = "ui/farm1.png";
+     public static final String FARM2 = "ui/farm2.png";
+     public static final String FARM3 = "ui/farm3.png";
+     
+     public static final String MINE1 = "ui/mine1.png";
+     public static final String MINE2 = "ui/mine2.png";
+     public static final String MINE3 = "ui/mine3.png";
+
+     public static final String PORT1 = "ui/port1.png";
+     public static final String PORT2 = "ui/port2.png";
+     public static final String PORT3 = "ui/port3.png";
+
+     public static final String LIBRARY1 = "ui/library1.png";
+     public static final String  LIBRARY2 = "ui/library2.png";
+     public static final String  LIBRARY3 = "ui/library3.png";
+
+
 
     public static final String BOOK = "ui/BookIcon.png";
     public static final String DASH = "ui/DashIcon.png";
     public static final String FARM = "ui/FarmIcon.png";
     public static final String GOLD = "ui/GoldIcon.png";
     public static final String FOOD = "ui/FoodIcon.png";
-    public static final String LIBRARY = "ui/LibraryIcon.png";
+    public static final String LIBRARY = "ui/library1.png";
     public static final String PORT = "ui/PortIcon.png";
     public static final String SETTINGS = "ui/SettingsIcon.png";
     public static final String SOLDIER = "ui/SoldierIcon.png";
     public static final String TECH = "ui/TechIcon.png";
     public static final String WAR = "ui/WarIcon.png";
-    public static final String MINE = "ui/MineIcon.png";
+    public static final String MINE = "ui/mine2.png";
     public static final String DICE1 = "ui/Dice1Icon.png";
     public static final String DICE2 = "ui/Dice2Icon.png";
     public static final String DICE3 = "ui/Dice3Icon.png";
@@ -179,6 +199,29 @@ public class Assets {
 
     public static void load() {
 
+
+
+
+        manager.load(FARM1,Texture.class);
+        manager.load(FARM2,Texture.class);
+        manager.load(FARM3,Texture.class);
+
+        manager.load(PORT1, Texture.class);
+        manager.load(PORT2, Texture.class);
+        manager.load(PORT3, Texture.class);
+
+        manager.load(MINE1, Texture.class);
+         manager.load(MINE2, Texture.class);
+         manager.load(MINE3, Texture.class);
+
+        manager.load(LIBRARY1, Texture.class);
+        manager.load(LIBRARY2, Texture.class);
+        manager.load(LIBRARY3, Texture.class);
+
+
+
+
+
         manager.load(PATTERN,Texture.class);
         manager.load(HEX_OUTLINE, Texture.class);
         manager.load(TERRAIN_PLAIN, Texture.class);
@@ -277,8 +320,38 @@ public class Assets {
 
         BitmapFont myFont2 = skin.getFont("title");
 
+
         myFont2.getData().setScale(0.3f);
+
+
+
+        farm1= manager.get(FARM1, Texture.class);
+        farm2= manager.get(FARM2, Texture.class);
+        farm3= manager.get(FARM3, Texture.class);
+        
+        library1= manager.get(LIBRARY1, Texture.class);
+        library2= manager.get(LIBRARY2, Texture.class);
+        library3= manager.get(LIBRARY3, Texture.class);
+
+        mine1 = manager.get(MINE1, Texture.class);
+        mine2= manager.get(MINE2, Texture.class);
+        mine3= manager.get(MINE3, Texture.class);
+
+        port1 = manager.get(PORT1, Texture.class);
+        port2 = manager.get(PORT2, Texture.class);
+        port3 = manager.get(PORT3, Texture.class);
+
+        // pattern= manager.get(PATTERN, Texture.class);
+
+
+
+
+
+
+
+
         pattern= manager.get(PATTERN, Texture.class);
+
         hexOutline = manager.get(HEX_OUTLINE, Texture.class);
         terrainPlain = manager.get(TERRAIN_PLAIN, Texture.class);
         terrainForest = manager.get(TERRAIN_FOREST, Texture.class);

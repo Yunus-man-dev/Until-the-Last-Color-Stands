@@ -28,6 +28,7 @@ public abstract class Building implements com.badlogic.gdx.utils.Json.Serializab
         // 4 is just a random constant here. you can edit it
         if(this.level < 4){
             this.level++;
+            System.out.println(level);
         }
 
     }
