@@ -51,6 +51,28 @@ public class GameHUD implements Disposable {
     public MapInputProcessor getInputProcessor() {
         return inputProcessor;
     }
+    public void showWarResult(com.gameonjava.utlcs.backend.WarManager result) {
+        if (result == null) return;
+
+        WarDialog dialog = new WarDialog(
+            Assets.skin,
+            result.guiAttTile,
+            result.guiDefTile,
+            result.guiAttackerWon,
+            result.guiAttRoll,
+            result.guiDefRoll,
+            result.guiAttAP,
+            result.guiDefAP
+        );
+
+        dialog.show(stage);
+
+        // Pencereyi ortala
+        dialog.setPosition(
+            Math.round((stage.getWidth() - dialog.getWidth()) / 2),
+            Math.round((stage.getHeight() - dialog.getHeight()) / 2)
+        );
+    }
 
     public GameHUD(SpriteBatch batch, Game backendGame) {
         viewport = new FitViewport(1280, 720);

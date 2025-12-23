@@ -58,18 +58,27 @@ public class MapInputProcessor extends InputAdapter {
         // --- YENİ EKLENEN KISIM: HAREKET MODU KONTROLÜ ---
         if (isMoveMode) {
             if (clickedTile != null && moveSourceTile != null) {
-                // ARTIK MİKTARI DA GÖNDERİYORUZ:
-                hud.getBackendGame().moveArmy(moveSourceTile, clickedTile, amountToMove);
 
+                // 1. Backend hareketini çağır (amountToMove değişkenini kullandığından emin ol)
+                com.gameonjava.utlcs.backend.WarManager warResult =
+                    hud.getBackendGame().moveArmy(moveSourceTile, clickedTile, amountToMove);
+
+                // 2. İstatistikleri güncelle
                 hud.updateStats(hud.getBackendGame().getCurrentPlayer(), com.gameonjava.utlcs.backend.Game.getCurrentTurn());
-                System.out.println("backende göndrerildi");
+
+                // 3. SADECE SAVAŞ OLDUYSA PENCERE AÇ
+                if (warResult != null) {
+                    hud.showWarResult(warResult);
+                }
+
+                System.out.println("Move/Attack processed.");
             }
 
-            // İşlem bitince (başarılı veya başarısız) moddan çık
+            // Modu kapat
             isMoveMode = false;
             moveSourceTile = null;
-            clearSelection(); // Seçim ışığını söndür
-            if(hud.getInteractionBar() != null) hud.getInteractionBar().setVisible(false);
+            clearSelection();
+            if (hud.getInteractionBar() != null) hud.getInteractionBar().setVisible(false);
             return true;
         }
         // -------------------------------------------------
@@ -87,67 +96,37 @@ public class MapInputProcessor extends InputAdapter {
     }
 
     // Oyun Mantığı (Savaş, İnşaat, Seçim)
+    // MapInputProcessor.java
+
+    // Oyun Mantığı (Sadece İnşaat ve Seçim)
+    // NOT: Saldırı mantığı artık 'moveArmy' içinde olduğu için buradan kaldırıldı.
     private void handleInteraction(Tile targetTile) {
         Player currentPlayer = hud.getBackendGame().getCurrentPlayer();
 
-        // A. SALDIRI SENARYOSU (Eğer daha önce bir asker seçtiysek ve şimdi düşmana tıkladıysak)
-        if (selectedTile != null && selectedTile.hasArmy() && targetTile.hasArmy()) {
-            // Seçili taş benimse VE Hedef taş benim DEĞİLSE -> SALDIR
-            if (selectedTile.getOwner().equals(currentPlayer) && !targetTile.getOwner().equals(currentPlayer)) {
-
-                System.out.println("Savaş Başlatılıyor: " + selectedTile.getOwner().getName() + " vs " + targetTile.getOwner().getName());
-
-                WarManager result = hud.getBackendGame().initiateAttack(selectedTile, targetTile);
-
-                if (result != null) {
-                    boolean attackerWon = result.isAttackerWon();
-
-                    WarDialog warReport = new WarDialog(
-                            Assets.skin,
-                            selectedTile,
-                            targetTile,
-                            attackerWon,
-                            result.getAttackerDice(),
-                            result.getDefenderDice(),
-                            result.getAttackerAP(),
-                            result.getDefenderAP());
-
-                    warReport.show(hud.stage);
-
-                    // Savaştan sonra seçimi temizle
-                    clearSelection();
-                    // Haritayı güncelle (Ölen askerler vs. için)
-                    hud.updateStats(currentPlayer, com.gameonjava.utlcs.backend.Game.getCurrentTurn());
-                } else {
-                    System.out.println("Savaş geçersiz (Mesafe uzak veya AP yetersiz).");
-                }
-                return; // İşlem tamam, çık.
-            }
-        }
-
-        // B. İNŞAAT VE SEÇİM SENARYOSU
+        // A. İNŞAAT VE SEÇİM SENARYOSU
         // Eğer kendi taşımıza tıkladıysak
         if (targetTile.getOwner() != null && targetTile.getOwner().equals(currentPlayer)) {
 
-            // Eğer bina yoksa -> İnşaat menüsünü aç
+            // Eğer bina yoksa -> İnşaat menüsünü açma ihtimali var
             if (!targetTile.hasBuilding() && hud.getInteractionBar().isVisible()) {
-                 // Eğer zaten seçiliyse ve tekrar tıkladıysa Dialog aç
-                 if (selectedTile == targetTile) {
-                     BuildingSelectionDialog build = new BuildingSelectionDialog(
-                             Assets.skin,
-                             targetTile,
-                             currentPlayer,
-                             hud,
-                             mapManager.gameMap);
-                     build.show(hud.stage);
+                // Eğer zaten seçiliyse ve TEKRAR tıkladıysa Dialog aç
+                if (selectedTile == targetTile) {
+                    BuildingSelectionDialog build = new BuildingSelectionDialog(
+                        Assets.skin,
+                        targetTile,
+                        currentPlayer,
+                        hud,
+                        mapManager.gameMap);
+                    build.show(hud.stage);
 
-                     clearSelection(); // Dialog açılınca seçimi kaldır
-                     return;
-                 }
+                    clearSelection(); // Dialog açılınca seçimi kaldır
+                    return;
+                }
             }
         }
 
-        // C. STANDART SEÇİM (SELECT)
+        // B. STANDART SEÇİM (SELECT)
+        // Burası hem kendi askerimizi seçmek hem de düşmanı sadece 'görmek' için çalışır.
         selectTile(targetTile);
     }
 

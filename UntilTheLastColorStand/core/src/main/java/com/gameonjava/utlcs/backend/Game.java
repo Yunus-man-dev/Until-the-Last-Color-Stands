@@ -149,31 +149,138 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
     // Game.java
 
     // İmzayı değiştirdik: int amount eklendi
-    public void moveArmy(Tile owned, Tile target, int amount) {
-        if (owned == null || target == null) return;
-
-        if (!owned.hasArmy()) {
-            System.out.println("MOVE FAILED: Kaynak karede asker yok.");
-            return;
-        }
+//    public void moveArmy(Tile owned, Tile target, int amount) {
+//        if (owned == null || target == null) return;
+//
+//        if (!owned.hasArmy()) {
+//            System.out.println("MOVE FAILED: Kaynak karede asker yok.");
+//            return;
+//        }
+//
+//        int currentSoldiers = owned.getArmy().getSoldiers();
+//
+//        // --- GÜVENLİK KONTROLÜ ---
+//        // Eğer istenen miktar mevcuttan fazlaysa veya 0'sa işlemi durdur
+//        if (amount > currentSoldiers || amount <= 0) {
+//            System.out.println("MOVE FAILED: Geçersiz asker miktarı: " + amount);
+//            return;
+//        }
+//
+//        Player player = owned.getOwner();
+//        MovementPoint mp = player.getMp();
+//
+//        // Zemin ve Liman Kontrolleri (Önceki kodların aynısı)
+//        boolean isTargetWater = (target.getTerrainType() == TerrainType.WATER ||
+//            target.getTerrainType() == TerrainType.DEEP_WATER);
+//        boolean isSourceWater = (owned.getTerrainType() == TerrainType.WATER ||
+//            owned.getTerrainType() == TerrainType.DEEP_WATER);
+//
+//        if (isTargetWater && !isSourceWater) {
+//            boolean hasPort = false;
+//            if (owned.hasBuilding() && owned.getBuilding() instanceof com.gameonjava.utlcs.backend.building.Port) {
+//                hasPort = true;
+//            }
+//            if (!hasPort) {
+//                System.out.println("MOVE FAILED: Denize açılmak için Liman (Port) gerekli!");
+//                return;
+//            }
+//        }
+//
+//        if (!gameMap.getNeighbors(owned).contains(target)) {
+//            System.out.println("MOVE FAILED: Hedef komşu değil.");
+//            return;
+//        }
+//
+//        if (!mp.checkForResource(mp.MOVE)) {
+//            System.out.println("MOVE FAILED: Yetersiz MP.");
+//            return;
+//        }
+//
+//        if (target.hasArmy() && !target.getOwner().equals(player)) {
+//            // Saldırıda tüm orduyla mı yoksa bir kısmıyla mı saldırılacak?
+//            // Şimdilik sadece tüm orduyla saldırıya izin veriyorsan:
+//            initiateAttack(owned, target);
+//            return;
+//        }
+//
+//        // --- HAREKET İŞLEMİ (MİKTARA GÖRE) ---
+//
+//        mp.reduceResource(mp.MOVE);
+//
+//        // A. Kaynak Kareden DÜŞ (Tamamını silme!)
+//        int remainingSoldiers = currentSoldiers - amount;
+//
+//        if (remainingSoldiers > 0) {
+//            // Eğer geriye asker kalıyorsa sadece sayıyı güncelle
+//            owned.getArmy().setSoldiers(remainingSoldiers);
+//        } else {
+//            // Eğer hepsi gittiyse orduyu tamamen kaldır
+//            owned.setArmy(null);
+//        }
+//
+//        // B. Hedef Kareye EKLE
+//        if (target.hasArmy()) {
+//            target.getArmy().addSoldiers(amount);
+//        } else {
+//            Army newArmy = new Army(amount, player, target);
+//            target.setArmy(newArmy);
+//
+//            if (target.getOwner() == null && !isTargetWater) {
+//                target.setOwner(player);
+//                player.addTile(target);
+//            }
+//        }
+//
+//        System.out.println("MOVE SUCCESS: " + amount + " asker taşındı.");
+//    }
+//
+//    //WarManager to resolve a battle.
+//    // --- DÜZELTME: Dönüş tipi WarManager yapıldı ---
+//    public WarManager initiateAttack(Tile from, Tile target) {
+//        Army attacker = from.getArmy();
+//        Army defender = target.getArmy();
+//
+//        MovementPoint mp = from.getOwner().getMp();
+//        if (mp.checkForResource(mp.ATTACK)) {
+//            mp.reduceResource(mp.ATTACK);
+//
+//            WarManager war = new WarManager(attacker, defender, target);
+//            return war; // Return the result
+//        }
+//        return null;
+//    }
+    public com.gameonjava.utlcs.backend.WarManager moveArmy(Tile owned, Tile target, int amount) {
+        if (owned == null || target == null) return null;
+        if (!owned.hasArmy()) return null;
 
         int currentSoldiers = owned.getArmy().getSoldiers();
 
-        // --- GÜVENLİK KONTROLÜ ---
-        // Eğer istenen miktar mevcuttan fazlaysa veya 0'sa işlemi durdur
+        // Miktar kontrolü
         if (amount > currentSoldiers || amount <= 0) {
-            System.out.println("MOVE FAILED: Geçersiz asker miktarı: " + amount);
-            return;
+            System.out.println("MOVE FAILED: Geçersiz asker miktarı.");
+            return null;
         }
 
         Player player = owned.getOwner();
         MovementPoint mp = player.getMp();
 
-        // Zemin ve Liman Kontrolleri (Önceki kodların aynısı)
-        boolean isTargetWater = (target.getTerrainType() == TerrainType.WATER ||
-            target.getTerrainType() == TerrainType.DEEP_WATER);
-        boolean isSourceWater = (owned.getTerrainType() == TerrainType.WATER ||
-            owned.getTerrainType() == TerrainType.DEEP_WATER);
+        // --- SAVAŞ KONTROLÜ (Sadece düşman varsa girer) ---
+        if (target.hasArmy() && !target.getOwner().equals(player)) {
+            // Savaşı başlat ve sonucu döndür (GUI pencere açacak)
+            return initiateAttack(owned, target, amount);
+        }
+
+        // --- BURADAN SONRASI NORMAL HAREKET (Savaş Yok) ---
+
+        // Komşuluk ve MP Kontrolü
+        if (!gameMap.getNeighbors(owned).contains(target)) return null;
+        if (!mp.checkForResource(mp.MOVE)) return null;
+
+        // Liman Kontrolü (Karadan -> Suya)
+        boolean isTargetWater = (target.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.WATER ||
+            target.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.DEEP_WATER);
+        boolean isSourceWater = (owned.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.WATER ||
+            owned.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.DEEP_WATER);
 
         if (isTargetWater && !isSourceWater) {
             boolean hasPort = false;
@@ -181,50 +288,30 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
                 hasPort = true;
             }
             if (!hasPort) {
-                System.out.println("MOVE FAILED: Denize açılmak için Liman (Port) gerekli!");
-                return;
+                System.out.println("Denize girmek için Liman gerekli!");
+                return null;
             }
         }
 
-        if (!gameMap.getNeighbors(owned).contains(target)) {
-            System.out.println("MOVE FAILED: Hedef komşu değil.");
-            return;
-        }
-
-        if (!mp.checkForResource(mp.MOVE)) {
-            System.out.println("MOVE FAILED: Yetersiz MP.");
-            return;
-        }
-
-        if (target.hasArmy() && !target.getOwner().equals(player)) {
-            // Saldırıda tüm orduyla mı yoksa bir kısmıyla mı saldırılacak?
-            // Şimdilik sadece tüm orduyla saldırıya izin veriyorsan:
-            initiateAttack(owned, target);
-            return;
-        }
-
-        // --- HAREKET İŞLEMİ (MİKTARA GÖRE) ---
-
+        // MP Düş
         mp.reduceResource(mp.MOVE);
 
-        // A. Kaynak Kareden DÜŞ (Tamamını silme!)
+        // A. Kaynak Kareden Askeri Azalt
         int remainingSoldiers = currentSoldiers - amount;
-
         if (remainingSoldiers > 0) {
-            // Eğer geriye asker kalıyorsa sadece sayıyı güncelle
             owned.getArmy().setSoldiers(remainingSoldiers);
         } else {
-            // Eğer hepsi gittiyse orduyu tamamen kaldır
             owned.setArmy(null);
         }
 
-        // B. Hedef Kareye EKLE
+        // B. Hedef Kareye Ekle
         if (target.hasArmy()) {
             target.getArmy().addSoldiers(amount);
         } else {
-            Army newArmy = new Army(amount, player, target);
+            com.gameonjava.utlcs.backend.Army newArmy = new com.gameonjava.utlcs.backend.Army(amount, player, target);
             target.setArmy(newArmy);
 
+            // Toprak Sahipliği (Su değilse al)
             if (target.getOwner() == null && !isTargetWater) {
                 target.setOwner(player);
                 player.addTile(target);
@@ -232,22 +319,76 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         }
 
         System.out.println("MOVE SUCCESS: " + amount + " asker taşındı.");
+        return null; // Savaş olmadı, null dönüyoruz
     }
 
-    //WarManager to resolve a battle.
-    // --- DÜZELTME: Dönüş tipi WarManager yapıldı ---
-    public WarManager initiateAttack(Tile from, Tile target) {
-        Army attacker = from.getArmy();
-        Army defender = target.getArmy();
+    private com.gameonjava.utlcs.backend.WarManager initiateAttack(Tile attackerTile, Tile defenderTile, int amount) {
+        System.out.println("WAR STARTED!");
 
-        MovementPoint mp = from.getOwner().getMp();
-        if (mp.checkForResource(mp.ATTACK)) {
-            mp.reduceResource(mp.ATTACK);
+        Player attacker = attackerTile.getOwner();
+        Player defender = defenderTile.getOwner();
 
-            WarManager war = new WarManager(attacker, defender, target);
-            return war; // Return the result
+        // 1. Zar Atma
+        int attRoll = com.badlogic.gdx.math.MathUtils.random(1, 6);
+        int defRoll = com.badlogic.gdx.math.MathUtils.random(1, 6);
+
+        // 2. Güç Hesaplama (Basit Formül)
+        int attPower = attRoll + amount + (int)attacker.getTechnologyPoint();
+        int defPower = defRoll + defenderTile.getArmy().getSoldiers() + (int)defender.getTechnologyPoint();
+
+        // Orman Bonusu
+        if(defenderTile.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.FOREST) {
+            defPower += 2;
         }
-        return null;
+
+        boolean attackerWon = attPower > defPower;
+
+        // 3. SONUÇLARI UYGULA
+        if (attackerWon) {
+            System.out.println("ATTACKER WON!");
+
+            // Savunan ölür
+            if(defender != null) defender.getOwnedTiles().remove(defenderTile);
+            defenderTile.setArmy(null);
+
+            // Saldıranın askerleri ilerler
+            int remainingSource = attackerTile.getArmy().getSoldiers() - amount;
+            if (remainingSource > 0) {
+                attackerTile.getArmy().setSoldiers(remainingSource);
+            } else {
+                attackerTile.setArmy(null);
+            }
+
+            // Yeni orduyu hedefe koy
+            com.gameonjava.utlcs.backend.Army winningArmy = new com.gameonjava.utlcs.backend.Army(amount, attacker, defenderTile);
+            defenderTile.setArmy(winningArmy);
+
+            // Toprağı al
+            defenderTile.setOwner(attacker);
+            attacker.addTile(defenderTile);
+
+        } else {
+            System.out.println("DEFENDER WON!");
+            // Saldıranın gönderdiği askerler ölür
+            int remainingSource = attackerTile.getArmy().getSoldiers() - amount;
+            if (remainingSource > 0) {
+                attackerTile.getArmy().setSoldiers(remainingSource);
+            } else {
+                attackerTile.setArmy(null);
+            }
+        }
+
+        // 4. GUI İÇİN VERİ PAKETLEME
+        com.gameonjava.utlcs.backend.WarManager result = new com.gameonjava.utlcs.backend.WarManager();
+        result.guiAttackerWon = attackerWon;
+        result.guiAttRoll = attRoll;
+        result.guiDefRoll = defRoll;
+        result.guiAttAP = attPower;
+        result.guiDefAP = defPower;
+        result.guiAttTile = attackerTile;
+        result.guiDefTile = defenderTile;
+
+        return result;
     }
 
     //Creates the trade and adds to active trades.

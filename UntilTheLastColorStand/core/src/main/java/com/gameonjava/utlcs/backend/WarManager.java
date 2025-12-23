@@ -20,6 +20,13 @@ public class WarManager {
 
     //// This variable indicates defender’s dice number.
     private int defenderDice ;
+    public boolean guiAttackerWon;
+    public int guiAttRoll;
+    public int guiDefRoll;
+    public int guiAttAP;
+    public int guiDefAP;
+    public Tile guiAttTile;
+    public Tile guiDefTile;
 
     // This variable indicates attacker’s attack point. (AP = dice *
     // TP * numberOfSoldiers * attackMultiplier. Also, TP = technologyPoint *
@@ -36,6 +43,9 @@ public class WarManager {
     // GUI için eklenen alanlar
     private int attackerCasualties = 0;
     private int defenderCasualties = 0;
+    public WarManager() {
+        // Boş bırak, sadece obje oluşturmak için lazım
+    }
 
     public static boolean isValidWar(Army attackerArmy ,Army defenderArmy, Tile battleTile){
 
