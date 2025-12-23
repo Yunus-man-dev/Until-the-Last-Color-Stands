@@ -28,7 +28,7 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
     private BookResource book;
     private ArrayList<Tile> ownedTiles = new ArrayList<>();
     private boolean isActive;
-    private int technologyPoint;
+    private double technologyPoint;
 
     private int soldiersPerTileLimit;
 
@@ -36,7 +36,7 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
         this.name = name;
         this.civilization = civilization;
         this.isActive = true;
-        this.technologyPoint = 0;
+        this.technologyPoint = 1;
 
         this.gold = civilization.getStartingGold();
         this.food = civilization.getStartingFood();
@@ -68,7 +68,7 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
         return book;
     }
 
-    public int getTechnologyPoint() {
+    public double getTechnologyPoint() {
         return technologyPoint;
     }
 
@@ -123,7 +123,7 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
 
         food.reduceResource(foodConsumption);
 
-        technologyPoint = (int) this.book.calculateTP();
+        technologyPoint =  this.book.calculateTP();
         movementPoint.updateMovementPoint(technologyPoint);
     }
 
@@ -205,9 +205,9 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
             return;
         }
 
-      
+
         int currentSoldiers = t.hasArmy() ? t.getArmy().getSoldiers() : 0;
-        
+
         if (currentSoldiers + amount > soldiersPerTileLimit) {
             return;
         }

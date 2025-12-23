@@ -32,7 +32,7 @@ public class WarManager {
     private  int defenderAP ;
 
     private Army winner;
-    
+
     // GUI için eklenen alanlar
     private int attackerCasualties = 0;
     private int defenderCasualties = 0;
@@ -164,7 +164,7 @@ public class WarManager {
     // TP * numberOfSoldiers * attackMultiplier. Also, TP = technologyPoint *
     // uniqueMultiplier, which is a special multiplier for that civilization)
 
-        int TP = army.player.getTechnologyPoint();
+        double TP = army.player.getTechnologyPoint();
         if (TP == 0) TP = 1; // 0 olursa puan sıfırlanmasın diye
         int soldiets = army.getSoldiers();
         return dice * TP * soldiets * army.player.getCivilization().getAttackMultiplier();
@@ -180,7 +180,7 @@ public class WarManager {
 
             int difference = (attackerAP - defenderAP);
             int winerCauslties = findCasulties(attackerArmy, difference);
-            
+
             attackerCasualties = winerCauslties;
             attackerArmy.removeSoldiers(winerCauslties);
 
@@ -192,7 +192,7 @@ public class WarManager {
 
             int difference = ( defenderAP-attackerAP );
             int winerCauslties = findCasulties(defenderArmy, difference);
-            
+
             defenderCasualties = winerCauslties;
             defenderArmy.removeSoldiers(winerCauslties);
 
@@ -249,7 +249,7 @@ public class WarManager {
 
 
     }
-    
+
     // --- GUI İçin Getterlar ---
     public boolean isAttackerWon() { return winner == attackerArmy; }
     public int getAttackerDice() { return attackerDice; }

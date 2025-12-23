@@ -22,9 +22,9 @@ public class WarDialog extends Dialog {
 
     private static final float DIALOG_WIDTH = 350;
     private static final float DIALOG_HEIGHT = 450;
-    private static final float ANIM_DELAY_STEP = 0.4f; 
+    private static final float ANIM_DELAY_STEP = 0.4f;
 
-    public WarDialog(Skin skin, Tile attackerTile, Tile defenderTile, boolean attackerWon, 
+    public WarDialog(Skin skin, Tile attackerTile, Tile defenderTile, boolean attackerWon,
                      int attRoll, int defRoll, int attFinalAP, int defFinalAP) {
         super("", skin);
 
@@ -35,14 +35,14 @@ public class WarDialog extends Dialog {
         setModal(true);
         setMovable(false);
         setResizable(false);
-        
+
         getContentTable().top().pad(20);
 
         Label.LabelStyle titleStyle = new Label.LabelStyle(skin.getFont("default"), Color.BLACK);
         Label.LabelStyle defaultStyle = new Label.LabelStyle(skin.getFont("default"), Color.BLACK);
 
         Label warTitle = new Label("War", titleStyle);
-        
+
         warTitle.setFontScale(0.4f);
         getContentTable().add(warTitle).padBottom(200).row();
         getContentTable().add(warTitle).padBottom(2).row();
@@ -53,7 +53,7 @@ public class WarDialog extends Dialog {
 
         Table dataTable = new Table();
         dataTable.pad(50);
-        
+
         Army attArmy = attackerTile.getArmy();
         Army defArmy = defenderTile.getArmy();
 
@@ -66,22 +66,22 @@ public class WarDialog extends Dialog {
         dataTable.add(animateAppearance(attNameLbl, currentDelay)).expandX();
         dataTable.add(new Label("   VS        ", titleStyle)).pad(10);
         dataTable.add(animateAppearance(defNameLbl, currentDelay)).expandX().row();
-        
+
         currentDelay += ANIM_DELAY_STEP;
 
         // --- ASKER SAYISI (SOLDIER) ---
         int attCount = (attArmy != null) ? attArmy.getSoldiers() : 0;
         int defCount = (defArmy != null) ? defArmy.getSoldiers() : 0;
-        
-        addStatRow(dataTable, Assets.soldier, Assets.soldier, 
+
+        addStatRow(dataTable, Assets.soldier, Assets.soldier,
                    attCount + "", defCount + "", "     Soldier Amount        ", defaultStyle, currentDelay);
         currentDelay += ANIM_DELAY_STEP;
 
         // --- TEKNOLOJİ PUANI (TECH) ---
-        int attTech = attackerTile.getOwner().getTechnologyPoint();
-        int defTech = (defenderTile.getOwner() != null) ? defenderTile.getOwner().getTechnologyPoint() : 0;
-        
-        addStatRow(dataTable, Assets.tech, Assets.tech, 
+        double attTech = attackerTile.getOwner().getTechnologyPoint();
+        double defTech = (defenderTile.getOwner() != null) ? defenderTile.getOwner().getTechnologyPoint() : 0;
+
+        addStatRow(dataTable, Assets.tech, Assets.tech,
                    attTech + "  Tp", defTech + " Tp ", "     Research Point        ", defaultStyle, currentDelay);
         currentDelay += ANIM_DELAY_STEP;
 
@@ -89,36 +89,36 @@ public class WarDialog extends Dialog {
         Texture attDiceTex = getDiceTexture(attRoll);
         Texture defDiceTex = getDiceTexture(defRoll);
 
-        addStatRow(dataTable, attDiceTex, defDiceTex, 
+        addStatRow(dataTable, attDiceTex, defDiceTex,
                    "    Roll: " + attRoll, "Roll: " + defRoll+"    ", "     Dice Point        ", defaultStyle, currentDelay);
         currentDelay += ANIM_DELAY_STEP;
 
         // --- SALDIRI GÜCÜ (AP/DP - KILIÇ) ---
-        addStatRow(dataTable, Assets.war, Assets.war, 
+        addStatRow(dataTable, Assets.war, Assets.war,
                    "    Ap: " + attFinalAP, "Dp: " + defFinalAP+"    ", "     Attack/Defense        ", defaultStyle, currentDelay);
         currentDelay += ANIM_DELAY_STEP;
-        
+
         contentStack.add(dataTable);
         getContentTable().add(contentStack).growX().height(350).row();
 
         // --- KAZANAN YAZISI ---
-        String winnerText = attackerWon ? attackerTile.getOwner().getName() + " Wins!" : 
+        String winnerText = attackerWon ? attackerTile.getOwner().getName() + " Wins!" :
                                           (defenderTile.getOwner() != null ? defenderTile.getOwner().getName() : "Neutral") + " WINS!";
-        
+
         Label winnerLbl = new Label(winnerText, titleStyle);
         winnerLbl.setFontScale(0.5f);
         winnerLbl.setColor(attackerWon ? Color.BLACK : Color.FIREBRICK);
         winnerLbl.setAlignment(Align.center);
-        
+
         getContentTable().add(animateAppearance(winnerLbl, currentDelay)).padTop(20).row();
 
         // --- DONE BUTONU ---
         Table buttonTable = new Table();
-        
+
         TextButton.TextButtonStyle doneStyle = new TextButton.TextButtonStyle();
         doneStyle.font = skin.getFont("default");
         doneStyle.fontColor = Color.BLACK;
-        
+
         if (Assets.warBtnDoneDr != null) {
             doneStyle.up = Assets.warBtnDoneDr;
             if (Assets.warBtnDoneDr instanceof TextureRegionDrawable) {
@@ -157,7 +157,7 @@ public class WarDialog extends Dialog {
 
         // 2. İkon
         if (leftIcon != null) leftGroup.add(new Image(leftIcon)).size(41).padRight(5);
-        
+
         // 3. Değer (SABİT GENİŞLİK VEREREK HİZALADIK)
         Label leftLbl = new Label(leftText, style);
         leftLbl.setAlignment(Align.center);
@@ -171,12 +171,12 @@ public class WarDialog extends Dialog {
 
         // --- SAĞ GRUP ---
         Table rightGroup = new Table();
-        
+
         // 1. Değer (SABİT GENİŞLİK VEREREK HİZALADIK)
         Label rightLbl = new Label(rightText, style);
         rightLbl.setAlignment(Align.center);
         rightGroup.add(rightLbl).width(50).padRight(5); // <-- Hizalama için genişlik
-        
+
         // 2. İkon
         if (rightIcon != null) rightGroup.add(new Image(rightIcon)).size(41).padRight(5);
 
@@ -201,7 +201,7 @@ public class WarDialog extends Dialog {
         if (roll == 4) return Assets.dice4;
         if (roll == 5) return Assets.dice5;
         if (roll == 6) return Assets.dice6;
-        
+
         return Assets.dice1;
     }
 

@@ -13,7 +13,7 @@ public class BookResource extends Resource {
 
     }
     public double calculateTP(){
-        return value * TECHNOLOGY_MULTIPLIER;
+        return 1+value * TECHNOLOGY_MULTIPLIER;
     }
 
 }

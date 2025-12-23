@@ -59,7 +59,7 @@ public class Blue extends Civilization{
     }
 
     public boolean checkWinCondition(Player p){
-        int technologyPoints = p.getTechnologyPoint();
+        double technologyPoints = p.getTechnologyPoint();
         int libraryCount = countLibraries(p);
 
         boolean hasTechPoints = technologyPoints >= REQUIRED_TECHNOLOGY_POINTS;
