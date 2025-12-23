@@ -18,6 +18,8 @@ public class Assets {
     // Image settingsBtn = new Image(Assets.settings);
     // BU ŞEKİLDE UI CLASSLARINDA KULLANILABILIR!!!
 
+    public static final String PATTERN = "ui/tile_orumcek.png";
+
     public static final AssetManager manager = new AssetManager();
     public static final Color COL_RED       = Color.valueOf("de0f3f");
     public static final Color COL_DARK_RED  = Color.valueOf("960829");
@@ -41,7 +43,7 @@ public class Assets {
     public static final String TERRAIN_DEEP_WATER = "ui/tile_deepWater.png";
 
     // --- KAYBOLAN TEXTURE NESNELERİ ---
-    public static Texture hexOutline, terrainPlain, terrainForest, terrainMountain, terrainWater, terrainDeepWater;
+    public static Texture pattern,hexOutline, terrainPlain, terrainForest, terrainMountain, terrainWater, terrainDeepWater;
 
 
     public static final String BOOK = "ui/BookIcon.png";
@@ -179,7 +181,7 @@ public class Assets {
 
     public static void load() {
 
-
+        manager.load(PATTERN,Texture.class);
         manager.load(HEX_OUTLINE, Texture.class);
         manager.load(TERRAIN_PLAIN, Texture.class);
         manager.load(TERRAIN_FOREST, Texture.class);
@@ -277,7 +279,7 @@ public class Assets {
         BitmapFont myFont2 = skin.getFont("title");
 
         myFont2.getData().setScale(0.3f);
-
+        pattern= manager.get(PATTERN, Texture.class);
         hexOutline = manager.get(HEX_OUTLINE, Texture.class);
         terrainPlain = manager.get(TERRAIN_PLAIN, Texture.class);
         terrainForest = manager.get(TERRAIN_FOREST, Texture.class);

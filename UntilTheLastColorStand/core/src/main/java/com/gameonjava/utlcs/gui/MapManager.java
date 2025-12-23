@@ -199,11 +199,11 @@ public class MapManager {
     // Sınırlar
     public float mapLeft, mapRight, mapTop, mapBottom;
 
-    public MapManager(float r) {
+    public MapManager(Map map,float r) {
         // 1. Backend Haritasını Başlat
-        gameMap = new Map();
-        gameMap.initializeMap(1); // Map ID 1
-
+        gameMap = map;
+       
+       
         // 2. Boyutları Hesapla
         hexWidth = (float) (Math.sqrt(3) * r);
         verticalDist = 1.5f * r;
@@ -297,22 +297,60 @@ public class MapManager {
                     batch.draw(terrainImg, t.getPixelX() - drawWidth/2f, t.getPixelY() - drawHeight/2f + textureYOffset, drawWidth, drawHeight);
 
                     // 2. SAHİPLİK ÇERÇEVESİ (OUTLINE)
+                    // if (t.getOwner() != null) {
+                    //     Player owner = t.getOwner();
+                    //     if(owner.getCivilization() != null) {
+                    //         String c = owner.getCivilization().getCivilizationColor();
+                            
+                    //         // Renk koduna göre çerçeveyi boya
+                    //         if(c.contains("Red")) batch.setColor(Color.RED);
+                    //         else if(c.contains("Blue")) batch.setColor(Color.BLUE);
+                    //         else if(c.contains("Gold")) batch.setColor(Color.GOLD);
+                    //         else if(c.contains("Brown")) batch.setColor(Color.BROWN);
+                    //         else batch.setColor(Color.GRAY);
+                            
+                    //         batch.draw(Assets.hexOutline, t.getPixelX() - drawWidth/2f, t.getPixelY() - drawHeight/2f + textureYOffset, drawWidth, drawHeight);
+                    //     }
+                    // }
+                    // batch.setColor(Color.WHITE); // Rengi sıfırla
                     if (t.getOwner() != null) {
-                        Player owner = t.getOwner();
-                        if(owner.getCivilization() != null) {
-                            String c = owner.getCivilization().getCivilizationColor();
-                            
-                            // Renk koduna göre çerçeveyi boya
-                            if(c.contains("Red")) batch.setColor(Color.RED);
-                            else if(c.contains("Blue")) batch.setColor(Color.BLUE);
-                            else if(c.contains("Gold")) batch.setColor(Color.GOLD);
-                            else if(c.contains("Brown")) batch.setColor(Color.BROWN);
-                            else batch.setColor(Color.GRAY);
-                            
-                            batch.draw(Assets.hexOutline, t.getPixelX() - drawWidth/2f, t.getPixelY() - drawHeight/2f + textureYOffset, drawWidth, drawHeight);
-                        }
-                    }
-                    batch.setColor(Color.WHITE); // Rengi sıfırla
+    Player owner = t.getOwner();
+    if (owner.getCivilization() != null) {
+        String c = owner.getCivilization().getCivilizationColor();
+        
+        // --- RENK SEÇİMİ ---
+        // Assets sınıfındaki özel renklerini kullanırsan daha uyumlu olur
+        Color drawColor = Color.GRAY; 
+        
+        if (c.contains("Red")) drawColor = Color.RED; 
+        else if (c.contains("Blue")) drawColor = Color.BLUE;
+        else if (c.contains("Gold")) drawColor = Color.GOLD;
+        else if (c.contains("Brown")) drawColor = Color.BROWN;
+        else if (c.contains("Orange")) drawColor = Color.ORANGE;
+        else if (c.contains("Cyan")) drawColor = Color.CYAN;
+        else if (c.contains("Dark Red")) drawColor = Color.MAROON; // Veya Assets.COL_DARK_RED
+
+        // 1. Rengi Ayarla (Kırmızı, Mavi vs.)
+        batch.setColor(drawColor);
+
+        // 2. TARAMA DESENİNİ ÇİZ (YENİ KISIM)
+        // Assets.tilePattern -> Assets classında yeni tanımladığın değişken
+        batch.draw(Assets.pattern, 
+                   t.getPixelX() - drawWidth / 2f, 
+                   t.getPixelY() - drawHeight / 2f + textureYOffset, 
+                   drawWidth, drawHeight);
+
+        // 3. KENAR ÇİZGİSİNİ ÇİZ (Opsiyonel - Daha net görünür)
+        // Eğer çok kalabalık gelirse bu kısmı silebilirsin.
+        batch.draw(Assets.hexOutline, 
+                   t.getPixelX() - drawWidth / 2f, 
+                   t.getPixelY() - drawHeight / 2f + textureYOffset, 
+                   drawWidth, drawHeight);
+    }
+}
+
+// ÖNEMLİ: Rengi beyaza sıfırla ki sonraki çizilenler (askerler) boyalı çıkmasın.
+batch.setColor(Color.WHITE);
 
                     // 3. İKONLAR (Asker / Bina)
                     if (showSoldiers && t.hasArmy()) {

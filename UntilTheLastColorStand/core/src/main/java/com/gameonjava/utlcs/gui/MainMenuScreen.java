@@ -112,7 +112,7 @@ public class MainMenuScreen extends ScreenAdapter {
                 Game loadedGame = sl.load("savefile.json"); 
                 
                 if (loadedGame != null) {
-                    game.GameHUD = new GameHUD(game.batch, loadedGame); 
+                    // game.gameHUD = new GameHUD(game.batch, loadedGame); 
                     game.changeScreen(Main.ScreenType.GAME);
                     System.out.println("Load successful!");
                 } else {
