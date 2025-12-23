@@ -29,6 +29,7 @@ public class GameHUD implements Disposable {
     public Stage stage;
     private Viewport viewport;
     public Game backendGame;
+    public Player currentPlayer;
 
     private Label goldLabel, foodLabel, bookLabel, techLabel, moveLabel;
     private Label turnCount, currentPlayerLabel, winCondDesc;
@@ -55,8 +56,15 @@ public class GameHUD implements Disposable {
     public GameHUD(SpriteBatch batch, Game backendGame) {
         viewport = new FitViewport(1280, 720);
         stage = new Stage(viewport, batch);
-
         this.backendGame = backendGame;
+
+        if (backendGame.getPlayers() != null && !backendGame.getPlayers().isEmpty()) {
+            this.currentPlayer = backendGame.getCurrentPlayer();
+        } else {
+            System.err.println("HATA: Kayıt dosyasında oyuncu verisi yok!");
+            return;
+        }
+
         beigeStyle = createBeigeStyle();
 
         Table rootTable = new Table();
@@ -128,6 +136,7 @@ public class GameHUD implements Disposable {
             pBtn.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
+                    
                     Player me = backendGame.getCurrentPlayer();
                     Player target = backendGame.getPlayers().get(pIndex);
                     if (target.getName().equals(me.getName())) {
@@ -157,7 +166,7 @@ public class GameHUD implements Disposable {
             mailBtn.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    Player current = backendGame.getCurrentPlayer();
+                    Player current = backendGame.getCurrentPlayer(); 
 
                     IncomingTradesDialog mailDialog = new IncomingTradesDialog(Assets.skin, backendGame, current,
                             GameHUD.this);

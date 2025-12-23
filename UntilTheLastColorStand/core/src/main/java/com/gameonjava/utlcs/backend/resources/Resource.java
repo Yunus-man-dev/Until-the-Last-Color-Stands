@@ -12,6 +12,7 @@ public abstract class Resource implements com.badlogic.gdx.utils.Json.Serializab
     public Resource(int value) {
         this.value = value;
     }
+    public Resource() {}
 
     public abstract void initializeConstants();
 
