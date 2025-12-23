@@ -314,54 +314,88 @@ public class MapManager {
                     // }
                     // batch.setColor(Color.WHITE); // Rengi sıfırla
                     if (t.getOwner() != null) {
-    Player owner = t.getOwner();
-    if (owner.getCivilization() != null) {
-        String c = owner.getCivilization().getCivilizationColor();
-        
-        // --- RENK SEÇİMİ ---
-        // Assets sınıfındaki özel renklerini kullanırsan daha uyumlu olur
-        Color drawColor = Color.GRAY; 
-        
-        if (c.contains("Red")) drawColor = Color.RED; 
-        else if (c.contains("Blue")) drawColor = Color.BLUE;
-        else if (c.contains("Gold")) drawColor = Color.GOLD;
-        else if (c.contains("Brown")) drawColor = Color.BROWN;
-        else if (c.contains("Orange")) drawColor = Color.ORANGE;
-        else if (c.contains("Cyan")) drawColor = Color.CYAN;
-        else if (c.contains("Dark Red")) drawColor = Color.MAROON; // Veya Assets.COL_DARK_RED
+                        Player owner = t.getOwner();
+                        if (owner.getCivilization() != null) {
+                            String c = owner.getCivilization().getCivilizationColor();
+                            
+                            // --- RENK SEÇİMİ ---
+                            // Assets sınıfındaki özel renklerini kullanırsan daha uyumlu olur
+                            Color drawColor = Color.GRAY; 
+                            
+                            if (c.contains("Red")) drawColor = Color.RED; 
+                            else if (c.contains("Blue")) drawColor = Color.BLUE;
+                            else if (c.contains("Gold")) drawColor = Color.GOLD;
+                            else if (c.contains("Brown")) drawColor = Color.BROWN;
+                            else if (c.contains("Orange")) drawColor = Color.ORANGE;
+                            else if (c.contains("Cyan")) drawColor = Color.CYAN;
+                            else if (c.contains("Dark Red")) drawColor = Color.MAROON; // Veya Assets.COL_DARK_RED
 
-        // 1. Rengi Ayarla (Kırmızı, Mavi vs.)
-        batch.setColor(drawColor);
+                            // 1. Rengi Ayarla (Kırmızı, Mavi vs.)
+                            batch.setColor(drawColor.r,drawColor.g,drawColor.b,0.6f);
 
-        // 2. TARAMA DESENİNİ ÇİZ (YENİ KISIM)
-        // Assets.tilePattern -> Assets classında yeni tanımladığın değişken
-        batch.draw(Assets.pattern, 
-                   t.getPixelX() - drawWidth / 2f, 
-                   t.getPixelY() - drawHeight / 2f + textureYOffset, 
-                   drawWidth, drawHeight);
+                            // 2. TARAMA DESENİNİ ÇİZ (YENİ KISIM)
+                            // Assets.tilePattern -> Assets classında yeni tanımladığın değişken
+                            batch.draw(Assets.pattern, 
+                                    t.getPixelX() - drawWidth / 2f, 
+                                    t.getPixelY() - drawHeight / 2f + textureYOffset, 
+                                    drawWidth, drawHeight);
 
-        // 3. KENAR ÇİZGİSİNİ ÇİZ (Opsiyonel - Daha net görünür)
-        // Eğer çok kalabalık gelirse bu kısmı silebilirsin.
-        batch.draw(Assets.hexOutline, 
-                   t.getPixelX() - drawWidth / 2f, 
-                   t.getPixelY() - drawHeight / 2f + textureYOffset, 
-                   drawWidth, drawHeight);
+                            // 3. KENAR ÇİZGİSİNİ ÇİZ (Opsiyonel - Daha net görünür)
+                            // Eğer çok kalabalık gelirse bu kısmı silebilirsin.
+                            batch.draw(Assets.hexOutline, 
+                                    t.getPixelX() - drawWidth / 2f, 
+                                    t.getPixelY() - drawHeight / 2f + textureYOffset, 
+                                    drawWidth, drawHeight);
+                        }
     }
-}
 
-// ÖNEMLİ: Rengi beyaza sıfırla ki sonraki çizilenler (askerler) boyalı çıkmasın.
-batch.setColor(Color.WHITE);
+                    // ÖNEMLİ: Rengi beyaza sıfırla ki sonraki çizilenler (askerler) boyalı çıkmasın.
+                    batch.setColor(Color.WHITE);
 
-                    // 3. İKONLAR (Asker / Bina)
-                    if (showSoldiers && t.hasArmy()) {
-                        batch.draw(Assets.soldier, t.getPixelX() - 16, t.getPixelY() - 10 + textureYOffset, 32, 32);
-                    } else if (showBuildings && t.hasBuilding()) {
-                        batch.draw(Assets.farm, t.getPixelX() - 16, t.getPixelY() - 10 + textureYOffset, 32, 32);
+                        float iconSize = drawWidth * 0.6f; 
+                        float iconOffset = iconSize / 2f;  // Tam ortaya gelmesi için kaydırma miktarı
+
+                        // Rengi tamamen resetle
+                        batch.setColor(Color.WHITE); 
+
+                        // A) ASKER ÇİZİMİ (Filtre Kontrolü ile)
+                        if (showSoldiers && t.hasArmy()) {
+                            batch.draw(Assets.soldier, 
+                                    t.getPixelX() - iconOffset, 
+                                    t.getPixelY() - iconOffset + textureYOffset, 
+                                    iconSize, iconSize);
+                        } 
+                        // B) BİNA ÇİZİMİ (Filtre Kontrolü ile)
+                        // else if kullanarak asker varsa binayı gizleyebiliriz veya üst üste bindirebiliriz. 
+                        // Genelde asker binanın üstünde durur.
+                        else if (showBuildings && t.hasBuilding()) {
+                            // Binanın tipine göre ikon seçimi (İlerde eklersin, şimdilik Farm)
+                            Texture buildingIcon;
+                            String s = t.getBuilding().getName();
+                            if(s.equals("Farm")){
+                                buildingIcon  = Assets.farm; 
+                            }
+                            else if(s.equals("Mine")){
+                                buildingIcon = Assets.mine;
+                            }
+                             else if(s.equals("Library")){
+                                buildingIcon = Assets.library;
+                            }
+                            else{
+                                buildingIcon = Assets.port;
+                            }
+                            
+                            
+                            batch.draw(buildingIcon, 
+                                    t.getPixelX() - iconOffset, 
+                                    t.getPixelY() - iconOffset + textureYOffset, 
+                                    iconSize, iconSize);
+                        }
                     }
                 }
             }
-        }
-        // batch.setColor(Color.WHITE); // Render bitiminde rengi temizle
+            
+            // batch.setColor(Color.WHITE); // Render bitiminde rengi temizle
     }
     
     public Tile getTileAtPixel(float worldX, float worldY, float r) {

@@ -9,6 +9,7 @@ building is constructed on. */
 public abstract class Building implements com.badlogic.gdx.utils.Json.Serializable{
     protected int level;
     protected Tile tile;
+    protected String name;
 
     public Building(Tile tile) {
         this.tile = tile;
@@ -30,7 +31,9 @@ public abstract class Building implements com.badlogic.gdx.utils.Json.Serializab
         }
 
     }
-
+    public String getName(){
+        return name;
+    }
     public abstract void produce(Player player);
 
     @Override

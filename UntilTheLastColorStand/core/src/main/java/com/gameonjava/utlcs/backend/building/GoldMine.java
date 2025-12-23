@@ -9,6 +9,7 @@ public class GoldMine extends Building {
     public GoldMine(Tile tile, double GOLD) {
         super(tile);
         this.GOLD = GOLD;
+        name = "Mine";
     }
 
     @Override

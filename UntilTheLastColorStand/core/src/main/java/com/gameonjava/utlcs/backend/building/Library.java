@@ -10,6 +10,7 @@ public class Library extends Building {
     public Library(Tile tile, double BOOK) {
         super(tile);
         this.BOOK = BOOK;
+        name = "Library";
     }
 
     @Override

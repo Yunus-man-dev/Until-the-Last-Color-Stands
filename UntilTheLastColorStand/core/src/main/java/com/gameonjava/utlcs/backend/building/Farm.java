@@ -11,6 +11,7 @@ public class Farm extends Building {
     public Farm(Tile tile, double FOOD) {
         super(tile);
         this.FOOD = FOOD;
+        name = "Farm";
     }
 
     @Override

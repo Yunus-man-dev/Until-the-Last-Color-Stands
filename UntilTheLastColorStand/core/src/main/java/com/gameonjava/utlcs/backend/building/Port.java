@@ -11,6 +11,7 @@ public class Port extends Building {
         super(tile);
         this.FOOD = FOOD;
         this.GOLD = GOLD;
+        name = "Port";
     }
 
     @Override
