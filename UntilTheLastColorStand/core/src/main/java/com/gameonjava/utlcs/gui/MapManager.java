@@ -331,7 +331,8 @@ public class MapManager {
                             else if (c.contains("Dark Red")) drawColor = Color.MAROON; // Veya Assets.COL_DARK_RED
 
                             // 1. Rengi Ayarla (Kırmızı, Mavi vs.)
-                            batch.setColor(drawColor.r,drawColor.g,drawColor.b,0.6f);
+                            batch.setColor(drawColor);
+                            //drawColor.r,drawColor.g,drawColor.b,0.6f
 
                             // 2. TARAMA DESENİNİ ÇİZ (YENİ KISIM)
                             // Assets.tilePattern -> Assets classında yeni tanımladığın değişken

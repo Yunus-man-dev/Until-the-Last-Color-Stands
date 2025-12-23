@@ -239,7 +239,7 @@ public class GameScreen extends ScreenAdapter {
     private boolean showBuildings = true;
     private boolean showSoldiers = true;
     
-    final float r = 15f; // Hex yarıçapı
+    final float r = 20f; // Hex yarıçapı
 
    
 

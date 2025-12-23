@@ -18,7 +18,7 @@ public class Assets {
     // Image settingsBtn = new Image(Assets.settings);
     // BU ŞEKİLDE UI CLASSLARINDA KULLANILABILIR!!!
 
-    public static final String PATTERN = "ui/tile_orumcek.png";
+    public static final String PATTERN = "ui/tile_outline.png";
 
     public static final AssetManager manager = new AssetManager();
     public static final Color COL_RED       = Color.valueOf("de0f3f");
