@@ -267,6 +267,12 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
     public void addScience(double amount) {
         book.addResource(amount);
     }
+    public void checkElimination() {
+        if (this.ownedTiles.isEmpty()) {
+            this.isActive = false;
+            System.out.println(this.name + " HAS BEEN ELIMINATED!");
+        }
+    }
 
     @Override
     public void write(Json json) {

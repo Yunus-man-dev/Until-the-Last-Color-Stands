@@ -39,17 +39,14 @@ public class EmpireSelectionScreen extends ScreenAdapter {
     private Stage stage;
     private Skin skin;
 
-    // --- State Yönetimi ---
     private int currentPlayerIndex = 1;
     private final int MAX_PLAYERS = 4;
 
-    // ARTIK DOĞRUDAN PLAYER LISTESİ TUTUYORUZ
     private ArrayList<Player> readyPlayers = new ArrayList<>();
 
     private final HashMap<String, TextButton> empireButtons = new HashMap<>();
     private String selectedEmpireName = null;
 
-    // --- UI Değişkenleri ---
     private Texture menuBgTexture, empireListBgTexture, colorBgTexture, uniqueFeatureBgTexture, winConditionBgTexture, btnTexture;
     private Image colorPreviewImage;
     private Label winConditionLabel, featureLabel, playerTitleLabel;
@@ -71,10 +68,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         skin = Assets.skin;
         loadTextures();
 
-        // ... (ARKA PLAN VE TABLO KURULUMLARI AYNI - ÖNCEKİ KODLA AYNI) ...
-        // ... (Kod tekrarı olmaması için UI kurulum kısımlarını özet geçiyorum) ...
 
-        // 1. Arka Planı Ekle
         Image bg = new Image(menuBgTexture);
         bg.setFillParent(true);
         stage.addActor(bg);
@@ -84,39 +78,25 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         rootTable.pad(20);
         stage.addActor(rootTable);
 
-        // --- SOL, ORTA, SAĞ SÜTUNLARI OLUŞTUR (Önceki kodun aynısı) ---
-        // Sadece handleNextButton mantığı değişecek, arayüz aynı.
 
-        // ... (Burada createLeftColumn, createCenterColumn, createRightColumn işlemleri var varsayıyoruz) ...
-        // ... Hızlıca kurulumu yapalım:
+        setupUI(rootTable);
 
-        setupUI(rootTable); // UI kodlarını aşağıda metod içine aldım temiz olsun diye
-
-        // İlk açılış ayarı
         updatePreview("Blue");
     }
 
-    // --- UI KURULUMU (Önceki kodun aynısı, sadece düzenli dursun diye metoda aldım) ---
     private void setupUI(Table rootTable) {
-        // [Resim Dosyalarıyla Uyumlu Köşe Değeri]
-        // PNG'nizin köşeleri ne kadar yumuşaksa bu sayıyı ona göre ayarlayın (6 veya 8 iyidir)
-        int corner = 6; 
-        int borderSize = 4; // Çerçeve kalınlığı
+        int corner = 6;
+        int borderSize = 4;
 
-        // --- SOL SÜTUN ---
         Table leftColumn = new Table();
 
-        // 1. COLOR PANEL (Özel Durum: İçinde resim var)
-        // Yardımcı metodu kullanarak çerçeveli yapıyı kuruyoruz
         Table colorContainer = createBorderedTable(colorBgTexture, 4, borderSize);
-        // Container'ın içindeki asıl tabloya erişmek için:
         Table colorInner = (Table) colorContainer.getChildren().get(0);
-        
+
         colorPreviewImage = new Image(skin.newDrawable("white", Color.WHITE));
         colorPreviewImage.setScaling(com.badlogic.gdx.utils.Scaling.stretch);
-        colorInner.add(colorPreviewImage).grow(); // İç tabloyu doldur
+        colorInner.add(colorPreviewImage).grow();
 
-        // 2. WIN CONDITION PANEL
         Table winContainer = createBorderedTable(winConditionBgTexture, corner, borderSize);
         Table winInner = (Table) winContainer.getChildren().get(0);
 
@@ -127,7 +107,6 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         winConditionLabel.setAlignment(Align.center);
         winInner.add(winConditionLabel).width(200).row();
 
-        // Back Butonu
         TextButton backBtn = createNavButton("Back");
         backBtn.addListener(new ChangeListener() {
             @Override
@@ -136,23 +115,20 @@ public class EmpireSelectionScreen extends ScreenAdapter {
             }
         });
 
-        // Sol Sütuna Ekleme
         leftColumn.add(colorContainer).width(250).height(500).padBottom(20).row();
         leftColumn.add(winContainer).width(250).growY().padBottom(20).row();
         leftColumn.add(backBtn).width(180).height(50).left();
 
 
-        // --- ORTA SÜTUN ---
         Table centerColumn = new Table();
         playerTitleLabel = new Label("Player 1 Selection", skin, "default");
         playerTitleLabel.setColor(Color.BLACK);
-        playerTitleLabel.setFontScale(0.22f); // Yazı boyutu düzeltildi
+        playerTitleLabel.setFontScale(0.22f);
 
         nameField = new TextField("", skin);
         nameField.setMessageText("Enter Name...");
         nameField.setAlignment(Align.center);
 
-        // 3. LIST PANEL (Empire Listesi)
         Table listContainer = createBorderedTable(empireListBgTexture, corner, borderSize);
         Table listInner = (Table) listContainer.getChildren().get(0);
 
@@ -166,27 +142,26 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         String[] empires = {"Blue", "Cyan", "Red", "Dark Red", "Gold", "Orange", "Brown", "Gray"};
         for (String emp : empires) {
             TextButton btn = new TextButton(emp, listBtnStyle);
-            btn.getLabel().setFontScale(0.3f); // Yazı boyutu ayarı
+            btn.getLabel().setFontScale(0.3f);
             btn.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
                     if (!btn.isDisabled()) updatePreview(emp);
                 }
             });
-            listInner.add(btn).width(250).height(80).padBottom(5).row(); // Yükseklik ve boşluk ayarı
+            listInner.add(btn).width(250).height(80).padBottom(5).row();
             empireButtons.put(emp, btn);
         }
 
         centerColumn.add(playerTitleLabel).padBottom(15).row();
         centerColumn.add(new Label("Empire name", skin, "default")).padBottom(5).row();
         centerColumn.add(nameField).width(250).height(40).padBottom(20).row();
-        centerColumn.add(listContainer).width(300).growY(); // Container'ı ekliyoruz
+        centerColumn.add(listContainer).width(300).growY();
 
 
         // --- SAĞ SÜTUN ---
         Table rightColumn = new Table();
-        
-        // 4. FEATURE PANEL
+
         Table featureContainer = createBorderedTable(uniqueFeatureBgTexture, corner, borderSize);
         Table featureInner = (Table) featureContainer.getChildren().get(0);
 
@@ -208,33 +183,25 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         rightColumn.add(featureContainer).width(250).growY().padBottom(20).row();
         rightColumn.add(actionButton).width(180).height(50).right();
 
-        // --- ROOT'A EKLEME ---
         rootTable.add(leftColumn).width(260).expandY().fillY().padRight(20);
         rootTable.add(centerColumn).width(320).expandY().fillY().padRight(20);
         rootTable.add(rightColumn).width(260).expandY().fillY();
     }
 
-    // --- KRİTİK DEĞİŞİKLİK BURADA ---
     private void handleNextButton() {
         if (selectedEmpireName == null) return;
 
         String playerName = nameField.getText().trim();
         if (playerName.isEmpty()) playerName = "Player " + currentPlayerIndex;
 
-        // 1. Factory Metodu ile Civilization Objesini Oluştur
         Civilization selectedCiv = getCivilizationByName(selectedEmpireName);
 
-        // 2. DOĞRUDAN BACKEND PLAYER OBJESİNİ OLUŞTUR
-        // Player constructor'ı çalıştığında, Civilization'a göre kaynaklar (Gold, Food vs.)
-        // otomatik olarak Player'ın içinde oluşturulacak. Harika!
         Player newPlayer = new Player(playerName, selectedCiv);
 
-        // 3. Listeye Ekle
         readyPlayers.add(newPlayer);
 
         System.out.println("Oyuncu Oluşturuldu: " + newPlayer.getName() + " - " + selectedCiv.getCivilizationName());
 
-        // Butonu Kilitle
         TextButton usedBtn = empireButtons.get(selectedEmpireName);
         if (usedBtn != null) usedBtn.setDisabled(true);
 
@@ -242,7 +209,6 @@ public class EmpireSelectionScreen extends ScreenAdapter {
             currentPlayerIndex++;
             prepareForNextPlayer();
         } else {
-            // HEPSİ BİTTİ -> Harita Seçimine GERÇEK OYUNCU LISTESINI gönder
             game.setScreen(new MapSelectionScreen(game, readyPlayers));
         }
     }
@@ -293,7 +259,6 @@ public class EmpireSelectionScreen extends ScreenAdapter {
             }
     }
 
-    // İSİMDEN NESNEYE ÇEVİRİCİ
     public static Civilization getCivilizationByName(String name) {
         if (name == null) return new Blue("Blue");
 
@@ -331,28 +296,22 @@ public class EmpireSelectionScreen extends ScreenAdapter {
             btnTexture = new Texture(Gdx.files.internal("ui/EmpireSelection_btn.png"));
         } catch (Exception e) {}
     }
-    // --- YARDIMCI METOT: Çerçeveli ve Yuvarlak Köşeli Panel Oluşturucu ---
 private Table createBorderedTable(Texture texture, int cornerRadius, int borderThickness) {
-    // 1. Doku'dan 9-Patch oluştur
     NinePatch patch = new NinePatch(texture, cornerRadius, cornerRadius, cornerRadius, cornerRadius);
-    
-    // 2. DIŞ KATMAN (Çerçeve Rengi): Aynı dokuyu SİYAH'a boyuyoruz
+
     NinePatchDrawable borderDrawable = new NinePatchDrawable(patch).tint(Color.BLACK);
-    
-    // 3. İÇ KATMAN (Asıl Panel): Dokunun orijinal hali
+
     NinePatchDrawable backgroundDrawable = new NinePatchDrawable(patch);
 
-    // 4. Tabloları oluştur
     Table container = new Table();
-    container.setBackground(borderDrawable); // Dışa siyahı koy
-    
+    container.setBackground(borderDrawable);
+
     Table innerTable = new Table();
-    innerTable.setBackground(backgroundDrawable); // İçe normali koy
-    
-    // 5. İç tabloyu dışa ekle ve kenarlardan (borderThickness kadar) boşluk bırak
+    innerTable.setBackground(backgroundDrawable);
+
     container.add(innerTable).grow().pad(borderThickness);
-    
-    return container; // Artık bu container'ı kullanacağız, innerTable'a da eleman ekleyeceğiz.
+
+    return container;
 }
     @Override public void render(float d) {
         Gdx.gl.glClearColor(0,0,0,1); Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); stage.act(d); stage.draw();

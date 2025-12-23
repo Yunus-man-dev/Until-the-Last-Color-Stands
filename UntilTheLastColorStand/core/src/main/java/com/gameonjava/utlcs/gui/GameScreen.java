@@ -22,10 +22,9 @@ public class GameScreen extends ScreenAdapter {
     private Main game;
     private GameHUD hud;
 
-    // --- YENİ EKLENEN VE DÜZELTİLEN DEĞİŞKENLER ---
-    private MapManager mapManager;          // Eski adı: harita
+    private MapManager mapManager;
     private OrthographicCamera camera;
-    private ShapeRenderer debugRenderer;    // Eski adı: rend
+    private ShapeRenderer debugRenderer;
     private MapInputProcessor mapInput;
     private InputController uiInput;        // Eski adı: inputController
 
@@ -76,28 +75,17 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void setupHudListeners() {
-        // İstatistikleri güncelle
         hud.updateStats(hud.backendGame.getCurrentPlayer(), Game.getCurrentTurn());
-
-        // GameScreen.java -> setupHudListeners içi:
-
-        // GameScreen.java -> setupHudListeners içi:
 
         hud.getEndTurnBtn().addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // 1. Turu ilerlet (Backend)
                 hud.backendGame.nextTurn();
 
-                // --- YENİ EKLENEN KISIM: OYUN BİTTİ Mİ? ---
                 if (hud.backendGame.getWinner() != null) {
-                    // Kazanan var! Diyaloğu göster ve 'game' nesnesini gönder
                     hud.showGameOver(hud.backendGame.getWinner(), game);
-                    return; // Kodun geri kalanını çalıştırma (Update yapmaya gerek yok)
+                    return;
                 }
-                // ------------------------------------------
-
-                // Oyun devam ediyorsa standart güncellemeleri yap
                 Player current = hud.backendGame.getCurrentPlayer();
                 hud.updateStats(current, Game.getCurrentTurn());
 
@@ -175,16 +163,12 @@ public class GameScreen extends ScreenAdapter {
         float minY = mapBottom + halfH;
         float maxY = mapTop - halfH;
 
-        // X EKSENİ: Sınırların dışına çıkmayı engelle (Clamp)
         if (minX < maxX) {
             camera.position.x = MathUtils.clamp(camera.position.x, minX, maxX);
         } else {
-            // Harita ekrandan darsa ortala
-            // camera.position.x = (mapLeft + mapRight) / 2f;
             camera.position.x = mapLeft + halfW- leftMargin;
         }
 
-        // Y EKSENİ
         if (minY < maxY) {
             camera.position.y = MathUtils.clamp(camera.position.y, minY, maxY);
         } else {
@@ -207,7 +191,6 @@ public class GameScreen extends ScreenAdapter {
         if (debugRenderer != null) debugRenderer.dispose();
     }
 
-    // --- GETTER & SETTER ---
     public GameHUD getGameHud() { return hud; }
     public GameHUD getHud() { return hud; }
     public Main getMainGame() { return game; }
@@ -218,7 +201,6 @@ public class GameScreen extends ScreenAdapter {
     public boolean isShowSoldiers() { return showSoldiers; }
     public void setShowSoldiers(boolean show) { this.showSoldiers = show; }
 
-    // --- YARDIMCI UI METODLARI ---
     private TextureRegionDrawable getCivBg(Civilization civ) {
         String name = civ.getCivilizationColor();
         if (name.contains("Red")) return Assets.bgRed;

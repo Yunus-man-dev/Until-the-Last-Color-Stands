@@ -25,9 +25,8 @@ public class IncomingTradesDialog extends Dialog {
 
     private Game gameBackend;
     private Player currentPlayer;
-    private GameHUD hud; 
+    private GameHUD hud;
 
-    // Kartın Boyut Ayarları
     private static final float CARD_WIDTH = 450;
     private static final float CARD_HEIGHT = 300;
 
@@ -37,41 +36,32 @@ public class IncomingTradesDialog extends Dialog {
         this.currentPlayer = currentPlayer;
         this.hud = hud;
 
-        // Arka planı kaldır (sadece kart gözüksün)
         setBackground((TextureRegionDrawable) null);
 
-        // Pencere Boyutu (Sadece tek kart sığacak kadar)
-        setSize(500, 450); 
+        setSize(500, 450);
         setModal(true);
         setMovable(false);
         setResizable(false);
 
         getContentTable().top();
 
-     
-    
 
-        // --- TEK KART GÖSTERİMİ ---
-        // ScrollPane ve contentList kaldırıldı. Direkt metodu çağırıyoruz.
         showCurrentTrade();
     }
 
     private void showCurrentTrade() {
-        // Bekleyen teklifleri al
         ArrayList<Trade> pendingTrades = gameBackend.getPendingTradesFor(currentPlayer);
 
-        // Eğer hiç teklif yoksa kapat
         if (pendingTrades.isEmpty()) {
             hide();
             return;
         }
 
-        // --- DEĞİŞİKLİK BURADA: Sadece İLK sıradaki teklifi alıyoruz ---
         Trade firstTrade = pendingTrades.get(0);
 
         // Kartı oluştur
         Group tradeCard = createTradeCard(firstTrade);
-        
+
         // Ekrana ekle (Döngü yok, sadece 1 tane)
         getContentTable().add(tradeCard).width(CARD_WIDTH).height(CARD_HEIGHT).padTop(20);
     }
@@ -183,10 +173,10 @@ public class IncomingTradesDialog extends Dialog {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameBackend.acceptTrade(trade);
-                
+
                 // HUD güncelle (Böylece mektup butonu hala teklif varsa yanıp sönmeye devam eder)
                 hud.updateStats(currentPlayer, Game.getCurrentTurn());
-                
+
                 // --- DEĞİŞİKLİK: Bir işlem yapınca pencereyi direkt kapat ---
                 // Kullanıcı sıradaki için tekrar mektuba basmalı.
                 hide();
@@ -210,7 +200,7 @@ public class IncomingTradesDialog extends Dialog {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameBackend.refuseTrade(trade);
-                
+
                 // HUD güncelle
                 hud.updateStats(currentPlayer, Game.getCurrentTurn());
 

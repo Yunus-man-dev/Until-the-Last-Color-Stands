@@ -34,34 +34,28 @@ public class BuildingSelectionDialog extends Dialog {
         this.hud = hud;
         this.map = map;
 
-        // Dialogun kendi arka planını şeffaf yap, sadece slot resmi görünsün
         setBackground((TextureRegionDrawable) null);
-        
-        // Varsayılan dialog boşluklarını sıfırla ki resim tam otursun
+
         pad(0);
 
         setModal(true);
         setMovable(false);
         setResizable(false);
 
-        // İçeriği oluştur
         createContent();
     }
 
     private void createContent() {
         getContentTable().clearChildren();
-        
+
         boolean canBuildPort = checkPortAvailability();
 
-        // InteractionBar yapısının aynısı: Stack(Image + Table)
         Stack stack = new Stack();
-        
-        // 1. Arka Plan Resmini Belirle
+
         Image slotBackground = new Image();
         slotBackground.setScaling(Scaling.none);
         slotBackground.setAlign(Align.center);
 
-        // Port varsa Slot3 (Genelde 4'lü/Geniş), yoksa Slot2 (3'lü/Dar) mantığı
         if (canBuildPort) {
             if (Assets.ibSlot3 != null) {
                 slotBackground.setDrawable(new TextureRegionDrawable(Assets.ibSlot3));
@@ -72,12 +66,10 @@ public class BuildingSelectionDialog extends Dialog {
             }
         }
 
-        // 2. Buton Tablosu
         Table buttonTable = new Table();
         buttonTable.setFillParent(true);
         buttonTable.center();
 
-        // Ortak Buton Stili
         TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
         buttonStyle.font = getSkin().getFont("default");
         buttonStyle.fontColor = Color.BLACK;
@@ -86,7 +78,6 @@ public class BuildingSelectionDialog extends Dialog {
              buttonStyle.down = Assets.btnGenericDr.tint(Color.LIGHT_GRAY);
         }
 
-        // 3. Bina Butonlarını Ekle
         addBuildingButton(buttonTable, "Farm", BuildingType.FARM, buttonStyle);
         addBuildingButton(buttonTable, "Mine", BuildingType.GOLD_MINE, buttonStyle);
         addBuildingButton(buttonTable, "Library", BuildingType.LIBRARY, buttonStyle);
@@ -95,7 +86,6 @@ public class BuildingSelectionDialog extends Dialog {
             addBuildingButton(buttonTable, "Port", BuildingType.PORT, buttonStyle);
         }
 
-        // 4. Cancel Butonunu Ekle (En sağa gelecek şekilde sona ekliyoruz)
         TextButton cancelBtn = new TextButton("Cancel", buttonStyle);
         cancelBtn.addListener(new ClickListener() {
             @Override
@@ -105,17 +95,15 @@ public class BuildingSelectionDialog extends Dialog {
         });
         buttonTable.add(cancelBtn).width(120).height(50).expandX().center();
 
-        // Stack'i birleştir
         stack.add(slotBackground);
         stack.add(buttonTable);
 
-        // Dialog içeriğine ekle. Yüksekliği InteractionBar ile aynı (120px)
         getContentTable().add(stack).height(120).expandX().center();
     }
 
     private void addBuildingButton(Table table, String text, final BuildingType type, TextButton.TextButtonStyle style) {
         TextButton btn = new TextButton(text, style);
-        
+
         btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -130,7 +118,6 @@ public class BuildingSelectionDialog extends Dialog {
         boolean success = player.constructBuilding(tile, type);
         if (success) {
             hud.updateStats(player, Game.getCurrentTurn());
-            // İnşaat başarılı: Barı güncelle
             if (hud.getInteractionBar() != null) {
                 hud.getInteractionBar().updateContent(tile);
             }
@@ -153,22 +140,17 @@ public class BuildingSelectionDialog extends Dialog {
 
     @Override
     public Dialog show(Stage stage) {
-        // Alttaki InteractionBar'ı gizle
         if (hud.getInteractionBar() != null) {
             hud.getInteractionBar().setVisible(false);
         }
 
         super.show(stage);
-        
-        // Konumu ekranın EN ALTINA ayarla.
-        // -10 vererek biraz daha aşağı (ekran sınırına veya dışına doğru) itiyoruz.
         setPosition(Math.round((stage.getWidth() - getWidth()) / 2), -10);
-        
+
         return this;
     }
 
     private void cancelAndClose() {
-        // InteractionBar'ı geri getir
         if (hud.getInteractionBar() != null) {
             hud.getInteractionBar().setVisible(true);
         }

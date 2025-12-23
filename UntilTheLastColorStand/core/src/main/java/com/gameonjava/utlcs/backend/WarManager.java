@@ -245,19 +245,21 @@ public class WarManager {
 
 
     private void changeTile(){
-
         battleTile.removeArmy();
         battleTile.setArmy(winner);
 
         if(!battleTile.getTerrainType().equals(TerrainType.WATER)){
-
+            // Eski sahibin listesinden sil
             defenderArmy.player.getOwnedTiles().remove(battleTile);
+
+            // --- EKLENEN KISIM: ELENME KONTROLÜ ---
+            // Savunan oyuncunun toprağı kalmadıysa elenmesi lazım.
+            defenderArmy.player.checkElimination();
+            // -------------------------------------
+
             attackerArmy.player.getOwnedTiles().add(battleTile);
             battleTile.setOwner(attackerArmy.player); // Sahiplik güncelle
-
         }
-
-
     }
 
     // --- GUI İçin Getterlar ---

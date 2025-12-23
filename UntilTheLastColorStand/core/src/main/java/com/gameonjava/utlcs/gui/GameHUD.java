@@ -161,8 +161,14 @@ public class GameHUD implements Disposable {
                     
                     Player me = backendGame.getCurrentPlayer();
                     Player target = backendGame.getPlayers().get(pIndex);
+
+                    if (!target.isActive()) {
+                        System.out.println("Bu oyuncu elendi (" + target.getName() + "), profiline bakılamaz.");
+                        return;
+                    }
+
                     if (target.getName().equals(me.getName())) {
-                         return;
+                        return;
                     }
                     if (currentInfoWidget != null)
                         currentInfoWidget.remove();
