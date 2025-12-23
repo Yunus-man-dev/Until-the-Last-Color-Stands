@@ -27,7 +27,7 @@ public class InteractionBar extends Table {
     private Skin skin;
     private Game gameBackend;
     private GameHUD hud;
-    private Map map; 
+    private Map map;
 
     // UI Bileşenleri
     private Image slotBackground;
@@ -43,7 +43,7 @@ public class InteractionBar extends Table {
         this.padBottom(20);
 
         Stack stack = new Stack();
-        
+
         slotBackground = new Image();
         slotBackground.setScaling(Scaling.none);
         slotBackground.setAlign(Align.center);
@@ -59,13 +59,13 @@ public class InteractionBar extends Table {
 
     public void updateContent(final Tile t) {
         buttonTable.clear();
-        
+
         if (t == null) {
             setVisible(false);
             return;
         }
         Player me = gameBackend.getCurrentPlayer();
-        
+
         // 1. GÜVENLİK KONTROLÜ
         if (t.getOwner() == null || !t.getOwner().equals(me)) {
             setVisible(false);
@@ -77,8 +77,8 @@ public class InteractionBar extends Table {
         boolean hasBuilding = t.hasBuilding();
         boolean isMaxLevel = hasBuilding && t.getBuilding().getLevel() >= 3;
         boolean hasArmy = t.hasArmy() && t.getArmy().getSoldiers() > 0;
-        
-        boolean canConstruct = (t.getTerrainType() == TerrainType.PLAIN || 
+
+        boolean canConstruct = (t.getTerrainType() == TerrainType.PLAIN ||
                                 t.getTerrainType() == TerrainType.FOREST);
 
         // --- SENARYOLAR ---
@@ -86,7 +86,7 @@ public class InteractionBar extends Table {
         // 1. (Bina Yok/Yükseltilebilir) VE (Asker Var) -> 3 Aksiyon + Cancel
         if ( (!hasBuilding || !isMaxLevel) && hasArmy ) {
             setSlotImage(Assets.ibSlot3);
-            
+
             if (!hasBuilding) {
                 if (canConstruct) addTextButton("Construct", () -> openBuildingDialog(t));
                 else addEmptySlot();
@@ -96,17 +96,17 @@ public class InteractionBar extends Table {
 
             addTextButton("Recruit", () -> openRecruitDialog(t));
             addTextButton("Move", () -> enableMoveMode(t));
-            
+
             addCancelButton();
         }
-        
+
         // 2. (Bina Tam Seviye) VE (Asker Var) -> 2 Aksiyon + Cancel
         else if (isMaxLevel && hasArmy) {
-            setSlotImage(Assets.ibSlot3); 
-            
+            setSlotImage(Assets.ibSlot3);
+
             addTextButton("Recruit", () -> openRecruitDialog(t));
             addTextButton("Move", () -> enableMoveMode(t));
-            
+
             addCancelButton();
         }
 
@@ -128,7 +128,7 @@ public class InteractionBar extends Table {
             addTextButton("Recruit", () -> openRecruitDialog(t));
             addCancelButton();
         }
-        
+
         // 5. Bina var (Max değil) ve Asker Yok -> 2 Aksiyon + Cancel
         else if (hasBuilding && !isMaxLevel && !hasArmy) {
             setSlotImage(Assets.ibSlot3);
@@ -136,7 +136,7 @@ public class InteractionBar extends Table {
             addTextButton("Recruit", () -> openRecruitDialog(t));
             addCancelButton();
         }
-        
+
         else {
             setVisible(false);
         }
@@ -153,12 +153,12 @@ public class InteractionBar extends Table {
         style.font = skin.getFont("default");
         style.fontColor = Color.BLACK;
         style.up = Assets.btnGenericDr;
-        
+
         if(Assets.btnGenericDr != null)
              style.down = Assets.btnGenericDr.tint(Color.LIGHT_GRAY);
 
         TextButton btn = new TextButton(text, style);
-        
+
         btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -168,7 +168,7 @@ public class InteractionBar extends Table {
 
         buttonTable.add(btn).width(120).height(50).expandX().center();
     }
-    
+
     private void addCancelButton() {
         addTextButton("Cancel", new Runnable() {
             @Override
@@ -177,7 +177,7 @@ public class InteractionBar extends Table {
             }
         });
     }
-    
+
     private void addEmptySlot() {
         buttonTable.add().expandX();
     }
@@ -193,14 +193,14 @@ public class InteractionBar extends Table {
 
     private void developBuilding(Tile t) {
         Player player = gameBackend.getCurrentPlayer();
-        
+
         if (t.hasBuilding()) {
             Building b = t.getBuilding();
             double cost = player.getGold().DEVELOP;
-            
+
             if (player.getGold().checkForResource(cost)) {
                 player.getGold().reduceResource(cost);
-                b.upgrade();
+                player.developBuilding(t);
                 System.out.println("Building upgraded to Level " + b.getLevel());
                 hud.updateStats(player, Game.getCurrentTurn());
                 updateContent(t);
@@ -219,10 +219,10 @@ public class InteractionBar extends Table {
         // Daha önce yazdığım kodun aynısı buraya gelecek.
         // Yer kazanmak için tekrar kopyalamıyorum ama proje dosyasında önceki hali durmalı.
         // (Eğer silindiyse bir önceki mesajdaki kodu kullan)
-        
+
         // *Önceki recruit kodunu buraya yapıştırdığını varsayıyorum*
         // Hızlıca yeniden ekliyorum tam olması için:
-        
+
         buttonTable.clear();
         setSlotImage(Assets.ibSlot3);
 
@@ -237,11 +237,11 @@ public class InteractionBar extends Table {
 
         TextButton btnMinus = new TextButton("-", skin); // Skin'den default alalım stil yoksa
         if(GameHUD.beigeStyle != null) btnMinus.setStyle(GameHUD.beigeStyle); // Varsa set et
-        
+
         final Label countLabel = new Label("0", skin);
         countLabel.setColor(Color.BLACK);
         countLabel.setAlignment(Align.center);
-        
+
         TextButton btnPlus = new TextButton("+", skin);
         if(GameHUD.beigeStyle != null) btnPlus.setStyle(GameHUD.beigeStyle);
 
@@ -314,14 +314,14 @@ public class InteractionBar extends Table {
         setSlotImage(Assets.ibSlot3); // Geniş alan lazım
 
         final Player player = gameBackend.getCurrentPlayer();
-        
+
         // O karede kaç asker var?
         if (!t.hasArmy()) {
             System.out.println("Error: No army to move.");
             updateContent(t);
             return;
         }
-        
+
         final int maxSoldiers = t.getArmy().getSoldiers();
         final int[] moveAmount = {maxSoldiers}; // Varsayılan olarak hepsi seçili
 
@@ -369,14 +369,14 @@ public class InteractionBar extends Table {
                 // Burada "Seçim Modu"nu aktif etmemiz lazım.
                 // InteractionBar'ın görevi biter, top MapInputProcessor'a geçer.
                 System.out.println("Move Initiated: " + moveAmount[0] + " soldiers from Tile(" + t.getQ() + "," + t.getR() + ")");
-                
-                // NOT: MapInputProcessor'da bir 'setMoveState(Tile source, int amount)' 
+
+                // NOT: MapInputProcessor'da bir 'setMoveState(Tile source, int amount)'
                 // gibi bir metodunuz olmalı ve onu çağırmalısınız.
                 // Şimdilik sadece konsola basıyoruz ve barı gizliyoruz.
-                
+
                 // ÖRNEK ENTEGRASYON (Eğer hud veya screen üzerinden erişebiliyorsanız):
                 // hud.getGameScreen().prepareMove(t, moveAmount[0]);
-                
+
                 setVisible(false); // Seçim yaparken bar kapansın
             }
         });
