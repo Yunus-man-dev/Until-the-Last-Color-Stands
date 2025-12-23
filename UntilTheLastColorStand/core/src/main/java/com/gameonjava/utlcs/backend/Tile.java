@@ -190,7 +190,7 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
         json.writeValue("q", q);
         json.writeValue("r", r);
         json.writeValue("Terrain", terrainName);
-        //json.writeValue("Owner", owner);
+
         json.writeValue("Building", building, null);
         json.writeValue("Army", army);
         json.writeValue("ConsumptionRate", soldierConsumptionRate);
@@ -201,7 +201,6 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
         q = jsonData.getInt("q", 0);
         r = jsonData.getInt("r", 0);
         terrainName = json.readValue("Terrain", com.gameonjava.utlcs.backend.Enum.TerrainType.class, jsonData);
-        //owner = json.readValue("Owner", Player.class, jsonData);
         
         building = json.readValue("Building", null, jsonData); 
         army = json.readValue("Army", com.gameonjava.utlcs.backend.Army.class, jsonData);

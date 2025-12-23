@@ -58,8 +58,8 @@ public class GameHUD implements Disposable {
         if (backendGame.getPlayers() != null && !backendGame.getPlayers().isEmpty()) {
             this.currentPlayer = backendGame.getCurrentPlayer();
         } else {
-            System.err.println("HATA: Kayıt dosyasından oyuncu yüklenemedi!");
-            return; 
+            System.err.println("HATA: Kayıt dosyasında oyuncu verisi yok!");
+            return;
         }
 
         beigeStyle = createBeigeStyle();
