@@ -233,7 +233,6 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
 
     @Override
     public void read(Json json, JsonValue jsonData) {
-        // Specify the classes for the ArrayLists so LibGDX knows how to cast them
         players = json.readValue("Players", java.util.ArrayList.class, Player.class, jsonData);
         gameMap = json.readValue("Map", Map.class, jsonData);
         
@@ -243,11 +242,11 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         
         activeTrades = json.readValue("ActiveTrades", java.util.ArrayList.class, Trade.class, jsonData);
         
-        // IMPORTANT: Re-link the owner to each tile so the GUI works
         if (players != null) {
             for (Player p : players) {
-                p.relinkTiles(); // Ensure this helper exists in Player.java
+                p.relinkTiles();
             }
         }
     }
+
 }

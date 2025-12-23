@@ -272,6 +272,12 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
     public void write(Json json) {
         json.writeValue("Name", name);
         json.writeValue("Civilization", civilization, civilization.getClass());
+
+        /*if (civilization != null) {
+            json.writeValue("Civilization", civilization, civilization.getClass());
+        } else {
+            json.writeValue("Civilization", (Civilization) null);
+        }*/
         json.writeValue("Food", food);
         json.writeValue("Gold", gold);
         json.writeValue("Book", book);
@@ -301,7 +307,6 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
         ownedTiles = json.readValue("OwnedTiles", java.util.ArrayList.class, Tile.class, jsonData);
         isActive = json.readValue("Activity", boolean.class, jsonData);
         technologyPoint = jsonData.getInt("TechPoint", 0);
-        
         relinkTiles();
     }
 }

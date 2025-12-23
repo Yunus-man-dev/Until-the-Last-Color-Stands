@@ -15,12 +15,13 @@ public class SaveLoad {
 
         json.addClassTag("Player", com.gameonjava.utlcs.backend.Player.class);
         json.addClassTag("Tile", com.gameonjava.utlcs.backend.Tile.class);
-        json.addClassTag("Game", com.gameonjava.utlcs.backend.Game.class);
-        json.addClassTag("Map", com.gameonjava.utlcs.backend.Map.class);
-        json.addClassTag("Army", com.gameonjava.utlcs.backend.Army.class);
-        json.addClassTag("Trade", com.gameonjava.utlcs.backend.Trade.class);
+        //json.addClassTag("Game", com.gameonjava.utlcs.backend.Game.class);
+        //json.addClassTag("Map", com.gameonjava.utlcs.backend.Map.class);
+        //json.addClassTag("Army", com.gameonjava.utlcs.backend.Army.class);
+        //json.addClassTag("Trade", com.gameonjava.utlcs.backend.Trade.class);
         
         // Concrete Civilizations
+        json.addClassTag("Civilization", com.gameonjava.utlcs.backend.civilization.Civilization.class);
         json.addClassTag("Blue", com.gameonjava.utlcs.backend.civilization.Blue.class);
         json.addClassTag("Red", com.gameonjava.utlcs.backend.civilization.Red.class);
         json.addClassTag("GoldCivilization", com.gameonjava.utlcs.backend.civilization.GoldCivilization.class);
@@ -31,12 +32,14 @@ public class SaveLoad {
         json.addClassTag("Orange", com.gameonjava.utlcs.backend.civilization.Orange.class);
 
         // Concrete Buildings
+        json.addClassTag("Building", com.gameonjava.utlcs.backend.building.Building.class);
         json.addClassTag("Farm", com.gameonjava.utlcs.backend.building.Farm.class);
         json.addClassTag("Port", com.gameonjava.utlcs.backend.building.Port.class);
         json.addClassTag("Library", com.gameonjava.utlcs.backend.building.Library.class);
         json.addClassTag("GoldMine", com.gameonjava.utlcs.backend.building.GoldMine.class);
 
         // Concrete Resources
+        json.addClassTag("Resource", com.gameonjava.utlcs.backend.resources.Resource.class);
         json.addClassTag("FoodResource", com.gameonjava.utlcs.backend.resources.FoodResource.class);
         json.addClassTag("GoldResource", com.gameonjava.utlcs.backend.resources.GoldResource.class);
         json.addClassTag("BookResource", com.gameonjava.utlcs.backend.resources.BookResource.class);
