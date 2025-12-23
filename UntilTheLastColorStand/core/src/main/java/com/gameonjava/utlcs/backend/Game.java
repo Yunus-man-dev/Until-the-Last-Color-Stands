@@ -249,6 +249,8 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
 //        }
 //        return null;
 //    }
+    // Game.java içine yapıştır:
+
     public com.gameonjava.utlcs.backend.WarManager moveArmy(Tile owned, Tile target, int amount) {
         if (owned == null || target == null) return null;
         if (!owned.hasArmy()) return null;
@@ -264,7 +266,7 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         Player player = owned.getOwner();
         MovementPoint mp = player.getMp();
 
-        // --- SAVAŞ KONTROLÜ (Sadece düşman varsa girer) ---
+        // --- SAVAŞ KONTROLÜ (Sadece düşman askeri varsa girer) ---
         if (target.hasArmy() && !target.getOwner().equals(player)) {
             // Savaşı başlat ve sonucu döndür (GUI pencere açacak)
             return initiateAttack(owned, target, amount);
@@ -272,11 +274,13 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
 
         // --- BURADAN SONRASI NORMAL HAREKET (Savaş Yok) ---
 
-        // Komşuluk ve MP Kontrolü
+        // 1. Komşuluk Kontrolü
         if (!gameMap.getNeighbors(owned).contains(target)) return null;
+
+        // 2. MP Kontrolü
         if (!mp.checkForResource(mp.MOVE)) return null;
 
-        // Liman Kontrolü (Karadan -> Suya)
+        // 3. Liman Kontrolü (Karadan -> Suya)
         boolean isTargetWater = (target.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.WATER ||
             target.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.DEEP_WATER);
         boolean isSourceWater = (owned.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.WATER ||
@@ -293,7 +297,7 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
             }
         }
 
-        // MP Düş
+        // --- İŞLEM ---
         mp.reduceResource(mp.MOVE);
 
         // A. Kaynak Kareden Askeri Azalt
@@ -306,13 +310,25 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
 
         // B. Hedef Kareye Ekle
         if (target.hasArmy()) {
+            // Zaten asker varsa ekle (Benim toprağım)
             target.getArmy().addSoldiers(amount);
         } else {
+            // Hedef boşsa yeni ordu koy
             com.gameonjava.utlcs.backend.Army newArmy = new com.gameonjava.utlcs.backend.Army(amount, player, target);
             target.setArmy(newArmy);
 
-            // Toprak Sahipliği (Su değilse al)
-            if (target.getOwner() == null && !isTargetWater) {
+            // --- SAHİPLİK DEĞİŞTİRME MANTIĞI (DÜZELTİLDİ) ---
+            // Hedef su değilse VE sahibi ben değilsem (Boşsa veya Düşmansa)
+            if (!isTargetWater && !player.equals(target.getOwner())) {
+
+                Player oldOwner = target.getOwner();
+
+                // Eski sahibin listesinden sil (Eğer varsa)
+                if (oldOwner != null) {
+                    oldOwner.getOwnedTiles().remove(target);
+                }
+
+                // Yeni sahip olarak beni ata
                 target.setOwner(player);
                 player.addTile(target);
             }
