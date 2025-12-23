@@ -6,12 +6,15 @@ import com.gameonjava.utlcs.backend.Tile;
 each turn. This amount might differ to civilization to civilization. */
 public class Farm extends Building {
 
-    private final double FOOD;
+    private double FOOD;
 
     public Farm(Tile tile, double FOOD) {
         super(tile);
         this.FOOD = FOOD;
         name = "Farm";
+    }
+    public Farm(){
+        super();
     }
 
     @Override

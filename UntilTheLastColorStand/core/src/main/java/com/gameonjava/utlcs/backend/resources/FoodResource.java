@@ -3,9 +3,9 @@ package com.gameonjava.utlcs.backend.resources;
 and methods for food related features */
 
 public class FoodResource extends Resource {
-    public final double RECRUIT;
-    public final double TILE;
-    public final double MAINTAIN;
+    public double RECRUIT;
+    public double TILE;
+    public double MAINTAIN;
 
     public FoodResource(int value,double RECRUIT, double TILE, double MAINTAIN) {
         super(value);
@@ -13,6 +13,9 @@ public class FoodResource extends Resource {
         this.TILE = TILE;
         this.MAINTAIN = MAINTAIN;
 
+    }
+    public FoodResource(){
+        super();
     }
 
     @Override

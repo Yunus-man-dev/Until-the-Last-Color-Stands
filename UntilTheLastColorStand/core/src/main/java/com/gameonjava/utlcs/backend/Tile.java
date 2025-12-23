@@ -185,17 +185,13 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
     public float getPixelY() { return y; }
     public void setY(float pixelY) { this.y = pixelY; }
 
-
-
-
-
     @Override
     public void write(Json json) {
         json.writeValue("q", q);
         json.writeValue("r", r);
         json.writeValue("Terrain", terrainName);
-        //json.writeValue("Owner", owner); // Safe ID reference now
-        json.writeValue("Building", building);
+        //json.writeValue("Owner", owner);
+        json.writeValue("Building", building, null);
         json.writeValue("Army", army);
         json.writeValue("ConsumptionRate", soldierConsumptionRate);
     }
@@ -206,8 +202,9 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
         r = jsonData.getInt("r", 0);
         terrainName = json.readValue("Terrain", com.gameonjava.utlcs.backend.Enum.TerrainType.class, jsonData);
         //owner = json.readValue("Owner", Player.class, jsonData);
-        building = json.readValue("Building", com.gameonjava.utlcs.backend.building.Building.class, jsonData);
-        army = json.readValue("Army", Army.class, jsonData);
+        
+        building = json.readValue("Building", null, jsonData); 
+        army = json.readValue("Army", com.gameonjava.utlcs.backend.Army.class, jsonData);
         soldierConsumptionRate = jsonData.getDouble("ConsumptionRate", 1.0);
     }
 }

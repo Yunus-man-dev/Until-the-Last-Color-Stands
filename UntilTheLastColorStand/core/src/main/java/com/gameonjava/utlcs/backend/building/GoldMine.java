@@ -4,12 +4,15 @@ import com.gameonjava.utlcs.backend.Tile;
 /*GoldMine is a subclass of Building that produces a specified amount of
 gold each turn. This amount might differ to civilization to civilization */
 public class GoldMine extends Building {
-    private  final double GOLD;
+    private double GOLD;
 
     public GoldMine(Tile tile, double GOLD) {
         super(tile);
         this.GOLD = GOLD;
         name = "Mine";
+    }
+    public GoldMine(){
+        super();
     }
 
     @Override

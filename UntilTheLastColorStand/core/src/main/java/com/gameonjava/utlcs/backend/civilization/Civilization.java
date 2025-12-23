@@ -66,7 +66,7 @@ public abstract class Civilization implements com.badlogic.gdx.utils.Json.Serial
     public String winCondText;
     public String featuresText;
 
-    protected Civilization() {}
+    public Civilization() {}
     
     public Civilization(String civilizationName, String civilizationColor,
                         double attackMultiplier, double defenseMultiplier,

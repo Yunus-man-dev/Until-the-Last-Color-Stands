@@ -271,42 +271,36 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
     @Override
     public void write(Json json) {
         json.writeValue("Name", name);
-        json.writeValue("Civilization", civilization, civilization.getClass());
-
-        /*if (civilization != null) {
-            json.writeValue("Civilization", civilization, civilization.getClass());
-        } else {
-            json.writeValue("Civilization", (Civilization) null);
-        }*/
+        json.writeValue("Civilization", civilization, null); 
         json.writeValue("Food", food);
         json.writeValue("Gold", gold);
         json.writeValue("Book", book);
         json.writeValue("MP", movementPoint);
-        json.writeValue("OwnedTiles", ownedTiles);
+        json.writeValue("OwnedTiles", ownedTiles, java.util.ArrayList.class, Tile.class);
         json.writeValue("Activity", isActive);
         json.writeValue("TechPoint", technologyPoint);
     }
 
-    // Add this new helper method
+    @Override
+    public void read(Json json, JsonValue jsonData) {
+        this.name = jsonData.getString("Name");
+        this.civilization = json.readValue("Civilization", null, jsonData); 
+        this.food = json.readValue("Food", com.gameonjava.utlcs.backend.resources.FoodResource.class, jsonData);
+        this.gold = json.readValue("Gold", com.gameonjava.utlcs.backend.resources.GoldResource.class, jsonData);
+        this.book = json.readValue("Book", com.gameonjava.utlcs.backend.resources.BookResource.class, jsonData);
+        this.movementPoint = json.readValue("MP", com.gameonjava.utlcs.backend.resources.MovementPoint.class, jsonData);
+        this.ownedTiles = json.readValue("OwnedTiles", java.util.ArrayList.class, Tile.class, jsonData);
+        this.isActive = jsonData.getBoolean("Activity");
+        this.technologyPoint = jsonData.getInt("TechPoint");
+
+        relinkTiles();
+    }
+
     public void relinkTiles() {
         if (ownedTiles != null) {
             for (Tile t : ownedTiles) {
                 t.setOwner(this);
             }
         }
-    }
-
-    @Override
-    public void read(Json json, JsonValue jsonData) {
-        name = json.readValue("Name", String.class, jsonData);
-        civilization = json.readValue("Civilization", com.gameonjava.utlcs.backend.civilization.Civilization.class, jsonData);
-        food = json.readValue("Food", com.gameonjava.utlcs.backend.resources.FoodResource.class, jsonData);
-        gold = json.readValue("Gold", com.gameonjava.utlcs.backend.resources.GoldResource.class, jsonData);
-        book = json.readValue("Book", com.gameonjava.utlcs.backend.resources.BookResource.class, jsonData);
-        movementPoint = json.readValue("MP", com.gameonjava.utlcs.backend.resources.MovementPoint.class, jsonData);
-        ownedTiles = json.readValue("OwnedTiles", java.util.ArrayList.class, Tile.class, jsonData);
-        isActive = json.readValue("Activity", boolean.class, jsonData);
-        technologyPoint = jsonData.getInt("TechPoint", 0);
-        relinkTiles();
     }
 }
