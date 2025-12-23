@@ -210,4 +210,13 @@ public class MapInputProcessor extends InputAdapter {
         camera.zoom = MathUtils.clamp(camera.zoom, 0.25f, 2.0f);
         return true;
     }
+    public boolean isMoveMode() {
+        return isMoveMode;
+    }
+
+    public Tile getMoveSourceTile() {
+        return moveSourceTile;
+    }
+
+
 }

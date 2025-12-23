@@ -196,15 +196,58 @@ public class Map {
     }
 
     // This method returns the neighboring hexagons of a given hexagon.
+    // public ArrayList<Tile> getNeighbors(Tile t) {
+    //     ArrayList<Tile> neighbors = new ArrayList<>();
+    //     int q = t.getQ();
+    //     int r = t.getR();
+
+    //     int[][] directions = {
+    //         { 1, 0 }, { 1, -1 }, { 0, -1 },
+    //         { -1, 0 }, { -1, 1 }, { 0, 1 }
+    //     };
+
+    //     for (int[] dir : directions) {
+    //         int nQ = q + dir[0];
+    //         int nR = r + dir[1];
+
+    //         if (isValidCoordinate(nQ, nR)) {
+    //             neighbors.add(tiles[nQ][nR]);
+    //         }
+    //     }
+    //     return neighbors;
+    // }
     public ArrayList<Tile> getNeighbors(Tile t) {
         ArrayList<Tile> neighbors = new ArrayList<>();
         int q = t.getQ();
         int r = t.getR();
 
-        int[][] directions = {
-            { 1, 0 }, { 1, -1 }, { 0, -1 },
-            { -1, 0 }, { -1, 1 }, { 0, 1 }
-        };
+        int[][] directions;
+
+        // EĞER "ODD-R" (Tek Satırları Sağa Kaydırma) SİSTEMİ KULLANIYORSAK:
+        // (MapManager'daki "if (r % 2 == 1) x += ..." kodu buna işaret ediyor)
+
+        if (r % 2 == 0) { 
+            // --- ÇİFT SATIRLAR (0, 2, 4...) İÇİN KOMŞULAR ---
+            directions = new int[][] {
+                { 1, 0 },  // Sağ
+                { 0, -1 }, // Sağ Üst
+                { -1, -1 },// Sol Üst
+                { -1, 0 }, // Sol
+                { -1, 1 }, // Sol Alt
+                { 0, 1 }   // Sağ Alt
+            };
+        } else { 
+            // --- TEK SATIRLAR (1, 3, 5...) İÇİN KOMŞULAR ---
+            // Tek satırlar görsel olarak sağa kaydığı için indeksler değişir
+            directions = new int[][] {
+                { 1, 0 },  // Sağ
+                { 1, -1 }, // Sağ Üst
+                { 0, -1 }, // Sol Üst
+                { -1, 0 }, // Sol
+                { 0, 1 },  // Sol Alt
+                { 1, 1 }   // Sağ Alt
+            };
+        }
 
         for (int[] dir : directions) {
             int nQ = q + dir[0];

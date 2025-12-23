@@ -62,7 +62,8 @@ public class Assets {
      public static final String  LIBRARY2 = "ui/library2.png";
      public static final String  LIBRARY3 = "ui/library3.png";
 
-
+    public static final String MOVE_DOT = "ui/move.png";
+    public static Texture moveDot;
 
     public static final String BOOK = "ui/BookIcon.png";
     public static final String DASH = "ui/DashIcon.png";
@@ -269,6 +270,10 @@ public class Assets {
         manager.load(FILTERBARBG, Texture.class);
         manager.load(MUSIC, Music.class);
 
+        manager.load(MOVE_DOT, Texture.class);
+
+
+
         manager.load(BOOK, Texture.class);
         manager.load(DASH, Texture.class);
         manager.load(FARM, Texture.class);
@@ -324,7 +329,7 @@ public class Assets {
         myFont2.getData().setScale(0.3f);
 
 
-
+        moveDot = manager.get(MOVE_DOT, Texture.class);
         farm1= manager.get(FARM1, Texture.class);
         farm2= manager.get(FARM2, Texture.class);
         farm3= manager.get(FARM3, Texture.class);
