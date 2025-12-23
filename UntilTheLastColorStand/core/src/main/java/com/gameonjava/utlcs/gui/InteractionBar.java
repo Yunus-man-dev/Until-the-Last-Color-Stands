@@ -21,7 +21,9 @@ import com.gameonjava.utlcs.backend.Tile;
 import com.gameonjava.utlcs.backend.Enum.TerrainType;
 import com.gameonjava.utlcs.backend.building.Building;
 import com.gameonjava.utlcs.backend.Army;
-
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class InteractionBar extends Table {
 
     private Skin skin;
@@ -308,14 +310,12 @@ public class InteractionBar extends Table {
         buttonTable.add(btnCancel).width(80).height(50);
     }
 
-    // --- YENİ EKLENEN METOD: MOVE SOLDIER UI ---
     private void enableMoveMode(final Tile t) {
         buttonTable.clear();
         setSlotImage(Assets.ibSlot3); // Geniş alan lazım
 
         final Player player = gameBackend.getCurrentPlayer();
 
-        // O karede kaç asker var?
         if (!t.hasArmy()) {
             System.out.println("Error: No army to move.");
             updateContent(t);
@@ -323,9 +323,8 @@ public class InteractionBar extends Table {
         }
 
         final int maxSoldiers = t.getArmy().getSoldiers();
-        final int[] moveAmount = {maxSoldiers}; // Varsayılan olarak hepsi seçili
+        final int[] moveAmount = {maxSoldiers};
 
-        // --- UI Elemanları ---
         TextButton btnMinus = new TextButton("-", skin);
         if(GameHUD.beigeStyle != null) btnMinus.setStyle(GameHUD.beigeStyle);
 
@@ -336,13 +335,12 @@ public class InteractionBar extends Table {
         TextButton btnPlus = new TextButton("+", skin);
         if(GameHUD.beigeStyle != null) btnPlus.setStyle(GameHUD.beigeStyle);
 
-        TextButton btnMove = new TextButton("Move", skin); // Confirm yerine MOVE yazsın
+        TextButton btnMove = new TextButton("Move", skin); //
         if(GameHUD.beigeStyle != null) btnMove.setStyle(GameHUD.beigeStyle);
 
         TextButton btnCancel = new TextButton("Cancel", skin);
         if(GameHUD.beigeStyle != null) btnCancel.setStyle(GameHUD.beigeStyle);
 
-        // --- Listenerlar ---
         btnMinus.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -366,29 +364,18 @@ public class InteractionBar extends Table {
         btnMove.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // Burada "Seçim Modu"nu aktif etmemiz lazım.
-                // InteractionBar'ın görevi biter, top MapInputProcessor'a geçer.
                 System.out.println("Move Initiated: " + moveAmount[0] + " soldiers from Tile(" + t.getQ() + "," + t.getR() + ")");
-
-                // NOT: MapInputProcessor'da bir 'setMoveState(Tile source, int amount)'
-                // gibi bir metodunuz olmalı ve onu çağırmalısınız.
-                // Şimdilik sadece konsola basıyoruz ve barı gizliyoruz.
-
-                // ÖRNEK ENTEGRASYON (Eğer hud veya screen üzerinden erişebiliyorsanız):
-                // hud.getGameScreen().prepareMove(t, moveAmount[0]);
-
-                setVisible(false); // Seçim yaparken bar kapansın
+                setVisible(false);
             }
         });
 
         btnCancel.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                updateContent(t); // İptal ederse ana menüye dön
+                updateContent(t);
             }
         });
 
-        // --- Tabloya Ekleme ---
         buttonTable.add(btnMinus).width(40).height(50).padRight(5);
         buttonTable.add(countLabel).width(40).height(50).padRight(5);
         buttonTable.add(btnPlus).width(40).height(50).padRight(15);
@@ -396,12 +383,46 @@ public class InteractionBar extends Table {
         buttonTable.add(btnCancel).width(80).height(50);
     }
 
+
     private void showError(String message) {
-        Dialog errorDialog = new Dialog("Warning", skin) {
-            public void result(Object obj) { }
-        };
-        errorDialog.text(message);
-        errorDialog.button("OK", true);
+        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+
+        pixmap.setColor(new Color(0.9f, 0.8f, 0.2f, 1f));
+        pixmap.fill();
+
+        TextureRegionDrawable yellowBackground = new TextureRegionDrawable(new TextureRegion(new Texture(pixmap)));
+        pixmap.dispose();
+
+        com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle winStyle = new com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle();
+        winStyle.background = yellowBackground;
+        winStyle.titleFont = skin.getFont("default");
+        winStyle.titleFontColor = Color.BLACK;
+
+        Dialog errorDialog = new Dialog("", winStyle);
+
+        Label messageLabel = new Label(message, skin);
+        messageLabel.setColor(Color.BLACK);
+        messageLabel.setAlignment(Align.center);
+        messageLabel.setWrap(true);
+
+
+        errorDialog.getContentTable().add(messageLabel).width(300).pad(60);
+
+        TextButton okBtn = new TextButton("OK", GameHUD.beigeStyle);
+
+        errorDialog.button(okBtn, true);
+
+        errorDialog.getButtonTable().getCell(okBtn).width(150).height(50);
+
+        errorDialog.getButtonTable().padBottom(30);
+
+        errorDialog.pack();
+
+        errorDialog.setPosition(
+            Math.round((hud.stage.getWidth() - errorDialog.getWidth()) / 2),
+            Math.round((hud.stage.getHeight() - errorDialog.getHeight()) / 2)
+        );
+
         if (hud.stage != null) {
             errorDialog.show(hud.stage);
         }
