@@ -95,7 +95,7 @@ public class SettingsDialog extends Dialog {
         tutorialBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.net.openURI("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                Gdx.net.openURI("https://drive.google.com/file/d/1M6P292S_tqcnMlREHtBu2P3BDVfUtAMP/view?usp=sharing");
             }
         });
 

@@ -141,8 +141,8 @@ public class MainMenuScreen extends ScreenAdapter {
                 if (loadedGame != null) {
                     // DÜZELTME BURADA:
                     // Yüklenen oyunu Main sınıfına "set" ediyoruz.
-                    game.setBackendGame(loadedGame); 
-                    
+                    game.setBackendGame(loadedGame);
+
                     // Sonra ekrana geçiyoruz
                     game.changeScreen(Main.ScreenType.GAME);
                     System.out.println("Save Loaded Successfully!");
@@ -155,7 +155,7 @@ public class MainMenuScreen extends ScreenAdapter {
         btnTutorial.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.net.openURI("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                Gdx.net.openURI("https://drive.google.com/file/d/1M6P292S_tqcnMlREHtBu2P3BDVfUtAMP/view?usp=sharing");
             }
         });
 
