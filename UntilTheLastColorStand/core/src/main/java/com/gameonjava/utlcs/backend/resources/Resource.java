@@ -22,6 +22,9 @@ public abstract class Resource implements com.badlogic.gdx.utils.Json.Serializab
         if(checkForResource(value)){
             this.value -= value;
         }
+        else{
+            this.value = 0;
+        }
     }
     public boolean checkForResource(double value) {
         if(this.value >= value){
