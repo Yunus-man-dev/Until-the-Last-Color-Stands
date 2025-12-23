@@ -17,10 +17,10 @@ import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Game;
 import com.gameonjava.utlcs.backend.civilization.Civilization;
 public class GameScreen extends ScreenAdapter {
-    
+
     private Main game;
     private GameHUD hud;
-    
+
     // --- YENİ EKLENEN VE DÜZELTİLEN DEĞİŞKENLER ---
     private MapManager mapManager;          // Eski adı: harita
     private OrthographicCamera camera;
@@ -30,12 +30,12 @@ public class GameScreen extends ScreenAdapter {
 
     private boolean showBuildings = true;
     private boolean showSoldiers = true;
-    
+
     final float r = 15f; // Hex yarıçapı
 
     public GameScreen(Main game, com.gameonjava.utlcs.backend.Game backendGame) {
         this.game = game;
-       
+
         // 1. HUD ve Harita Yöneticisi
         this.hud = new GameHUD(game.batch, backendGame);
         this.mapManager = new MapManager(backendGame.getMap(),r);
@@ -43,7 +43,7 @@ public class GameScreen extends ScreenAdapter {
         // 2. Kamera Ayarları
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        
+
         // Kamerayı haritanın soluna + ekranın yarısına odakla (Sola yaslı başlasın)
         float startX = mapManager.mapLeft + (Gdx.graphics.getWidth() / 2f);
         float startY = (mapManager.mapTop + mapManager.mapBottom) / 2f;
@@ -55,35 +55,35 @@ public class GameScreen extends ScreenAdapter {
 
         // 4. Input Multiplexer (ÖNEMLİ: Sıralama)
         InputMultiplexer multiplexer = new InputMultiplexer();
-        
+
         // A. Önce HUD (Butonlar)
         multiplexer.addProcessor(hud.stage);
-        
+
         // B. Sonra Harita (Tıklama/Sürükleme) - HUD parametresi eklendi!
         mapInput = new MapInputProcessor(mapManager, camera, r, hud);
         multiplexer.addProcessor(mapInput);
-        
+
         // C. En Son Klavye Kısayolları (ESC, P vs.)
         uiInput = new InputController(this);
         multiplexer.addProcessor(uiInput);
-        
+
         Gdx.input.setInputProcessor(multiplexer);
 
         // --- HUD LISTENERLARI ---
         setupHudListeners();
     }
-    
+
     private void setupHudListeners() {
         // İstatistikleri güncelle
         hud.updateStats(hud.backendGame.getCurrentPlayer(), Game.getCurrentTurn());
-        
+
         hud.getEndTurnBtn().addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 hud.backendGame.nextTurn();
                 Player current = hud.backendGame.getCurrentPlayer();
                 hud.updateStats(current, Game.getCurrentTurn());
-                
+
                 // Win Condition yazısını güncelle
                 Civilization currentCiv = current.getCivilization();
                 TextureRegionDrawable newBg = getCivBg(currentCiv);
@@ -99,7 +99,7 @@ public class GameScreen extends ScreenAdapter {
                 pause.show(hud.stage);
             }
         });
-        
+
         hud.createFilterMenu(this);
         hud.getFilterBtn().addListener(new ClickListener() {
             @Override
@@ -116,7 +116,7 @@ public class GameScreen extends ScreenAdapter {
         camera.update();
 
         // 2. Temizle
-        Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1); // Koyu Gri Arka Plan
+        Gdx.gl.glClearColor(0.51f, 0.28f, 0.01f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // 3. HARİTA ÇİZİMİ
@@ -191,10 +191,10 @@ public class GameScreen extends ScreenAdapter {
     public GameHUD getGameHud() { return hud; }
     public GameHUD getHud() { return hud; }
     public Main getMainGame() { return game; }
-    
+
     public boolean isShowBuildings() { return showBuildings; }
     public void setShowBuildings(boolean show) { this.showBuildings = show; }
-    
+
     public boolean isShowSoldiers() { return showSoldiers; }
     public void setShowSoldiers(boolean show) { this.showSoldiers = show; }
 

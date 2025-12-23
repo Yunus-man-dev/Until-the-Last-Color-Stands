@@ -13,9 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.gameonjava.utlcs.backend.civilization.Gray;
 
 public class Assets {
- 
+
 
     public static final String PATTERN = "ui/tile_outline.png";
+    public static final String SOUND = "music.mp3";
 
     public static final AssetManager manager = new AssetManager();
     public static final Color COL_RED       = Color.valueOf("de0f3f");
@@ -25,7 +26,7 @@ public class Assets {
     public static final Color COL_CYAN      = Color.valueOf("36eee0");
 
     public static final Color COL_BROWN     = Color.valueOf("824703");
-    public static final Color COL_GRAY      = Color.valueOf("a6a6a6"); 
+    public static final Color COL_GRAY      = Color.valueOf("a6a6a6");
 
     public static final Color COL_GOLD      = Color.valueOf("ffd230");
     public static final Color COL_ORANGE    = Color.valueOf("ff914d");
@@ -223,6 +224,7 @@ public class Assets {
         manager.load(MAP_BTN, Texture.class);
         manager.load(MAP_PANEL, Texture.class);
         manager.load(FILTERBARBG, Texture.class);
+        manager.load(MUSIC, Music.class);
 
         manager.load(BOOK, Texture.class);
         manager.load(DASH, Texture.class);
@@ -330,6 +332,7 @@ public class Assets {
         ibSlot2 = manager.get(IB_SLOT_2, Texture.class);
         ibSlot3 = manager.get(IB_SLOT_3, Texture.class);
         btnGeneric = manager.get(BTN_GENERIC, Texture.class);
+        music = manager.get(MUSIC, Music.class);
 
         btnGenericDr = new TextureRegionDrawable(new TextureRegion(btnGeneric));
 

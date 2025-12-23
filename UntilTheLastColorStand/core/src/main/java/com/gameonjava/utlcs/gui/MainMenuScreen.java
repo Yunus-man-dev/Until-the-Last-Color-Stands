@@ -33,6 +33,16 @@ public class MainMenuScreen extends ScreenAdapter {
 
     @Override
     public void show() {
+        Assets.music.setLooping(true);
+
+        // 2. Ses seviyesini ayarla (0.0 ile 1.0 arası)
+        // Rapordaki "Settings" kısmını buraya bağlayacağız.
+        Assets.music.setVolume(0.5f); // %50 ses
+
+        // 3. Çalmaya başla (Eğer zaten çalmıyorsa)
+        if (!Assets.music.isPlaying()) {
+            Assets.music.play();
+        }
         // 1. SAHNE KURULUMU
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
@@ -109,10 +119,10 @@ public class MainMenuScreen extends ScreenAdapter {
             public void changed(ChangeEvent event, Actor actor) {
                 SaveLoad sl = new SaveLoad();
                 // CHANGE THIS: Match your actual file name
-                Game loadedGame = sl.load("savefile.json"); 
-                
+                Game loadedGame = sl.load("savefile.json");
+
                 if (loadedGame != null) {
-                    // game.gameHUD = new GameHUD(game.batch, loadedGame); 
+                    // game.gameHUD = new GameHUD(game.batch, loadedGame);
                     game.changeScreen(Main.ScreenType.GAME);
                     System.out.println("Load successful!");
                 } else {

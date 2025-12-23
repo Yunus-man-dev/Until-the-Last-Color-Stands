@@ -4,6 +4,7 @@
 		"class": "Player",
 		"Name": "Player 1",
 		"Civilization": {
+<<<<<<< Updated upstream
 			"CName": "Blue Civilization",
 			"CColor": "Blue",
 			"CAttackMult": 0.8,
@@ -96,6 +97,10 @@
 		"Civilization": {
 			"CName": "Red Civilization",
 			"CColor": "Red",
+=======
+			"CName": "Dark Red Civilization",
+			"CColor": "Dark Red",
+>>>>>>> Stashed changes
 			"CAttackMult": 1.3,
 			"CDefenseMult": 1,
 			"CTechMult": 0.001
@@ -115,6 +120,7 @@
 		"OwnedTiles": [
 			{
 				"class": "Tile",
+<<<<<<< Updated upstream
 				"q": 28,
 				"r": 17,
 				"Terrain": "FOREST",
@@ -126,6 +132,10 @@
 				"class": "Tile",
 				"q": 29,
 				"r": 17,
+=======
+				"q": 1,
+				"r": 5,
+>>>>>>> Stashed changes
 				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
@@ -133,8 +143,8 @@
 			},
 			{
 				"class": "Tile",
-				"q": 29,
-				"r": 16,
+				"q": 2,
+				"r": 5,
 				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
@@ -142,8 +152,8 @@
 			},
 			{
 				"class": "Tile",
-				"q": 28,
-				"r": 16,
+				"q": 2,
+				"r": 4,
 				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
@@ -151,6 +161,7 @@
 			},
 			{
 				"class": "Tile",
+<<<<<<< Updated upstream
 				"q": 27,
 				"r": 17,
 				"Terrain": "FOREST",
@@ -162,6 +173,10 @@
 				"class": "Tile",
 				"q": 27,
 				"r": 18,
+=======
+				"q": 1,
+				"r": 4,
+>>>>>>> Stashed changes
 				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
@@ -169,8 +184,26 @@
 			},
 			{
 				"class": "Tile",
-				"q": 28,
-				"r": 18,
+				"q": 0,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"class": "Tile",
+				"q": 0,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"class": "Tile",
+				"q": 1,
+				"r": 6,
 				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
@@ -182,7 +215,7 @@
 	},
 	{
 		"class": "Player",
-		"Name": "Player 3",
+		"Name": "Player 2",
 		"Civilization": {
 			"CName": "Gold Civilization",
 			"CColor": "Gold",
@@ -206,6 +239,96 @@
 			{
 				"class": "Tile",
 				"q": 28,
+				"r": 17,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"class": "Tile",
+				"q": 29,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"class": "Tile",
+				"q": 29,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"class": "Tile",
+				"q": 28,
+				"r": 16,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"class": "Tile",
+				"q": 27,
+				"r": 17,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"class": "Tile",
+				"q": 27,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"class": "Tile",
+				"q": 28,
+				"r": 18,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		"Activity": true,
+		"TechPoint": 0
+	},
+	{
+		"class": "Player",
+		"Name": "Player 3",
+		"Civilization": {
+			"CName": "Gray Civilization",
+			"CColor": "Gray",
+			"CAttackMult": 1,
+			"CDefenseMult": 1.3,
+			"CTechMult": 0.001
+		},
+		"Food": {
+			"value": 200
+		},
+		"Gold": {
+			"value": 1000
+		},
+		"Book": {
+			"value": 0
+		},
+		"MP": {
+			"value": 20
+		},
+		"OwnedTiles": [
+			{
+				"class": "Tile",
+				"q": 28,
 				"r": 1,
 				"Terrain": "PLAIN",
 				"Building": null,
@@ -252,7 +375,11 @@
 				"class": "Tile",
 				"q": 27,
 				"r": 2,
+<<<<<<< Updated upstream
 				"Terrain": "FOREST",
+=======
+				"Terrain": "PLAIN",
+>>>>>>> Stashed changes
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -261,7 +388,11 @@
 				"class": "Tile",
 				"q": 28,
 				"r": 2,
+<<<<<<< Updated upstream
 				"Terrain": "FOREST",
+=======
+				"Terrain": "PLAIN",
+>>>>>>> Stashed changes
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -274,11 +405,11 @@
 		"class": "Player",
 		"Name": "Player 4",
 		"Civilization": {
-			"CName": "Brown Civilization",
-			"CColor": "Brown",
-			"CAttackMult": 1,
-			"CDefenseMult": 1.3,
-			"CTechMult": 0.001
+			"CName": "Cyan Civilization",
+			"CColor": "Cyan",
+			"CAttackMult": 0.8,
+			"CDefenseMult": 1,
+			"CTechMult": 0.002
 		},
 		"Food": {
 			"value": 158
@@ -367,7 +498,7 @@
 			{
 				"q": 0,
 				"r": 0,
-				"Terrain": "PLAIN",
+				"Terrain": "DEEP_WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -375,7 +506,7 @@
 			{
 				"q": 0,
 				"r": 1,
-				"Terrain": "PLAIN",
+				"Terrain": "DEEP_WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -383,7 +514,7 @@
 			{
 				"q": 0,
 				"r": 2,
-				"Terrain": "PLAIN",
+				"Terrain": "DEEP_WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -391,2393 +522,13 @@
 			{
 				"q": 0,
 				"r": 3,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 4,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 5,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 6,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 7,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 8,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 9,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 10,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 11,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 13,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 14,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 15,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 16,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 17,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 18,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 19,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 0,
-				"r": 20,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 1,
-				"r": 0,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 2,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 3,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 4,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 5,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 6,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 7,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 8,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 9,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 10,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 11,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 13,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 14,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 15,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 16,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 17,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 18,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 19,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 1,
-				"r": 20,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 2,
-				"r": 0,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 2,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 3,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 4,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 5,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 6,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 7,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 8,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 9,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 10,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 11,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 13,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 14,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 15,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 16,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 17,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 18,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 19,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 2,
-				"r": 20,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 3,
-				"r": 0,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 2,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 3,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 4,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 5,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 6,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 7,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 8,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 9,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 10,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 11,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 13,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 14,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 15,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 16,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 17,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 18,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 19,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 3,
-				"r": 20,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 4,
-				"r": 0,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 2,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 3,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 4,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 5,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 6,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 7,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 8,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 9,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 10,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 11,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 13,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 14,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 15,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 16,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 17,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 18,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 19,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 4,
-				"r": 20,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 5,
-				"r": 0,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 2,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 3,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 4,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 5,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 6,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 7,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 8,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 9,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 10,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 11,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 13,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 14,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 15,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 16,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 17,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 18,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 19,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 5,
-				"r": 20,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 6,
-				"r": 0,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 1,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 2,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 3,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 4,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 5,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 6,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 7,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 8,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 9,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 10,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 11,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 13,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 14,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 15,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 16,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 17,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 18,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 19,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 6,
-				"r": 20,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 7,
-				"r": 0,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 2,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 3,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 4,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 5,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 6,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 7,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 8,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 9,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 10,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 11,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 13,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 14,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 15,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 16,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 17,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 18,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 19,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 7,
-				"r": 20,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 8,
-				"r": 0,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 1,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 2,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 3,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 4,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 5,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 6,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 7,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 8,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 9,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 10,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 11,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 13,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 14,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 15,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 16,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 17,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 18,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 19,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 8,
-				"r": 20,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 9,
-				"r": 0,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 1,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 2,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 3,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 4,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 5,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 6,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 7,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 8,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 9,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 10,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 11,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 12,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 13,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 14,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 15,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 16,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 17,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 18,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 19,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 9,
-				"r": 20,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 10,
-				"r": 0,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 2,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 3,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 4,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 5,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 6,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 7,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 8,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 9,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 10,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 11,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 13,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 14,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 15,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 16,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 17,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 18,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 19,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 10,
-				"r": 20,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 11,
-				"r": 0,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 2,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 3,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 4,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 5,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 6,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 7,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 8,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 9,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 10,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 11,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 13,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 14,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 15,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 16,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 17,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 18,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 19,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 11,
-				"r": 20,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 12,
-				"r": 0,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 2,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 3,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 4,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 5,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 6,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 7,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 8,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 9,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 10,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 11,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 13,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 14,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 15,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 16,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 17,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 18,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 19,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 12,
-				"r": 20,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 13,
-				"r": 0,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 2,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 3,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 4,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 5,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 6,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 7,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 8,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 9,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 10,
 				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 13,
-				"r": 11,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 13,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 14,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 15,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 16,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 17,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 18,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 19,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 13,
-				"r": 20,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 14,
-				"r": 0,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 14,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 14,
-				"r": 2,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 14,
-				"r": 3,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 14,
+				"q": 0,
 				"r": 4,
 				"Terrain": "PLAIN",
 				"Building": null,
@@ -2785,39 +536,39 @@
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 14,
+				"q": 0,
 				"r": 5,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 14,
+				"q": 0,
 				"r": 6,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 14,
+				"q": 0,
 				"r": 7,
-				"Terrain": "PLAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 14,
+				"q": 0,
 				"r": 8,
-				"Terrain": "PLAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 14,
+				"q": 0,
 				"r": 9,
 				"Terrain": "WATER",
 				"Building": null,
@@ -2825,6 +576,4599 @@
 				"ConsumptionRate": 1
 			},
 			{
+				"q": 0,
+				"r": 10,
+<<<<<<< Updated upstream
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 13,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 14,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 15,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 16,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 1,
+				"r": 0,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 3,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 4,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 5,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 6,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 7,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 8,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 9,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 14,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 15,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 2,
+				"r": 0,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 4,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 5,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 6,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 7,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 13,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 14,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 3,
+				"r": 0,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 6,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 7,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 8,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 14,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 15,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 16,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 17,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 4,
+				"r": 0,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 2,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 3,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 6,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 7,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 14,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 15,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 20,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 5,
+				"r": 0,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 2,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 3,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 4,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 5,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 6,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 7,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 8,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 14,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 15,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 17,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 18,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 20,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 6,
+				"r": 0,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 1,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 3,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 4,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 6,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 7,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 10,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 15,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 16,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 17,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 20,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 7,
+				"r": 0,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 8,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 9,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 10,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 11,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 15,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 16,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 17,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 19,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 20,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 8,
+				"r": 0,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 1,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 8,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 9,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 10,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 11,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 16,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 18,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 19,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 9,
+				"r": 0,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 1,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 6,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 7,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 8,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 9,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 10,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 11,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 12,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 13,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 14,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 15,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 16,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 10,
+				"r": 0,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 2,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 3,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 4,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 5,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 6,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 7,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 13,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 14,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 15,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 11,
+				"r": 0,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 2,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 3,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 4,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 5,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 6,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 7,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 15,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 16,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 12,
+				"r": 0,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 3,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 4,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 6,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 7,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 15,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 16,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 17,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 19,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 13,
+				"r": 0,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 6,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 7,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 10,
+=======
+>>>>>>> Stashed changes
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 11,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 12,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 13,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 14,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 15,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 16,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 19,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 0,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 1,
+				"r": 0,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 1,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 2,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 3,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 7,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 8,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 9,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 10,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 11,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 12,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 14,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 15,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 19,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 1,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 2,
+				"r": 0,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 1,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 3,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 7,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 9,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 15,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 18,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 19,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 2,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 3,
+				"r": 0,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 1,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 3,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 4,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 5,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 7,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 16,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 3,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 4,
+				"r": 0,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 1,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 3,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 4,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 4,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 5,
+				"r": 0,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 1,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 3,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 4,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 10,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 5,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 6,
+				"r": 0,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 1,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 3,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 4,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 9,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 10,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 13,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 14,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 6,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 7,
+				"r": 0,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 1,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 3,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 4,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 8,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 13,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 14,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 15,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 7,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 8,
+				"r": 0,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 1,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 3,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 7,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 8,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 9,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 13,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 14,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 18,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 19,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 8,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 9,
+				"r": 0,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 1,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 3,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 4,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 18,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 19,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 9,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 10,
+				"r": 0,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 3,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 4,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 5,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 17,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 18,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 19,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 10,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 11,
+				"r": 0,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 4,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 5,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 18,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 19,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 11,
+				"r": 20,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 12,
+				"r": 0,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 4,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 5,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 11,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 12,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 13,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 12,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 13,
+				"r": 0,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 9,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 10,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 11,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 12,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 13,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 14,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 13,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 14,
+				"r": 0,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 14,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 14,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 14,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 14,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 14,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 14,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 14,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 14,
+				"r": 8,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 14,
+				"r": 9,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
 				"q": 14,
 				"r": 10,
 				"Terrain": "WATER",
@@ -2835,7 +5179,7 @@
 			{
 				"q": 14,
 				"r": 11,
-				"Terrain": "PLAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -2867,7 +5211,7 @@
 			{
 				"q": 14,
 				"r": 15,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -2875,7 +5219,7 @@
 			{
 				"q": 14,
 				"r": 16,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -2883,7 +5227,7 @@
 			{
 				"q": 14,
 				"r": 17,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -2899,7 +5243,7 @@
 			{
 				"q": 14,
 				"r": 19,
-				"Terrain": "PLAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -2907,7 +5251,7 @@
 			{
 				"q": 14,
 				"r": 20,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -2917,86 +5261,6 @@
 			{
 				"q": 15,
 				"r": 0,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 2,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 3,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 4,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 5,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 6,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 7,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 8,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 9,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 10,
 				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
@@ -3004,120 +5268,30 @@
 			},
 			{
 				"q": 15,
-				"r": 11,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 13,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 14,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 15,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 16,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 17,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 18,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 19,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 15,
-				"r": 20,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 16,
-				"r": 0,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 16,
 				"r": 1,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 2,
-				"Terrain": "FOREST",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 3,
-				"Terrain": "FOREST",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 4,
 				"Terrain": "PLAIN",
 				"Building": null,
@@ -3125,7 +5299,7 @@
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 5,
 				"Terrain": "PLAIN",
 				"Building": null,
@@ -3133,23 +5307,23 @@
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 6,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 7,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 8,
 				"Terrain": "PLAIN",
 				"Building": null,
@@ -3157,63 +5331,63 @@
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 9,
-				"Terrain": "PLAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 10,
-				"Terrain": "PLAIN",
+				"Terrain": "DEEP_WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 11,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 15,
+				"r": 12,
 				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
-				"r": 12,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 16,
+				"q": 15,
 				"r": 13,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 14,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 15,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 16,
 				"Terrain": "PLAIN",
 				"Building": null,
@@ -3221,7 +5395,7 @@
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 17,
 				"Terrain": "PLAIN",
 				"Building": null,
@@ -3229,7 +5403,7 @@
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 18,
 				"Terrain": "PLAIN",
 				"Building": null,
@@ -3237,7 +5411,7 @@
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 19,
 				"Terrain": "PLAIN",
 				"Building": null,
@@ -3245,9 +5419,9 @@
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 16,
+				"q": 15,
 				"r": 20,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3255,39 +5429,39 @@
 		],
 		[
 			{
-				"q": 17,
+				"q": 16,
 				"r": 0,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 17,
+				"q": 16,
 				"r": 1,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 17,
+				"q": 16,
 				"r": 2,
-				"Terrain": "FOREST",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 17,
+				"q": 16,
 				"r": 3,
-				"Terrain": "FOREST",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 17,
+				"q": 16,
 				"r": 4,
 				"Terrain": "MOUNTAIN",
 				"Building": null,
@@ -3295,9 +5469,179 @@
 				"ConsumptionRate": 1
 			},
 			{
+				"q": 16,
+				"r": 5,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 8,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 9,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 10,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 11,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 19,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 16,
+				"r": 20,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 17,
+				"r": 0,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 17,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 17,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 17,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 17,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
 				"q": 17,
 				"r": 5,
-				"Terrain": "PLAIN",
+				"Terrain": "MOUNTAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3329,7 +5673,7 @@
 			{
 				"q": 17,
 				"r": 9,
-				"Terrain": "PLAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3337,7 +5681,7 @@
 			{
 				"q": 17,
 				"r": 10,
-				"Terrain": "PLAIN",
+				"Terrain": "DEEP_WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3345,7 +5689,7 @@
 			{
 				"q": 17,
 				"r": 11,
-				"Terrain": "PLAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3353,7 +5697,7 @@
 			{
 				"q": 17,
 				"r": 12,
-				"Terrain": "PLAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3361,7 +5705,7 @@
 			{
 				"q": 17,
 				"r": 13,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3369,7 +5713,7 @@
 			{
 				"q": 17,
 				"r": 14,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "FOREST",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3377,7 +5721,7 @@
 			{
 				"q": 17,
 				"r": 15,
-				"Terrain": "PLAIN",
+				"Terrain": "FOREST",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3409,7 +5753,7 @@
 			{
 				"q": 17,
 				"r": 19,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3417,7 +5761,7 @@
 			{
 				"q": 17,
 				"r": 20,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "DEEP_WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3427,7 +5771,7 @@
 			{
 				"q": 18,
 				"r": 0,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3435,7 +5779,7 @@
 			{
 				"q": 18,
 				"r": 1,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3443,7 +5787,7 @@
 			{
 				"q": 18,
 				"r": 2,
-				"Terrain": "FOREST",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3451,7 +5795,7 @@
 			{
 				"q": 18,
 				"r": 3,
-				"Terrain": "FOREST",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3515,7 +5859,7 @@
 			{
 				"q": 18,
 				"r": 11,
-				"Terrain": "PLAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3531,7 +5875,7 @@
 			{
 				"q": 18,
 				"r": 13,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3547,7 +5891,7 @@
 			{
 				"q": 18,
 				"r": 15,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3555,7 +5899,7 @@
 			{
 				"q": 18,
 				"r": 16,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3563,7 +5907,7 @@
 			{
 				"q": 18,
 				"r": 17,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3571,7 +5915,7 @@
 			{
 				"q": 18,
 				"r": 18,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3579,7 +5923,7 @@
 			{
 				"q": 18,
 				"r": 19,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3587,7 +5931,7 @@
 			{
 				"q": 18,
 				"r": 20,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "DEEP_WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3597,7 +5941,7 @@
 			{
 				"q": 19,
 				"r": 0,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3613,7 +5957,7 @@
 			{
 				"q": 19,
 				"r": 2,
-				"Terrain": "FOREST",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3629,7 +5973,7 @@
 			{
 				"q": 19,
 				"r": 4,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3637,7 +5981,7 @@
 			{
 				"q": 19,
 				"r": 5,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -3669,6 +6013,30 @@
 			{
 				"q": 19,
 				"r": 9,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 19,
+				"r": 10,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 19,
+				"r": 11,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 19,
+				"r": 12,
 				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
@@ -3676,6 +6044,2022 @@
 			},
 			{
 				"q": 19,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 19,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 19,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 19,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 19,
+				"r": 17,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 19,
+				"r": 18,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 19,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 19,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 20,
+				"r": 0,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 9,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 10,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 17,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 20,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 21,
+				"r": 0,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 10,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 19,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 21,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 22,
+				"r": 0,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 8,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 9,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 10,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 14,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 15,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 19,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 22,
+				"r": 20,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 23,
+				"r": 0,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 14,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 15,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 19,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 23,
+				"r": 20,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 24,
+				"r": 0,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 13,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 14,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 19,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 24,
+				"r": 20,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 25,
+				"r": 0,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 1,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 10,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 11,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 19,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 25,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 26,
+				"r": 0,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 4,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 5,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 6,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 10,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 11,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 12,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 19,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 26,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 27,
+				"r": 0,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 4,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 5,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 12,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 17,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 18,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 19,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 27,
+				"r": 20,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 28,
+				"r": 0,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 4,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 5,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 6,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 7,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 9,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 12,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 16,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 17,
+				"Terrain": "FOREST",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 18,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 19,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 28,
+				"r": 20,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 29,
+				"r": 0,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 1,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 2,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 3,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 4,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 5,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 6,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 7,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 8,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 9,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 11,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 12,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 13,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 16,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 17,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 18,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 19,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 29,
+				"r": 20,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 30,
+				"r": 0,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 3,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 4,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 5,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 6,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 7,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 8,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 9,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 10,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 11,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 12,
+				"Terrain": "MOUNTAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 13,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 14,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 15,
+				"Terrain": "PLAIN",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 16,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 17,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 18,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 19,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 30,
+				"r": 20,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			}
+		],
+		[
+			{
+				"q": 31,
+				"r": 0,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 31,
+				"r": 1,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 31,
+				"r": 2,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 31,
+				"r": 3,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 31,
+				"r": 4,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 31,
+				"r": 5,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 31,
+				"r": 6,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 31,
+				"r": 7,
+				"Terrain": "DEEP_WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 31,
+				"r": 8,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 31,
+				"r": 9,
+				"Terrain": "WATER",
+				"Building": null,
+				"Army": null,
+				"ConsumptionRate": 1
+			},
+			{
+				"q": 31,
 				"r": 10,
 				"Terrain": "WATER",
 				"Building": null,
@@ -3683,176 +8067,15 @@
 				"ConsumptionRate": 1
 			},
 			{
-				"q": 19,
+				"q": 31,
 				"r": 11,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 19,
-				"r": 12,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 19,
-				"r": 13,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 19,
-				"r": 14,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 19,
-				"r": 15,
-				"Terrain": "FOREST",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 19,
-				"r": 16,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 19,
-				"r": 17,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 19,
-				"r": 18,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 19,
-				"r": 19,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 19,
-				"r": 20,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			}
-		],
-		[
-			{
-				"q": 20,
-				"r": 0,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 20,
-				"r": 1,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 20,
-				"r": 2,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 20,
-				"r": 3,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 20,
-				"r": 4,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 20,
-				"r": 5,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 20,
-				"r": 6,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 20,
-				"r": 7,
-				"Terrain": "MOUNTAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 20,
-				"r": 8,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 20,
-				"r": 9,
-				"Terrain": "PLAIN",
-				"Building": null,
-				"Army": null,
-				"ConsumptionRate": 1
-			},
-			{
-				"q": 20,
-				"r": 10,
 				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
 			},
 			{
+<<<<<<< Updated upstream
 				"q": 20,
 				"r": 11,
 				"Terrain": "PLAIN",
@@ -5731,6 +9954,8 @@
 				"ConsumptionRate": 1
 			},
 			{
+=======
+>>>>>>> Stashed changes
 				"q": 31,
 				"r": 12,
 				"Terrain": "PLAIN",
@@ -5741,7 +9966,7 @@
 			{
 				"q": 31,
 				"r": 13,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "PLAIN",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -5749,7 +9974,7 @@
 			{
 				"q": 31,
 				"r": 14,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -5757,7 +9982,7 @@
 			{
 				"q": 31,
 				"r": 15,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -5765,7 +9990,7 @@
 			{
 				"q": 31,
 				"r": 16,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -5773,7 +9998,7 @@
 			{
 				"q": 31,
 				"r": 17,
-				"Terrain": "MOUNTAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -5781,7 +10006,7 @@
 			{
 				"q": 31,
 				"r": 18,
-				"Terrain": "PLAIN",
+				"Terrain": "WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -5789,7 +10014,7 @@
 			{
 				"q": 31,
 				"r": 19,
-				"Terrain": "PLAIN",
+				"Terrain": "DEEP_WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -5797,7 +10022,7 @@
 			{
 				"q": 31,
 				"r": 20,
-				"Terrain": "PLAIN",
+				"Terrain": "DEEP_WATER",
 				"Building": null,
 				"Army": null,
 				"ConsumptionRate": 1
@@ -5806,10 +10031,18 @@
 	],
 	"width": 32,
 	"height": 21,
+<<<<<<< Updated upstream
 	"mapID": 3,
 	"isIt1D": false
 },
 "Turn": 11,
 "CurPlayerIndex": 2,
+=======
+	"mapID": 1,
+	"isIt1D": true
+},
+"Turn": 1,
+"CurPlayerIndex": 0,
+>>>>>>> Stashed changes
 "ActiveTrades": []
 }

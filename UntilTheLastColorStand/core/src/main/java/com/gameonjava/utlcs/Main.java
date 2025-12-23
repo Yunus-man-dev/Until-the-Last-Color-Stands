@@ -15,7 +15,7 @@ public class Main extends Game {
 
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
-    
+
     // --- BU EKSİKTİ: Backend Oyun Objesi ---
     private com.gameonjava.utlcs.backend.Game backendGame;
 
@@ -35,15 +35,20 @@ public class Main extends Game {
     public void create() {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        
+
         // Assetleri yükle
         Assets.load();
         Assets.finishLoading();
+        if (Assets.music != null) {
+            Assets.music.setLooping(true); // Sürekli çalsın
+            Assets.music.setVolume(0.5f);  // Ses seviyesi
+            Assets.music.play();           // Başlat
+        }
 
         // --- BU KISIM SİLİNMİŞTİ, GERİ GELDİ ---
         // 1. Backend Oyununu Başlat
-        backendGame = new com.gameonjava.utlcs.backend.Game();  
-        changeScreen(ScreenType.MAIN_MENU); 
+        backendGame = new com.gameonjava.utlcs.backend.Game();
+        changeScreen(ScreenType.MAIN_MENU);
     }
 
     public void changeScreen(ScreenType type) {
