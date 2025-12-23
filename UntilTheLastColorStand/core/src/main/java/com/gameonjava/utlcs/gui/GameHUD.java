@@ -121,11 +121,9 @@ public class GameHUD implements Disposable {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     Player me = backendGame.getCurrentPlayer();
-                    Player target = new Player("Player " + (pIndex + 1),
-                            new com.gameonjava.utlcs.backend.civilization.Blue("Blue"));
-
+                    Player target = backendGame.getPlayers().get(pIndex);
                     if (target.getName().equals(me.getName())) {
-                        // return;
+                         return;
                     }
                     if (currentInfoWidget != null)
                         currentInfoWidget.remove();
