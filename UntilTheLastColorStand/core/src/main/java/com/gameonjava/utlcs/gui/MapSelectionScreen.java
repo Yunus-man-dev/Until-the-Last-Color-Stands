@@ -41,7 +41,7 @@ public class MapSelectionScreen extends ScreenAdapter {
         this.readyPlayers = players;
     }
 
-@Override
+    @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
@@ -73,11 +73,11 @@ public class MapSelectionScreen extends ScreenAdapter {
         // Container içindeki her eleman için varsayılan ayar yapıyoruz:
         // Hepsi ortalansın (Align.center), genişlikleri aynı olsun.
         mapsContainer.defaults()
-            .width(800)     // Panellerin genişliği (İçerik sığsın diye biraz arttırdım)
-            .height(190)    // Panellerin yüksekliği
-            .padBottom(20)  // Aralarındaki boşluk
-            .align(Align.center); // Hepsi ortalı dursun
-        
+                .width(800) // Panellerin genişliği (İçerik sığsın diye biraz arttırdım)
+                .height(190) // Panellerin yüksekliği
+                .padBottom(20) // Aralarındaki boşluk
+                .align(Align.center); // Hepsi ortalı dursun
+
         // --- KARTLARI OLUŞTUR ---
         Table map1 = createMapCard("Map 1", "Standard balanced map.", map1Preview, 1);
         Table map2 = createMapCard("Map 2", "Scattered islands.", map2Preview, 2);
@@ -90,18 +90,38 @@ public class MapSelectionScreen extends ScreenAdapter {
         mapsContainer.add(map3).row();
 
         // Container'ı ana tabloya ekle
-        // expandY().top() diyerek listeyi ekranın üstüne doğru itiyoruz ki ortada sıkışmasın.
+        // expandY().top() diyerek listeyi ekranın üstüne doğru itiyoruz ki ortada
+        // sıkışmasın.
         rootTable.add(mapsContainer).expandY().top().padTop(20).row();
 
         // 4. Geri Butonu
-        TextButton backBtn = new TextButton("Back", skin);
+        TextButton.TextButtonStyle backStyle = new TextButton.TextButtonStyle();
+        backStyle.font = skin.getFont("default"); // Varsayılan fontu al
+        backStyle.fontColor = Color.BLACK; // Yazı rengi
+
+        // 2. Asset'ten Resmi Çek (Assets.brownGameButton veya Assets.empireSelectionBtn
+        // kullanabilirsin)
+        // Burada genel kahverengi butonu kullanıyoruz:
+        Texture backBtnTexture = Assets.empireSelectionBtn;
+
+        if (backBtnTexture != null) {
+            // Görsel bozulmasın diye 9-Patch yapıyoruz
+            NinePatch patch = new NinePatch(backBtnTexture, 10, 10, 10, 10);
+            NinePatchDrawable drawable = new NinePatchDrawable(patch);
+
+            backStyle.up = drawable; // Normal hali
+            backStyle.down = drawable.tint(Color.GRAY); // Basılınca koyulaşsın
+        }
+        TextButton backBtn = new TextButton("Back", backStyle);
+        backBtn.getLabel().setFontScale(0.18f);
+
         backBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(new EmpireSelectionScreen(game));
             }
         });
-        
+
         // Butonu en alta sola koy
         rootTable.add(backBtn).left().bottom().width(150).height(50);
     }
@@ -113,18 +133,18 @@ public class MapSelectionScreen extends ScreenAdapter {
         NinePatch patch = new NinePatch(panelTexture, 12, 12, 12, 12);
         card.setBackground(new NinePatchDrawable(patch));
         // Pad değerlerini ayarladık
-        card.pad(10, 10, 10, 10); 
+        card.pad(10, 10, 10, 10);
 
         // --- SOL TARAFI (RESİM) ---
         Image mapImg = new Image(imgTex);
         // Resmi biraz küçülttük ki karta sığsın
-        card.add(mapImg).size(300, 180).padRight(15); 
+        card.add(mapImg).size(300, 180).padRight(15);
 
         // --- SAĞ TARAFI (YAZILAR VE BUTON) ---
         Table infoTable = new Table();
 
         Label titleLbl = new Label(title, skin, "default");
-        titleLbl.setColor(Color.GOLD);
+        titleLbl.setColor(Color.BLACK);
         titleLbl.setAlignment(Align.left);
         titleLbl.setFontScale(0.25f); // Başlık biraz büyük olsun
 
@@ -133,7 +153,37 @@ public class MapSelectionScreen extends ScreenAdapter {
         descLbl.setAlignment(Align.left);
         descLbl.setFontScale(0.17f); // Yazı biraz küçük olsun sığması için
 
-        TextButton selectBtn = new TextButton("Start", skin);
+        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
+
+        // 2. Font ayarlarını mevcut skin'den alın
+        style.font = skin.getFont("default");
+        style.fontColor = Color.BLACK; // Veya Color.WHITE
+
+        // 3. Asset'i Kullanın (Örnek olarak Assets.brownGameButton kullanıldı)
+        // Assets sınıfınızda tanımlı olan texture'ı alıyoruz
+        Texture buttonTexture = Assets.brownGameButton;
+
+        // Eğer texture null ise (henüz yüklenmediyse) Assets'ten çekmeyi deneyelim:
+        if (buttonTexture == null) {
+            // Assets.BROWN_GAME_BUTTON string referansınız varsa:
+            buttonTexture = Assets.manager.get(Assets.BROWN_GAME_BUTTON, Texture.class);
+        }
+
+        if (buttonTexture != null) {
+            // Görselin boyutlanırken bozulmaması için NinePatch kullanıyoruz (Kenar
+            // payları: 10px)
+            patch = new NinePatch(buttonTexture, 1, 1, 1, 1);
+            NinePatchDrawable drawable = new NinePatchDrawable(patch);
+
+            // 4. Stilin 'up' (basılmamış) ve 'down' (basılmış) durumlarını ayarlayın
+            style.up = drawable;
+            style.down = drawable.tint(Color.GRAY); // Basılınca biraz koyulaşsın
+        }
+
+        // 5. Butonu OLUŞTURURKEN bu yeni stili kullanın
+        TextButton selectBtn = new TextButton("Start", style);
+
+        // 6. Font ölçeğini ayarlayın
         selectBtn.getLabel().setFontScale(0.15f);
         selectBtn.addListener(new ChangeListener() {
             @Override
@@ -177,14 +227,23 @@ public class MapSelectionScreen extends ScreenAdapter {
             panelTexture = new Texture(Gdx.files.internal("ui/MapPanel.png"));
 
             // assets/ui/map_placeholder_1.png vb. oluşturun.
-            try { map1Preview = new Texture(Gdx.files.internal("ui/Map_1.png")); }
-            catch(Exception e) { map1Preview = panelTexture; } // Fallback
+            try {
+                map1Preview = new Texture(Gdx.files.internal("ui/Map_1.png"));
+            } catch (Exception e) {
+                map1Preview = panelTexture;
+            } // Fallback
 
-            try { map2Preview = new Texture(Gdx.files.internal("ui/Map_2.png")); }
-            catch(Exception e) { map2Preview = panelTexture; }
+            try {
+                map2Preview = new Texture(Gdx.files.internal("ui/Map_2.png"));
+            } catch (Exception e) {
+                map2Preview = panelTexture;
+            }
 
-            try { map3Preview = new Texture(Gdx.files.internal("ui/Map_3.png")); }
-            catch(Exception e) { map3Preview = panelTexture; }
+            try {
+                map3Preview = new Texture(Gdx.files.internal("ui/Map_3.png"));
+            } catch (Exception e) {
+                map3Preview = panelTexture;
+            }
 
         } catch (Exception e) {
             Gdx.app.error("MapSelection", "Texture yüklenemedi", e);
@@ -207,9 +266,12 @@ public class MapSelectionScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         stage.dispose();
-        if(bgTexture!=null) bgTexture.dispose();
-        if(panelTexture!=null) panelTexture.dispose();
-        if(map1Preview!=null && map1Preview!=panelTexture) map1Preview.dispose();
+        if (bgTexture != null)
+            bgTexture.dispose();
+        if (panelTexture != null)
+            panelTexture.dispose();
+        if (map1Preview != null && map1Preview != panelTexture)
+            map1Preview.dispose();
         // ... diğer textureları dispose et
     }
 }

@@ -3,6 +3,9 @@ package com.gameonjava.utlcs.gui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -47,7 +50,8 @@ public class EmpireSelectionScreen extends ScreenAdapter {
     private final HashMap<String, TextButton> empireButtons = new HashMap<>();
     private String selectedEmpireName = null;
 
-    private Texture menuBgTexture, empireListBgTexture, colorBgTexture, uniqueFeatureBgTexture, winConditionBgTexture, btnTexture;
+    private Texture menuBgTexture, empireListBgTexture, colorBgTexture, uniqueFeatureBgTexture, winConditionBgTexture,
+            btnTexture;
     private Image colorPreviewImage;
     private Label winConditionLabel, featureLabel, playerTitleLabel;
     private TextField nameField;
@@ -68,7 +72,6 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         skin = Assets.skin;
         loadTextures();
 
-
         Image bg = new Image(menuBgTexture);
         bg.setFillParent(true);
         stage.addActor(bg);
@@ -77,7 +80,6 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         rootTable.setFillParent(true);
         rootTable.pad(20);
         stage.addActor(rootTable);
-
 
         setupUI(rootTable);
 
@@ -119,13 +121,12 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         leftColumn.add(winContainer).width(250).growY().padBottom(20).row();
         leftColumn.add(backBtn).width(180).height(50).left();
 
-
         Table centerColumn = new Table();
         playerTitleLabel = new Label("Player 1 Selection", skin, "default");
         playerTitleLabel.setColor(Color.BLACK);
         playerTitleLabel.setFontScale(0.22f);
 
-        nameField = new TextField("", skin);
+        nameField = new TextField("", skin, "default");
         nameField.setMessageText("Enter Name...");
         nameField.setAlignment(Align.center);
 
@@ -139,14 +140,15 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         listBtnStyle.downFontColor = Color.GRAY;
         listBtnStyle.disabledFontColor = new Color(0.4f, 0.4f, 0.4f, 0.5f);
 
-        String[] empires = {"Blue", "Cyan", "Red", "Dark Red", "Gold", "Orange", "Brown", "Gray"};
+        String[] empires = { "Blue", "Cyan", "Red", "Dark Red", "Gold", "Orange", "Brown", "Gray" };
         for (String emp : empires) {
             TextButton btn = new TextButton(emp, listBtnStyle);
             btn.getLabel().setFontScale(0.3f);
             btn.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    if (!btn.isDisabled()) updatePreview(emp);
+                    if (!btn.isDisabled())
+                        updatePreview(emp);
                 }
             });
             listInner.add(btn).width(250).height(80).padBottom(5).row();
@@ -157,7 +159,6 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         centerColumn.add(new Label("Empire name", skin, "default")).padBottom(5).row();
         centerColumn.add(nameField).width(250).height(40).padBottom(20).row();
         centerColumn.add(listContainer).width(300).growY();
-
 
         // --- SAĞ SÜTUN ---
         Table rightColumn = new Table();
@@ -189,10 +190,16 @@ public class EmpireSelectionScreen extends ScreenAdapter {
     }
 
     private void handleNextButton() {
-        if (selectedEmpireName == null) return;
+        if (selectedEmpireName == null) {
+            showError("Please select an empire.");
+            return;
+        }
 
         String playerName = nameField.getText().trim();
-        if (playerName.isEmpty()) playerName = "Player " + currentPlayerIndex;
+        if (playerName.isEmpty()) {
+            showError("Please enter a player name.");
+            return;
+        }
 
         Civilization selectedCiv = getCivilizationByName(selectedEmpireName);
 
@@ -203,7 +210,8 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         System.out.println("Oyuncu Oluşturuldu: " + newPlayer.getName() + " - " + selectedCiv.getCivilizationName());
 
         TextButton usedBtn = empireButtons.get(selectedEmpireName);
-        if (usedBtn != null) usedBtn.setDisabled(true);
+        if (usedBtn != null)
+            usedBtn.setDisabled(true);
 
         if (currentPlayerIndex < MAX_PLAYERS) {
             currentPlayerIndex++;
@@ -216,7 +224,8 @@ public class EmpireSelectionScreen extends ScreenAdapter {
     private void prepareForNextPlayer() {
         nameField.setText("");
         playerTitleLabel.setText("Player " + currentPlayerIndex + " Selection");
-        if (currentPlayerIndex == MAX_PLAYERS) actionButton.setText("Start Game");
+        if (currentPlayerIndex == MAX_PLAYERS)
+            actionButton.setText("Start Game");
 
         selectedEmpireName = null;
         for (String key : empireButtons.keySet()) {
@@ -228,50 +237,104 @@ public class EmpireSelectionScreen extends ScreenAdapter {
     }
 
     private void updatePreview(String empireName) {
-            this.selectedEmpireName = empireName;
-            Civilization selectedCiv = getCivilizationByName(empireName);
+        this.selectedEmpireName = empireName;
+        Civilization selectedCiv = getCivilizationByName(empireName);
 
-            winConditionLabel.setText(selectedCiv.getWinCondText());
-            featureLabel.setText(selectedCiv.getFeaturesText());
-            if( empireName.contains("Blue")) {
-                colorPreviewImage.setColor(Assets.COL_BLUE);
+        winConditionLabel.setText(selectedCiv.getWinCondText());
+        featureLabel.setText(selectedCiv.getFeaturesText());
+        if (empireName.contains("Blue")) {
+            colorPreviewImage.setColor(Assets.COL_BLUE);
+        } else if (empireName.equals("Cyan")) {
+            colorPreviewImage.setColor(Assets.COL_CYAN);
+        } else if (empireName.equals("Red")) {
+            colorPreviewImage.setColor(Assets.COL_RED);
+        } else if (empireName.equals("Dark Red")) {
+            colorPreviewImage.setColor(Assets.COL_DARK_RED);
+        } else if (empireName.equals("Gold")) {
+            colorPreviewImage.setColor(Assets.COL_GOLD);
+        } else if (empireName.equals("Orange")) {
+            colorPreviewImage.setColor(Assets.COL_ORANGE);
+        }
+        if (empireName.equals("Brown")) {
+            colorPreviewImage.setColor(Assets.COL_BROWN);
+        } else if (empireName.equals("Gray")) {
+            colorPreviewImage.setColor(Assets.COL_GRAY);
+        }
+    }
+
+    private void showError(String message) {
+        // Dialog oluştur
+        Dialog errorDialog = new Dialog("", skin) {
+            @Override
+            public void result(Object obj) {
+                // Butona basılınca bir işlem yapmaya gerek yok, varsayılan olarak kapanır
             }
-            else if( empireName.equals("Cyan")) {
-                colorPreviewImage.setColor(Assets.COL_CYAN);
+        };
+
+        // 1. Arka Planı Ayarla (Assets.infoBgBrown kullanarak)
+        if (Assets.infoBgBrown != null) {
+            errorDialog.setBackground(new TextureRegionDrawable(new TextureRegion(Assets.infoBgBrown)));
+        }
+
+        // 2. Mesaj Label'ı
+        Label l = new Label(message, skin);
+        l.setColor(Color.WHITE); // Kahverengi zemin üzerinde beyaz yazı
+        l.setAlignment(Align.center);
+        l.setWrap(true); // Uzun metinleri alt satıra geçir
+
+        // Tabloya ekle (Genişlik vererek metnin taşmasını önleyelim)
+        errorDialog.getContentTable().add(l).width(300).pad(20);
+
+        // 3. OK Butonu Stili (Assets.brownGameButton kullanarak)
+        TextButton.TextButtonStyle btnStyle = new TextButton.TextButtonStyle();
+        btnStyle.font = skin.getFont("default");
+        btnStyle.fontColor = Color.WHITE;
+
+        if (Assets.brownGameButton != null) {
+            TextureRegionDrawable btnDrawable = new TextureRegionDrawable(new TextureRegion(Assets.brownGameButton));
+            btnStyle.up = btnDrawable;
+            btnStyle.down = btnDrawable.tint(Color.GRAY); // Basılınca koyulaşsın
+        }
+
+        TextButton okBtn = new TextButton("OK", btnStyle);
+
+        // Butona dinleyici ekle (Pencereyi kapatması için)
+        okBtn.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                errorDialog.hide();
             }
-            else if( empireName.equals("Red")) {
-                colorPreviewImage.setColor(Assets.COL_RED);
-            }
-            else if( empireName.equals("Dark Red")) {
-                colorPreviewImage.setColor(Assets.COL_DARK_RED);
-            }
-            else if( empireName.equals("Gold")) {
-                colorPreviewImage.setColor(Assets.COL_GOLD);
-            }
-            else if( empireName.equals("Orange")) {
-                colorPreviewImage.setColor(Assets.COL_ORANGE);
-            }
-            if( empireName.equals("Brown")) {
-                colorPreviewImage.setColor(Assets.COL_BROWN);
-            }
-            else if( empireName.equals("Gray")) {
-                colorPreviewImage.setColor(Assets.COL_GRAY);
-            }
+        });
+
+        // Butonu dialog'un alt kısmına ekle
+        errorDialog.getButtonTable().add(okBtn).width(120).height(50).padBottom(15);
+
+        // Pencereyi ekranda göster
+        errorDialog.show(stage);
     }
 
     public static Civilization getCivilizationByName(String name) {
-        if (name == null) return new Blue("Blue");
+        if (name == null)
+            return new Blue("Blue");
 
-        if (name.equals("Blue")) return new Blue("Blue");
-        if (name.equals("Cyan")) return new Cyan("Cyan Civilization");
-        if (name.equals("Brown")) return new Brown("Brown");
-        if (name.equals("Gray")) return new Gray("Gray Civilization");
+        if (name.equals("Blue"))
+            return new Blue("Blue");
+        if (name.equals("Cyan"))
+            return new Cyan("Cyan Civilization");
+        if (name.equals("Brown"))
+            return new Brown("Brown");
+        if (name.equals("Gray"))
+            return new Gray("Gray Civilization");
 
         // Dosyaları gelince bunları aç:
-        if (name.equals("Red")) return new Red("Red");
-        if (name.equals("Dark Red")) return new DarkRed("Dark Red Civilization");
-        if (name.equals("Gold")) return new GoldCivilization("Gold");
-        if (name.equals("Orange")) return new Orange("Orange Civilization");
+        if (name.equals("Red"))
+            return new Red("Red");
+        if (name.equals("Dark Red"))
+            return new DarkRed("Dark Red Civilization");
+        if (name.equals("Gold"))
+            return new GoldCivilization("Gold");
+        if (name.equals("Orange"))
+            return new Orange("Orange Civilization");
 
         return new Blue("Blue");
     }
@@ -286,6 +349,7 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         style.down = new NinePatchDrawable(patch).tint(Color.GRAY);
         return new TextButton(text, style);
     }
+
     private void loadTextures() {
         try {
             menuBgTexture = new Texture(Gdx.files.internal("ui/EmpireSelection_bg.png"));
@@ -294,28 +358,45 @@ public class EmpireSelectionScreen extends ScreenAdapter {
             uniqueFeatureBgTexture = new Texture(Gdx.files.internal("ui/UniqueFeature_bg.png"));
             winConditionBgTexture = new Texture(Gdx.files.internal("ui/WinCondition_bg.png"));
             btnTexture = new Texture(Gdx.files.internal("ui/EmpireSelection_btn.png"));
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
-private Table createBorderedTable(Texture texture, int cornerRadius, int borderThickness) {
-    NinePatch patch = new NinePatch(texture, cornerRadius, cornerRadius, cornerRadius, cornerRadius);
 
-    NinePatchDrawable borderDrawable = new NinePatchDrawable(patch).tint(Color.BLACK);
+    private Table createBorderedTable(Texture texture, int cornerRadius, int borderThickness) {
+        NinePatch patch = new NinePatch(texture, cornerRadius, cornerRadius, cornerRadius, cornerRadius);
 
-    NinePatchDrawable backgroundDrawable = new NinePatchDrawable(patch);
+        NinePatchDrawable borderDrawable = new NinePatchDrawable(patch).tint(Color.BLACK);
 
-    Table container = new Table();
-    container.setBackground(borderDrawable);
+        NinePatchDrawable backgroundDrawable = new NinePatchDrawable(patch);
 
-    Table innerTable = new Table();
-    innerTable.setBackground(backgroundDrawable);
+        Table container = new Table();
+        container.setBackground(borderDrawable);
 
-    container.add(innerTable).grow().pad(borderThickness);
+        Table innerTable = new Table();
+        innerTable.setBackground(backgroundDrawable);
 
-    return container;
-}
-    @Override public void render(float d) {
-        Gdx.gl.glClearColor(0,0,0,1); Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); stage.act(d); stage.draw();
+        container.add(innerTable).grow().pad(borderThickness);
+
+        return container;
     }
-    @Override public void resize(int w, int h) { stage.getViewport().update(w, h, true); }
-    @Override public void dispose() { stage.dispose(); if(menuBgTexture!=null) menuBgTexture.dispose(); }
+
+    @Override
+    public void render(float d) {
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act(d);
+        stage.draw();
+    }
+
+    @Override
+    public void resize(int w, int h) {
+        stage.getViewport().update(w, h, true);
+    }
+
+    @Override
+    public void dispose() {
+        stage.dispose();
+        if (menuBgTexture != null)
+            menuBgTexture.dispose();
+    }
 }
