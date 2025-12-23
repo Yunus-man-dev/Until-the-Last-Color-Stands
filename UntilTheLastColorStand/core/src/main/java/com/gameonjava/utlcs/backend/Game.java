@@ -7,17 +7,14 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.gameonjava.utlcs.backend.Enum.TerrainType;
 import com.gameonjava.utlcs.backend.resources.MovementPoint;
 
-
 //Description: Controls the game flow, player turns, and global actions.
-public class Game implements com.badlogic.gdx.utils.Json.Serializable{
-
+public class Game implements com.badlogic.gdx.utils.Json.Serializable {
 
     // holds all the players
     private ArrayList<Player> players;
 
     // holds the game map
     private Map gameMap;
-
 
     // holds the current turn index
     public static int currentTurn = 1;
@@ -31,9 +28,6 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
 
     private Player winner = null;
 
-
-
-
     public Game() {
         this.players = new ArrayList<>();
         this.gameMap = new Map();
@@ -45,13 +39,15 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         // players.add(new Player("d", new Red()));
     }
 
-    public void addPlayer(Player p){
+    public void addPlayer(Player p) {
         this.players.add(p);
     }
+
     public void startGame(int mapID) {
         gameMap.initializeMap(mapID);
 
-        // SET UP FOR PLAYERS MUST BE DONE WITH GUI METHODS, ASSUME PLAYERS ARE INITIATED
+        // SET UP FOR PLAYERS MUST BE DONE WITH GUI METHODS, ASSUME PLAYERS ARE
+        // INITIATED
 
         // initialize resources & Assign starting tiles
         for (int i = 0; i < players.size(); i++) {
@@ -63,8 +59,7 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         getCurrentPlayer().updateResources();
     }
 
-
-    //Moves onto the next player's turn and updates resources.
+    // Moves onto the next player's turn and updates resources.
 
     public void nextTurn() {
         // 1. Oyun bitti mi kontrolü (Mevcut kodun)
@@ -93,7 +88,8 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
 
         currentPlayer.updateResources();
 
-        // Tekrar oyun bitti mi kontrolü (updateResources veya tur başı olaylar oyunu bitirebilir)
+        // Tekrar oyun bitti mi kontrolü (updateResources veya tur başı olaylar oyunu
+        // bitirebilir)
         if (checkGameOver()) {
             endGame();
         }
@@ -104,24 +100,23 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         return players.get(currentPlayerIndex);
     }
 
-    //Returns pending trades for the specified player.
+    // Returns pending trades for the specified player.
     public ArrayList<Trade> getPendingTradesFor(Player p) {
         ArrayList<Trade> playerTrades = new ArrayList<>();
         for (Trade t : activeTrades) {
-            if (t.getReciever().equals(p)) {
+            if (t.getReceiver().equals(p)) {
                 playerTrades.add(t);
             }
         }
         return playerTrades;
     }
 
-
     public void endGame() {
-        //GUI METHOD, WINNERS UNIQUE FRAME WILL BE DISPLAYED
+        // GUI METHOD, WINNERS UNIQUE FRAME WILL BE DISPLAYED
 
     }
 
-    //checks if the game should end due to victory conditions.
+    // checks if the game should end due to victory conditions.
 
     public boolean checkGameOver() {
         int activePlayerCount = 0;
@@ -150,16 +145,18 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         return winner;
     }
 
-
     // Handles all army movements. Checks rules, costs, and triggers attacks.
     // ITS ASSSUMED THAT WHEN AN ARMY MOVES, ALL TROOPS HAVE BEEN MOVED.
-    // IF WE WILL SELECT THE AMOUNT OF SOLDIERS TO MOVE THERE MUST BE AN int amount PARAMETER IN THE ÖETHOD
+    // IF WE WILL SELECT THE AMOUNT OF SOLDIERS TO MOVE THERE MUST BE AN int amount
+    // PARAMETER IN THE ÖETHOD
     // AND MOVING LOGIC MUST BE MODIFIED ACCORDINGLY
     // Game.java
 
     public com.gameonjava.utlcs.backend.WarManager moveArmy(Tile owned, Tile target, int amount) {
-        if (owned == null || target == null) return null;
-        if (!owned.hasArmy()) return null;
+        if (owned == null || target == null)
+            return null;
+        if (!owned.hasArmy())
+            return null;
 
         com.gameonjava.utlcs.backend.Army sourceArmy = owned.getArmy();
 
@@ -178,7 +175,8 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         }
 
         int currentSoldiers = sourceArmy.getSoldiers();
-        if (amount > currentSoldiers || amount <= 0) return null;
+        if (amount > currentSoldiers || amount <= 0)
+            return null;
 
         MovementPoint mp = player.getMp();
 
@@ -188,21 +186,24 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         }
 
         // --- NORMAL HAREKET KONTROLLERİ ---
-        if (!gameMap.getNeighbors(owned).contains(target)) return null;
+        if (!gameMap.getNeighbors(owned).contains(target))
+            return null;
 
         // B. GEÇİLEBİLİR ARAZİ Mİ? (EKSİK OLAN KISIM EKLENDİ)
-        // Tile sınıfındaki 'canUnitPass' metodu Mountain ve Deep Water için false döner.
+        // Tile sınıfındaki 'canUnitPass' metodu Mountain ve Deep Water için false
+        // döner.
         if (!target.canUnitPass(owned)) {
             System.out.println("MOVE FAILED: Arazi (Dağ/Derin Su) geçişe uygun değil.");
             return null;
         }
-        if (!mp.checkForResource(mp.MOVE)) return null;
+        if (!mp.checkForResource(mp.MOVE))
+            return null;
 
         // --- LİMAN (PORT) KONTROLÜ (Burası değişmedi, kural aynen duruyor) ---
         boolean isTargetWater = (target.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.WATER ||
-            target.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.DEEP_WATER);
+                target.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.DEEP_WATER);
         boolean isSourceWater = (owned.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.WATER ||
-            owned.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.DEEP_WATER);
+                owned.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.DEEP_WATER);
 
         // Karadan -> Suya geçişte LİMAN ŞARTI
         if (isTargetWater && !isSourceWater) {
@@ -274,11 +275,11 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         int defRoll = com.badlogic.gdx.math.MathUtils.random(1, 6);
 
         // 2. Güç Hesaplama (Basit Formül)
-        int attPower = attRoll + amount + (int)attacker.getTechnologyPoint();
-        int defPower = defRoll + defenderTile.getArmy().getSoldiers() + (int)defender.getTechnologyPoint();
+        int attPower = attRoll + amount + (int) attacker.getTechnologyPoint();
+        int defPower = defRoll + defenderTile.getArmy().getSoldiers() + (int) defender.getTechnologyPoint();
 
         // Orman Bonusu
-        if(defenderTile.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.FOREST) {
+        if (defenderTile.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.FOREST) {
             defPower += 2;
         }
 
@@ -289,7 +290,8 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
             System.out.println("ATTACKER WON!");
 
             // Savunan ölür
-            if(defender != null) defender.getOwnedTiles().remove(defenderTile);
+            if (defender != null)
+                defender.getOwnedTiles().remove(defenderTile);
             defenderTile.setArmy(null);
 
             // Saldıranın askerleri ilerler
@@ -301,7 +303,8 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
             }
 
             // Yeni orduyu hedefe koy
-            com.gameonjava.utlcs.backend.Army winningArmy = new com.gameonjava.utlcs.backend.Army(amount, attacker, defenderTile);
+            com.gameonjava.utlcs.backend.Army winningArmy = new com.gameonjava.utlcs.backend.Army(amount, attacker,
+                    defenderTile);
             defenderTile.setArmy(winningArmy);
 
             // Toprağı al
@@ -332,21 +335,25 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         return result;
     }
 
-    //Creates the trade and adds to active trades.
-    public void addTrade(Trade t) {
+    // Creates the trade and adds to active trades.
+    public boolean addTrade(Trade t) {
+        // Trade sınıfındaki checkForCreation metodu hem kaynak hem de MP kontrolü
+        // yapar.
         if (t.checkForCreation()) {
             activeTrades.add(t);
+            return true; // Başarılı
         }
+        return false; // Başarısız (Yetersiz kaynak veya MP)
     }
+    // ------------------------
 
-    //Executes trade and removes it from active list.
+    // Executes trade and removes it from active list.
     public void acceptTrade(Trade t) {
         t.trade();
         activeTrades.remove(t);
     }
 
-    //Refuses trade, returns resources, and removes from list.
-
+    // Refuses trade, returns resources, and removes from list.
     public void refuseTrade(Trade t) {
         t.returnResources();
         activeTrades.remove(t);
@@ -355,7 +362,8 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
     public static int getCurrentTurn() {
         return currentTurn;
     }
-    public Map getMap(){
+
+    public Map getMap() {
         return gameMap;
     }
 
@@ -363,7 +371,7 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
         return players;
     }
 
-@Override
+    @Override
     public void write(Json json) {
         json.writeValue("Players", players);
         json.writeValue("Map", gameMap);
@@ -374,41 +382,45 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
 
     @Override
     public void read(Json json, JsonValue jsonData) {
-        // players = json.readValue("Players", java.util.ArrayList.class, Player.class, jsonData);
+        // players = json.readValue("Players", java.util.ArrayList.class, Player.class,
+        // jsonData);
         // gameMap = json.readValue("Map", Map.class, jsonData);
 
         // // Standard primitive reads
         // currentTurn = jsonData.getInt("Turn", 1);
         // currentPlayerIndex = jsonData.getInt("CurPlayerIndex", 0);
 
-        // activeTrades = json.readValue("ActiveTrades", java.util.ArrayList.class, Trade.class, jsonData);
+        // activeTrades = json.readValue("ActiveTrades", java.util.ArrayList.class,
+        // Trade.class, jsonData);
 
         // if (players != null) {
-        //     for (Player p : players) {
-        //         p.relinkTiles();
-        //     }
+        // for (Player p : players) {
+        // p.relinkTiles();
+        // }
         // }
         // 1. Önce Haritayı Yükle (Sıralama Önemli!)
         gameMap = json.readValue("Map", Map.class, jsonData);
-        
+
         // 2. Sonra Oyuncuları Yükle (Oyuncular kendi "Kopya" Tile'larıyla gelir)
         players = json.readValue("Players", java.util.ArrayList.class, Player.class, jsonData);
-        
+
         // 3. Diğer Veriler
         currentTurn = jsonData.getInt("Turn", 1);
         currentPlayerIndex = jsonData.getInt("CurPlayerIndex", 0);
         activeTrades = json.readValue("ActiveTrades", java.util.ArrayList.class, Trade.class, jsonData);
-        
+
         // 4. BAĞLANTILARI ONAR (YENİ METODU ÇAĞIRIYORUZ)
         relinkTilesWithMap();
     }
+
     private void relinkTilesWithMap() {
-        if (players == null || gameMap == null) return;
+        if (players == null || gameMap == null)
+            return;
 
         for (Player p : players) {
             // Oyuncunun elindeki (Json'dan gelen kopya) listeyi al
             ArrayList<Tile> loadedTiles = new ArrayList<>(p.getOwnedTiles());
-            
+
             // Oyuncunun listesini temizle (Doğrularını ekleyeceğiz)
             p.getOwnedTiles().clear();
 
@@ -423,7 +435,7 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
                 if (realTile != null) {
                     // 1. Oyuncuya gerçek tile'ı ver
                     p.addTile(realTile);
-                    
+
                     // 2. Gerçek tile'a sahibini tanıt
                     realTile.setOwner(p);
 

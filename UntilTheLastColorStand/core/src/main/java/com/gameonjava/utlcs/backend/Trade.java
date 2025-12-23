@@ -1,15 +1,13 @@
 package com.gameonjava.utlcs.backend;
 
-import com.gameonjava.utlcs.backend.civilization.GoldCivilization;
 import com.gameonjava.utlcs.backend.resources.*;
 
-/**
- * Manages trade offers, validation, and execution between players
- */
-public class Trade {
+public class Trade implements com.badlogic.gdx.utils.Json.Serializable {
 
     private Player creator;
     private Player receiver;
+
+    // Bu değişkenler sadece MİKTAR ve TİP bilgisini taşır (Dummy objects).
     private Resource givenResource;
     private int givenResourceAmount;
     private Resource wantedResource;
@@ -25,36 +23,91 @@ public class Trade {
         this.wantedResourceAmount = wantedResourceAmount;
     }
 
-    // Checks validation
-    // Reduces MP and the given resource upon success.
+    public Trade() {
+    }
 
+    // --- KRİTİK DÜZELTME: Hem Gönderen Hem Alıcı Kontrolü ---
     public boolean checkForCreation() {
+        // 1. GÖNDERENİN HAREKET PUANI (MP) KONTROLÜ
         MovementPoint creatorMP = creator.getMp();
-        // checks whether the MP is sufficent
         if (!creatorMP.checkForResource(creatorMP.TRADE)) {
+            System.out.println("Trade Error: Yetersiz MP");
             return false;
         }
 
-        if (givenResource != null) {
-            // checks whether the resource is sufficent
-            if (!givenResource.checkForResource(givenResourceAmount)) {
-                return false;
-            }
-            givenResource.reduceResource(givenResourceAmount);
+        // 2. GÖNDERENİN KAYNAK KONTROLÜ (Senin 1000 varken 1100 yollamanı engeller)
+        Resource realCreatorResource = getPlayerResource(creator, givenResource);
+        if (realCreatorResource == null || !realCreatorResource.checkForResource(givenResourceAmount)) {
+            System.out.println("Trade Error: Gönderenin kaynağı yetersiz.");
+            return false;
         }
 
+        // 3. ALICININ KAYNAK KONTROLÜ (Adamın 200'ü varken 250 istemeni engeller)
+        Resource realReceiverResource = getPlayerResource(receiver, wantedResource);
+        if (realReceiverResource == null || !realReceiverResource.checkForResource(wantedResourceAmount)) {
+            System.out.println("Trade Error: Alıcının (" + receiver.getName() + ") kaynağı yetersiz.");
+            return false;
+        }
+
+        // 4. HER ŞEY TAMAMSA: Senden kaynağı ve MP'yi düş
+        realCreatorResource.reduceResource(givenResourceAmount);
         creatorMP.reduceResource(creatorMP.TRADE);
 
         return true;
     }
 
-    // helper method for Game/getPendingTradesFor()
-    public Player getCreator() {
-        return creator;
+    public void returnResources() {
+        // Reddedilirse kaynağı geri ver
+        Resource realPlayerResource = getPlayerResource(creator, givenResource);
+        if (realPlayerResource != null) {
+            realPlayerResource.addResource(givenResourceAmount);
+        }
     }
 
-    public Player getReciever() {
+    public void trade() {
+        applyDiscount();
+
+        // Alıcıya gelen kaynak (Gönderen zaten baştan ödemişti)
+        Resource receiverGain = getPlayerResource(receiver, givenResource);
+        if (receiverGain != null) {
+            receiverGain.addResource(givenResourceAmount);
+        }
+
+        // Alıcıdan giden kaynak
+        Resource receiverPay = getPlayerResource(receiver, wantedResource);
+        // Gönderene gelen kaynak
+        Resource creatorGain = getPlayerResource(creator, wantedResource);
+
+        if (receiverPay != null && creatorGain != null) {
+            // Son bir güvenlik kontrolü (Eğer arada harcadıysa eksiye düşebilir, şimdilik
+            // düşsün)
+            receiverPay.reduceResource(wantedResourceAmount);
+            creatorGain.addResource(wantedResourceAmount);
+        }
+    }
+
+    private void applyDiscount() {
+        // İleride eklenecek bonuslar
+    }
+
+    // Yardımcı Metot: Oyuncunun gerçek kaynağını bulur
+    private Resource getPlayerResource(Player p, Resource typeTemplate) {
+        if (typeTemplate instanceof GoldResource)
+            return p.getGold();
+        if (typeTemplate instanceof FoodResource)
+            return p.getFood();
+        if (typeTemplate instanceof BookResource)
+            return p.getBook();
+        return null;
+    }
+
+    // Getterlar
+    public Player getReceiver() {
         return receiver;
+    }
+
+    public Player getCreator() {
+        return creator;
     }
 
     public Resource getGivenResource() {
@@ -73,77 +126,23 @@ public class Trade {
         return wantedResourceAmount;
     }
 
-    // checks whether receiver has enough wantedResource.
-
-    public boolean checkForApplication() {
-        if (wantedResource != null) {
-            return wantedResource.checkForResource(wantedResourceAmount);
-        }
-        return false;
+    @Override
+    public void write(com.badlogic.gdx.utils.Json json) {
+        json.writeValue("creator", creator);
+        json.writeValue("receiver", receiver);
+        json.writeValue("givenRes", givenResource);
+        json.writeValue("givenAmt", givenResourceAmount);
+        json.writeValue("wantedRes", wantedResource);
+        json.writeValue("wantedAmt", wantedResourceAmount);
     }
 
-    /**
-     * Called in case of refused trade, decreased resources are given back to
-     * creator.
-     * MP are not refunded.
-     */
-    public void returnResources() {
-        if (givenResource != null) {
-            givenResource.addResource(givenResourceAmount);
-        }
-    }
-
-    // Increases the amount of resource that Gold player receives.
-    // Leaves values unchanged if neither is Gold civilization or trade doesn't
-    // involve gold.
-
-    public void applyDiscount() {
-        if (creator.getCivilization() instanceof GoldCivilization && wantedResource instanceof GoldResource) {
-            GoldCivilization goldCiv = (GoldCivilization) creator.getCivilization();
-            this.wantedResourceAmount += (int) (this.wantedResourceAmount * goldCiv.TRADE_DISCOUNT);
-        }
-
-        if (receiver.getCivilization() instanceof GoldCivilization && givenResource instanceof GoldResource) {
-            GoldCivilization goldCiv = (GoldCivilization) receiver.getCivilization();
-            this.givenResourceAmount += (int) (this.givenResourceAmount * goldCiv.TRADE_DISCOUNT);
-        }
-    }
-
-    // Executes the trade if valid and accepted.
-    // Updates player resources accordingly.
-
-    public void trade() {
-        applyDiscount();
-
-        // reduce from Receiver,add to Creator.
-        Resource receiverResource = getPlayerResource(receiver, wantedResource);
-        Resource creatorResource = getPlayerResource(creator, wantedResource);
-
-        if (receiverResource != null) {// null check to avoid null pointer exception in case of one-way trades
-            receiverResource.reduceResource(wantedResourceAmount);
-        }
-        if (creatorResource != null) {// null check to avoid null pointer exception in case of one-way trades
-            creatorResource.addResource(wantedResourceAmount);
-        }
-
-        // receiver gets the given resource (Creator already paid in checkForCreation)
-        Resource receiverGainResource = getPlayerResource(receiver, givenResource);
-        if (receiverGainResource != null && givenResource != null) {
-            receiverGainResource.addResource(givenResourceAmount);
-        }
-    }
-
-    // helper method to find the matching resource instance for a specific player.
-    // same as player.getResource() at spesific resource type
-
-    private Resource getPlayerResource(Player p, Resource type) {
-        if (type instanceof GoldResource)
-            return p.getGold();
-        if (type instanceof FoodResource)
-            return p.getFood();
-        if (type instanceof BookResource)
-            return p.getBook();
-
-        return null;
+    @Override
+    public void read(com.badlogic.gdx.utils.Json json, com.badlogic.gdx.utils.JsonValue jsonData) {
+        creator = json.readValue("creator", Player.class, jsonData);
+        receiver = json.readValue("receiver", Player.class, jsonData);
+        givenResource = json.readValue("givenRes", Resource.class, jsonData);
+        givenResourceAmount = jsonData.getInt("givenAmt");
+        wantedResource = json.readValue("wantedRes", Resource.class, jsonData);
+        wantedResourceAmount = jsonData.getInt("wantedAmt");
     }
 }
