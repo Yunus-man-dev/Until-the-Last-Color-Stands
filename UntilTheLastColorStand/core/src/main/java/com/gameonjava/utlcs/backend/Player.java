@@ -124,7 +124,7 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
         food.reduceResource(foodConsumption);
 
         technologyPoint =  this.book.calculateTP();
-        movementPoint.updateMovementPoint(technologyPoint);
+        movementPoint.setValue(movementPoint.updateMovementPoint(technologyPoint))  ;
     }
 
     public int getTileCount() {

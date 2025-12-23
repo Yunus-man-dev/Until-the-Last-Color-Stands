@@ -22,11 +22,12 @@ public class MovementPoint extends Resource {
     }
 
 
-    public void updateMovementPoint(double techPoints){
+    public int updateMovementPoint(double techPoints){
         /* Updates the movement point based on tech points, techPoints/10 is just an constant you can edit
         that 10 whatever you want it to be */
         double additionalMovementPoint = techPoints / 10;
         this.addResource(additionalMovementPoint);
+        return (int) this.value;
     }
 
     @Override
