@@ -115,8 +115,11 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
                 building.produce(this);
             }
 
-            // foodConsumption += tile.calculateFoodConsumption(); // Tile classında bu metod yoksa hata verebilir
+            foodConsumption += tile.calculateFoodConsumption(); // Tile classında bu metod yoksa hata verebilir
         }
+        // Buildinglerden gelen sourceleri hesapla
+
+
 
         food.reduceResource(foodConsumption);
 
@@ -254,15 +257,15 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
     }
 
     public void addFood(double amount) {
-        food.setValue(amount);
+        food.addResource(amount);
     }
 
     public void addGold(double amount) {
-        gold.setValue(amount);
+        gold.addResource(amount);
     }
 
     public void addScience(double amount) {
-        book.setValue(amount);
+        book.addResource(amount);
     }
 
     @Override
