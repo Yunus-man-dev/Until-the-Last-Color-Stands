@@ -28,6 +28,9 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
     // holds the pending trade offers.
     private ArrayList<Trade> activeTrades;
 
+    private Player winner = null;
+
+
 
 
     public Game() {
@@ -106,20 +109,35 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
     }
 
     //checks if the game should end due to victory conditions.
+
     public boolean checkGameOver() {
-        int countForRemainingColor = 0;
+        int activePlayerCount = 0;
+        Player lastActivePlayer = null;
+
         for (Player p : players) {
-            if(p.isActive()){
-                countForRemainingColor++;
+            if (p.isActive()) {
+                activePlayerCount++;
+                lastActivePlayer = p;
             }
+            // 1. Durum: Oyuncu kendi Win Condition'ını sağladıysa
             if (p.hasWon()) {
+                this.winner = p;
                 return true;
             }
         }
-        if( countForRemainingColor == 1){
+
+        // 2. Durum: Sadece 1 kişi hayatta kaldıysa (Elimination Victory)
+        if (activePlayerCount == 1 && lastActivePlayer != null) {
+            this.winner = lastActivePlayer;
             return true;
         }
+
         return false;
+    }
+
+    // Bu metodu sınıfın en altına ekle (Getter):
+    public Player getWinner() {
+        return winner;
     }
 
 
@@ -235,13 +253,13 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
     public void read(Json json, JsonValue jsonData) {
         players = json.readValue("Players", java.util.ArrayList.class, Player.class, jsonData);
         gameMap = json.readValue("Map", Map.class, jsonData);
-        
+
         // Standard primitive reads
         currentTurn = jsonData.getInt("Turn", 1);
         currentPlayerIndex = jsonData.getInt("CurPlayerIndex", 0);
-        
+
         activeTrades = json.readValue("ActiveTrades", java.util.ArrayList.class, Trade.class, jsonData);
-        
+
         if (players != null) {
             for (Player p : players) {
                 p.relinkTiles();
