@@ -28,7 +28,7 @@ public class InputController extends InputAdapter {
         // --- P: PAUSE MENU ---
         if (keycode == Input.Keys.P) {
             PauseDialog pause = new PauseDialog("Game Paused", Assets.skin, screen.getMainGame(),
-                    screen.getHud().getBackendGame());
+            screen.getHud().getBackendGame());
             pause.show(screen.getHud().stage);
             return true;
         }
