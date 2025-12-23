@@ -42,6 +42,15 @@ public class GameHUD implements Disposable {
     public static TextButton.TextButtonStyle beigeStyle;
 
     private PlayerInfoWidget currentInfoWidget;
+    private MapInputProcessor inputProcessor;
+
+    public void setInputProcessor(MapInputProcessor inputProcessor) {
+        this.inputProcessor = inputProcessor;
+    }
+
+    public MapInputProcessor getInputProcessor() {
+        return inputProcessor;
+    }
 
     public GameHUD(SpriteBatch batch, Game backendGame) {
         viewport = new FitViewport(1280, 720);

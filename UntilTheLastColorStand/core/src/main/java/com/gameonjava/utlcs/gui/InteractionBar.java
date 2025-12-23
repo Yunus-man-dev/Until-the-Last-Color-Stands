@@ -361,8 +361,15 @@ public class InteractionBar extends Table {
         btnMove.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Move Initiated: " + moveAmount[0] + " soldiers from Tile(" + t.getQ() + "," + t.getR() + ")");
+                System.out.println("Move Initiated: " + moveAmount[0] + " soldiers...");
+
+                // Bar'ı gizle ki rahatça hedef seçilebilsin
                 setVisible(false);
+
+                // MapInputProcessor'a "Sıradaki tıkı hedef olarak al" diyoruz
+                if (hud.getInputProcessor() != null) {
+                    hud.getInputProcessor().startMoveMode(t);
+                }
             }
         });
 

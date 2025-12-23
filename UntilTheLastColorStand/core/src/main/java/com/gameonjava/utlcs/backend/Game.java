@@ -145,52 +145,67 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable{
     // ITS ASSSUMED THAT WHEN AN ARMY MOVES, ALL TROOPS HAVE BEEN MOVED.
     // IF WE WILL SELECT THE AMOUNT OF SOLDIERS TO MOVE THERE MUST BE AN int amount PARAMETER IN THE ÖETHOD
     // AND MOVING LOGIC MUST BE MODIFIED ACCORDINGLY
+    // Game.java
+
     public void moveArmy(Tile owned, Tile target) {
+        if (owned == null || target == null) return;
+        if (!owned.hasArmy()) {
+            System.out.println("MOVE FAILED: Kaynak karede asker yok!");
+            return;
+        }
+
         int ownedsSoldiers = owned.getArmy().getSoldiers();
         Player player = owned.getOwner();
         MovementPoint mp = player.getMp();
 
-        // check movement rules (Passable, Neighbors)
+        // 1. KONTROL: KOMŞU MU?
         if (!gameMap.getNeighbors(owned).contains(target)) {
-            return; // Not a neighbor
-        }
-        if (!target.canUnitPass(target)) {
-            return; // Impassable terrain (Deep Water/Mountain)
-        }
-
-        // check MP cost
-        if (!mp.checkForResource(mp.MOVE)) {
+            System.out.println("MOVE FAILED: Hedef kare komşu değil! (" + owned.getQ() + "," + owned.getR() + ") -> (" + target.getQ() + "," + target.getR() + ")");
             return;
         }
 
-        // check for 3nemy
-        if (target.hasArmy() && !target.getOwner().equals(player)) {
+        // 2. KONTROL: GEÇİLEBİLİR ARAZİ Mİ?
+        if (!target.canUnitPass(target)) {
+            System.out.println("MOVE FAILED: Arazi geçişe uygun değil (Dağ veya Derin Su).");
+            return;
+        }
 
+        // 3. KONTROL: MP YETERLİ Mİ?
+        if (!mp.checkForResource(mp.MOVE)) {
+            System.out.println("MOVE FAILED: Yetersiz MP! (Gereken: " + mp.MOVE + ", Olan: " + mp.getValue() + ")");
+            return;
+        }
+
+        // 4. KONTROL: SALDIRI MI?
+        if (target.hasArmy() && !target.getOwner().equals(player)) {
+            System.out.println("MOVE INFO: Düşman var, saldırı başlatılıyor...");
             initiateAttack(owned, target);
             return;
         }
 
-        // Deduct MP
+        // --- HAREKET İŞLEMİ ---
+        System.out.println("MOVE SUCCESS: Asker taşınıyor...");
+
         mp.reduceResource(mp.MOVE);
 
-        Army sourceArmy = owned.getArmy();
+        // Askeri eski yerden al
+        owned.removeArmy();
 
-        owned.removeArmy(); // sets the army variable on the tile to null, READ METHOD DESCRIPTION
-
-
+        // Yeni yere koy
         if (target.hasArmy()) {
-            // if target has own soldiers
+            // Zaten kendi askeri varsa birleştir
             target.getArmy().addSoldiers(ownedsSoldiers);
         } else {
+            // Boşsa yeni ordu oluştur
             Army newArmy = new Army(ownedsSoldiers, player, target);
             target.setArmy(newArmy);
 
+            // Eğer sahipsiz bir topraksa ele geçir
             if (target.getOwner() == null) {
                 target.setOwner(player);
                 player.addTile(target);
             }
         }
-
     }
 
     //WarManager to resolve a battle.

@@ -33,28 +33,57 @@ public class MapInputProcessor extends InputAdapter {
         this.hud = hud;
     }
 
+
+    // Sınıfın en başına bu değişkenleri ekle:
+    private boolean isMoveMode = false;
+    private Tile moveSourceTile = null;
+
+    // Bu metodu sınıfın içine ekle (InteractionBar buradan çağıracak):
+    public void startMoveMode(Tile source) {
+        this.moveSourceTile = source;
+        this.isMoveMode = true;
+        System.out.println("Move Mode ON: Select a target tile.");
+    }
+
+    // touchDown metodunu tamamen bununla güncelle:
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        // Sadece SOL tık ile işlem yap
         if (button != Input.Buttons.LEFT) return false;
 
-        // 1. Koordinatı Çevir (Kamera -> Dünya)
         Vector3 worldPos = camera.unproject(new Vector3(screenX, screenY, 0));
-
-        // 2. Tile'ı MapManager'dan İste
         Tile clickedTile = mapManager.getTileAtPixel(worldPos.x, worldPos.y, r);
+
+        // --- YENİ EKLENEN KISIM: HAREKET MODU KONTROLÜ ---
+        if (isMoveMode) {
+            if (clickedTile != null && moveSourceTile != null) {
+                // 1. Backend Hareketini Çağır
+                // moveArmy metodu zaten kuralları (komşu mu? MP yeterli mi?) kontrol ediyor.
+                hud.getBackendGame().moveArmy(moveSourceTile, clickedTile);
+
+                // 2. Ekranı ve İstatistikleri Güncelle
+                hud.updateStats(hud.getBackendGame().getCurrentPlayer(), com.gameonjava.utlcs.backend.Game.getCurrentTurn());
+
+                System.out.println("Move command sent to backend.");
+            }
+
+            // İşlem bitince (başarılı veya başarısız) moddan çık
+            isMoveMode = false;
+            moveSourceTile = null;
+            clearSelection(); // Seçim ışığını söndür
+            if(hud.getInteractionBar() != null) hud.getInteractionBar().setVisible(false);
+            return true;
+        }
+        // -------------------------------------------------
 
         if (clickedTile != null) {
             handleInteraction(clickedTile);
             return true;
         } else {
-            // Boşa tıklandıysa seçimi ve barı kaldır
             clearSelection();
             if (hud.getInteractionBar() != null) {
                 hud.getInteractionBar().setVisible(false);
             }
-            // Sürükleme (Pan) yapabilmek için true dönmeliyiz
-            return true; 
+            return true;
         }
     }
 
@@ -66,14 +95,14 @@ public class MapInputProcessor extends InputAdapter {
         if (selectedTile != null && selectedTile.hasArmy() && targetTile.hasArmy()) {
             // Seçili taş benimse VE Hedef taş benim DEĞİLSE -> SALDIR
             if (selectedTile.getOwner().equals(currentPlayer) && !targetTile.getOwner().equals(currentPlayer)) {
-                
+
                 System.out.println("Savaş Başlatılıyor: " + selectedTile.getOwner().getName() + " vs " + targetTile.getOwner().getName());
-                
+
                 WarManager result = hud.getBackendGame().initiateAttack(selectedTile, targetTile);
 
                 if (result != null) {
                     boolean attackerWon = result.isAttackerWon();
-                    
+
                     WarDialog warReport = new WarDialog(
                             Assets.skin,
                             selectedTile,
@@ -85,7 +114,7 @@ public class MapInputProcessor extends InputAdapter {
                             result.getDefenderAP());
 
                     warReport.show(hud.stage);
-                    
+
                     // Savaştan sonra seçimi temizle
                     clearSelection();
                     // Haritayı güncelle (Ölen askerler vs. için)
@@ -100,7 +129,7 @@ public class MapInputProcessor extends InputAdapter {
         // B. İNŞAAT VE SEÇİM SENARYOSU
         // Eğer kendi taşımıza tıkladıysak
         if (targetTile.getOwner() != null && targetTile.getOwner().equals(currentPlayer)) {
-            
+
             // Eğer bina yoksa -> İnşaat menüsünü aç
             if (!targetTile.hasBuilding() && hud.getInteractionBar().isVisible()) {
                  // Eğer zaten seçiliyse ve tekrar tıkladıysa Dialog aç
@@ -112,7 +141,7 @@ public class MapInputProcessor extends InputAdapter {
                              hud,
                              mapManager.gameMap);
                      build.show(hud.stage);
-                     
+
                      clearSelection(); // Dialog açılınca seçimi kaldır
                      return;
                  }

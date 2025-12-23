@@ -63,6 +63,7 @@ public class GameScreen extends ScreenAdapter {
         mapInput = new MapInputProcessor(mapManager, camera, r, hud);
         multiplexer.addProcessor(mapInput);
 
+        hud.setInputProcessor(mapInput);
         // C. En Son Klavye Kısayolları (ESC, P vs.)
         uiInput = new InputController(this);
         multiplexer.addProcessor(uiInput);
