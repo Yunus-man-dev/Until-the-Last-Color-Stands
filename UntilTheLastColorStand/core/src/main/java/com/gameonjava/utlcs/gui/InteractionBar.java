@@ -80,8 +80,14 @@ public class InteractionBar extends Table {
         boolean isMaxLevel = hasBuilding && t.getBuilding().getLevel() >= 3;
         boolean hasArmy = t.hasArmy() && t.getArmy().getSoldiers() > 0;
 
+        // --- SU KONTROLÜ (YENİ) ---
+        // Eğer zemin SU veya DERİN SU ise isWater true olur.
+        boolean isWater = (t.getTerrainType() == TerrainType.WATER ||
+            t.getTerrainType() == TerrainType.DEEP_WATER);
+
         boolean canConstruct = (t.getTerrainType() == TerrainType.PLAIN ||
             t.getTerrainType() == TerrainType.FOREST);
+
         if (hasArmy) {
             int count = t.getArmy().getSoldiers();
             Label soldierLabel = new Label("Soldier: " + count, skin);
@@ -101,6 +107,8 @@ public class InteractionBar extends Table {
             }
         }
 
+        // --- SENARYOLAR ---
+
         if ((!hasBuilding || !isMaxLevel) && hasArmy) {
             setSlotImage(Assets.ibSlot3);
 
@@ -113,7 +121,12 @@ public class InteractionBar extends Table {
                 addTextButton("Develop", () -> developBuilding(t));
             }
 
-            addTextButton("Recruit", () -> openRecruitDialog(t));
+            // --- RECRUIT KONTROLÜ ---
+            if (!isWater) {
+                addTextButton("Recruit", () -> openRecruitDialog(t));
+            } else {
+                addEmptySlot(); // Su ise boşluk bırak (hiza bozulmasın)
+            }
 
 
             if (canMove) {
@@ -128,7 +141,13 @@ public class InteractionBar extends Table {
 
         else if (isMaxLevel && hasArmy) {
             setSlotImage(Assets.ibSlot3);
-            addTextButton("Recruit", () -> openRecruitDialog(t));
+
+            // --- RECRUIT KONTROLÜ ---
+            if (!isWater) {
+                addTextButton("Recruit", () -> openRecruitDialog(t));
+            } else {
+                addEmptySlot();
+            }
 
             if (canMove) {
                 addTextButton("Move", () -> enableMoveMode(t));
@@ -144,25 +163,55 @@ public class InteractionBar extends Table {
             if (canConstruct) {
                 setSlotImage(Assets.ibSlot3);
                 addTextButton("Construct", () -> openBuildingDialog(t));
-                addTextButton("Recruit", () -> openRecruitDialog(t));
+
+                // --- RECRUIT KONTROLÜ ---
+                // Burası zaten Plain/Forest olduğu için isWater false'tur ama yine de standart olsun
+                if (!isWater) {
+                    addTextButton("Recruit", () -> openRecruitDialog(t));
+                } else {
+                    addEmptySlot();
+                }
+
                 addCancelButton();
             } else {
                 setSlotImage(Assets.ibSlot2);
-                addTextButton("Recruit", () -> openRecruitDialog(t));
+
+                // --- RECRUIT KONTROLÜ ---
+                // Su ise burada Recruit çıkmamalı
+                if (!isWater) {
+                    addTextButton("Recruit", () -> openRecruitDialog(t));
+                } else {
+                    addEmptySlot();
+                }
+
                 addCancelButton();
             }
         }
 
         else if (hasBuilding && isMaxLevel && !hasArmy) {
             setSlotImage(Assets.ibSlot2);
-            addTextButton("Recruit", () -> openRecruitDialog(t));
+
+            // --- RECRUIT KONTROLÜ ---
+            if (!isWater) {
+                addTextButton("Recruit", () -> openRecruitDialog(t));
+            } else {
+                addEmptySlot();
+            }
+
             addCancelButton();
         }
 
         else if (hasBuilding && !isMaxLevel && !hasArmy) {
             setSlotImage(Assets.ibSlot3);
             addTextButton("Develop", () -> developBuilding(t));
-            addTextButton("Recruit", () -> openRecruitDialog(t));
+
+            // --- RECRUIT KONTROLÜ ---
+            if (!isWater) {
+                addTextButton("Recruit", () -> openRecruitDialog(t));
+            } else {
+                addEmptySlot();
+            }
+
             addCancelButton();
         }
 
