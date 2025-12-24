@@ -321,13 +321,25 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
     }
 
     @Override
-    public void read(Json json, JsonValue jsonData) {
-        this.name = jsonData.getString("Name");
+public void read(Json json, JsonValue jsonData) {
+        name = jsonData.getString("Name");
         
-        // DÜZELTME: İsimden tekrar obje oluşturuyoruz.
-        String civName = jsonData.getString("CivName", "Blue");
-        // EmpireSelectionScreen sınıfındaki o harika metodu kullanıyoruz:
-        this.civilization = com.gameonjava.utlcs.gui.EmpireSelectionScreen.getCivilizationByName(civName);
+        // --- DÜZELTME BAŞLANGICI ---
+        String civColorName = "Blue"; // Varsayılan değer
+        
+        // 1. JSON'da "Civilization" adında bir alt obje var mı bakıyoruz
+        if (jsonData.has("Civilization")) {
+            JsonValue civJson = jsonData.get("Civilization");
+            
+            // 2. Alt objenin içindeki "CColor" değerini (Red, Blue, Gold vs.) alıyoruz
+            // savefile.json yapına göre doğru alan "CColor"
+            civColorName = civJson.getString("CColor", "Blue");
+        }
+        
+        // 3. Bulduğumuz ismi kullanarak doğru sınıfı oluşturuyoruz
+        this.civilization = com.gameonjava.utlcs.gui.EmpireSelectionScreen.getCivilizationByName(civColorName);
+        // --- DÜZELTME BİTİŞİ ---
+
         this.food = json.readValue("Food", com.gameonjava.utlcs.backend.resources.FoodResource.class, jsonData);
         this.gold = json.readValue("Gold", com.gameonjava.utlcs.backend.resources.GoldResource.class, jsonData);
         this.book = json.readValue("Book", com.gameonjava.utlcs.backend.resources.BookResource.class, jsonData);
