@@ -74,7 +74,7 @@ public abstract class Civilization implements com.badlogic.gdx.utils.Json.Serial
         this.technologyMultiplier = technologyMultiplier;
         if( civilizationColor.equals("Red") || civilizationColor.equals("Dark Red") ) {
             winCondText = "Capture minimum %40 of capturable tiles. (Plains & Forests & Waters)";
-            featuresText = "Recruit 5 more soldiers in each turn and start with extra 5 soldiers.\nHas 30% attack multiplier against all civilizations except Brown and Black.\nMovement of soldiers requires 20% less movement points.\nSoldier recruitment cost is 20% higher.";
+            featuresText = "Recruit 5 more soldiers in each turn\nHas 30% attack multiplier against all civilizations except Brown and Black.\nMovement of soldiers requires 20% less movement points.\nSoldier recruitment cost is 20% higher.";
         }
         if( civilizationColor.equals("Orange") || civilizationColor.equals("Gold") ) {
             winCondText = "Must have at least 100.000 golds and 10 gold mines.";
