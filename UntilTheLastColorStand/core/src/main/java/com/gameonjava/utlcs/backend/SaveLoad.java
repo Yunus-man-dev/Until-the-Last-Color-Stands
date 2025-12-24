@@ -24,7 +24,7 @@ public class SaveLoad {
             @Override
             public Player read(Json json, JsonValue jsonData, Class type) {
                 Player p = new Player();
-                p.read(json, jsonData);  
+                p.read(json, jsonData);
                 return p;
             }
         });*/
@@ -35,8 +35,7 @@ public class SaveLoad {
         json.addClassTag("Army", com.gameonjava.utlcs.backend.Army.class);
         json.addClassTag("Map", com.gameonjava.utlcs.backend.Map.class);
         json.addClassTag("Trade", com.gameonjava.utlcs.backend.Trade.class);
-        
-        // Concrete Civilizations
+
         json.addClassTag("Civilization", com.gameonjava.utlcs.backend.civilization.Civilization.class);
         json.addClassTag("Blue", com.gameonjava.utlcs.backend.civilization.Blue.class);
         json.addClassTag("Red", com.gameonjava.utlcs.backend.civilization.Red.class);
@@ -47,14 +46,12 @@ public class SaveLoad {
         json.addClassTag("DarkRed", com.gameonjava.utlcs.backend.civilization.DarkRed.class);
         json.addClassTag("Orange", com.gameonjava.utlcs.backend.civilization.Orange.class);
 
-        // Concrete Buildings
         json.addClassTag("Building", com.gameonjava.utlcs.backend.building.Building.class);
         json.addClassTag("Farm", com.gameonjava.utlcs.backend.building.Farm.class);
         json.addClassTag("Port", com.gameonjava.utlcs.backend.building.Port.class);
         json.addClassTag("Library", com.gameonjava.utlcs.backend.building.Library.class);
         json.addClassTag("GoldMine", com.gameonjava.utlcs.backend.building.GoldMine.class);
 
-        // Concrete Resources
         json.addClassTag("Resource", com.gameonjava.utlcs.backend.resources.Resource.class);
         json.addClassTag("FoodResource", com.gameonjava.utlcs.backend.resources.FoodResource.class);
         json.addClassTag("GoldResource", com.gameonjava.utlcs.backend.resources.GoldResource.class);
@@ -65,7 +62,7 @@ public class SaveLoad {
     public void save(Game game, String filename) {
         try {
             FileHandle file = Gdx.files.local(filename);
-            String gameState = json.prettyPrint(game); 
+            String gameState = json.prettyPrint(game);
             file.writeString(gameState, false);
             System.out.println("Game saved successfully.");
         } catch (Exception e) {

@@ -160,7 +160,6 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         centerColumn.add(nameField).width(250).height(40).padBottom(20).row();
         centerColumn.add(listContainer).width(300).growY();
 
-        // --- SAĞ SÜTUN ---
         Table rightColumn = new Table();
 
         Table featureContainer = createBorderedTable(uniqueFeatureBgTexture, corner, borderSize);
@@ -267,25 +266,20 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         Dialog errorDialog = new Dialog("", skin) {
             @Override
             public void result(Object obj) {
-                // Butona basılınca bir işlem yapmaya gerek yok, varsayılan olarak kapanır
             }
         };
 
-        // 1. Arka Planı Ayarla (Assets.infoBgBrown kullanarak)
         if (Assets.infoBgBrown != null) {
             errorDialog.setBackground(new TextureRegionDrawable(new TextureRegion(Assets.infoBgBrown)));
         }
 
-        // 2. Mesaj Label'ı
         Label l = new Label(message, skin);
-        l.setColor(Color.WHITE); // Kahverengi zemin üzerinde beyaz yazı
+        l.setColor(Color.WHITE);
         l.setAlignment(Align.center);
-        l.setWrap(true); // Uzun metinleri alt satıra geçir
+        l.setWrap(true);
 
-        // Tabloya ekle (Genişlik vererek metnin taşmasını önleyelim)
         errorDialog.getContentTable().add(l).width(300).pad(20);
 
-        // 3. OK Butonu Stili (Assets.brownGameButton kullanarak)
         TextButton.TextButtonStyle btnStyle = new TextButton.TextButtonStyle();
         btnStyle.font = skin.getFont("default");
         btnStyle.fontColor = Color.WHITE;
@@ -293,12 +287,11 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         if (Assets.brownGameButton != null) {
             TextureRegionDrawable btnDrawable = new TextureRegionDrawable(new TextureRegion(Assets.brownGameButton));
             btnStyle.up = btnDrawable;
-            btnStyle.down = btnDrawable.tint(Color.GRAY); // Basılınca koyulaşsın
+            btnStyle.down = btnDrawable.tint(Color.GRAY);
         }
 
         TextButton okBtn = new TextButton("OK", btnStyle);
 
-        // Butona dinleyici ekle (Pencereyi kapatması için)
         okBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -306,10 +299,8 @@ public class EmpireSelectionScreen extends ScreenAdapter {
             }
         });
 
-        // Butonu dialog'un alt kısmına ekle
         errorDialog.getButtonTable().add(okBtn).width(120).height(50).padBottom(15);
 
-        // Pencereyi ekranda göster
         errorDialog.show(stage);
     }
 
@@ -339,7 +330,6 @@ public class EmpireSelectionScreen extends ScreenAdapter {
         return new Blue("Blue");
     }
 
-    // Texture yükleme ve dispose kodları...
     private TextButton createNavButton(String text) {
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.font = skin.getFont("default");

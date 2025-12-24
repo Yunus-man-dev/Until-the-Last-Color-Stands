@@ -19,7 +19,6 @@ public class PlayerInfoWidget extends Group {
     private Player myself;
     private Game gameBackend;
 
-    // --- DEĞİŞİKLİK 1: Label'ları sınıf değişkeni yapıyoruz (Sonradan erişmek için) ---
     private Label lblGold, lblFood, lblBook, lblTech;
 
     public PlayerInfoWidget(Player targetPlayer, Player myself, Game gameBackend) {
@@ -27,57 +26,49 @@ public class PlayerInfoWidget extends Group {
         this.myself = myself;
         this.gameBackend = gameBackend;
 
-        // 1. Ana Arka Plan
         Image bg = new Image(Assets.infoBgBrown);
         this.setSize(bg.getWidth(), bg.getHeight());
         this.addActor(bg);
 
-        // 2. Başlık
         Label.LabelStyle titleStyle = new Label.LabelStyle(Assets.skin.getFont("default"), Color.BLACK);
         Label titleLbl = new Label(targetPlayer.getName() + "'s Resources", titleStyle);
         titleLbl.setPosition((getWidth() - titleLbl.getPrefWidth()) / 2, getHeight() - 50);
         this.addActor(titleLbl);
 
-        // 3. Kapatma Butonu
         Label closeBtn = new Label("X", titleStyle);
         closeBtn.setPosition(getWidth() - 40, getHeight() - 45);
         closeBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                remove(); // Sahneden kaldırır
+                remove();
             }
         });
         this.addActor(closeBtn);
 
-        // 4. Sarı Bilgi Alanı
         Image infoBg = new Image(Assets.infoBgYellow);
         float infoX = (getWidth() - infoBg.getWidth()) / 2;
         float infoY = getHeight() - 80 - infoBg.getHeight();
         infoBg.setPosition(infoX, infoY);
         this.addActor(infoBg);
 
-        // 5. Kaynak Tablosu
         Table resTable = new Table();
         resTable.setPosition(infoX, infoY);
         resTable.setSize(infoBg.getWidth(), infoBg.getHeight());
         resTable.center();
 
-        // İkonlar
+
         resTable.add(new Image(Assets.gold)).size(60).pad(10);
         resTable.add(new Image(Assets.food)).size(60).pad(10);
         resTable.add(new Image(Assets.book)).size(60).pad(10);
         resTable.add(new Image(Assets.tech)).size(60).pad(10).row();
 
-        // --- DEĞİŞİKLİK 2: Label'ları oluşturup değişkenlere atıyoruz ---
         Label.LabelStyle valStyle = new Label.LabelStyle(Assets.skin.getFont("default"), Color.BLACK);
 
-        // Başlangıçta boş veya mevcut değeri verebiliriz, act() zaten güncelleyecek
         lblGold = createBigLabel("0", valStyle);
         lblFood = createBigLabel("0", valStyle);
         lblBook = createBigLabel("0", valStyle);
         lblTech = createBigLabel("0", valStyle);
 
-        // Tabloya ekliyoruz
         resTable.add(lblGold);
         resTable.add(lblFood);
         resTable.add(lblBook);
@@ -85,11 +76,8 @@ public class PlayerInfoWidget extends Group {
 
         this.addActor(resTable);
 
-        // 6. Trade Butonu
         TextButton.TextButtonStyle tradeStyle = new TextButton.TextButtonStyle();
         tradeStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.infoBtnTrade));
-        // Eğer tint kullanıyorsan TextureRegionDrawable kopyası alman gerekebilir, yoksa asset bozulabilir.
-        // Şimdilik basitçe aynısını verelim:
         tradeStyle.down = tradeStyle.up;
         tradeStyle.font = Assets.skin.getFont("default");
         tradeStyle.fontColor = Color.BLACK;

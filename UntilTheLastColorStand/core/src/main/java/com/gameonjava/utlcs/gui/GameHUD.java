@@ -246,7 +246,6 @@ public class GameHUD implements Disposable {
 
         stage.addActor(interactionBar);
 
-        // ANA YERLEŞİM
         rootTable.add(topTable).growX().height(60).colspan(3).top();
         rootTable.row();
         rootTable.add(leftTable).width(70).top().padTop(20).left();
@@ -355,10 +354,8 @@ public class GameHUD implements Disposable {
     public void showGameOver(Player winner, com.gameonjava.utlcs.Main game) {
         GameOverDialog dialog = new GameOverDialog("Game Over", Assets.skin, game, winner);
 
-        // Diyaloğu sahneye ekle
         dialog.show(stage);
 
-        // Ekranın tam ortasına yerleştir
         dialog.setPosition(
             Math.round((stage.getWidth() - dialog.getWidth()) / 2),
             Math.round((stage.getHeight() - dialog.getHeight()) / 2)

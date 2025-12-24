@@ -101,16 +101,14 @@ public class MapSelectionScreen extends ScreenAdapter {
 
         // 2. Asset'ten Resmi Çek (Assets.brownGameButton veya Assets.empireSelectionBtn
         // kullanabilirsin)
-        // Burada genel kahverengi butonu kullanıyoruz:
         Texture backBtnTexture = Assets.empireSelectionBtn;
 
         if (backBtnTexture != null) {
-            // Görsel bozulmasın diye 9-Patch yapıyoruz
             NinePatch patch = new NinePatch(backBtnTexture, 10, 10, 10, 10);
             NinePatchDrawable drawable = new NinePatchDrawable(patch);
 
             backStyle.up = drawable; // Normal hali
-            backStyle.down = drawable.tint(Color.GRAY); // Basılınca koyulaşsın
+            backStyle.down = drawable.tint(Color.GRAY);
         }
         TextButton backBtn = new TextButton("Back", backStyle);
         backBtn.getLabel().setFontScale(0.18f);
@@ -122,65 +120,50 @@ public class MapSelectionScreen extends ScreenAdapter {
             }
         });
 
-        // Butonu en alta sola koy
         rootTable.add(backBtn).left().bottom().width(150).height(50);
     }
 
     private Table createMapCard(String title, String desc, Texture imgTex, final int mapID) {
         Table card = new Table();
 
-        // Arka Plan
         NinePatch patch = new NinePatch(panelTexture, 12, 12, 12, 12);
         card.setBackground(new NinePatchDrawable(patch));
-        // Pad değerlerini ayarladık
         card.pad(10, 10, 10, 10);
 
-        // --- SOL TARAFI (RESİM) ---
         Image mapImg = new Image(imgTex);
-        // Resmi biraz küçülttük ki karta sığsın
         card.add(mapImg).size(300, 180).padRight(15);
 
-        // --- SAĞ TARAFI (YAZILAR VE BUTON) ---
         Table infoTable = new Table();
 
         Label titleLbl = new Label(title, skin, "default");
         titleLbl.setColor(Color.BLACK);
         titleLbl.setAlignment(Align.left);
-        titleLbl.setFontScale(0.25f); // Başlık biraz büyük olsun
+        titleLbl.setFontScale(0.25f);
 
         Label descLbl = new Label(desc, skin, "default");
         descLbl.setWrap(true);
         descLbl.setAlignment(Align.left);
-        descLbl.setFontScale(0.17f); // Yazı biraz küçük olsun sığması için
+        descLbl.setFontScale(0.17f);
 
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
 
-        // 2. Font ayarlarını mevcut skin'den alın
         style.font = skin.getFont("default");
-        style.fontColor = Color.BLACK; // Veya Color.WHITE
+        style.fontColor = Color.BLACK;
 
-        // 3. Asset'i Kullanın (Örnek olarak Assets.brownGameButton kullanıldı)
-        // Assets sınıfınızda tanımlı olan texture'ı alıyoruz
         Texture buttonTexture = Assets.brownGameButton;
 
-        // Eğer texture null ise (henüz yüklenmediyse) Assets'ten çekmeyi deneyelim:
         if (buttonTexture == null) {
-            // Assets.BROWN_GAME_BUTTON string referansınız varsa:
             buttonTexture = Assets.manager.get(Assets.BROWN_GAME_BUTTON, Texture.class);
         }
 
         if (buttonTexture != null) {
-            // Görselin boyutlanırken bozulmaması için NinePatch kullanıyoruz (Kenar
-            // payları: 10px)
             patch = new NinePatch(buttonTexture, 1, 1, 1, 1);
             NinePatchDrawable drawable = new NinePatchDrawable(patch);
 
-            // 4. Stilin 'up' (basılmamış) ve 'down' (basılmış) durumlarını ayarlayın
             style.up = drawable;
-            style.down = drawable.tint(Color.GRAY); // Basılınca biraz koyulaşsın
+            style.down = drawable.tint(Color.GRAY);
         }
 
-        // 5. Butonu OLUŞTURURKEN bu yeni stili kullanın
         TextButton selectBtn = new TextButton("Start", style);
 
         // 6. Font ölçeğini ayarlayın

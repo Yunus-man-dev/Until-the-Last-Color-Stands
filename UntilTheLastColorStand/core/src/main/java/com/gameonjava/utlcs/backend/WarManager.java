@@ -44,11 +44,9 @@ public class WarManager {
 
     private Army winner;
 
-    // GUI için eklenen alanlar
     private int attackerCasualties = 0;
     private int defenderCasualties = 0;
     public WarManager() {
-        // Boş bırak, sadece obje oluşturmak için lazım
     }
 
     public static boolean isValidWar(Army attackerArmy ,Army defenderArmy, Tile battleTile){
@@ -92,9 +90,7 @@ public class WarManager {
         this.defenderArmy = defenderArmy;
         this.battleTile = battleTile;
 
-        // --- EKLENEN KISIM: Savaş öncesi verileri kaydet ---
         this.guiAttName = attackerArmy.getPlayer().getName();
-        // Eğer savunan yoksa (Neutral) veya null ise kontrolü:
         this.guiDefName = (defenderArmy.getPlayer() != null) ? defenderArmy.getPlayer().getName() : "Neutral";
 
         this.guiAttSoldierCount = attackerArmy.getSoldiers();
@@ -193,7 +189,7 @@ public class WarManager {
     // uniqueMultiplier, which is a special multiplier for that civilization)
 
         double TP = army.player.getTechnologyPoint();
-        if (TP == 0) TP = 1; // 0 olursa puan sıfırlanmasın diye
+        if (TP == 0) TP = 1;
         int soldiets = army.getSoldiers();
         return dice * TP * soldiets * army.player.getCivilization().getAttackMultiplier();
 
@@ -202,7 +198,6 @@ public class WarManager {
 
 
         if(winner == attackerArmy){
-            // Savunan hepsini kaybetti
             defenderCasualties = defenderArmy.getSoldiers();
             defenderArmy.removeSoldiers(defenderArmy.getSoldiers());
 
@@ -214,7 +209,6 @@ public class WarManager {
 
         }
         else{
-            // Saldıran hepsini kaybetti
             attackerCasualties = attackerArmy.getSoldiers();
             attackerArmy.removeSoldiers(attackerArmy.getSoldiers());
 
@@ -267,20 +261,15 @@ public class WarManager {
         battleTile.setArmy(winner);
 
         if(!battleTile.getTerrainType().equals(TerrainType.WATER)){
-            // Eski sahibin listesinden sil
             defenderArmy.player.getOwnedTiles().remove(battleTile);
 
-            // --- EKLENEN KISIM: ELENME KONTROLÜ ---
-            // Savunan oyuncunun toprağı kalmadıysa elenmesi lazım.
             defenderArmy.player.checkElimination();
-            // -------------------------------------
 
             attackerArmy.player.getOwnedTiles().add(battleTile);
-            battleTile.setOwner(attackerArmy.player); // Sahiplik güncelle
+            battleTile.setOwner(attackerArmy.player);
         }
     }
 
-    // --- GUI İçin Getterlar ---
     public boolean isAttackerWon() { return winner == attackerArmy; }
     public int getAttackerDice() { return attackerDice; }
     public int getDefenderDice() { return defenderDice; }

@@ -17,7 +17,6 @@ public class TileSelector {
         this.selectedTile = tile;
         this.highlightedTiles.clear();
         if (tile != null) {
-            // Seçilen tile'ın komşularını Map sınıfından alıyoruz
             this.highlightedTiles = map.getNeighbors(tile);
         }
     }

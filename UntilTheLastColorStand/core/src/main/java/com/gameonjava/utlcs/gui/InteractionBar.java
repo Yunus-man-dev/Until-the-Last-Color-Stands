@@ -80,8 +80,6 @@ public class InteractionBar extends Table {
         boolean isMaxLevel = hasBuilding && t.getBuilding().getLevel() >= 3;
         boolean hasArmy = t.hasArmy() && t.getArmy().getSoldiers() > 0;
 
-        // --- SU KONTROLÜ (YENİ) ---
-        // Eğer zemin SU veya DERİN SU ise isWater true olur.
         boolean isWater = (t.getTerrainType() == TerrainType.WATER ||
             t.getTerrainType() == TerrainType.DEEP_WATER);
 
@@ -107,7 +105,6 @@ public class InteractionBar extends Table {
             }
         }
 
-        // --- SENARYOLAR ---
 
         if ((!hasBuilding || !isMaxLevel) && hasArmy) {
             setSlotImage(Assets.ibSlot3);
@@ -121,11 +118,10 @@ public class InteractionBar extends Table {
                 addTextButton("Develop", () -> developBuilding(t));
             }
 
-            // --- RECRUIT KONTROLÜ ---
             if (!isWater) {
                 addTextButton("Recruit", () -> openRecruitDialog(t));
             } else {
-                addEmptySlot(); // Su ise boşluk bırak (hiza bozulmasın)
+                addEmptySlot();
             }
 
 
@@ -134,7 +130,6 @@ public class InteractionBar extends Table {
             } else {
                 addEmptySlot();
             }
-            // -----------------------------------------
 
             addCancelButton();
         }
@@ -142,7 +137,6 @@ public class InteractionBar extends Table {
         else if (isMaxLevel && hasArmy) {
             setSlotImage(Assets.ibSlot3);
 
-            // --- RECRUIT KONTROLÜ ---
             if (!isWater) {
                 addTextButton("Recruit", () -> openRecruitDialog(t));
             } else {
@@ -154,7 +148,6 @@ public class InteractionBar extends Table {
             } else {
                 addEmptySlot();
             }
-            // ----------------------------
 
             addCancelButton();
         }
@@ -164,8 +157,6 @@ public class InteractionBar extends Table {
                 setSlotImage(Assets.ibSlot3);
                 addTextButton("Construct", () -> openBuildingDialog(t));
 
-                // --- RECRUIT KONTROLÜ ---
-                // Burası zaten Plain/Forest olduğu için isWater false'tur ama yine de standart olsun
                 if (!isWater) {
                     addTextButton("Recruit", () -> openRecruitDialog(t));
                 } else {
@@ -176,8 +167,6 @@ public class InteractionBar extends Table {
             } else {
                 setSlotImage(Assets.ibSlot2);
 
-                // --- RECRUIT KONTROLÜ ---
-                // Su ise burada Recruit çıkmamalı
                 if (!isWater) {
                     addTextButton("Recruit", () -> openRecruitDialog(t));
                 } else {
@@ -205,7 +194,6 @@ public class InteractionBar extends Table {
             setSlotImage(Assets.ibSlot3);
             addTextButton("Develop", () -> developBuilding(t));
 
-            // --- RECRUIT KONTROLÜ ---
             if (!isWater) {
                 addTextButton("Recruit", () -> openRecruitDialog(t));
             } else {

@@ -22,12 +22,10 @@ public class SettingsDialog extends Dialog {
         super(title, skin);
         this.onBackAction = onBackAction;
 
-        // 1. PauseDialog'da yüklenen stilleri kullan
         if (PauseDialog.brownPanelDrawable != null) {
             setBackground(PauseDialog.brownPanelDrawable);
         }
 
-        // 2. Pencere Ayarları
         setModal(true);
         setMovable(false);
         setResizable(false);
@@ -39,7 +37,6 @@ public class SettingsDialog extends Dialog {
 
         initializeControls();
 
-        // Back Butonu - SARI STİL
         TextButton closeBtn;
         if (PauseDialog.yellowButtonStyle != null) {
             closeBtn = new TextButton("Back", PauseDialog.yellowButtonStyle);
@@ -64,7 +61,6 @@ public class SettingsDialog extends Dialog {
         Table content = getContentTable();
         Skin skin = getSkin();
 
-        // Müzik Sesi
         Label volumeLabel = new Label("Music Volume", skin);
         volumeLabel.setAlignment(Align.center);
         volumeLabel.setColor(Color.BLACK); // Kahverengi üstünde siyah yazı
@@ -87,15 +83,15 @@ public class SettingsDialog extends Dialog {
 
         TextButton tutorialBtn;
         if (PauseDialog.yellowButtonStyle != null) {
-            tutorialBtn = new TextButton("Tutorial", PauseDialog.yellowButtonStyle);
+            tutorialBtn = new TextButton("Tutorial & Lore", PauseDialog.yellowButtonStyle);
         } else {
-            tutorialBtn = new TextButton("Tutorial", skin);
+            tutorialBtn = new TextButton("Tutorial & Lore", skin);
         }
 
         tutorialBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.net.openURI("https://drive.google.com/file/d/1M6P292S_tqcnMlREHtBu2P3BDVfUtAMP/view?usp=sharing");
+                Gdx.net.openURI("https://drive.google.com/file/d/1vFYNv4yKXk--r8xFhPQ2YLAbYYHBq-KH/view?usp=sharing");
             }
         });
 

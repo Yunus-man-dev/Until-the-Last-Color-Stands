@@ -77,7 +77,6 @@ public class SettingsDialog2 extends Dialog {
         separator.setColor(Color.BLACK);
         content.add(separator).padBottom(20).row();
 
-        // --- 3. KAPAT BUTONU ---
 
         TextButton.TextButtonStyle closeStyle;
 

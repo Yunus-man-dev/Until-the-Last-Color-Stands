@@ -70,14 +70,12 @@ public class IncomingTradesDialog extends Dialog {
         Group card = new Group();
         card.setSize(CARD_WIDTH, CARD_HEIGHT);
 
-        // A. KART ARKA PLANI
         if (Assets.incomingBg != null) {
             Image bg = new Image(Assets.incomingBg);
             bg.setSize(CARD_WIDTH, CARD_HEIGHT);
             card.addActor(bg);
         }
 
-        // B. SARI BAŞLIK
         float headerH = 50;
         float headerW = CARD_WIDTH - 60;
         float headerX = (CARD_WIDTH - headerW) / 2;
@@ -90,7 +88,6 @@ public class IncomingTradesDialog extends Dialog {
             card.addActor(header);
         }
 
-        // C. GÖNDEREN İSMİ
         Label.LabelStyle textStyle = new Label.LabelStyle(getSkin().getFont("default"), Color.BLACK);
         Label nameLbl = new Label("Offer From: " + trade.getCreator().getName(), textStyle);
         nameLbl.setAlignment(Align.center);
@@ -99,10 +96,8 @@ public class IncomingTradesDialog extends Dialog {
                 headerY + (headerH - nameLbl.getPrefHeight()) / 2);
         card.addActor(nameLbl);
 
-        // --- KAYNAKLAR ---
         float contentY = 130;
 
-        // SOL (You Get)
         Resource getRes = trade.getGivenResource();
         int getAmt = trade.getGivenResourceAmount();
         Texture getIcon = getIconForResource(getRes);
@@ -124,13 +119,11 @@ public class IncomingTradesDialog extends Dialog {
         amtGet.setPosition(100 + (60 - amtGet.getPrefWidth()) / 2, contentY + 15);
         card.addActor(amtGet);
 
-        // OK
         Label arrow = new Label(">>>", textStyle);
         arrow.setFontScale(1.5f);
         arrow.setPosition((CARD_WIDTH - arrow.getPrefWidth()) / 2, contentY + 15);
         card.addActor(arrow);
 
-        // SAĞ (You Pay)
         Resource payRes = trade.getWantedResource();
         int payAmt = trade.getWantedResourceAmount();
         Texture payIcon = getIconForResource(payRes);
@@ -152,7 +145,6 @@ public class IncomingTradesDialog extends Dialog {
         amtPay.setPosition(CARD_WIDTH - 160 + (60 - amtPay.getPrefWidth()) / 2, contentY + 15);
         card.addActor(amtPay);
 
-        // D. BUTONLAR
         float btnY = 30;
         float btnW = 120;
         float btnH = 50;
@@ -174,11 +166,8 @@ public class IncomingTradesDialog extends Dialog {
             public void clicked(InputEvent event, float x, float y) {
                 gameBackend.acceptTrade(trade);
 
-                // HUD güncelle (Böylece mektup butonu hala teklif varsa yanıp sönmeye devam eder)
                 hud.updateStats(currentPlayer, Game.getCurrentTurn());
 
-                // --- DEĞİŞİKLİK: Bir işlem yapınca pencereyi direkt kapat ---
-                // Kullanıcı sıradaki için tekrar mektuba basmalı.
                 hide();
             }
         });
@@ -201,10 +190,8 @@ public class IncomingTradesDialog extends Dialog {
             public void clicked(InputEvent event, float x, float y) {
                 gameBackend.refuseTrade(trade);
 
-                // HUD güncelle
                 hud.updateStats(currentPlayer, Game.getCurrentTurn());
 
-                // Pencereyi kapat
                 hide();
             }
         });

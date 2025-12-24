@@ -26,7 +26,7 @@ public class MovementPoint extends Resource {
     public MovementPoint() {
         super();
     }
-    
+
     public int updateMovementPoint(double techPoints){
         this.setValue(this.baseLimit);
 
@@ -38,9 +38,8 @@ public class MovementPoint extends Resource {
     }
     @Override
     public void write(Json json) {
-        super.write(json); // Resource sınıfındaki "value"yu kaydet
-        
-        // Şimdi MovementPoint'e özel ayarları kaydet
+        super.write(json);
+
         json.writeValue("baseLimit", baseLimit);
         json.writeValue("MOVE", MOVE);
         json.writeValue("UPGRADE", UPGRADE);
@@ -52,8 +51,8 @@ public class MovementPoint extends Resource {
 
     @Override
     public void read(Json json, JsonValue jsonData) {
-        super.read(json, jsonData); // Resource sınıfındaki "value"yu oku
-        
+        super.read(json, jsonData);
+
         // MovementPoint ayarlarını geri yükle
         baseLimit = jsonData.getDouble("baseLimit");
         MOVE = jsonData.getDouble("MOVE");

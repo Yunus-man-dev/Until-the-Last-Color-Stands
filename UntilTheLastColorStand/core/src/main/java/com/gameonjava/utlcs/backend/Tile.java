@@ -100,7 +100,6 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
         return defenseBonus;
     }
 
-    // This method checks if there is a building on that tile.
     public boolean hasBuilding() {
         return building != null;
     }
@@ -120,11 +119,10 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
         return true;
     }
 
-    // This method calculates food consumption per tile. [cite: 299]
+    // This method calculates food consumption per tile
     public double calculateFoodConsumption() {
         double consumption = owner.getCivilization().FTILE;
         if (hasArmy()) {
-            // The amount of food consumed by the soldiers + the amount consumed by the tile
             // soldierConsumptionRate must be added
             if (this.getOwner().getCivilization() instanceof Brown) {
                 soldierConsumptionRate = (int) (soldierConsumptionRate * Brown.getFoodConsumptionIncrease());
@@ -140,7 +138,6 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
         this.building = null;
     }
 
-    // This method will delete the army if the number of soldiers is 0.
     public void removeArmy() {
         if (army != null && army.getSoldiers() <= 0) {
             this.army = null;
@@ -202,17 +199,17 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
 
     @Override
     public void read(Json json, JsonValue jsonData) {
-       
+
         // q = jsonData.getInt("q", 0);
         // r = jsonData.getInt("r", 0);
         // terrainName = json.readValue("Terrain", com.gameonjava.utlcs.backend.Enum.TerrainType.class, jsonData);
-        
+
         // // 1. Bina Bağlantısı (Bunu zaten yapmıştık)
-        // building = json.readValue("Building", null, jsonData); 
+        // building = json.readValue("Building", null, jsonData);
         // if (building != null) {
         //     building.setTile(this);
         // }
-        
+
         // // 2. ORDU BAĞLANTISI (YENİ KISIM)
         // army = json.readValue("Army", com.gameonjava.utlcs.backend.Army.class, jsonData);
         // if (army != null) {
@@ -224,16 +221,16 @@ public class Tile implements com.badlogic.gdx.utils.Json.Serializable{
         q = jsonData.getInt("q", 0);
         r = jsonData.getInt("r", 0);
         terrainName = json.readValue("Terrain", com.gameonjava.utlcs.backend.Enum.TerrainType.class, jsonData);
-        
+
         // 1. Bina Bağlantısı
-        building = json.readValue("Building", null, jsonData); 
+        building = json.readValue("Building", null, jsonData);
         if (building != null) {
             building.setTile(this);
         }
-        
+
         // 2. ORDU BAĞLANTISI VE TEMİZLİĞİ (DÜZELTME BURADA)
         army = json.readValue("Army", com.gameonjava.utlcs.backend.Army.class, jsonData);
-        
+
         // EĞER ASKER SAYISI 0 İSE ORDUYU YOK ET (GHOST ARMY FIX)
         if (army != null) {
             if (army.getSoldiers() <= 0) {

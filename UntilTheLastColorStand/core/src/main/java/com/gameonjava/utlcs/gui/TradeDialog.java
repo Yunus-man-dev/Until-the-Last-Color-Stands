@@ -25,7 +25,6 @@ public class TradeDialog extends Group {
     private Player receiver;
     private Game gameBackend;
 
-    // Seçim durumları
     private String selectedGiveType = "Gold";
     private String selectedWantType = "Food";
 
@@ -150,7 +149,6 @@ public class TradeDialog extends Group {
 
         TextButton approveBtn = new TextButton("Approve", approveStyle);
 
-        // Butonu biraz daha aşağı çekmek için -15 yerine -20 yaptım
         float btnY = botPanelY - approveBtn.getHeight() - 20;
         if (btnY < 10)
             btnY = 15;
@@ -166,7 +164,6 @@ public class TradeDialog extends Group {
         this.addActor(approveBtn);
     }
 
-    // --- YARDIMCI METODLAR ---
 
     private Image createSelectableIcon(Texture texture, final String typeName, final boolean isGiveSection) {
         final Image img = new Image(texture);
@@ -186,9 +183,8 @@ public class TradeDialog extends Group {
     }
 
     private void updateIconVisuals(boolean isGiveSection) {
-        // Alpha (Görünürlük) ayarı ile seçim belirginleştirme
-        float selectedAlpha = 1.0f; // Tam görünür
-        float unselectedAlpha = 0.3f; // %30 görünür (Soluk)
+        float selectedAlpha = 1.0f;
+        float unselectedAlpha = 0.3f;
 
         if (isGiveSection) {
             giveGoldImg.setColor(1, 1, 1, selectedGiveType.equals("Gold") ? selectedAlpha : unselectedAlpha);
@@ -218,15 +214,13 @@ public class TradeDialog extends Group {
             Resource wantedRes = createResourceByType(selectedWantType, wantAmt);
 
             Trade newTrade = new Trade(creator, receiver, givenRes, giveAmt, wantedRes, wantAmt);
-            
-            // --- DEĞİŞİKLİK: Boolean kontrolü ve Hata Mesajı ---
+
             boolean success = gameBackend.addTrade(newTrade);
 
             if (success) {
                 System.out.println("Trade offer sent: " + giveAmt + " " + selectedGiveType + " <-> " + wantAmt + " " + selectedWantType);
-                remove(); // Başarılıysa kapat
+                remove();
             } else {
-                // Başarısızsa (Kaynak yetersiz) asset'li dialog aç
                 showErrorDialog("Trade Failed!\nCheck Resources (You or Receiver) or MP.");
             }
 
@@ -235,30 +229,25 @@ public class TradeDialog extends Group {
         }
     }
 
-    // --- YENİ EKLENEN HATA PENCERESİ (Asset Kullanır) ---
     private void showErrorDialog(String message) {
         Dialog errorDialog = new Dialog("", Assets.skin);
-        
-        // Arka Plan
+
         if (Assets.infoBgBrown != null) {
             errorDialog.setBackground(new TextureRegionDrawable(new TextureRegion(Assets.infoBgBrown)));
         }
 
-        // Mesaj
         Label l = new Label(message, Assets.skin);
-        l.setColor(Color.WHITE); 
+        l.setColor(Color.WHITE);
         l.setAlignment(Align.center);
         errorDialog.getContentTable().add(l).pad(20);
-        
-        // Buton Stili
+
         TextButton.TextButtonStyle btnStyle = new TextButton.TextButtonStyle();
         btnStyle.font = Assets.skin.getFont("default");
         btnStyle.fontColor = Color.WHITE;
-        
+
         if (Assets.brownGameButton != null) {
             btnStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.brownGameButton));
         } else {
-            // Asset yoksa varsayılan
             btnStyle = Assets.skin.get(TextButton.TextButtonStyle.class);
         }
 
@@ -271,8 +260,7 @@ public class TradeDialog extends Group {
         });
 
         errorDialog.getButtonTable().add(okBtn).width(100).height(50).padBottom(10);
-        
-        // Göster
+
         if (getStage() != null) {
             errorDialog.show(getStage());
         }

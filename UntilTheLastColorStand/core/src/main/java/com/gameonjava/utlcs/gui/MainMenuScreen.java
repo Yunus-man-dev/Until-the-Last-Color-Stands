@@ -23,7 +23,6 @@ public class MainMenuScreen extends ScreenAdapter {
     private final Main game;
     private Stage stage;
 
-    // Bellek yönetimi için texture referanslarını tutuyoruz
     private Texture backgroundTexture;
     private Texture buttonTexture;
 
@@ -35,50 +34,41 @@ public class MainMenuScreen extends ScreenAdapter {
     public void show() {
         Assets.music.setLooping(true);
 
-        // 2. Ses seviyesini ayarla (0.0 ile 1.0 arası)
-        // Rapordaki "Settings" kısmını buraya bağlayacağız.
         Assets.music.setVolume(0.5f); // %50 ses
 
-        // 3. Çalmaya başla (Eğer zaten çalmıyorsa)
         if (!Assets.music.isPlaying()) {
             Assets.music.play();
         }
-        // 1. SAHNE KURULUMU
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
         // =================================================================
-        // 2. ARKA PLAN (menu_bg.png)
+        // 2. ARKA PLAN
         // =================================================================
             backgroundTexture = new Texture(Gdx.files.internal("ui/bg.png"));
             Image bgImage = new Image(backgroundTexture);
-            bgImage.setFillParent(true); // Resmi ekrana yay
-            stage.addActor(bgImage);     // En arkaya ekle
+            bgImage.setFillParent(true);
+            stage.addActor(bgImage);
 
 
         // =================================================================
         // 3. ÖZEL BUTON STİLİ OLUŞTURMA (button_yellow.png)
         // =================================================================
-        // JSON dosyasıyla uğraşmadan, elimizdeki PNG ile stili kodda yaratıyoruz.
 
         TextButton.TextButtonStyle customButtonStyle = new TextButton.TextButtonStyle();
 
             buttonTexture = new Texture(Gdx.files.internal("ui/BrownGameButton.png"));
 
-            // NinePatch: Resmin köşelerini (örn: 10px) koru, sadece ortasını esnet.
-            // Bu sayede buton büyüse de kenarlar bozulmaz.
-            // (10, 10, 10, 10 değerleri resmin çerçeve kalınlığına göre değiştirilebilir)
             NinePatch patch = new NinePatch(buttonTexture, 12, 12, 12, 12);
             NinePatchDrawable buttonDrawable = new NinePatchDrawable(patch);
 
             customButtonStyle.up = buttonDrawable; // Normal hali
-            customButtonStyle.down = buttonDrawable.tint(Color.GRAY); // Basılınca koyulaşsın
-            customButtonStyle.over = buttonDrawable.tint(Color.LIGHT_GRAY); // Üzerine gelince parlasın
+            customButtonStyle.down = buttonDrawable.tint(Color.GRAY);
+            customButtonStyle.over = buttonDrawable.tint(Color.LIGHT_GRAY);
 
 
-        // Fontu Skin'den al (Brookshire fontu)
         customButtonStyle.font = Assets.skin.getFont("default");
-        customButtonStyle.fontColor = Color.WHITE; // Sarı buton üstüne siyah yazı daha iyi okunur
+        customButtonStyle.fontColor = Color.WHITE;
         customButtonStyle.downFontColor = Color.WHITE;
 
         // =================================================================
@@ -90,20 +80,19 @@ public class MainMenuScreen extends ScreenAdapter {
 
         rootTable.pad(40);
         rootTable.padTop(100);
-        // --- Başlık ---
         //Label titleLabel = new Label("Until the Last Color Stands", Assets.skin, "default");
-        //titleLabel.setFontScale(1.5f); // Başlığı büyüt
+        //titleLabel.setFontScale(1.5f);
 
         TextButton btnNewGame = new TextButton("New Game", customButtonStyle);
         TextButton btnLoadGame = new TextButton("Load Game", customButtonStyle);
         TextButton btnSettings = new TextButton("Settings", customButtonStyle);
-        TextButton btnTutorial = new TextButton("Tutorial", customButtonStyle);
+        TextButton btnTutorial = new TextButton("Tutorial & Lore", customButtonStyle);
 
-        // --- Buton İşlevleri (Listeners) ---
         btnNewGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(new EmpireSelectionScreen(game));
+                Game.currentTurn = 1;
             }
         });
 
@@ -135,15 +124,11 @@ public class MainMenuScreen extends ScreenAdapter {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 SaveLoad sl = new SaveLoad();
-                // Dosya adının doğru olduğundan emin ol (savefile.json vs.)
                 Game loadedGame = sl.load("savefile.json");
 
                 if (loadedGame != null) {
-                    // DÜZELTME BURADA:
-                    // Yüklenen oyunu Main sınıfına "set" ediyoruz.
                     game.setBackendGame(loadedGame);
 
-                    // Sonra ekrana geçiyoruz
                     game.changeScreen(Main.ScreenType.GAME);
                     System.out.println("Save Loaded Successfully!");
                 } else {
@@ -155,15 +140,13 @@ public class MainMenuScreen extends ScreenAdapter {
         btnTutorial.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.net.openURI("https://drive.google.com/file/d/1M6P292S_tqcnMlREHtBu2P3BDVfUtAMP/view?usp=sharing");
+                Gdx.net.openURI("https://drive.google.com/file/d/1vFYNv4yKXk--r8xFhPQ2YLAbYYHBq-KH/view?usp=sharing");
             }
         });
 
-        // --- Tabloya Ekleme ve Hizalama ---
-        // Butonların hepsini aynı genişlikte (300px) yapıyoruz.
         float btnWidth = 220f;
         float btnHeight = 100f;
-        float gap = 10f; // Butonlar arası boşluk
+        float gap = 10f;
 
         //rootTable.add(titleLabel).padBottom(60).row();
         rootTable.add(btnNewGame).width(btnWidth).height(btnHeight).padBottom(gap).row();

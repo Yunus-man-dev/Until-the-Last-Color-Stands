@@ -35,20 +35,16 @@ public class PauseDialog extends Dialog {
             loadCustomStyles(skin);
         }
 
-        // 2. Arka Planı Ayarla
+
         setBackground(brownPanelDrawable);
 
-        // 3. Pencere Ayarları
         setModal(true);
         setMovable(false);
         setResizable(false);
 
-        // --- DEĞİŞİKLİK 1: BAŞLIK YAZISINI BÜYÜTME ---
         getTitleLabel().setAlignment(Align.center);
         getTitleLabel().setColor(Color.BLACK);
 
-        // --- DEĞİŞİKLİK 2: ARKA PLANI KISALTME (PADDING AYARI) ---
-        // Yeni değerler: Üstten ve alttan kıstık.
         pad(40, 40, 20, 40);
 
         initializeControls();
@@ -57,23 +53,19 @@ public class PauseDialog extends Dialog {
     }
 
     private void loadCustomStyles(Skin skin) {
-        // A) KAHVERENGİ PANEL (Arka Plan)
         Texture panelTexture = new Texture(Gdx.files.internal("ui/panel_brown.png"));
         NinePatch panelPatch = new NinePatch(panelTexture, 12, 12, 12, 12);
         brownPanelDrawable = new NinePatchDrawable(panelPatch);
 
-        // B) SARI BUTON
         Texture buttonTexture = new Texture(Gdx.files.internal("ui/button_yellow.png"));
         NinePatch buttonPatch = new NinePatch(buttonTexture, 12, 12, 12, 12);
 
-        // Normal hali
         NinePatchDrawable buttonDrawable = new NinePatchDrawable(buttonPatch);
 
         yellowButtonStyle = new TextButton.TextButtonStyle();
         yellowButtonStyle.up = buttonDrawable;
         yellowButtonStyle.down = buttonDrawable.tint(Color.LIGHT_GRAY); // Basınca kararır
 
-        // Font ayarı
         yellowButtonStyle.font = skin.getFont("default");
         yellowButtonStyle.fontColor = Color.BLACK;
     }
@@ -83,9 +75,8 @@ public class PauseDialog extends Dialog {
 
         float btnWidth = 200f;
         float btnHeight = 50f;
-        float padding = 10f; // Butonlar arası boşluğu biraz azalttım
+        float padding = 10f;
 
-        // --- Resume Butonu ---
         TextButton resumeBtn = new TextButton("Resume Game", yellowButtonStyle);
         resumeBtn.addListener(new ClickListener() {
             @Override
@@ -94,7 +85,6 @@ public class PauseDialog extends Dialog {
             }
         });
 
-        // --- Save Butonu ---
         final TextButton saveBtn = new TextButton("Save Game", yellowButtonStyle);
         saveBtn.addListener(new ClickListener() {
             @Override
@@ -112,20 +102,18 @@ public class PauseDialog extends Dialog {
             }
         });
 
-        // --- Settings Butonu ---
         TextButton settingsBtn = new TextButton("Settings", yellowButtonStyle);
         settingsBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 final Stage stage = getStage();
-                hide(); // Mevcut menüyü gizle
+                hide();
 
-                // Settings Dialog'u aç
                 SettingsDialog settingsDialog = new SettingsDialog("Settings", getSkin(), new Runnable() {
                     @Override
                     public void run() {
                         if (stage != null) {
-                            show(stage); // Geri dönünce Pause menüsünü tekrar aç
+                            show(stage);
                         }
                     }
                 });
@@ -133,7 +121,6 @@ public class PauseDialog extends Dialog {
             }
         });
 
-        // --- Quit Butonu ---
         TextButton quitBtn = new TextButton("Quit to Menu", yellowButtonStyle);
         quitBtn.addListener(new ClickListener() {
             @Override

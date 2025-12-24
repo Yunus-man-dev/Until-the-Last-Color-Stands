@@ -12,7 +12,6 @@ public class Map {
     public final int height = 21;
     private int mapID;
 
-    // Constants
     private static final int PLAIN = 0;
     private static final int FOREST = 1;
     private static final int MOUNTAIN = 2;
@@ -223,11 +222,8 @@ public class Map {
 
         int[][] directions;
 
-        // EĞER "ODD-R" (Tek Satırları Sağa Kaydırma) SİSTEMİ KULLANIYORSAK:
-        // (MapManager'daki "if (r % 2 == 1) x += ..." kodu buna işaret ediyor)
 
-        if (r % 2 == 0) { 
-            // --- ÇİFT SATIRLAR (0, 2, 4...) İÇİN KOMŞULAR ---
+        if (r % 2 == 0) {
             directions = new int[][] {
                 { 1, 0 },  // Sağ
                 { 0, -1 }, // Sağ Üst
@@ -236,9 +232,7 @@ public class Map {
                 { -1, 1 }, // Sol Alt
                 { 0, 1 }   // Sağ Alt
             };
-        } else { 
-            // --- TEK SATIRLAR (1, 3, 5...) İÇİN KOMŞULAR ---
-            // Tek satırlar görsel olarak sağa kaydığı için indeksler değişir
+        } else {
             directions = new int[][] {
                 { 1, 0 },  // Sağ
                 { 1, -1 }, // Sağ Üst
@@ -273,7 +267,7 @@ public class Map {
             startQ = 1;
             startR = 5;
            }
-            
+
         } else if (startPositionIndex == 1) {
             startQ = width - 4;
             startR = height - 4;
@@ -311,12 +305,10 @@ public class Map {
 
         TerrainType type = tile.getTerrainType();
 
-        // Construction is not allowed on MOUNTAIN, WATER, or DEEP_WATER.
         if (type != TerrainType.PLAIN && type != TerrainType.FOREST) {
             return false;
         }
 
-        // Special Rule for PORT:Although built on land (Plain/Forest), it must be
         // adjacent to a water source.
         if (bt == BuildingType.PORT) {
             ArrayList<Tile> neighbors = getNeighbors(tile);

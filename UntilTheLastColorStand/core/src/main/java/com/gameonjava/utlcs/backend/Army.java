@@ -9,9 +9,8 @@ public class Army implements com.badlogic.gdx.utils.Json.Serializable{
     Player player;
     private int numberOfSoldiers;
     Tile tile;
-    // Army.java sınıfının içine ekle:
 
-    private int movesMadeThisTurn = 0; // Bu tur kaç kere hareket etti?
+    private int movesMadeThisTurn = 0;
 
     public int getMovesMadeThisTurn() {
         return movesMadeThisTurn;
@@ -31,11 +30,10 @@ public class Army implements com.badlogic.gdx.utils.Json.Serializable{
     }
 
 
-    // --- YENİ EKLENEN SETTERLAR (Yükleme sonrası bağlantı için) ---
     public void setTile(Tile tile) {
         this.tile = tile;
     }
-    
+
     public void setPlayer(Player player) {
         this.player = player;
     }

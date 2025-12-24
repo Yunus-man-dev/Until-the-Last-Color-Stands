@@ -23,7 +23,7 @@ public class MapInputProcessor extends InputAdapter {
     private float r; // Hex Yarıçapı
 
     // Seçim Mantığı İçin
-    private Tile selectedTile = null; // İlk tıklanan tile (Örn: Saldıran asker)
+    private Tile selectedTile = null;
 
     // TEK VE TEMİZ CONSTRUCTOR
     public MapInputProcessor(MapManager mapManager, OrthographicCamera camera, float r, GameHUD hud) {
@@ -34,15 +34,13 @@ public class MapInputProcessor extends InputAdapter {
     }
 
 
-    // Sınıfın en başına bu değişkenleri ekle:
     private boolean isMoveMode = false;
     private Tile moveSourceTile = null;
     private int amountToMove = 0;
 
-    // Bu metodu sınıfın içine ekle (InteractionBar buradan çağıracak):
-    public void startMoveMode(Tile source, int amount) { // Parametre eklendi
+    public void startMoveMode(Tile source, int amount) {
         this.moveSourceTile = source;
-        this.amountToMove = amount; // Miktarı kaydet
+        this.amountToMove = amount;
         this.isMoveMode = true;
         System.out.println("Move Mode ON: Moving " + amount + " soldiers.");
     }
@@ -55,18 +53,14 @@ public class MapInputProcessor extends InputAdapter {
         Vector3 worldPos = camera.unproject(new Vector3(screenX, screenY, 0));
         Tile clickedTile = mapManager.getTileAtPixel(worldPos.x, worldPos.y, r);
 
-        // --- YENİ EKLENEN KISIM: HAREKET MODU KONTROLÜ ---
         if (isMoveMode) {
             if (clickedTile != null && moveSourceTile != null) {
 
-                // 1. Backend hareketini çağır (amountToMove değişkenini kullandığından emin ol)
                 com.gameonjava.utlcs.backend.WarManager warResult =
                     hud.getBackendGame().moveArmy(moveSourceTile, clickedTile, amountToMove);
 
-                // 2. İstatistikleri güncelle
                 hud.updateStats(hud.getBackendGame().getCurrentPlayer(), com.gameonjava.utlcs.backend.Game.getCurrentTurn());
 
-                // 3. SADECE SAVAŞ OLDUYSA PENCERE AÇ
                 if (warResult != null) {
                     hud.showWarResult(warResult);
                 }
@@ -74,7 +68,6 @@ public class MapInputProcessor extends InputAdapter {
                 System.out.println("Move/Attack processed.");
             }
 
-            // Modu kapat
             isMoveMode = false;
             moveSourceTile = null;
             clearSelection();
@@ -95,16 +88,10 @@ public class MapInputProcessor extends InputAdapter {
         }
     }
 
-    // Oyun Mantığı (Savaş, İnşaat, Seçim)
-    // MapInputProcessor.java
 
-    // Oyun Mantığı (Sadece İnşaat ve Seçim)
-    // NOT: Saldırı mantığı artık 'moveArmy' içinde olduğu için buradan kaldırıldı.
     private void handleInteraction(Tile targetTile) {
         Player currentPlayer = hud.getBackendGame().getCurrentPlayer();
 
-        // A. İNŞAAT VE SEÇİM SENARYOSU
-        // Eğer kendi taşımıza tıkladıysak
         if (targetTile.getOwner() != null && targetTile.getOwner().equals(currentPlayer)) {
 
             // Eğer bina yoksa -> İnşaat menüsünü açma ihtimali var
@@ -125,18 +112,14 @@ public class MapInputProcessor extends InputAdapter {
             }
         }
 
-        // B. STANDART SEÇİM (SELECT)
-        // Burası hem kendi askerimizi seçmek hem de düşmanı sadece 'görmek' için çalışır.
         selectTile(targetTile);
     }
 
     private void selectTile(Tile t) {
-        // Eski seçimi temizle
         clearSelection();
 
-        // Yeni taşı seç
         selectedTile = t;
-        t.highlight = true; // MapManager render ederken bunu sarı yapacak
+        t.highlight = true;
 
         System.out.println("Tile Seçildi: Q=" + t.getQ() + ", R=" + t.getR());
 
@@ -161,12 +144,9 @@ public class MapInputProcessor extends InputAdapter {
         }
     }
 
-    // --- MOUSE HAREKETLERİ (HOVER & CAMERA) ---
 
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
-        // Hover efektini şimdilik kapattım, çünkü tıklama seçimiyle (highlight) çakışıyor.
-        // İstersen burayı açabilirsin ama selectedTile'ı söndürmediğinden emin olmalısın.
         return true;
     }
 

@@ -260,25 +260,20 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
     private void applyStarvation() {
         System.out.println(this.name + " AÇLIK ÇEKİYOR! Askerler ölüyor...");
 
-        // ConcurrentModificationException hatası almamak için listeyi kopyalayarak dönüyoruz
         for (Tile tile : new ArrayList<>(ownedTiles)) {
             if (tile.hasArmy()) {
                 Army army = tile.getArmy();
                 int currentSoldiers = army.getSoldiers();
 
-                // Ölüm Oranı: %25 (En az 1 asker ölür)
                 int deaths = (int) Math.ceil(currentSoldiers * 0.25);
 
-                // Eğer asker sayısı azsa ve %25 0 geliyorsa, en az 1 kişi ölsün
                 if (currentSoldiers > 0 && deaths == 0) deaths = 1;
 
                 int remaining = currentSoldiers - deaths;
 
                 if (remaining <= 0) {
-                    // Hepsi öldü
                     tile.setArmy(null);
                 } else {
-                    // Kalanları güncelle
                     army.setSoldiers(remaining);
                 }
             }
@@ -310,7 +305,7 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
     @Override
     public void write(Json json) {
         json.writeValue("Name", name);
-        json.writeValue("Civilization", civilization, null); 
+        json.writeValue("Civilization", civilization, null);
         json.writeValue("Food", food);
         json.writeValue("Gold", gold);
         json.writeValue("Book", book);
@@ -323,22 +318,16 @@ public class Player implements com.badlogic.gdx.utils.Json.Serializable{
     @Override
 public void read(Json json, JsonValue jsonData) {
         name = jsonData.getString("Name");
-        
-        // --- DÜZELTME BAŞLANGICI ---
-        String civColorName = "Blue"; // Varsayılan değer
-        
-        // 1. JSON'da "Civilization" adında bir alt obje var mı bakıyoruz
+
+        String civColorName = "Blue";
+
         if (jsonData.has("Civilization")) {
             JsonValue civJson = jsonData.get("Civilization");
-            
-            // 2. Alt objenin içindeki "CColor" değerini (Red, Blue, Gold vs.) alıyoruz
-            // savefile.json yapına göre doğru alan "CColor"
+
             civColorName = civJson.getString("CColor", "Blue");
         }
-        
-        // 3. Bulduğumuz ismi kullanarak doğru sınıfı oluşturuyoruz
+
         this.civilization = com.gameonjava.utlcs.gui.EmpireSelectionScreen.getCivilizationByName(civColorName);
-        // --- DÜZELTME BİTİŞİ ---
 
         this.food = json.readValue("Food", com.gameonjava.utlcs.backend.resources.FoodResource.class, jsonData);
         this.gold = json.readValue("Gold", com.gameonjava.utlcs.backend.resources.GoldResource.class, jsonData);
@@ -350,7 +339,7 @@ public void read(Json json, JsonValue jsonData) {
 
         relinkTiles();
     }
-   
+
 
 
 
@@ -364,10 +353,8 @@ public void read(Json json, JsonValue jsonData) {
     public void relinkTiles() {
        if (ownedTiles != null) {
             for (Tile t : ownedTiles) {
-                // 1. Tile sahibini ayarla
                 t.setOwner(this);
-                
-                // 2. Eğer Tile üstünde ordu varsa, onun da sahibini ayarla (YENİ KISIM)
+
                 if (t.hasArmy()) {
                     t.getArmy().setPlayer(this);
                 }
@@ -375,5 +362,5 @@ public void read(Json json, JsonValue jsonData) {
         }
     }
 
-   
+
 }

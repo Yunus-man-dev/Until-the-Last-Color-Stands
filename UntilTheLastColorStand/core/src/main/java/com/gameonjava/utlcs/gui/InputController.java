@@ -25,7 +25,6 @@ public class InputController extends InputAdapter {
     @Override
     public boolean keyDown(int keycode) {
 
-        // --- P: PAUSE MENU ---
         if (keycode == Input.Keys.P) {
             PauseDialog pause = new PauseDialog("Game Paused", Assets.skin, screen.getMainGame(),
             screen.getHud().getBackendGame());
@@ -33,7 +32,6 @@ public class InputController extends InputAdapter {
             return true;
         }
 
-        // --- B: BUILDING DIALOG TEST ---
         if (keycode == Input.Keys.B) {
             Player currentPlayer = screen.getHud().getBackendGame().getCurrentPlayer();
             ArrayList<Tile> tiles = currentPlayer.getOwnedTiles();
@@ -41,28 +39,23 @@ public class InputController extends InputAdapter {
             if (tiles != null && !tiles.isEmpty()) {
                 Tile testTile = tiles.get(0);
 
-                // DÜZELTME: BuildingSelectionDialog kullanımı
                 BuildingSelectionDialog build = new BuildingSelectionDialog(
                         Assets.skin,
                         testTile,
                         currentPlayer,
                         screen.getHud(),
-                        screen.getGameHud().getBackendGame().getMap()); // Screen'den Map'i alıyoruz
+                        screen.getGameHud().getBackendGame().getMap());
 
                 build.show(screen.getHud().stage);
             }
             return true;
         }
 
-        // --- T: TRADE DIALOG TEST ---
         if (keycode == Input.Keys.T) {
             Player me = screen.getHud().getBackendGame().getCurrentPlayer();
-            // Kendisiyle ticaret yapamaz, listeden başkasını bulmalı ama test için:
-            // Dummy bir oyuncu oluşturuyoruz
             Player other = new Player("Other Empire", new Red("Red"));
             TradeDialog trade = new TradeDialog(me, other, screen.getHud().getBackendGame());
 
-            // Ekranın ortasına koy
             trade.setPosition((screen.getHud().stage.getWidth() - trade.getWidth()) / 2,
                     (screen.getHud().stage.getHeight() - trade.getHeight()) / 2);
 
@@ -70,7 +63,6 @@ public class InputController extends InputAdapter {
             return true;
         }
 
-        // --- M: MAIL / INCOMING TRADE TEST ---
         if (keycode == Input.Keys.M) {
             Player me = screen.getHud().getBackendGame().getCurrentPlayer();
             Player sender = new Player("Rich Empire", new Red("Red"));
@@ -86,7 +78,6 @@ public class InputController extends InputAdapter {
             return true;
         }
 
-        // --- W: WAR RESULT TEST ---
         if (keycode == Input.Keys.W) {
             Tile t1 = new Tile(0, 0, TerrainType.PLAIN);
             t1.setOwner(new Player("Player 1", new com.gameonjava.utlcs.backend.civilization.Blue("Blue")));
@@ -103,7 +94,6 @@ public class InputController extends InputAdapter {
         // --- INTERACTION BAR TESTLERİ (NUM 1, 2, 3, 0) ---
         // ====================================================================
 
-        // Buraya gelmeden önce kodda "return" olmamalı.
 
         Player me = screen.getHud().getBackendGame().getCurrentPlayer();
 
@@ -119,8 +109,8 @@ public class InputController extends InputAdapter {
         if (keycode == Input.Keys.NUM_2) {
             Tile t = new Tile(0, 0, TerrainType.PLAIN);
             t.setOwner(me);
-            t.setBuilding(new Farm(t, 10)); // Bina ekle
-            t.setArmy(new Army(5, me, t)); // Asker ekle
+            t.setBuilding(new Farm(t, 10));
+            t.setArmy(new Army(5, me, t));
             screen.getHud().getInteractionBar().updateContent(t);
             return true;
         }
@@ -132,7 +122,7 @@ public class InputController extends InputAdapter {
             Farm f = new Farm(t, 10);
             f.upgrade();
             f.upgrade();
-            f.upgrade(); // Max level yap
+            f.upgrade();
             t.setBuilding(f);
             screen.getHud().getInteractionBar().updateContent(t);
             return true;
@@ -144,6 +134,6 @@ public class InputController extends InputAdapter {
             return true;
         }
 
-        return false; // Hiçbir tuşa basılmadıysa false dön
+        return false;
     }
 }

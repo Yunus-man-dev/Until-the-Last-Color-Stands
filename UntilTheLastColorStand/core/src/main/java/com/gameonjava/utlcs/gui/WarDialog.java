@@ -22,11 +22,10 @@ public class WarDialog extends Dialog {
     private static final float DIALOG_HEIGHT = 450;
     private static final float ANIM_DELAY_STEP = 0.4f;
 
-    // Constructor parametreleri değişti: Tile yerine String isimler ve int sayılar alındı.
     public WarDialog(Skin skin,
-                     String attName, String defName, // İsimler
-                     int attSoldiers, int defSoldiers, // Başlangıç asker sayıları
-                     double attTech, double defTech, // Teknoloji puanları
+                     String attName, String defName,
+                     int attSoldiers, int defSoldiers,
+                     double attTech, double defTech,
                      boolean attackerWon,
                      int attRoll, int defRoll,
                      int attFinalAP, int defFinalAP) {
@@ -70,18 +69,14 @@ public class WarDialog extends Dialog {
 
         currentDelay += ANIM_DELAY_STEP;
 
-        // --- ASKER SAYISI (SOLDIER) - (Parametreden geliyor) ---
         addStatRow(dataTable, Assets.soldier, Assets.soldier,
             attSoldiers + "", defSoldiers + "", "     Soldier Amount        ", defaultStyle, currentDelay);
         currentDelay += ANIM_DELAY_STEP;
 
-        // --- TEKNOLOJİ PUANI (TECH) - (Parametreden geliyor) ---
-        // Double gösterimi düzeltildi (%.1f formatı eklenebilir ama direkt string çevirdik)
         addStatRow(dataTable, Assets.tech, Assets.tech,
             (int)attTech + "  Tp", (int)defTech + " Tp ", "     Research Point        ", defaultStyle, currentDelay);
         currentDelay += ANIM_DELAY_STEP;
 
-        // --- ZAR SONUCU (DICE) ---
         Texture attDiceTex = getDiceTexture(attRoll);
         Texture defDiceTex = getDiceTexture(defRoll);
 
@@ -89,7 +84,6 @@ public class WarDialog extends Dialog {
             "    Roll: " + attRoll, "Roll: " + defRoll+"    ", "     Dice Point        ", defaultStyle, currentDelay);
         currentDelay += ANIM_DELAY_STEP;
 
-        // --- SALDIRI GÜCÜ (AP/DP - KILIÇ) ---
         addStatRow(dataTable, Assets.war, Assets.war,
             "    Ap: " + attFinalAP, "Dp: " + defFinalAP+"    ", "     Attack/Defense        ", defaultStyle, currentDelay);
         currentDelay += ANIM_DELAY_STEP;
@@ -97,7 +91,6 @@ public class WarDialog extends Dialog {
         contentStack.add(dataTable);
         getContentTable().add(contentStack).growX().height(350).row();
 
-        // --- KAZANAN YAZISI ---
         String winnerText = attackerWon ? attName + " Wins!" : defName + " WINS!";
 
         Label winnerLbl = new Label(winnerText, titleStyle);
@@ -107,7 +100,6 @@ public class WarDialog extends Dialog {
 
         getContentTable().add(animateAppearance(winnerLbl, currentDelay)).padTop(20).row();
 
-        // --- DONE BUTONU ---
         Table buttonTable = new Table();
 
         TextButton.TextButtonStyle doneStyle = new TextButton.TextButtonStyle();

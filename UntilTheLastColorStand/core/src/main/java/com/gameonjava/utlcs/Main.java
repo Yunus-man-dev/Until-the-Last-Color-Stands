@@ -16,7 +16,6 @@ public class Main extends Game {
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
 
-    // --- BU EKSİKTİ: Backend Oyun Objesi ---
     private com.gameonjava.utlcs.backend.Game backendGame;
 
     public enum ScreenType {
@@ -36,17 +35,14 @@ public class Main extends Game {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
 
-        // Assetleri yükle
         Assets.load();
         Assets.finishLoading();
         if (Assets.music != null) {
-            Assets.music.setLooping(true); // Sürekli çalsın
-            Assets.music.setVolume(0.5f);  // Ses seviyesi
-            Assets.music.play();           // Başlat
+            Assets.music.setLooping(true);
+            Assets.music.setVolume(0.5f);
+            Assets.music.play();
         }
 
-        // --- BU KISIM SİLİNMİŞTİ, GERİ GELDİ ---
-        // 1. Backend Oyununu Başlat
         backendGame = new com.gameonjava.utlcs.backend.Game();
         changeScreen(ScreenType.MAIN_MENU);
     }
@@ -70,8 +66,6 @@ public class Main extends Game {
 
             case GAME:
                 if (gameScreen == null) {
-                    // --- BU SATIR HATALIYDI, DÜZELDİ ---
-                    // backendGame parametresi gönderiliyor
                     gameScreen = new GameScreen(this, backendGame);
                 }
                 this.setScreen(gameScreen);
@@ -97,12 +91,10 @@ public class Main extends Game {
     }
     public void setBackendGame(com.gameonjava.utlcs.backend.Game game) {
         this.backendGame = game;
-        
-        // ÖNEMLİ: Eğer eski bir GameScreen varsa onu yok etmeliyiz.
-        // Yoksa eski ekran, eski oyun verilerini tutmaya devam eder.
+
         if (gameScreen != null) {
             gameScreen.dispose();
-            gameScreen = null; 
+            gameScreen = null;
         }
     }
 }

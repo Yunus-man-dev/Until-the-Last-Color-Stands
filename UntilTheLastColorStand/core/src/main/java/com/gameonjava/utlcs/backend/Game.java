@@ -62,34 +62,27 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
     // Moves onto the next player's turn and updates resources.
 
     public void nextTurn() {
-        // 1. Oyun bitti mi kontrolü (Mevcut kodun)
         if (checkGameOver()) {
             endGame();
-            return; // Oyun bittiyse turu ilerletme
+            return;
         }
 
-        // 2. --- DÜZELTME: SIRA ATLAMA DÖNGÜSÜ ---
-        // Sıradaki oyuncu "Aktif" olana kadar indeksi artır.
         do {
             currentPlayerIndex++;
 
-            // Liste sonuna geldiyse başa dön ve tur sayısını artır
             if (currentPlayerIndex >= players.size()) {
                 currentPlayerIndex = 0;
                 gameMap.resetAllTilesTurnData();
             }
             currentTurn++;
 
-        } while (!getCurrentPlayer().isActive()); // Oyuncu aktif DEĞİLSE döngü devam eder
+        } while (!getCurrentPlayer().isActive());
 
-        // 3. Yeni aktif oyuncuyu al ve kaynaklarını güncelle
         Player currentPlayer = getCurrentPlayer();
-        System.out.println("Turn passed to: " + currentPlayer.getName()); // Debug için
+        System.out.println("Turn passed to: " + currentPlayer.getName());
 
         currentPlayer.updateResources();
 
-        // Tekrar oyun bitti mi kontrolü (updateResources veya tur başı olaylar oyunu
-        // bitirebilir)
         if (checkGameOver()) {
             endGame();
         }
@@ -160,11 +153,9 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
 
         com.gameonjava.utlcs.backend.Army sourceArmy = owned.getArmy();
 
-        // --- 1. HAREKET HAKKI KONTROLÜ ---
         Player player = owned.getOwner();
         int allowedMoves = 1;
 
-        // Kırmızı Irk (RED) ise 2 hareket hakkı
         if (player.getCivilization() instanceof com.gameonjava.utlcs.backend.civilization.Red) {
             allowedMoves = 2;
         }
@@ -180,18 +171,13 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
 
         MovementPoint mp = player.getMp();
 
-        // --- SAVAŞ KONTROLÜ ---
         if (target.hasArmy() && !target.getOwner().equals(player)) {
             return initiateAttack(owned, target, amount);
         }
 
-        // --- NORMAL HAREKET KONTROLLERİ ---
         if (!gameMap.getNeighbors(owned).contains(target))
             return null;
 
-        // B. GEÇİLEBİLİR ARAZİ Mİ? (EKSİK OLAN KISIM EKLENDİ)
-        // Tile sınıfındaki 'canUnitPass' metodu Mountain ve Deep Water için false
-        // döner.
         if (!target.canUnitPass(owned)) {
             System.out.println("MOVE FAILED: Arazi (Dağ/Derin Su) geçişe uygun değil.");
             return null;
@@ -199,13 +185,11 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
         if (!mp.checkForResource(mp.MOVE))
             return null;
 
-        // --- LİMAN (PORT) KONTROLÜ (Burası değişmedi, kural aynen duruyor) ---
         boolean isTargetWater = (target.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.WATER ||
                 target.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.DEEP_WATER);
         boolean isSourceWater = (owned.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.WATER ||
                 owned.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.DEEP_WATER);
 
-        // Karadan -> Suya geçişte LİMAN ŞARTI
         if (isTargetWater && !isSourceWater) {
             boolean hasPort = false;
             if (owned.hasBuilding() && owned.getBuilding() instanceof com.gameonjava.utlcs.backend.building.Port) {
@@ -217,13 +201,10 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
             }
         }
 
-        // --- İŞLEM ---
         mp.reduceResource(mp.MOVE);
 
-        // Hareket sayacını artır
         int currentMoveCount = sourceArmy.getMovesMadeThisTurn() + 1;
 
-        // A. Kaynak Kareden Düş
         int remainingSoldiers = currentSoldiers - amount;
         if (remainingSoldiers > 0) {
             owned.getArmy().setSoldiers(remainingSoldiers);
@@ -231,30 +212,22 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
             owned.setArmy(null);
         }
 
-        // B. Hedef Kareye Ekle
         if (target.hasArmy()) {
-            // Zaten askerim varsa ekle
             target.getArmy().addSoldiers(amount);
         } else {
-            // Boşsa yeni ordu koy
             com.gameonjava.utlcs.backend.Army newArmy = new com.gameonjava.utlcs.backend.Army(amount, player, target);
-            newArmy.setMovesMadeThisTurn(currentMoveCount); // Yorgunluğu taşı
+            newArmy.setMovesMadeThisTurn(currentMoveCount);
             target.setArmy(newArmy);
 
-            // --- SAHİPLİK DEĞİŞTİRME (REVİZE EDİLDİ) ---
-            // ARTIK SU OLSA BİLE ELE GEÇİRİLEBİLİR.
-            // Sadece "Sahibi ben değilsem" (Boşsa veya Düşmansa) ele geçir.
             if (!player.equals(target.getOwner())) {
 
                 com.gameonjava.utlcs.backend.Player oldOwner = target.getOwner();
 
-                // Eski sahibin listesinden sil
                 if (oldOwner != null) {
                     oldOwner.getOwnedTiles().remove(target);
-                    oldOwner.checkElimination(); // Elendi mi kontrol et
+                    oldOwner.checkElimination();
                 }
 
-                // Yeni sahip benim
                 target.setOwner(player);
                 player.addTile(target);
             }
@@ -264,7 +237,6 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
         return null;
     }
 
-    // Game.java içindeki initiateAttack metodunu bununla değiştir:
 
     private com.gameonjava.utlcs.backend.WarManager initiateAttack(Tile attackerTile, Tile defenderTile, int amount) {
         System.out.println("WAR STARTED!");
@@ -272,40 +244,29 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
         Player attacker = attackerTile.getOwner();
         Player defender = defenderTile.getOwner();
 
-        // --- 1. SAVAŞ ÖNCESİ VERİLERİ SAKLA (SNAPSHOT) ---
-        // Savaş sonucunda askerler öleceği için, başlangıç değerlerini şimdiden alıyoruz.
         String startAttName = attacker.getName();
         String startDefName = (defender != null) ? defender.getName() : "Neutral";
-        // Saldıranın o anki toplam askeri (veya sadece amount, senaryona göre değişir ama genelde o karedeki ordu + amount savaşa girer)
-        // Ancak moveArmy metodunda amount kadar asker yeni bir ordu gibi düşünüldüğü için:
         int startAttSoldiers = amount;
         int startDefSoldiers = (defenderTile.hasArmy()) ? defenderTile.getArmy().getSoldiers() : 0;
-        // ------------------------------------------------
 
-        // 2. Zar Atma
         int attRoll = com.badlogic.gdx.math.MathUtils.random(1, 6);
         int defRoll = com.badlogic.gdx.math.MathUtils.random(1, 6);
 
         int defPower = defRoll + startDefSoldiers + (int)(defender != null ? defender.getTechnologyPoint() : 0);
         int attPower = attRoll + amount + (int)attacker.getTechnologyPoint();
-        // 3. Güç Hesaplama
 
-        // Orman Bonusu
         if (defenderTile.getTerrainType() == com.gameonjava.utlcs.backend.Enum.TerrainType.FOREST) {
             defPower += 2;
         }
 
         boolean attackerWon = attPower > defPower;
 
-        // 4. SONUÇLARI UYGULA
         if (attackerWon) {
             System.out.println("ATTACKER WON!");
 
-            // Savunan ölür
             if(defender != null) defender.getOwnedTiles().remove(defenderTile);
             defenderTile.setArmy(null);
 
-            // Saldıranın kaynak karesindeki askerleri azalt
             int remainingSource = attackerTile.getArmy().getSoldiers() - amount;
             if (remainingSource > 0) {
                 attackerTile.getArmy().setSoldiers(remainingSource);
@@ -313,17 +274,14 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
                 attackerTile.setArmy(null);
             }
 
-            // Yeni orduyu hedefe koy
             com.gameonjava.utlcs.backend.Army winningArmy = new com.gameonjava.utlcs.backend.Army(amount, attacker, defenderTile);
             defenderTile.setArmy(winningArmy);
 
-            // Toprağı al
             defenderTile.setOwner(attacker);
             attacker.addTile(defenderTile);
 
         } else {
             System.out.println("DEFENDER WON!");
-            // Saldıranın gönderdiği askerler ölür
             int remainingSource = attackerTile.getArmy().getSoldiers() - amount;
             if (remainingSource > 0) {
                 attackerTile.getArmy().setSoldiers(remainingSource);
@@ -332,15 +290,12 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
             }
         }
 
-        // 5. GUI İÇİN VERİ PAKETLEME
         com.gameonjava.utlcs.backend.WarManager result = new com.gameonjava.utlcs.backend.WarManager();
 
-        // --- EKSİK OLAN KISIM BURASIYDI, EKLENDİ ---
         result.guiAttName = startAttName;
         result.guiDefName = startDefName;
         result.guiAttSoldierCount = startAttSoldiers;
         result.guiDefSoldierCount = startDefSoldiers;
-        // -------------------------------------------
 
         result.guiAttackerWon = attackerWon;
         result.guiAttRoll = attRoll;
@@ -352,18 +307,15 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
 
         return result;
     }
-
-    // Creates the trade and adds to active trades.
     public boolean addTrade(Trade t) {
         // Trade sınıfındaki checkForCreation metodu hem kaynak hem de MP kontrolü
         // yapar.
         if (t.checkForCreation()) {
             activeTrades.add(t);
-            return true; // Başarılı
+            return true;
         }
         return false; // Başarısız (Yetersiz kaynak veya MP)
     }
-    // ------------------------
 
     // Executes trade and removes it from active list.
     public void acceptTrade(Trade t) {
@@ -416,18 +368,14 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
         // p.relinkTiles();
         // }
         // }
-        // 1. Önce Haritayı Yükle (Sıralama Önemli!)
         gameMap = json.readValue("Map", Map.class, jsonData);
 
-        // 2. Sonra Oyuncuları Yükle (Oyuncular kendi "Kopya" Tile'larıyla gelir)
         players = json.readValue("Players", java.util.ArrayList.class, Player.class, jsonData);
 
-        // 3. Diğer Veriler
         currentTurn = jsonData.getInt("Turn", 1);
         currentPlayerIndex = jsonData.getInt("CurPlayerIndex", 0);
         activeTrades = json.readValue("ActiveTrades", java.util.ArrayList.class, Trade.class, jsonData);
 
-        // 4. BAĞLANTILARI ONAR (YENİ METODU ÇAĞIRIYORUZ)
         relinkTilesWithMap();
     }
 
@@ -436,28 +384,21 @@ public class Game implements com.badlogic.gdx.utils.Json.Serializable {
             return;
 
         for (Player p : players) {
-            // Oyuncunun elindeki (Json'dan gelen kopya) listeyi al
             ArrayList<Tile> loadedTiles = new ArrayList<>(p.getOwnedTiles());
 
-            // Oyuncunun listesini temizle (Doğrularını ekleyeceğiz)
             p.getOwnedTiles().clear();
 
             for (Tile fakeTile : loadedTiles) {
-                // Koordinatları al
                 int q = fakeTile.getQ();
                 int r = fakeTile.getR();
 
-                // Haritadan GERÇEK tile'ı çek
                 Tile realTile = gameMap.getTile(q, r);
 
                 if (realTile != null) {
-                    // 1. Oyuncuya gerçek tile'ı ver
                     p.addTile(realTile);
 
-                    // 2. Gerçek tile'a sahibini tanıt
                     realTile.setOwner(p);
 
-                    // 3. Eğer tile üstünde ordu varsa, ordunun sahibini de güncelle
                     if (realTile.hasArmy()) {
                         realTile.getArmy().setPlayer(p);
                     }
