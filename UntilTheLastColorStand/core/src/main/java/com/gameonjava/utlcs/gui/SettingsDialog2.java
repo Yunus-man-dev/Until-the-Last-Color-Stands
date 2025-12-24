@@ -22,7 +22,6 @@ public class SettingsDialog2 extends Dialog {
     public SettingsDialog2(Skin skin) {
         super("Settings", skin);
 
-
         NinePatchDrawable backgroundDrawable;
 
         if (PauseDialog.brownPanelDrawable != null) {
@@ -49,6 +48,7 @@ public class SettingsDialog2 extends Dialog {
 
         Table content = getContentTable();
 
+        // --- SES AYARLARI ---
         Label volumeLabel = new Label("Music Volume", skin);
         volumeLabel.setAlignment(Align.center);
         volumeLabel.setColor(Color.BLACK);
@@ -73,31 +73,38 @@ public class SettingsDialog2 extends Dialog {
         content.add(volumeLabel).expandX().fillX().padBottom(10).row();
         content.add(volumeSlider).width(200).padBottom(20).row();
 
-        Label separator = new Label("- - - - - -", skin);
-        separator.setColor(Color.BLACK);
-        content.add(separator).padBottom(20).row();
 
 
-        TextButton.TextButtonStyle closeStyle;
+        TextButton.TextButtonStyle btnStyle;
 
         if (PauseDialog.yellowButtonStyle != null) {
-            closeStyle = PauseDialog.yellowButtonStyle;
+            btnStyle = PauseDialog.yellowButtonStyle;
         } else {
-            closeStyle = new TextButton.TextButtonStyle();
-            closeStyle.font = skin.getFont("default");
-            closeStyle.fontColor = Color.BLACK;
+            btnStyle = new TextButton.TextButtonStyle();
+            btnStyle.font = skin.getFont("default");
+            btnStyle.fontColor = Color.BLACK;
             try {
                 Texture btnTex = new Texture(Gdx.files.internal("ui/button_yellow.png"));
                 NinePatch patch = new NinePatch(btnTex, 10, 10, 10, 10);
-                closeStyle.up = new NinePatchDrawable(patch);
-                closeStyle.down = new NinePatchDrawable(patch).tint(Color.GRAY);
+                btnStyle.up = new NinePatchDrawable(patch);
+                btnStyle.down = new NinePatchDrawable(patch).tint(Color.GRAY);
             } catch (Exception e) {
-                closeStyle = skin.get(TextButton.TextButtonStyle.class);
+                btnStyle = skin.get(TextButton.TextButtonStyle.class);
             }
         }
 
-        TextButton closeButton = new TextButton("Close", closeStyle);
+        TextButton exitButton = new TextButton("Exit Game", btnStyle);
+        exitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
 
+        content.add(exitButton).width(200).height(50).padBottom(10).row();
+
+
+        TextButton closeButton = new TextButton("Close", btnStyle);
         closeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -105,6 +112,6 @@ public class SettingsDialog2 extends Dialog {
             }
         });
 
-        getButtonTable().add(closeButton).width(150).height(50).padTop(10);
+        getButtonTable().add(closeButton).width(220).height(60).padTop(20);
     }
 }
