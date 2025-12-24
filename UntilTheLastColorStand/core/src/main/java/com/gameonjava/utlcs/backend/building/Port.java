@@ -3,8 +3,7 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Tile;
-/*Port is a subclass of Building that produces a specified amount of gold and
-food each turn. This amount might differ to civilization to civilization. */
+
 public class Port extends Building {
     private double FOOD;
     private double GOLD;

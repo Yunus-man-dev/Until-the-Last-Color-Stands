@@ -4,8 +4,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Tile;
 
-/*Library is a subclass of Building that produces a specified amount of book
-each turn. This amount might differ to civilization to civilization. */
+
 public class Library extends Building {
     private double BOOK;
 
@@ -22,9 +21,6 @@ public class Library extends Building {
     @Override
     public void produce(Player player) {
         double bookProduced = BOOK;
-        // if(player.getCivilization() instanceof Blue){
-        //    bookProduced = (int) (bookProduced * Blue.getLibraryProductionBonus());
-        // }
         if(level == 2){
             bookProduced *= 2;
         }
