@@ -8,7 +8,7 @@ import com.gameonjava.utlcs.backend.resources.MovementPoint;
 
 public class Red extends Civilization{
 
-    private static final int REQUIRED_TILES = 30;
+    private static final int REQUIRED_TILES = 240;
     private static final int RECRUITMENT_LIMIT_BONUS = 5;
     private static final double GOLD_COST_MULTIPLIER = 1.2;
     private static final double MOVEMENT_COST_REDUCTIION = 0.8;

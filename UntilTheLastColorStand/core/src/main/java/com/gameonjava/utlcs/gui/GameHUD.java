@@ -275,7 +275,7 @@ public class GameHUD implements Disposable {
         goldLabel.setText(String.valueOf((int) player.getGold().getValue()));
         foodLabel.setText(String.valueOf((int) player.getFood().getValue()));
         bookLabel.setText(String.valueOf((int) player.getBook().getValue()));
-        techLabel.setText(String.valueOf(player.getTechnologyPoint()));
+        techLabel.setText(String.format("%.3f", player.getTechnologyPoint()));
         moveLabel.setText(String.valueOf((int) player.getMp().getValue()));
 
         turnCount.setText("Turn " + turnNumber);
