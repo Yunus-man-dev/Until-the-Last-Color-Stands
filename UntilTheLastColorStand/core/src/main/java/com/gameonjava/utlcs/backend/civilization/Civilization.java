@@ -19,10 +19,6 @@ public abstract class Civilization implements com.badlogic.gdx.utils.Json.Serial
     final int START_BOOK = 0;
     final int START_TILE = 7;
 
-    // fsdjhgjokgj sdo
-
-
-
     public  double FRECRUIT = 3;
     public  double FTILE = 3 ;
     public  double FMAINTAIN = 0;
@@ -39,7 +35,6 @@ public abstract class Civilization implements com.badlogic.gdx.utils.Json.Serial
     public  double M_RECRUIT = 3;
     public  double M_ATTACK = 4;
 
-    //Baslangic degerleri
     public  double FARM_FOOD = 50;
     public  double PORT_FOOD = 25;
     public  double PORT_GOLD = 50;
@@ -175,7 +170,6 @@ public abstract class Civilization implements com.badlogic.gdx.utils.Json.Serial
         this.startingMP = startingMp;
     }
 
-    // public abstract void applyUniqueFeature(Player p);
     public abstract boolean checkWinCondition(Player p);
     public abstract void initializeStartingResources();
 

@@ -3,9 +3,7 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Tile;
-/*Building is an abstract class that is super class of other building types and
-stores necessary and common features and variables, such as level and the Tile that
-building is constructed on. */
+
 public abstract class Building implements com.badlogic.gdx.utils.Json.Serializable{
     protected int level;
     protected Tile tile;
@@ -30,7 +28,7 @@ public abstract class Building implements com.badlogic.gdx.utils.Json.Serializab
         this.tile = tile;
     }
     public void upgrade(){
-        // 4 is just a random constant here. you can edit it
+        
         if(this.level < 4){
             this.level++;
             System.out.println(level);
@@ -45,11 +43,11 @@ public abstract class Building implements com.badlogic.gdx.utils.Json.Serializab
     @Override
     public void write(Json json) {
         json.writeValue("level", level);
-        // json.writeValue("tile", tile);
+        
     }
     @Override
     public void read(Json json, JsonValue jsonData) {
         this.level = jsonData.getInt("level");
-        // this.tile = json.readValue("tile", Tile.class, jsonData);
+        
     }
 }

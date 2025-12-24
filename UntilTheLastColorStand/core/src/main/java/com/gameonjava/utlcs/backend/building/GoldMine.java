@@ -3,8 +3,7 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import com.gameonjava.utlcs.backend.Player;
 import com.gameonjava.utlcs.backend.Tile;
-/*GoldMine is a subclass of Building that produces a specified amount of
-gold each turn. This amount might differ to civilization to civilization */
+
 public class GoldMine extends Building {
     private double GOLD;
 
